@@ -1,0 +1,33 @@
+import type { ContentRegistry } from '../content/registry'
+import type { GameState } from './saveSchema'
+
+/** Estado inicial derivado do conteúdo: estados iniciais dos interactables e dos puzzles. */
+export function createNewGameState(content: ContentRegistry): GameState {
+  const world: Record<string, string> = {}
+  for (const it of content.interactables.values()) {
+    if (it.state !== undefined) world[it.id] = it.state
+  }
+  const puzzles: GameState['puzzles'] = {}
+  for (const p of content.puzzles.values()) {
+    puzzles[p.id] = { status: 'unsolved', values: { ...p.input.initial }, attempts: 0 }
+  }
+  const { start } = content.story
+  return {
+    player: { area: start.area, position: [...start.position], yaw: start.yaw, pitch: 0 },
+    inventory: [],
+    world,
+    puzzles,
+    documents: [],
+    flags: { ...start.flags },
+    journal: [],
+    clock: { ...start.clock },
+    playtimeSec: 0,
+  }
+}
+
+export function computeProgress(content: ContentRegistry, evaluate: (c: ContentRegistry['story']['progress'][number]['when']) => boolean): number {
+  const total = content.story.progress.reduce((sum, p) => sum + p.weight, 0)
+  if (total === 0) return 0
+  const done = content.story.progress.reduce((sum, p) => sum + (evaluate(p.when) ? p.weight : 0), 0)
+  return Math.round((done / total) * 1000) / 10
+}
