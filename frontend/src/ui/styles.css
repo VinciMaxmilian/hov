@@ -824,3 +824,315 @@ label {
   font-size: 1.1rem;
   margin-top: 0.3rem;
 }
+
+/* ---------------------------------------------------------------- toque (celular/tablet) */
+
+html.touch,
+html.touch body {
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+html.touch canvas {
+  touch-action: none;
+}
+
+/* Atalhos de teclado só fazem sentido com teclado. */
+html.touch .key,
+html.touch .only-desktop {
+  display: none;
+}
+
+.only-touch {
+  display: none;
+}
+
+html.touch .only-touch {
+  display: inline;
+}
+
+.touch-ui {
+  touch-action: none;
+  user-select: none;
+}
+
+.touch-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  touch-action: none;
+}
+
+.touch-zone.move {
+  left: 0;
+  width: 45%;
+}
+
+.touch-zone.look {
+  right: 0;
+  width: 55%;
+}
+
+.stick-base {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 220, 198, 0.25);
+  background: rgba(10, 14, 20, 0.25);
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.stick-knob {
+  position: absolute;
+  left: 36px;
+  top: 36px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(230, 220, 198, 0.35);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.touch-btn {
+  pointer-events: auto;
+  touch-action: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(230, 220, 198, 0.3);
+  background: rgba(8, 11, 15, 0.55);
+  color: var(--ink-dim);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.touch-btn.small {
+  width: 46px;
+  height: 46px;
+  font-size: 1.1rem;
+}
+
+.touch-btn.on {
+  color: var(--amber);
+  border-color: rgba(255, 180, 94, 0.6);
+}
+
+.touch-btn.interact {
+  width: auto;
+  min-width: 84px;
+  height: 84px;
+  border-radius: 42px;
+  padding: 0 1.2rem;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 1rem;
+}
+
+.touch-btn.interact:disabled {
+  opacity: 0.35;
+}
+
+.touch-btn.interact.ready {
+  color: var(--ink);
+  border-color: rgba(255, 180, 94, 0.7);
+  background: rgba(30, 20, 10, 0.6);
+}
+
+.touch-btn.interact .verb {
+  color: var(--amber);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+}
+
+.touch-btn.interact .what {
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  max-width: 9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.touch-actions {
+  position: absolute;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1.2rem, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: flex-end;
+  gap: 0.8rem;
+}
+
+.touch-top {
+  position: absolute;
+  right: max(1rem, env(safe-area-inset-right));
+  top: max(0.8rem, env(safe-area-inset-top));
+  display: flex;
+  gap: 0.6rem;
+}
+
+/* Dicas/mensagens não ficam embaixo do polegar */
+html.touch .hint {
+  bottom: auto;
+  top: 8vh;
+}
+
+html.touch .messages {
+  bottom: 30vh;
+}
+
+.rotate-hint {
+  display: none;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: #05070a;
+  color: var(--ink-dim);
+  letter-spacing: 0.2em;
+  font-size: 1rem;
+  text-align: center;
+  z-index: 50;
+}
+
+.rotate-hint div:first-child {
+  font-size: 3rem;
+}
+
+@media (orientation: portrait) {
+  html.touch .rotate-hint {
+    display: flex;
+  }
+}
+
+.inspect-buttons {
+  gap: 0.2rem;
+}
+
+/* ---------------------------------------------------------------- telas estreitas */
+
+@media (max-width: 900px) {
+  .panel {
+    min-width: 0 !important;
+    width: min(560px, 94vw);
+    padding: 1.1rem 1.2rem;
+  }
+
+  .title-block {
+    left: 6vw;
+    bottom: 6vh;
+  }
+
+  .inspect {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 0.6rem;
+    padding: 2vh 3vw;
+  }
+
+  .inspect-side {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding: 0.6rem 0 0;
+    max-height: 36vh;
+  }
+
+  .inspect-side h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .inspect-side .controls {
+    margin-top: 0.4rem;
+  }
+
+  .journal {
+    padding: 2vh 3vw;
+  }
+
+  .journal-tabs {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .journal-tabs .tab {
+    font-size: 1rem;
+  }
+
+  .journal-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 0.8rem;
+  }
+
+  .journal-list {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    max-height: 32vh;
+    padding-right: 0;
+  }
+
+  .journal-detail {
+    font-size: 1.05rem;
+  }
+
+  .puzzle-panel {
+    bottom: 2vh;
+    padding: 0.6rem 0.8rem;
+    max-width: 96vw;
+  }
+
+  .puzzle-panel .btn.small {
+    padding: 0.6em 0.8em;
+  }
+
+  .slot {
+    grid-template-columns: 2.4rem 1fr auto;
+    gap: 0.6rem;
+  }
+}
+
+/* Paisagem baixa (celular deitado): menos altura para tudo */
+@media (max-height: 500px) {
+  .title-block h1 {
+    font-size: 2.2rem;
+  }
+
+  .title-block .subtitle {
+    margin-bottom: 1rem;
+  }
+
+  .title-block .btn {
+    font-size: 1.05rem;
+    padding: 0.2em 0.6em;
+  }
+
+  .inspect {
+    grid-template-columns: 1fr 38vw;
+    grid-template-rows: 1fr;
+  }
+
+  .inspect-side {
+    border-top: none;
+    border-left: 1px solid var(--line);
+    padding: 0 0 0 0.8rem;
+    max-height: none;
+  }
+
+  .journal-body {
+    grid-template-columns: 34vw 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .journal-list {
+    max-height: none;
+    border-bottom: none;
+    border-right: 1px solid var(--line);
+  }
+}

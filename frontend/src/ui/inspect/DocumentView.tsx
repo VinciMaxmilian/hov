@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
 import { content } from '../../game/content'
 import type { GameDocument } from '../../game/content/schemas'
 import { bus } from '../../game/core/eventBus'
@@ -106,17 +106,20 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
     return () => window.clearTimeout(t)
   }, [current, doc, flipped])
 
+  const turnOver = useCallback(() => {
+    if (!back) return
+    setFlipped((f) => !f)
+    audio.play('paper')
+  }, [back])
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.code === 'KeyF' && back) {
-        setFlipped((f) => !f)
-        audio.play('paper')
-      }
+      if (e.code === 'KeyF') turnOver()
       if (e.code === 'KeyT') setTranscript((t) => !t)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [back])
+  }, [turnOver])
 
   const onDetail = (id: string) => {
     const det = doc.details.find((d) => d.id === id)
@@ -128,11 +131,35 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
     }
   }
 
+  // Arrastar (1 dedo/mouse) inclina; pinça (2 dedos) dá zoom.
+  const pointers = useRef(new Map<number, { x: number; y: number }>())
+  const pinch = useRef<{ dist: number; zoom: number } | null>(null)
+  const pinchDistance = () => {
+    const [a, b] = [...pointers.current.values()]
+    return Math.hypot(a.x - b.x, a.y - b.y)
+  }
   const onPointerDown = (e: ReactPointerEvent) => {
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
+    if (pointers.current.size === 2) {
+      drag.current = null
+      pinch.current = { dist: pinchDistance(), zoom }
+      return
+    }
     drag.current = { x: e.clientX, y: e.clientY, tx: tilt.x, ty: tilt.y }
     ;(e.target as Element).setPointerCapture?.(e.pointerId)
   }
+  const onPointerUp = (e: ReactPointerEvent) => {
+    pointers.current.delete(e.pointerId)
+    if (pointers.current.size < 2) pinch.current = null
+    drag.current = null
+  }
   const onPointerMove = (e: ReactPointerEvent) => {
+    if (pointers.current.has(e.pointerId)) pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
+    if (pinch.current && pointers.current.size === 2) {
+      const p = pinch.current
+      setZoom(clamp((p.zoom * pinchDistance()) / Math.max(1, p.dist), 0.7, 2.6))
+      return
+    }
     if (!drag.current) return
     const dx = e.clientX - drag.current.x
     const dy = e.clientY - drag.current.y
@@ -140,8 +167,11 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
   }
 
   const [w, h] = SIZES[doc.kind]
-  // Cabe na janela (área útil ≈ 88% da altura e largura menos o painel lateral).
-  const fit = Math.min(1, (window.innerHeight * 0.88) / h, ((window.innerWidth - 420) * 0.9) / w)
+  // Cabe na janela. Telas estreitas (celular) empilham o painel embaixo: usa a largura toda e ~58% da altura.
+  const narrow = window.innerWidth < 900
+  const fit = narrow
+    ? Math.min(1, (window.innerHeight * 0.58) / h, (window.innerWidth * 0.92) / w)
+    : Math.min(1, (window.innerHeight * 0.88) / h, ((window.innerWidth - 420) * 0.9) / w)
   const found = doc.details.filter((d) => flags[`detail:${d.id}`])
   const textOf = (p: Page) => [p.heading, p.text, p.margin && `(in the margin) ${p.margin}`].filter(Boolean).join('\n\n')
 
@@ -151,7 +181,8 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
         className="inspect-stage"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
-        onPointerUp={() => (drag.current = null)}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
         onWheel={(e) => setZoom((z) => clamp(z - e.deltaY * 0.0012, 0.7, 2.6))}
       >
         <div
@@ -186,17 +217,26 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
           </div>
         ))}
         {transcript && <div className="transcript">{textOf(current)}</div>}
-        <div className="controls">
-          drag — tilt · wheel — zoom
-          <br />
+        <div className="inspect-buttons row">
           {back && (
-            <>
-              <span className="key">F</span> turn over
-              <br />
-            </>
+            <button className="btn small" onClick={turnOver}>
+              <span className="key">F</span>turn over
+            </button>
           )}
-          <span className="key">T</span> {transcript ? 'hide' : 'show'} transcript
-          <br />
+          <button className="btn small" onClick={() => setTranscript((t) => !t)}>
+            <span className="key">T</span>
+            {transcript ? 'hide text' : 'read text'}
+          </button>
+          <button className="btn small" onClick={() => setZoom((z) => clamp(z - 0.25, 0.7, 2.6))} aria-label="zoom out">
+            −
+          </button>
+          <button className="btn small" onClick={() => setZoom((z) => clamp(z + 0.25, 0.7, 2.6))} aria-label="zoom in">
+            +
+          </button>
+        </div>
+        <div className="controls">
+          <span className="only-desktop">drag — tilt · wheel — zoom · </span>
+          <span className="only-touch">drag — tilt · pinch — zoom · </span>
           <span className="key">E</span> / <span className="key">Esc</span> put down
         </div>
       </aside>
