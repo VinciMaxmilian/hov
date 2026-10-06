@@ -14,7 +14,7 @@
     }
   ],
   "audio": {
-    "src": "/assets/audio/arthur_tape_11.mp3",
+    "src": "/media/audio/arthur_tape_11.mp3",
     "duration": 23,
     "lines": [
       {

@@ -17,7 +17,8 @@ Vitoriana/gótica estilizada, Pacific Northwest, **iluminação forte**, formas 
 Regra: **fria = mundo, quente = presença humana**. Escuridão deve ter forma (silhuetas legíveis), não esconder falta de detalhe.
 
 ## Iluminação
-- Poucas luzes dinâmicas (máx. 4 simultâneas com sombra: lamparina + 1–2 fixas).
+- Unidades físicas (three r170): spots de luar interiores 45–60, ambiente 0,2–0,35, lamparina 16 (atenuada a 35% em close-ups), abajur 16. Ajustar nos JSON de área.
+- Poucas luzes dinâmicas: 1 spot com sombra por sala + lua direcional com sombra no exterior; lamparina sem sombra.
 - Hemisphere/ambient fria baixa; point lights quentes com falloff curto.
 - Exterior: fog azul-cinza, chuva (partículas), céu azul profundo.
 - Luz rasante revela relevos (fotografias, rasuras).
@@ -29,4 +30,7 @@ Texturas geradas em canvas (ruído, madeira, papel, pedra) com seed; cache por t
 Chuva (abafa ao entrar), vento, madeira rangendo, relógio distante, tubulações, água, passos por material. Silêncio como ferramenta. Eventos fora de campo sem origem confirmada. Implementação inicial: WebAudio procedural; amostras reais depois.
 
 ## Prompts para IA generativa (Higgsfield)
-Manter `CHARACTER_VISUAL_BIBLE.md` quando houver retratos. Estilo-base: "1880s/1930s formal photograph, sepia, studio lighting, Pacific Northwest family, wet-plate texture, subtle damage". Cada prompt inclui: época, roupa, idade, iluminação, formato, nome de arquivo alvo, seed/consistência. Nenhuma geração foi feita ainda.
+- Lista do que gerar, com caminhos exatos e prompts prontos: **`ASSET_MANIFEST.md`**.
+- Rostos, roupas e composições fixas: **`CHARACTER_VISUAL_BIBLE.md`** (tokens de estilo por época).
+- Imagens nunca contêm texto legível (manchetes/legendas são HTML no jogo).
+- Integração: salvar em `frontend/public/media/...`; o jogo troca o placeholder automaticamente.

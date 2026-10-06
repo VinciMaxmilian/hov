@@ -6,8 +6,10 @@ Mistério ambiental · arquitetura como puzzle e narrativa · solidão e incerte
 ## Loop
 EXPLORE → DISCOVER → UNDERSTAND → SOLVE → UNLOCK → DISCOVER MORE.
 
-## Controles
-WASD mover · Mouse câmera · E interagir · F lamparina · Shift correr · Tab inventário/journal · Esc menu. Ensinados progressivamente (prompts contextuais discretos).
+## Controles (implementados)
+WASD mover · Mouse câmera · E interagir · F lamparina · Shift correr · Tab pertences/journal/quadro · Esc menu.
+Na inspeção: arrastar inclina, roda dá zoom, F vira, T transcrição, E/Esc larga. No relógio: A/D horas, W/S minutos (Shift ×5), E "Let it strike", Esc recua.
+Ensino progressivo por gatilhos (`story.json`): WASD aos 2,5 s; Shift aos 16 s; "F — light the lamp" ao ter lamparina + fósforos; "Tab" no primeiro documento; avisos de escuridão na biblioteca/passagem se a lamparina estiver apagada.
 
 ## Estrutura (7 atos)
 I Arrival · II The Family · III The Meridian · IV 1936 · V Arthur · VI Below · VII The Eighth Record.

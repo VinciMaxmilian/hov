@@ -5,6 +5,7 @@ Legenda: [CORE] vem do plano; [D] decisão minha. [S] = segredo (aparece só por
 | Ano | Evento |
 |---|---|
 | ~1790s [D][S] | Mapeadores anônimos (ou "algo mais antigo") deixam a câmara de pedra com 8 pontos. Indefinido. |
+| 1791 [D] | Levantamento em francês registra "le cercle, la ligne, huit points" e "huit témoins" no ponto marcado — e que "o registro já estava lá" (DOC08). |
 | 1847 [CORE] | Elias e Margaret Vale chegam, com dois filhos: **Josiah** (n.1838) e **Clara** (n.1841) [D]. |
 | 1849 [CORE/D][S] | Elias encontra a câmara durante levantamento. Margaret descreve lama e embrulho (DOC03). |
 | 1850–1860 [D] | Casa original (cabana → casa de 6 cômodos). Vale Timber Company. |
@@ -20,7 +21,9 @@ Legenda: [CORE] vem do plano; [D] decisão minha. [S] = segredo (aparece só por
 | 1913 [D] | Nasce Eleanor Orrin (Portland, linha apagada). |
 | 1929 [D] | Nasce Arthur Vale, filho de Edmund. |
 | 1929–1933 [D] | Depressão: Ashcroft Trust se reestrutura; Vale mantêm a casa. |
-| 17/11/1936 [CORE] | **Bellweather Disappearance**. 11 desaparecidos, 4 Vale. Relógio 2:17. |
+| Out/1936 [D] | Foto formal da Meridian Society (7 cadeiras, 8 marcadores no piso). |
+| 17/11/1936 [CORE] | **Bellweather Disappearance**. 11 desaparecidos, 4 Vale. Relógio da biblioteca oeste parado às 2:17. |
+| 19/11/1936 [D] | The Bellweather Courier publica a versão pública (DOC04). |
 | 1936 [D] | Julian Whitmore (médico) cortado da foto oficial por ordem de Hawthorne. |
 | 1937 [D][S] | Primeiro pagamento do Ashcroft Trust (assinatura "E.O."). |
 | 1938–1950 [D] | Famílias partem. Ala oeste fechada com tábuas. |
@@ -29,8 +32,9 @@ Legenda: [CORE] vem do plano; [D] decisão minha. [S] = segredo (aparece só por
 | 1968 [D] | Nasce o protagonista (Heir) em Portland. |
 | 1969 [D] | Adoção fechada, St. Brigid's. |
 | 1971 [D] | Arthur descobre Eleanor Orrin e recebe a carta dela. |
+| 1979 [D] | Arthur anota no verso da foto de 1936: "Julian W.? — the eighth?" (teoria errada). |
 | 1971–1997 [D] | Arthur investiga: grava fitas, altera a casa (portas falsas, mecanismos). |
 | 1994 [D] | Ruth Orrin morre; chave deixada no cofre de St. Brigid's. |
-| 1997 [D] | Arthur localiza o Heir. Ajusta o testamento. |
+| 1997 [D] | Arthur localiza o Heir. Ajusta o testamento. Encontra o DOC08 na passagem e o deixa no lugar. |
 | 12/09/1998 [D] | Morte de Arthur. |
 | Out/1998 [CORE] | Jogo começa. Dia 1 = quinta 22/10/1998 [D]; o prazo vence à meia-noite de 28/10 (fim do 7º dia) [D]. Evita Halloween por clichê. |

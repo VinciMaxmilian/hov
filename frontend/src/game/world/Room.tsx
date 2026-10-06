@@ -54,22 +54,50 @@ export function wallsOf(room: RoomDef): WallInfo[] {
   return walls.filter((w) => !room.skip.includes(w.side))
 }
 
-/** Divide uma parede em retângulos ao redor das aberturas. */
-export function wallRects(wall: WallInfo, height: number, openings: OpeningDef[]): [number, number, number, number][] {
+/**
+ * Divide uma parede em retângulos sólidos ao redor das aberturas [u0, u1, v0, v1].
+ * Subtração geral: aberturas podem se sobrepor ou ficar empilhadas (porta com janela alta em cima).
+ * A parede é fatiada em colunas nos limites das aberturas; colunas vizinhas com o mesmo perfil são fundidas.
+ */
+export function wallRects(wall: Pick<WallInfo, 'side' | 'uMin' | 'uMax'>, height: number, openings: OpeningDef[]): [number, number, number, number][] {
   const ops = openings
     .filter((o) => o.side === wall.side)
-    .map((o) => ({ u0: o.center - o.width / 2, u1: o.center + o.width / 2, v0: o.sill, v1: Math.min(height, o.sill + o.height) }))
-    .sort((a, b) => a.u0 - b.u0)
-  const rects: [number, number, number, number][] = []
-  let u = wall.uMin
-  for (const o of ops) {
-    if (o.u0 > u) rects.push([u, o.u0, 0, height])
-    if (o.v0 > 0) rects.push([o.u0, o.u1, 0, o.v0])
-    if (o.v1 < height) rects.push([o.u0, o.u1, o.v1, height])
-    u = Math.max(u, o.u1)
+    .map((o) => ({
+      u0: Math.max(wall.uMin, o.center - o.width / 2),
+      u1: Math.min(wall.uMax, o.center + o.width / 2),
+      v0: Math.max(0, o.sill),
+      v1: Math.min(height, o.sill + o.height),
+    }))
+    .filter((o) => o.u1 > o.u0 && o.v1 > o.v0)
+
+  const cuts = [...new Set([wall.uMin, wall.uMax, ...ops.flatMap((o) => [o.u0, o.u1])])].sort((a, b) => a - b)
+
+  // Perfil vertical sólido de cada coluna: [0, height] menos os vãos que cobrem a coluna inteira.
+  const columns: { u0: number; u1: number; solid: [number, number][] }[] = []
+  for (let i = 0; i < cuts.length - 1; i++) {
+    const u0 = cuts[i]
+    const u1 = cuts[i + 1]
+    if (u1 - u0 < 1e-6) continue
+    const mid = (u0 + u1) / 2
+    const gaps = ops
+      .filter((o) => o.u0 < mid && o.u1 > mid)
+      .map((o) => [o.v0, o.v1] as [number, number])
+      .sort((a, b) => a[0] - b[0])
+    const solid: [number, number][] = []
+    let v = 0
+    for (const [g0, g1] of gaps) {
+      if (g0 > v) solid.push([v, g0])
+      v = Math.max(v, g1)
+    }
+    if (v < height) solid.push([v, height])
+    const prev = columns[columns.length - 1]
+    if (prev && Math.abs(prev.u1 - u0) < 1e-6 && JSON.stringify(prev.solid) === JSON.stringify(solid)) prev.u1 = u1
+    else columns.push({ u0, u1, solid })
   }
-  if (u < wall.uMax) rects.push([u, wall.uMax, 0, height])
-  return rects.filter(([a, b, c, d]) => b - a > 0.001 && d - c > 0.001)
+
+  return columns
+    .flatMap((c) => c.solid.map(([v0, v1]) => [c.u0, c.u1, v0, v1] as [number, number, number, number]))
+    .filter(([a, b, c, d]) => b - a > 0.001 && d - c > 0.001)
 }
 
 function toPiece(wall: WallInfo, [u0, u1, v0, v1]: [number, number, number, number], floorY: number, inset = 0, depth?: number): Piece {
@@ -82,9 +110,8 @@ function toPiece(wall: WallInfo, [u0, u1, v0, v1]: [number, number, number, numb
     : { center: [pMid, vMid, uMid], size: [pSize, v1 - v0, u1 - u0], side: wall.side }
 }
 
-/** Índice da face interna no BoxGeometry (+x, -x, +y, -y, +z, -z). */
+/** Índice da face interna no BoxGeometry (+x, -x, +y, -y, +z, -z); as demais faces usam o material externo. */
 const INNER_FACE: Record<Side, number> = { north: 4, south: 5, west: 0, east: 1 }
-const OUTER_FACE: Record<Side, number> = { north: 5, south: 4, west: 1, east: 0 }
 
 export function Room({ room }: { room: RoomDef }) {
   const group = useRef<THREE.Group>(null)
@@ -118,9 +145,9 @@ export function Room({ room }: { room: RoomDef }) {
   const w = x1 - x0
   const d = z1 - z0
   const mats = (side: Side) => {
-    const arr: THREE.Material[] = Array(6).fill(wallMat)
+    // Com face externa definida, os vãos (laterais/topo/base das peças) usam o material externo.
     const outerId = room.outer[side]
-    if (outerId) arr[OUTER_FACE[side]] = material(outerId)
+    const arr: THREE.Material[] = Array(6).fill(outerId ? material(outerId) : wallMat)
     arr[INNER_FACE[side]] = wallMat
     return arr
   }

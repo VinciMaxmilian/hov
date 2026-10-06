@@ -9,12 +9,15 @@ import { useGame } from '../../game/state/gameStore'
 
 type Page = GameDocument['pages'][number]
 
+/** Divisor da largura para o corpo do texto (documentos longos usam letra menor). */
+const DENSITY: Partial<Record<GameDocument['kind'], number>> = { report: 29, newspaper: 30, record: 28 }
+
 const SIZES: Record<GameDocument['kind'], [number, number]> = {
   letter: [500, 680],
   note: [380, 270],
   card: [520, 320],
   newspaper: [620, 800],
-  report: [540, 720],
+  report: [560, 780],
   photograph: [620, 470],
   record: [520, 660],
   recording: [440, 280],
@@ -137,6 +140,8 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
   }
 
   const [w, h] = SIZES[doc.kind]
+  // Cabe na janela (área útil ≈ 88% da altura e largura menos o painel lateral).
+  const fit = Math.min(1, (window.innerHeight * 0.88) / h, ((window.innerWidth - 420) * 0.9) / w)
   const found = doc.details.filter((d) => flags[`detail:${d.id}`])
   const textOf = (p: Page) => [p.heading, p.text, p.margin && `(in the margin) ${p.margin}`].filter(Boolean).join('\n\n')
 
@@ -154,8 +159,8 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
           style={{
             width: w,
             height: h,
-            fontSize: Math.round(w / 26),
-            transform: `scale(${zoom}) rotateX(${tilt.x}deg) rotateY(${tilt.y + (flipped ? 180 : 0)}deg)`,
+            fontSize: Math.round(w / (DENSITY[doc.kind] ?? 26)),
+            transform: `scale(${zoom * fit}) rotateX(${tilt.x}deg) rotateY(${tilt.y + (flipped ? 180 : 0)}deg)`,
           }}
         >
           <PageFace doc={doc} page={front} side="front" onDetail={onDetail} />

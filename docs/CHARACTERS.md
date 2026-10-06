@@ -1,6 +1,6 @@
 # CHARACTERS (históricos, aparecem em fotos, pinturas, documentos)
 
-Nenhum NPC físico. O jogador está sozinho. Descrições visuais completas ficam no CHARACTER_VISUAL_BIBLE (a criar na fase de arte).
+Nenhum NPC físico. O jogador está sozinho. Descrições visuais completas: `CHARACTER_VISUAL_BIBLE.md`.
 
 ## VALE (Knowledge)
 - **Elias Vale** (1812–1880): carpinteiro/agrimensor. Rosto anguloso, barba curta, mãos grandes. Encontra a câmara.
@@ -24,6 +24,12 @@ Nenhum NPC físico. O jogador está sozinho. Descrições visuais completas fica
 ## MERCER (Record)
 - **Anselm Mercer** (1884–1936 desap.): escriba; **Ledger Room**.
 Total desaparecidos: 11 = 4 Vale + Hawthorne 1 + Blackwood 1 + Whitmore 1 + Ashcroft 1 + Bell 1 + Mercer 1 + 1 extra (Mrs. Pell, governanta) [D].
+
+## Outros [D]
+- **Thomas Mercer** (n. 1951): sócio júnior da Hawthorne & Mercer; assina o cartão da varanda ("T. Mercer, for the Executors").
+- **Sheriff Coyle** (1936): dá a versão pública ("every door was found unlocked", "power failure").
+- **Sgt. H. Dunmore** (1936): autor do relatório policial; a nota "Room measurements don't match the exterior wall" é dele.
+- **Mrs. Ada Pell** (~1886–1936 desap.): governanta dos Vale.
 
 ## ORRIN (Witness) — apagada [SEGREDO]
 - **Josiah Orrin** (1830–1890s): recusa a posição em 1871.

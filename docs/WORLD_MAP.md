@@ -35,8 +35,24 @@ Princípio: PROFUNDIDADE FÍSICA = PROFUNDIDADE HISTÓRICA. Unidades em metros. 
         EXTERIOR: caminho z[+8,+60], portão z=+60, fachada em z=+7
 ```
 - Planta oficial (1911): parede Study/Library = 0.4 m. Real: 1.6 m (0.2 + cavidade 1.2 + 0.2; cavidade z -4.8…-3.6) — o "erro" planejado.
-- Passagem: abre pela estante-porta giratória (abertura x -11.2…-8.8) na Library; corre para oeste até x=-20 (símbolo de 8 pontos, fim do slice).
-- Valores canônicos: `frontend/src/content/areas/*.json`.
+- Passagem: abre pela estante-porta **deslizante** (abertura x -11.2…-8.8, a estante corre 2,6 m para oeste) na Library; corre para oeste até x=-20 (símbolo de 8 pontos, fim do slice).
+- **Descida**: de x=-14.2 a x=-16.6 uma rampa leva o piso de y=0 a y=-0.8 (teto continua em 2,4). Abaixo do nível do Hall = mais antigo.
+- Valores canônicos: `frontend/src/content/areas/*.json` (este documento resume; o JSON manda).
+
+### Volume da ala oeste e o poço de luz [DECISÃO]
+- Por fora, a ala oeste vai de x=-21 a x=-6.1 (fachada em z=5.3, fundos em z=-14). Os cômodos conhecidos ocupam só x ≥ -14.2.
+- Entre x≈-21 e -14.2 existe um **poço de luz** (pátio estreito aberto ao céu, sem acesso no slice). As janelas oeste do Study e da Library dão para ele — por isso entra luar "de cima", e por isso de dentro só se vê escuridão.
+- A passagem secreta corre **por baixo** do poço (daí a descida). Explica as "janelas que não dão para fora" sem erro de modelagem.
+
+### Áreas do slice (streaming)
+| Área (id) | Limites x / y / z | Vizinhas montadas |
+|---|---|---|
+| exterior | -80…80 / -5…40 / -60…80 | entrance_hall |
+| entrance_hall | -6…6 / -0.6…8 / -10…7.3 | exterior, arthur_study, library |
+| arthur_study | -14…-6.1 / -0.6…4 / -3.4…5 | entrance_hall, secret_passage |
+| library | -14…-6.1 / -0.6…5 / -13…-5 | entrance_hall, secret_passage, arthur_study |
+| secret_passage | -20…-8.4 / -1.5…3 / -4.8…-3.6 | library, arthur_study |
+Área atual = a de menor volume que contém o jogador. Exterior: chão em y=-0.5; varanda e casa em y=0 (degraus de 0,17 m).
 
 ## Fluxo de profundidade (resumo)
 Upper (1998/1911) → Main (1911) → West (1861–1936) → Basement (1866) → Foundation (1849) → Below (anterior).

@@ -51,6 +51,17 @@
 ### 2.6 Ruth Orrin
 - Mãe biológica; morreu em 1994. Deixou carta no cofre de St. Brigid's e uma chave com símbolo de 8 pontos — um dos itens do ato V.
 
+### 2.7 Decisões tomadas no vertical slice [DECISÃO, 2026-10-06]
+- **O relógio de 2:17 fica na biblioteca oeste.** O relatório policial (DOC05) diz "tall clock in the west library"; o jornal (DOC04, versão pública) diz "dining hall" e atribui a parada a "falha elétrica" — mas é um relógio de corda. Contradição intencional.
+- **O relógio é um mecanismo.** O trem de badaladas do relógio de pé, ajustado a 2:17 e solto para bater, libera uma trava na parede sul da biblioteca que solta a estante (contrapeso de ferro na cavidade). Implica que **2:17 já significava algo antes de 1936**: na noite do desaparecimento o relógio foi *ajustado* para abrir a passagem — e parou ali. Quem instalou o mecanismo e quando permanece aberto (candidatos: reforma de 1911; Silas Blackwood).
+- **Arthur esteve na passagem** (lápis no verso do DOC08: "Left it where I found it. — A.") e deixou a folha para o herdeiro achar. Ele "falhou" em achar o Eighth Record, não em abrir a passagem.
+- **As batidas na parede** (DOC07) têm uma explicação racional plantada — o contrapeso, que bateria na pedra se balançasse — mas, quando o jogador o vê, **está parado**. Ambiguidade mantida.
+- **DOC08 = "Relevé, 1791"**, folha de levantamento em francês (*"Au point marqué : le cercle, la ligne, huit points. Huit témoins, comme l'exige le registre. Le registre y était déjà."*). Prova que o símbolo de 8 pontos antecede os Vale, introduz "témoin" (Witness) e sugere que o "registro" é ainda mais antigo. Não define quem fez a marca original.
+- **Quem mantém a casa** (fechadura lubrificada, lamparina preparada, uma janela acesa na ala leste): pistas de ambiente apenas; resposta segue LORE §2.4 (Eleanor/Ashcroft Trust → depois Arthur), revelada em atos futuros.
+- **Executores**: o cartão na varanda é assinado por **T. Mercer** (Thomas Mercer, n. 1951, sócio júnior da Hawthorne & Mercer). "We are not permitted to assist you further."
+- **Nomes de 1936**: Sheriff Coyle (versão pública), Sgt. H. Dunmore (relatório), Mrs. **Ada** Pell (governanta, 11ª desaparecida).
+- **Foto da Sociedade (out/1936)**: ordem das cadeiras e o oitavo marcador no piso em `CHARACTER_VISUAL_BIBLE.md`. O recortado é Julian Whitmore (cadeira 5).
+
 ## 3. Famílias — funções e conflitos
 Ver `CHARACTERS.md` para membros. Resumo:
 - VALE (Knowledge): arquivistas e construtores; pecado = achar que entendem.

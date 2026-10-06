@@ -32,17 +32,19 @@ export function LampRig() {
     if (light.current) {
       const t = clock.elapsedTime
       const flicker = 0.88 + Math.sin(t * 11.3) * 0.04 + Math.sin(t * 23.7 + 2) * 0.03 + Math.sin(t * 5.1) * 0.05
-      light.current.intensity = lit ? 5.2 * flicker : 0
+      // Em close-ups (puzzle) a chama fica perto demais do objeto: atenua.
+      const closeUp = useUi.getState().mode === 'puzzle' ? 0.35 : 1
+      light.current.intensity = lit ? 16 * flicker * closeUp : 0
     }
   })
 
   if (!hasLamp) return null
   return (
     <group ref={rig}>
-      <group position={[0.24, -0.3, -0.46]} visible={!hidden}>
+      <group position={[0.3, -0.37, -0.62]} scale={0.7} visible={!hidden}>
         <LampModel lit={lit} />
       </group>
-      <pointLight ref={light} position={[0.22, -0.1, -0.35]} color="#ffb45e" distance={10} decay={1.7} intensity={0} />
+      <pointLight ref={light} position={[0.22, -0.1, -0.35]} color="#ffb45e" distance={12} decay={1.5} intensity={0} />
     </group>
   )
 }

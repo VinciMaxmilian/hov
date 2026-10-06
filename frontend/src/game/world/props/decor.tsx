@@ -77,7 +77,7 @@ function plaqueTexture(text: string) {
 }
 
 /**
- * Quadro (retrato/paisagem). `image` aponta para o asset gerado (public/assets/...);
+ * Quadro (retrato/paisagem). `image` aponta para o asset gerado (public/media/...);
  * enquanto ele não existir, mostra um placeholder procedural. Frente = +z.
  */
 export function Frame({ obj, seed }: PropProps) {
