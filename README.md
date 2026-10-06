@@ -21,7 +21,7 @@ npm run dev               # http://localhost:5173
 | `npm run build` | typecheck + build de produção em `dist/` |
 
 **Atalho de desenvolvimento** (só em `npm run dev`): `http://localhost:5173/?dev&area=library&lamp=1`
-Parâmetros: `area=<id>` · `yaw=<radianos>` · `lamp=1` (lamparina acesa) · `items=a,b` · `open=porta1,porta2` · `inspect=<documento|item>` · `puzzle=<id>` · `shot` (oculta o aviso de pointer lock, para capturas).
+Parâmetros: `area=<id>` · `yaw=<radianos>` · `lamp=1` (lamparina acesa) · `items=a,b` · `open=porta1,porta2` · `inspect=<documento|item>` · `puzzle=<id>` · `pos=x,y,z` · `shot` (oculta o aviso de pointer lock, para capturas).
 Captura headless: `chrome --headless=new --use-angle=swiftshader --enable-unsafe-swiftshader --window-size=1280,720 --virtual-time-budget=20000 --screenshot=out.png "http://localhost:5173/?dev&shot&area=arthur_study&lamp=1"`.
 
 ### Backend (opcional)

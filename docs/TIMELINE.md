@@ -11,7 +11,7 @@ Legenda: [CORE] vem do plano; [D] decisão minha. [S] = segredo (aparece só por
 | 1850–1860 [D] | Casa original (cabana → casa de 6 cômodos). Vale Timber Company. |
 | 1861 [D] | Primeira ala: Biblioteca Oeste. |
 | 1866 [D] | Elias constrói a escada de observatório (termina em parede: marca o piso do Meridiano). |
-| 1871 [CORE] | Primeiras referências à Meridian Society (atas). Josiah **Orrin** recusa a oitava posição [D]. |
+| 1871 [CORE] | Primeiras referências à Meridian Society (atas). Josiah **Orrin** recusa a oitava posição [D]; o Witness Ledger volta "unsigned" e para de receber entradas [D]. |
 | 1874–1889 [D] | Ferrovia Bellweather–Portland; Ashcroft Bank (1878); Blackwood Mining (1880). |
 | 1880 [D] | Elias morre. Margaret segue mantendo os registros. |
 | 1888 [CORE] | Carta: "The Society was not founded by Elias. He found it." (Margaret → neta Hannah) [D]. |
@@ -29,7 +29,7 @@ Legenda: [CORE] vem do plano; [D] decisão minha. [S] = segredo (aparece só por
 | 1938–1950 [D] | Famílias partem. Ala oeste fechada com tábuas. |
 | 1946 [D] | Nasce Ruth Orrin. |
 | 1954 [D] | Arthur (25) herda formalmente a casa por tutela Hawthorne & Mercer. |
-| 1968 [D] | Nasce o protagonista (Heir) em Portland. |
+| 1968 [D] | Nasce o protagonista em Portland; Ruth Orrin o chama de **Worren**. Eleanor (provavelmente) escreve a última linha do Witness Ledger. Ashcroft Trust paga "rebinding, vellum, one volume". |
 | 1969 [D] | Adoção fechada, St. Brigid's. |
 | 1971 [D] | Arthur descobre Eleanor Orrin e recebe a carta dela. |
 | 1979 [D] | Arthur anota no verso da foto de 1936: "Julian W.? — the eighth?" (teoria errada). |

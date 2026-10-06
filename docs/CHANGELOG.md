@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.2.2 — decisões de canon do usuário (2026-10-06)
+- **D-1 = A + B:** o Eighth Record é o *Witness Ledger* físico (8º livro-registro da Meridian Chamber), legível só com a cifra da família Orrin; sua última linha já traz o nome do protagonista. Escolhas finais validar/romper/ficar. `LORE_BIBLE §2.8`.
+- **D-2 = 3:** sem game over; à meia-noite do 7º dia o final começa com o que foi descoberto (níveis 0–2). `GAME_DESIGN §11`.
+- **D-3:** nome do protagonista **Worren**, revelado só no final (nome dado por Ruth; "Orrin" escondido no nome).
+- Erro (c) de Arthur ajustado: ele achava que o livro continha a resposta.
+
+## 0.2.1 — correção (2026-10-06)
+- `Room.wallRects`: subtração geral de retângulos. Aberturas empilhadas (porta + janela alta acima) geravam uma parede tapando a porta de entrada e as janelas da fachada. Testes em `walls.test.ts`.
+- Modo dev: parâmetro `pos=x,y,z`.
+
 ## 0.2.0 — vertical slice jogável (2026-10-06)
 ### Engine
 - Frontend completo: conteúdo JSON validado (zod + referências cruzadas), Rules DSL, event bus, story director, journal + quadro de conexões, puzzles, inspeção, inventário, áudio procedural espacial, lamparina, streaming por área, relógio de jogo.

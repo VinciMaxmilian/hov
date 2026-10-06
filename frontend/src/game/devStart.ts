@@ -7,7 +7,7 @@ import { openPuzzle } from './puzzles/puzzleSystem'
 
 /**
  * SOMENTE DEV (import.meta.env.DEV): começa um jogo no slot 3 direto numa área.
- * ?dev&area=<id>&yaw=<rad>&lamp=1&items=a,b&open=door1,door2&inspect=<doc|item>&puzzle=<id>
+ * ?dev&area=<id>&yaw=<rad>&lamp=1&items=a,b&open=door1,door2&inspect=<doc|item>&puzzle=<id>&pos=x,y,z
  */
 export function startDevSession(params: URLSearchParams): void {
   startNewGame(3)
@@ -24,7 +24,9 @@ export function startDevSession(params: URLSearchParams): void {
   if (area?.spawn) {
     const yaw = params.has('yaw') ? Number(params.get('yaw')) : area.spawn.yaw
     useGame.setState((s) => ({ player: { ...s.player, area: areaId } }))
-    teleport(area.spawn.position, yaw, Number(params.get('pitch') ?? 0))
+    const pos = params.get('pos')?.split(',').map(Number)
+    const at = pos && pos.length === 3 && pos.every(Number.isFinite) ? (pos as [number, number, number]) : area.spawn.position
+    teleport(at, yaw, Number(params.get('pitch') ?? 0))
   }
   beginPlay(true)
   const inspect = params.get('inspect')

@@ -34,7 +34,10 @@ Total desaparecidos: 11 = 4 Vale + Hawthorne 1 + Blackwood 1 + Whitmore 1 + Ashc
 ## ORRIN (Witness) — apagada [SEGREDO]
 - **Josiah Orrin** (1830–1890s): recusa a posição em 1871.
 - **Eleanor Orrin** (1913–1999?): chega tarde em 1936; paga manutenção anonimamente.
-- **Ruth Orrin** (1946–1994): mãe biológica do Heir.
+- **Ruth Orrin** (1946–1994): mãe biológica do protagonista; deu-lhe o nome Worren. Deixou carta com a cantiga de contar (chave do Witness Ledger) em St. Brigid's.
+
+## O PROTAGONISTA
+- **Worren** (n. 1968, Portland) — nome revelado só no final. Adotado em 1969 (St. Brigid's). Gênero não especificado; nunca visto (1ª pessoa). Sobrenome adotivo nunca mostrado.
 
 ## Arthur — voz
 Frases curtas, secas, autoirônicas, cada vez mais paranoicas. Evita "eu acho"; prefere "I checked." Nas fitas: respirações, pausas, estática.

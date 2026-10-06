@@ -19,6 +19,6 @@ Vertical slice implementado e jogável (v0.2). Próximos passos em `docs/ROADMAP
 - Antes de concluir: `npm run typecheck && npm run lint && npm test` (frontend) e `pytest` (backend). O walkthrough test deve continuar passando — se mudar a cadeia do slice, atualize-o.
 - Verificação visual: `npm run dev` + `/?dev&shot&area=<id>&lamp=1` (ver README) com Chrome headless.
 - **Segredos:** `plan.md` contém chaves do Supabase. NÃO copie para código, docs ou commits. Frontend e backend usam só URL + chave publicável (`.env`, ignorado). Não commitar `plan.md`.
-- Decisões pendentes do usuário: `docs/GAME_DESIGN.md §11` (D-1, D-2, D-3). Não comprometa o código além do padrão A.
+- Decisões de canon D-1/D-2/D-3 tomadas pelo usuário (`docs/GAME_DESIGN.md §11`, `LORE_BIBLE §2.8`). O nome **Worren** nunca aparece para o jogador antes do final (documentos, UI, legendas).
 - Mudanças de canon → `docs/CHANGELOG.md` e `LORE_BIBLE`.
 - Assets visuais/sonoros são gerados via Higgsfield em outra conversa (Claude Desktop): caminhos em `frontend/public/media/` listados no `ASSET_MANIFEST.md`; o jogo usa placeholder procedural enquanto o arquivo não existir.

@@ -23,7 +23,7 @@
 - As sete famílias têm funções; a oitava função, apagada, era *Witness*: quem **presencia e confirma** o que a Sociedade registra. Sem Witness, os registros do Mercer (Record) não têm validade para "aquilo que está embaixo".
 - Linhagem apagada: **ORRIN**. Nome removido de atas, fotos, lápides, certidões. Marcador de rastreio: o nome aparece em fragmentos (ex.: "O—", "Orr—", rasuras).
 - O protagonista (jogador, "the Heir") nasceu 1968 em Portland, adotado em circuito fechado (St. Brigid's, 1969). Mãe biológica: Ruth Orrin (n. 1946). Avó: Eleanor Orrin (n. 1913), que estava **fora** da casa em 1936 (ver §2.4).
-- O jogador nunca vê o nome do protagonista; carta do testamento usa "Dear Heir" / iniciais apagadas.
+- O nome do protagonista — **Worren** — só é revelado no final (GAME_DESIGN §11, D-3). Antes disso: "Dear Heir", rasuras, iniciais cobertas. Worren foi o nome dado por Ruth: "Orrin" escondido dentro do nome. Sobrenome adotivo nunca mostrado; gênero não especificado.
 
 ### 2.2 O que Elias encontrou (1849) [SEGREDO]
 - Uma câmara de pedra com a marcação de 8 pontos, uma estrutura de **medição** (círculo graduado + gnômon) alinhada ao meridiano local e um **arquivo** de placas de pedra/metal com registros anteriores à colonização. Margaret chama de "the First Ledger".
@@ -44,12 +44,19 @@
 
 ### 2.5 Arthur Vale [DECISÃO]
 - Nascido 1929, 7 anos em 1936 — estava num colégio interno em Portland (sobreviveu por acaso). Pai: Edmund Vale (desaparecido). Morreu 12/09/1998 aos 69.
-- Erros de Arthur: (a) acha que Julian Whitmore é o oitavo; (b) acha que o "pagador" é o escritório Hawthorne & Mercer; (c) acha que o Record é um livro escondido. Acertos: o símbolo de 8 pontos; as paredes falsas; o fato de o protagonista ser relevante.
+- Erros de Arthur: (a) acha que Julian Whitmore é o oitavo; (b) acha que o "pagador" é o escritório Hawthorne & Mercer; (c) acha que o Record é um livro escondido **que contém a resposta** — o livro existe, mas está incompleto e ilegível para ele: a resposta é quem o lê (§2.8). Acertos: o símbolo de 8 pontos; as paredes falsas; o fato de o protagonista ser relevante.
 - Por que escolheu o protagonista: Arthur rastreou os Orrin até a adoção de 1969 e o protagonista é o último herdeiro vivo da linha.
 - Por que 7 dias: ciclo de verificação do Rite (7 + 1 = 8 dias de "contagem", o 8º é o do jogador). Arthur calculou a janela a partir do equinócio de 1998 e do relógio de 2:17.
 
 ### 2.6 Ruth Orrin
 - Mãe biológica; morreu em 1994. Deixou carta no cofre de St. Brigid's e uma chave com símbolo de 8 pontos — um dos itens do ato V.
+
+### 2.8 O Eighth Record = Witness Ledger [DECISÃO do usuário, 2026-10-06 — D-1 A+B]
+- Na Meridian Chamber há **oito livros-registro** (capas de cobre, folhas de velino), um por função: Knowledge, Law, Industry, Medicine, Finance, Faith, Record e **Witness**. Os sete primeiros têm entradas até 1936 (cópias Mercer no Ledger Room). O oitavo, o *Witness Ledger*, é o **Eighth Record**.
+- Entradas Orrin até 1871; depois, folhas em branco. Nomes Orrin anteriores raspados com lâmina (mesma técnica do recorte da foto de 1936).
+- **Cifra da Testemunha:** cada entrada é escrita como contagem (posições de pontos em torno do círculo, 1–8) que só faz sentido com a cantiga de contar dos Orrin. Eleanor → Ruth → carta de Ruth em St. Brigid's (1994) → protagonista. Racional: chave de memória familiar. Ambíguo: ninguém explica por que o livro "espera".
+- **A última linha** já contém, em caligrafia antiga, a entrada do protagonista: "WORREN — the eighth, witness." Explicação racional plantada: Eleanor (que mantinha acesso pela Ashcroft Trust) a escreveu em 1968, no nascimento; tinta e caligrafia não permitem confirmar. Arthur nunca conseguiu lê-la.
+- Pistas (regra dos três) para "o Record é um livro": diário de Margaret ("the Eighth book is kept apart"); ata de 1871 com "the Witness's book returned unsigned"; recibo da Ashcroft Trust por "rebinding, vellum, one volume" (1968).
 
 ### 2.7 Decisões tomadas no vertical slice [DECISÃO, 2026-10-06]
 - **O relógio de 2:17 fica na biblioteca oeste.** O relatório policial (DOC05) diz "tall clock in the west library"; o jornal (DOC04, versão pública) diz "dining hall" e atribui a parada a "falha elétrica" — mas é um relógio de corda. Contradição intencional.
@@ -90,5 +97,5 @@ Ver `CHARACTERS.md` para membros. Resumo:
 | Quem pagou durante décadas | Recibos Ashcroft Trust | Assinatura "E.O." em formulários de 1937–1971 | Carta de Eleanor a Arthur (1971) |
 | Julian Whitmore NÃO é o oitavo (refuta Arthur) | Foto: Julian com função Medicine | Ata: voto de Julian como Whitmore | Registro de nascimento Whitmore |
 
-## 6. Finais (rascunho — ver ROADMAP/GAME_DESIGN, decisão pendente do usuário)
-O final depende da quantidade de pistas coletadas e de uma escolha final. Alternativas em `GAME_DESIGN.md §11`.
+## 6. Finais
+Definidos em `GAME_DESIGN.md §11` (D-1 A+B, D-2 opção 3, D-3 "Worren"). Resumo: o Witness Ledger (§2.8) é o Eighth Record físico; decifrado pelo Orrin vivo, revela que o registro termina no próprio protagonista. Escolhas validar / romper / ficar, disponíveis conforme o nível de descoberta. Sem game over: o prazo de 7 dias só determina *quando* o final começa.

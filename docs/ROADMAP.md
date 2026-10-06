@@ -28,7 +28,7 @@ Fases do plano (§47). Estado em 2026-10-06: **vertical slice jogável de ponta 
 ## Próximos passos (ordem sugerida)
 1. **Playtest** em hardware real (sensibilidade, escala, brilho, tempo total 10–20 min). Ajustar intensidades nos JSON de área.
 2. **Assets Higgsfield** (ASSET_MANIFEST): retratos, foto da Sociedade, jornal, DOC08, fita de Arthur, efeitos. Integrar = salvar arquivo.
-3. **Decisões de canon pendentes** D-1/D-2/D-3 (`GAME_DESIGN.md §11`).
+3. ~~Decisões de canon D-1/D-2/D-3~~ ✅ tomadas (GAME_DESIGN §11). Próximo: sistema de finais por nível de descoberta (avaliar as revelações da matriz LORE §5) e gatilho da meia-noite do 7º dia.
 4. Auth: habilitar Google OAuth no painel Supabase (Authentication → Providers) e configurar Site URL/Redirect URLs para o domínio Netlify.
 5. Deploy: Netlify (base `frontend`) e Render (`render.yaml`); definir `VITE_API_URL` se quiser saves via backend.
 6. Ato II: Gallery, Grand Staircase superior, quartos da ala leste; puzzle do retrato de Margaret (já no catálogo).
