@@ -10,6 +10,7 @@ import { LampRig } from './player/Lamp'
 import { Player } from './player/Player'
 import { useGame } from './state/gameStore'
 import { useUi } from './state/uiStore'
+import { isTouch } from './player/device'
 import { AreaRenderer } from './world/AreaRenderer'
 import { mountedAreas } from './world/areas'
 
@@ -42,7 +43,8 @@ export function GameCanvas() {
   return (
     <Canvas
       shadows={{ type: THREE.PCFSoftShadowMap }}
-      dpr={[1, 1.5]}
+      // Celulares: resolução menor (GPU e bateria).
+      dpr={isTouch() ? [1, 1.25] : [1, 1.5]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       camera={{ fov: 70, near: 0.05, far: 1000 }}
       onCreated={({ gl }) => {
@@ -51,7 +53,7 @@ export function GameCanvas() {
         setPointerLockTarget(gl.domElement)
       }}
       onPointerDown={() => {
-        if (useUi.getState().mode === 'playing') void requestPointerLock()
+        if (useUi.getState().mode === 'playing' && !isTouch()) void requestPointerLock()
       }}
     >
       <Atmosphere />

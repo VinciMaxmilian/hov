@@ -19,8 +19,10 @@ async function boot() {
     const { installSaveManager } = await import('./game/save/saveManager')
     const { initAuth } = await import('./game/auth/authStore')
     const { App } = await import('./ui/App')
+    const { installDeviceClass } = await import('./game/player/device')
 
     audio.registerSounds(content.sounds.values())
+    installDeviceClass()
     installInput()
     installControls()
     installStoryDirector()

@@ -7,6 +7,7 @@ import { closePuzzle, openPuzzle, solvePuzzle } from '../puzzles/puzzleSystem'
 import { requestSave } from '../save/saveManager'
 import { useGame } from '../state/gameStore'
 import { useUi } from '../state/uiStore'
+import { pickHint } from '../player/device'
 import type { RuleEffects } from './execute'
 import { runActions } from './execute'
 import type { Action } from '../content/schemas'
@@ -33,7 +34,7 @@ export const gameEffects: RuleEffects = {
   playSound: (sound, position, volume) => audio.play(sound, { position, volume }),
   playRecording: (document) => playRecording(document),
   message: (text, durationMs) => useUi.getState().message(text, durationMs),
-  hint: (text, durationMs) => useUi.getState().showHint(text, durationMs),
+  hint: (text, durationMs, touchText) => useUi.getState().showHint(pickHint(text, touchText), durationMs),
   openPuzzle: (puzzle) => openPuzzle(puzzle),
   solvePuzzle: (puzzle) => solvePuzzle(puzzle),
   closePuzzle: () => closePuzzle(),

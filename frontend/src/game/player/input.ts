@@ -1,8 +1,12 @@
+import { isTouch } from './device'
+
 /**
  * Entrada crua (teclado/mouse/pointer lock). Sem React: lida por useFrame sem causar re-render.
  */
 const keys = new Set<string>()
 const mouse = { dx: 0, dy: 0 }
+/** Eixos virtuais (joystick de toque): x = direita, y = frente; ambos em [-1, 1]. */
+const virtual = { x: 0, y: 0, run: false }
 let lockTarget: HTMLElement | null = null
 const lockListeners = new Set<(locked: boolean) => void>()
 
@@ -15,10 +19,38 @@ export const input = {
     mouse.dy = 0
     return out
   },
+  /** Movimento combinado (teclado + joystick): x = direita, z = trás (W = -1), já limitado a |v| <= 1. */
+  move(): { x: number; z: number; run: boolean } {
+    let x = virtual.x
+    let z = -virtual.y
+    if (keys.has('KeyW') || keys.has('ArrowUp')) z -= 1
+    if (keys.has('KeyS') || keys.has('ArrowDown')) z += 1
+    if (keys.has('KeyA') || keys.has('ArrowLeft')) x -= 1
+    if (keys.has('KeyD') || keys.has('ArrowRight')) x += 1
+    const len = Math.hypot(x, z)
+    if (len > 1) {
+      x /= len
+      z /= len
+    }
+    return { x, z, run: virtual.run || keys.has('ShiftLeft') || keys.has('ShiftRight') }
+  },
+  setVirtualMove(x: number, y: number, run: boolean) {
+    virtual.x = x
+    virtual.y = y
+    virtual.run = run
+  },
+  /** Olhar por arrasto (toque): soma ao acumulador do mouse. */
+  addLook(dx: number, dy: number) {
+    mouse.dx += dx
+    mouse.dy += dy
+  },
   clear() {
     keys.clear()
     mouse.dx = 0
     mouse.dy = 0
+    virtual.x = 0
+    virtual.y = 0
+    virtual.run = false
   },
 }
 
@@ -32,7 +64,8 @@ export function setPointerLockTarget(el: HTMLElement | null): void {
 }
 
 export async function requestPointerLock(): Promise<boolean> {
-  if (!lockTarget) return false
+  // No toque não há pointer lock: o olhar vem do arrasto.
+  if (!lockTarget || isTouch()) return false
   if (isPointerLocked()) return true
   try {
     await lockTarget.requestPointerLock()

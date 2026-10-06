@@ -14,6 +14,21 @@ export function resumePlay(): void {
   void requestPointerLock()
 }
 
+/** Abre pertences/journal (Tab ou botão de toque). */
+export function openJournal(): void {
+  if (useUi.getState().mode !== 'playing') return
+  exitPointerLock()
+  audio.play('ui')
+  useUi.setState({ mode: 'journal' })
+}
+
+/** Pausa (Esc com ponteiro travado ou botão de menu no toque). */
+export function pauseGame(): void {
+  if (useUi.getState().mode !== 'playing') return
+  exitPointerLock()
+  useUi.setState({ mode: 'paused' })
+}
+
 export function installControls(): void {
   onPointerLockChange((locked) => {
     useUi.setState({ pointerLocked: locked })
@@ -33,10 +48,8 @@ export function installControls(): void {
         else if (e.code === 'KeyF') toggleLamp()
         else if (e.code === 'Tab') {
           e.preventDefault()
-          exitPointerLock()
-          audio.play('ui')
-          useUi.setState({ mode: 'journal' })
-        }
+          openJournal()
+        } else if (e.code === 'Escape') pauseGame()
         break
       case 'journal':
         if (e.code === 'Tab' || e.code === 'Escape') {

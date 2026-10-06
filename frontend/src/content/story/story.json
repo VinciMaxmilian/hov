@@ -1,42 +1,121 @@
 {
   "start": {
     "area": "exterior",
-    "position": [0, -0.5, 52],
+    "position": [
+      0,
+      -0.5,
+      52
+    ],
     "yaw": 0,
-    "clock": { "day": 1, "minutes": 1120 },
-    "flags": { "arrived": true }
+    "clock": {
+      "day": 1,
+      "minutes": 1120
+    },
+    "flags": {
+      "arrived": true
+    }
   },
   "triggers": [
     {
       "id": "t_teach_move",
       "on": "GAME_STARTED",
-      "match": { "isNew": true },
+      "match": {
+        "isNew": true
+      },
       "actions": [
-        { "type": "delay", "ms": 2500, "actions": [{ "type": "hint", "text": "W A S D — walk   ·   mouse — look", "duration": 7000 }] },
-        { "type": "delay", "ms": 16000, "actions": [{ "type": "hint", "text": "Shift — hurry", "duration": 4000 }] }
+        {
+          "type": "delay",
+          "ms": 2500,
+          "actions": [
+            {
+              "type": "hint",
+              "text": "W A S D — walk   ·   mouse — look",
+              "duration": 7000,
+              "touch": "Left thumb — walk   ·   right thumb — look"
+            }
+          ]
+        },
+        {
+          "type": "delay",
+          "ms": 16000,
+          "actions": [
+            {
+              "type": "hint",
+              "text": "Shift — hurry",
+              "duration": 4000,
+              "touch": "Push the stick to its edge — hurry"
+            }
+          ]
+        }
       ]
     },
     {
       "id": "t_teach_lamp",
       "on": "ITEM_PICKED",
-      "conditions": { "type": "all", "of": [{ "type": "hasItem", "item": "oil_lamp" }, { "type": "hasItem", "item": "matches" }] },
-      "actions": [{ "type": "delay", "ms": 1200, "actions": [{ "type": "hint", "text": "F — light the lamp" }] }]
+      "conditions": {
+        "type": "all",
+        "of": [
+          {
+            "type": "hasItem",
+            "item": "oil_lamp"
+          },
+          {
+            "type": "hasItem",
+            "item": "matches"
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "delay",
+          "ms": 1200,
+          "actions": [
+            {
+              "type": "hint",
+              "text": "F — light the lamp",
+              "touch": "Tap the lamp to light it"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "t_teach_journal",
       "on": "DOCUMENT_DISCOVERED",
-      "actions": [{ "type": "delay", "ms": 2500, "actions": [{ "type": "hint", "text": "Tab — belongings & journal" }] }]
+      "actions": [
+        {
+          "type": "delay",
+          "ms": 2500,
+          "actions": [
+            {
+              "type": "hint",
+              "text": "Tab — belongings & journal",
+              "touch": "Journal — your belongings and notes"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "t_front_door_oiled",
       "on": "DOOR_UNLOCKED",
-      "match": { "door": "main_door" },
-      "actions": [{ "type": "setFlag", "key": "front_door_oiled", "value": true }]
+      "match": {
+        "door": "main_door"
+      },
+      "actions": [
+        {
+          "type": "setFlag",
+          "key": "front_door_oiled",
+          "value": true
+        }
+      ]
     },
     {
       "id": "t_hall_door_closes",
       "on": "AREA_ENTERED",
-      "match": { "area": "entrance_hall" },
+      "match": {
+        "area": "entrance_hall"
+      },
       "actions": [
         {
           "type": "delay",
@@ -44,28 +123,83 @@
           "actions": [
             {
               "type": "if",
-              "condition": { "type": "world", "key": "main_door", "equals": "open" },
+              "condition": {
+                "type": "world",
+                "key": "main_door",
+                "equals": "open"
+              },
               "then": [
-                { "type": "setWorld", "key": "main_door", "value": "closed" },
-                { "type": "playSound", "sound": "door_close", "position": [0, 1.4, 7.1] }
+                {
+                  "type": "setWorld",
+                  "key": "main_door",
+                  "value": "closed"
+                },
+                {
+                  "type": "playSound",
+                  "sound": "door_close",
+                  "position": [
+                    0,
+                    1.4,
+                    7.1
+                  ]
+                }
               ]
             }
           ]
         },
-        { "type": "delay", "ms": 9000, "actions": [{ "type": "playSound", "sound": "creak", "position": [3, 6.5, -6] }] }
+        {
+          "type": "delay",
+          "ms": 9000,
+          "actions": [
+            {
+              "type": "playSound",
+              "sound": "creak",
+              "position": [
+                3,
+                6.5,
+                -6
+              ]
+            }
+          ]
+        }
       ]
     },
     {
       "id": "t_dark_library",
       "on": "AREA_ENTERED",
-      "match": { "area": "library" },
-      "conditions": { "type": "all", "of": [{ "type": "hasItem", "item": "oil_lamp" }, { "type": "not", "condition": { "type": "flag", "key": "lamp_lit" } }] },
-      "actions": [{ "type": "hint", "text": "It's dark in here.   F — lamp" }]
+      "match": {
+        "area": "library"
+      },
+      "conditions": {
+        "type": "all",
+        "of": [
+          {
+            "type": "hasItem",
+            "item": "oil_lamp"
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "flag",
+              "key": "lamp_lit"
+            }
+          }
+        ]
+      },
+      "actions": [
+        {
+          "type": "hint",
+          "text": "It's dark in here.   F — lamp",
+          "touch": "It's dark in here. Light the lamp."
+        }
+      ]
     },
     {
       "id": "t_knock_after_tape",
       "on": "DOCUMENT_DISCOVERED",
-      "match": { "document": "doc_arthur_tape_01" },
+      "match": {
+        "document": "doc_arthur_tape_01"
+      },
       "actions": [
         {
           "type": "delay",
@@ -73,10 +207,37 @@
           "actions": [
             {
               "type": "if",
-              "condition": { "type": "all", "of": [{ "type": "area", "area": "arthur_study" }, { "type": "not", "condition": { "type": "flag", "key": "heard_knocking" } }] },
+              "condition": {
+                "type": "all",
+                "of": [
+                  {
+                    "type": "area",
+                    "area": "arthur_study"
+                  },
+                  {
+                    "type": "not",
+                    "condition": {
+                      "type": "flag",
+                      "key": "heard_knocking"
+                    }
+                  }
+                ]
+              },
               "then": [
-                { "type": "playSound", "sound": "knock", "position": [-10.6, 1.4, -3.7] },
-                { "type": "setFlag", "key": "heard_knocking", "value": true }
+                {
+                  "type": "playSound",
+                  "sound": "knock",
+                  "position": [
+                    -10.6,
+                    1.4,
+                    -3.7
+                  ]
+                },
+                {
+                  "type": "setFlag",
+                  "key": "heard_knocking",
+                  "value": true
+                }
               ]
             }
           ]
@@ -86,8 +247,25 @@
     {
       "id": "t_knock_on_return",
       "on": "AREA_ENTERED",
-      "match": { "area": "arthur_study" },
-      "conditions": { "type": "all", "of": [{ "type": "document", "document": "doc_arthur_tape_01" }, { "type": "not", "condition": { "type": "flag", "key": "heard_knocking" } }] },
+      "match": {
+        "area": "arthur_study"
+      },
+      "conditions": {
+        "type": "all",
+        "of": [
+          {
+            "type": "document",
+            "document": "doc_arthur_tape_01"
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "flag",
+              "key": "heard_knocking"
+            }
+          }
+        ]
+      },
       "actions": [
         {
           "type": "delay",
@@ -95,10 +273,37 @@
           "actions": [
             {
               "type": "if",
-              "condition": { "type": "all", "of": [{ "type": "area", "area": "arthur_study" }, { "type": "not", "condition": { "type": "flag", "key": "heard_knocking" } }] },
+              "condition": {
+                "type": "all",
+                "of": [
+                  {
+                    "type": "area",
+                    "area": "arthur_study"
+                  },
+                  {
+                    "type": "not",
+                    "condition": {
+                      "type": "flag",
+                      "key": "heard_knocking"
+                    }
+                  }
+                ]
+              },
               "then": [
-                { "type": "playSound", "sound": "knock", "position": [-10.6, 1.4, -3.7] },
-                { "type": "setFlag", "key": "heard_knocking", "value": true }
+                {
+                  "type": "playSound",
+                  "sound": "knock",
+                  "position": [
+                    -10.6,
+                    1.4,
+                    -3.7
+                  ]
+                },
+                {
+                  "type": "setFlag",
+                  "key": "heard_knocking",
+                  "value": true
+                }
               ]
             }
           ]
@@ -108,35 +313,188 @@
     {
       "id": "t_cold_air",
       "on": "WORLD_STATE_CHANGED",
-      "match": { "key": "library_bookcase", "value": "open" },
+      "match": {
+        "key": "library_bookcase",
+        "value": "open"
+      },
       "actions": [
-        { "type": "delay", "ms": 3800, "actions": [{ "type": "message", "text": "Cold air, and under it the smell of stone that has never seen daylight.", "duration": 5000 }] },
-        { "type": "save" }
+        {
+          "type": "delay",
+          "ms": 3800,
+          "actions": [
+            {
+              "type": "message",
+              "text": "Cold air, and under it the smell of stone that has never seen daylight.",
+              "duration": 5000
+            }
+          ]
+        },
+        {
+          "type": "save"
+        }
       ]
     },
     {
       "id": "t_passage_dark",
       "on": "AREA_ENTERED",
-      "match": { "area": "secret_passage" },
-      "conditions": { "type": "not", "condition": { "type": "flag", "key": "lamp_lit" } },
-      "actions": [{ "type": "hint", "text": "You can't see your own hands.   F — lamp" }]
+      "match": {
+        "area": "secret_passage"
+      },
+      "conditions": {
+        "type": "not",
+        "condition": {
+          "type": "flag",
+          "key": "lamp_lit"
+        }
+      },
+      "actions": [
+        {
+          "type": "hint",
+          "text": "You can't see your own hands.   F — lamp",
+          "touch": "You can't see your own hands. Light the lamp."
+        }
+      ]
     }
   ],
   "progress": [
-    { "id": "p_letter", "weight": 6, "when": { "type": "flag", "key": "read_arthur_letter" } },
-    { "id": "p_lamp", "weight": 4, "when": { "type": "flag", "key": "lamp_lit_once" } },
-    { "id": "p_hall", "weight": 6, "when": { "type": "flag", "key": "visited:entrance_hall" } },
-    { "id": "p_study_key", "weight": 6, "when": { "type": "any", "of": [{ "type": "hasItem", "item": "study_key" }, { "type": "world", "key": "study_door", "equals": "open" }, { "type": "world", "key": "study_door", "equals": "closed" }] } },
-    { "id": "p_study", "weight": 8, "when": { "type": "flag", "key": "visited:arthur_study" } },
-    { "id": "p_photo", "weight": 8, "when": { "type": "document", "document": "doc_meridian_photo" } },
-    { "id": "p_report", "weight": 6, "when": { "type": "document", "document": "doc_police_report_1936" } },
-    { "id": "p_tape", "weight": 6, "when": { "type": "document", "document": "doc_arthur_tape_01" } },
-    { "id": "p_knob", "weight": 8, "when": { "type": "not", "condition": { "type": "world", "key": "library_door", "equals": "locked" } } },
-    { "id": "p_library", "weight": 8, "when": { "type": "flag", "key": "visited:library" } },
-    { "id": "p_newspaper", "weight": 6, "when": { "type": "document", "document": "doc_newspaper_1936" } },
-    { "id": "p_clock", "weight": 14, "when": { "type": "puzzleSolved", "puzzle": "library_clock" } },
-    { "id": "p_passage", "weight": 6, "when": { "type": "flag", "key": "visited:secret_passage" } },
-    { "id": "p_symbol", "weight": 4, "when": { "type": "flag", "key": "seen_eight_point_symbol" } },
-    { "id": "p_record", "weight": 4, "when": { "type": "document", "document": "doc_pre1847_record" } }
+    {
+      "id": "p_letter",
+      "weight": 6,
+      "when": {
+        "type": "flag",
+        "key": "read_arthur_letter"
+      }
+    },
+    {
+      "id": "p_lamp",
+      "weight": 4,
+      "when": {
+        "type": "flag",
+        "key": "lamp_lit_once"
+      }
+    },
+    {
+      "id": "p_hall",
+      "weight": 6,
+      "when": {
+        "type": "flag",
+        "key": "visited:entrance_hall"
+      }
+    },
+    {
+      "id": "p_study_key",
+      "weight": 6,
+      "when": {
+        "type": "any",
+        "of": [
+          {
+            "type": "hasItem",
+            "item": "study_key"
+          },
+          {
+            "type": "world",
+            "key": "study_door",
+            "equals": "open"
+          },
+          {
+            "type": "world",
+            "key": "study_door",
+            "equals": "closed"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p_study",
+      "weight": 8,
+      "when": {
+        "type": "flag",
+        "key": "visited:arthur_study"
+      }
+    },
+    {
+      "id": "p_photo",
+      "weight": 8,
+      "when": {
+        "type": "document",
+        "document": "doc_meridian_photo"
+      }
+    },
+    {
+      "id": "p_report",
+      "weight": 6,
+      "when": {
+        "type": "document",
+        "document": "doc_police_report_1936"
+      }
+    },
+    {
+      "id": "p_tape",
+      "weight": 6,
+      "when": {
+        "type": "document",
+        "document": "doc_arthur_tape_01"
+      }
+    },
+    {
+      "id": "p_knob",
+      "weight": 8,
+      "when": {
+        "type": "not",
+        "condition": {
+          "type": "world",
+          "key": "library_door",
+          "equals": "locked"
+        }
+      }
+    },
+    {
+      "id": "p_library",
+      "weight": 8,
+      "when": {
+        "type": "flag",
+        "key": "visited:library"
+      }
+    },
+    {
+      "id": "p_newspaper",
+      "weight": 6,
+      "when": {
+        "type": "document",
+        "document": "doc_newspaper_1936"
+      }
+    },
+    {
+      "id": "p_clock",
+      "weight": 14,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "library_clock"
+      }
+    },
+    {
+      "id": "p_passage",
+      "weight": 6,
+      "when": {
+        "type": "flag",
+        "key": "visited:secret_passage"
+      }
+    },
+    {
+      "id": "p_symbol",
+      "weight": 4,
+      "when": {
+        "type": "flag",
+        "key": "seen_eight_point_symbol"
+      }
+    },
+    {
+      "id": "p_record",
+      "weight": 4,
+      "when": {
+        "type": "document",
+        "document": "doc_pre1847_record"
+      }
+    }
   ]
 }

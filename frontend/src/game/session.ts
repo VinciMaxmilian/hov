@@ -12,6 +12,7 @@ import { createNewGameState } from './state/newGame'
 import type { SaveData } from './state/saveSchema'
 import { useSettings } from './state/settingsStore'
 import { useUi } from './state/uiStore'
+import { enterImmersive } from './player/device'
 
 /** Ciclo de vida da partida: novo jogo, carregar, voltar ao título. */
 
@@ -33,6 +34,7 @@ function resetRuntime() {
 
 export function startNewGame(slot: number): void {
   resetRuntime()
+  enterImmersive()
   const state = createNewGameState(content)
   useGame.getState().replace(state, slot)
   teleport(state.player.position, state.player.yaw)
@@ -54,6 +56,7 @@ export function beginPlay(isNew: boolean): void {
 
 export function loadGame(save: SaveData): void {
   resetRuntime()
+  enterImmersive()
   const { schemaVersion: _v, meta, settings, ...state } = save
   useGame.getState().replace(state, meta.slot)
   useSettings.getState().update(settings)

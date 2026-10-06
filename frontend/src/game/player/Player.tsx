@@ -88,23 +88,17 @@ export function Player() {
     }
 
     // ---- mover
-    let mx = 0
-    let mz = 0
-    if (active) {
-      if (input.isDown('KeyW') || input.isDown('ArrowUp')) mz -= 1
-      if (input.isDown('KeyS') || input.isDown('ArrowDown')) mz += 1
-      if (input.isDown('KeyA') || input.isDown('ArrowLeft')) mx -= 1
-      if (input.isDown('KeyD') || input.isDown('ArrowRight')) mx += 1
-    }
-    const len = Math.hypot(mx, mz) || 1
-    const running = input.isDown('ShiftLeft') || input.isDown('ShiftRight')
+    const mv = active ? input.move() : { x: 0, z: 0, run: false }
+    const mx = mv.x
+    const mz = mv.z
+    const running = mv.run
     const speed = (running ? RUN : WALK) * dt
     const yaw = playerRuntime.yaw
     const sin = Math.sin(yaw)
     const cos = Math.cos(yaw)
     // frente = (-sin, -cos), direita = (cos, -sin)
-    const dx = ((mx * cos + mz * sin) / len) * speed
-    const dz = ((-mx * sin + mz * cos) / len) * speed
+    const dx = (mx * cos + mz * sin) * speed
+    const dz = (-mx * sin + mz * cos) * speed
 
     vy.current -= GRAVITY * dt
     controller.computeColliderMovement(col, { x: dx, y: vy.current * dt, z: dz })

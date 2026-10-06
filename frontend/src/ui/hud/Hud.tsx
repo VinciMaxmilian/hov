@@ -1,5 +1,6 @@
 import { useSaveStatus } from '../../game/save/saveManager'
 import { useUi } from '../../game/state/uiStore'
+import { useDevice } from '../../game/player/device'
 
 const STATUS_LABEL: Record<string, string> = {
   saving: 'saving…',
@@ -22,11 +23,12 @@ export function Hud() {
   const journalPing = useUi((s) => s.journalPing)
   const status = useSaveStatus((s) => s.status)
   const playing = mode === 'playing'
+  const touch = useDevice((s) => s.touch)
 
   return (
     <div className="layer hud">
       {playing && <div className={`crosshair ${focus ? 'active' : ''}`} />}
-      {playing && focus && (
+      {playing && focus && !touch && (
         <div className="prompt">
           <span className="key">E</span>
           {focus.verb} <span className="muted">— {focus.label}</span>

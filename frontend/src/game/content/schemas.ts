@@ -54,7 +54,8 @@ export type Action =
   | { type: 'playSound'; sound: string; position?: [number, number, number]; volume?: number }
   | { type: 'playRecording'; document: string }
   | { type: 'message'; text: string; duration?: number }
-  | { type: 'hint'; text: string; duration?: number }
+  /** touch: texto alternativo quando o jogador usa controles de toque. */
+  | { type: 'hint'; text: string; touch?: string; duration?: number }
   | { type: 'openPuzzle'; puzzle: string }
   | { type: 'solvePuzzle'; puzzle: string }
   | { type: 'closePuzzle' }
@@ -76,7 +77,7 @@ export const actionSchema: z.ZodType<Action> = z.lazy(() =>
     z.object({ type: z.literal('playSound'), sound: id, position: vec3.optional(), volume: z.number().optional() }),
     z.object({ type: z.literal('playRecording'), document: id }),
     z.object({ type: z.literal('message'), text: z.string(), duration: z.number().optional() }),
-    z.object({ type: z.literal('hint'), text: z.string(), duration: z.number().optional() }),
+    z.object({ type: z.literal('hint'), text: z.string(), touch: z.string().optional(), duration: z.number().optional() }),
     z.object({ type: z.literal('openPuzzle'), puzzle: id }),
     z.object({ type: z.literal('solvePuzzle'), puzzle: id }),
     z.object({ type: z.literal('closePuzzle') }),
