@@ -1,0 +1,78 @@
+{
+  "id": "doc_meridian_photo",
+  "code": "DOC06",
+  "title": "The Meridian Society, 1936",
+  "kind": "photograph",
+  "date": "October 1936",
+  "pages": [
+    {
+      "side": "front",
+      "style": "photo",
+      "heading": "THE MERIDIAN SOCIETY · BELLWEATHER · OCTOBER 1936",
+      "image": "/assets/photos/meridian_society_1936.webp",
+      "placeholder": "formal group photograph, 1936 — seven chairs in a shallow arc; six seated; the fifth seat cut out of the print",
+      "cutout": [
+        0.565,
+        0.26,
+        0.12,
+        0.62
+      ]
+    },
+    {
+      "side": "back",
+      "style": "handwritten",
+      "text": "Seven remained.\nOne refused.",
+      "margin": "Julian W.? — the eighth?\nA.V. '79",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_photo_back",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "details": [
+    {
+      "id": "photo_cut_edge",
+      "page": 0,
+      "rect": [
+        0.54,
+        0.24,
+        0.17,
+        0.66
+      ],
+      "note": "The hole's edges are clean. Cut with a blade, slowly — not torn in anger.",
+      "onFound": [
+        {
+          "type": "setFlag",
+          "key": "noticed_photo_cut",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": "photo_floor_marks",
+      "page": 0,
+      "rect": [
+        0.04,
+        0.84,
+        0.92,
+        0.14
+      ],
+      "note": "Along the floor in front of the chairs: small pale marks set into the boards, in a row. Too many for seven chairs.",
+      "onFound": [
+        {
+          "type": "setFlag",
+          "key": "noticed_floor_marks",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "meridian",
+    "photo",
+    "eighth"
+  ]
+}

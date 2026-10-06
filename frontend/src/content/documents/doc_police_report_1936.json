@@ -1,0 +1,53 @@
+{
+  "id": "doc_police_report_1936",
+  "code": "DOC05",
+  "title": "Police report, 1936",
+  "kind": "report",
+  "author": "Sgt. H. Dunmore",
+  "date": "17 November 1936",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "heading": "BELLWEATHER POLICE DEPARTMENT\nINCIDENT REPORT — No. 36-114",
+      "text": "Date: Tuesday, November 17, 1936\nLocation: Vale residence, Meridian Road\nReporting officer: Sgt. H. Dunmore\n\nCalled 6:40 a.m. by the dairy driver, who found the kitchen door open and no answer from Mrs. A. Pell, housekeeper.\n\nOn arrival: dinner for eleven laid and served in the dining hall, plates half finished. Fires lit in four rooms, burned low. Coats and hats on the hall rack. Papers on the dining table (collected, see attached). No sign of forced entry. No persons on the premises.\n\nThe tall clock in the west library found stopped at 2:17.\n\nDoor between the main hall and the west wing locked and bolted FROM THE INSIDE. Entered by drawing the hinge pins. West wing rooms empty.\n\nEleven persons unaccounted for. List attached.",
+      "margin": "Room measurements don't match the exterior wall.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_police_report",
+          "value": true
+        }
+      ]
+    },
+    {
+      "side": "back",
+      "style": "typed",
+      "text": "COPY 2 OF 3 — HAWTHORNE & MERCER\n\nPAGES 2–4 WITHDRAWN BY ORDER OF THE COUNTY."
+    }
+  ],
+  "details": [
+    {
+      "id": "report_staples",
+      "page": 1,
+      "rect": [
+        0.0,
+        0.0,
+        0.25,
+        0.15
+      ],
+      "note": "Staple holes in the corner. More holes than four pages would need.",
+      "onFound": [
+        {
+          "type": "setFlag",
+          "key": "noticed_report_staples",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "police"
+  ]
+}

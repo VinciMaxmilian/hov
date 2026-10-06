@@ -25,7 +25,7 @@ export function playRecording(documentId: string): void {
   stopRecording()
   useGame.getState().discoverDocument(documentId)
 
-  const timers: number[] = []
+  const timers: ReturnType<typeof setTimeout>[] = []
   let hiss: LoopHandle | null = null
   let element: HTMLAudioElement | null = null
   const ui = useUi.getState()
@@ -33,7 +33,7 @@ export function playRecording(documentId: string): void {
   audio.play('tape_button')
 
   const finish = () => {
-    timers.forEach((t) => window.clearTimeout(t))
+    timers.forEach((t) => clearTimeout(t))
     hiss?.stop()
     element?.pause()
     useUi.getState().setSubtitle(null)
@@ -43,16 +43,16 @@ export function playRecording(documentId: string): void {
   const startSubtitles = () => {
     doc.audio!.lines.forEach((line, i) => {
       timers.push(
-        window.setTimeout(() => {
+        setTimeout(() => {
           if (useSettings.getState().subtitles) ui.setSubtitle({ speaker: line.speaker, text: line.text })
         }, line.t * 1000),
       )
       const next = doc.audio!.lines[i + 1]
       const clearAt = next ? next.t : doc.audio!.duration
-      timers.push(window.setTimeout(() => ui.setSubtitle(null), clearAt * 1000 - 50))
+      timers.push(setTimeout(() => ui.setSubtitle(null), clearAt * 1000 - 50))
     })
     timers.push(
-      window.setTimeout(() => {
+      setTimeout(() => {
         audio.play('tape_button')
         finish()
       }, doc.audio!.duration * 1000),
@@ -67,7 +67,7 @@ export function playRecording(documentId: string): void {
     startSubtitles()
   }
 
-  if (doc.audio.src) {
+  if (doc.audio.src && typeof Audio !== 'undefined') {
     element = new Audio(doc.audio.src)
     element.volume = useSettings.getState().masterVolume
     element.addEventListener('error', () => {

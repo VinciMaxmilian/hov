@@ -1,0 +1,7 @@
+[
+  { "id": "porch_envelope", "label": "Envelope", "interactionType": "pickup", "document": "doc_arthur_letter" },
+  { "id": "porch_card", "label": "Typed card", "interactionType": "pickup", "document": "doc_executor_card" },
+  { "id": "porch_key", "label": "Iron key", "interactionType": "pickup", "item": "entry_key" },
+  { "id": "porch_lamp", "label": "Oil lamp", "interactionType": "pickup", "item": "oil_lamp" },
+  { "id": "porch_matches", "label": "Matches", "interactionType": "pickup", "item": "matches" }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "entry_key",
+  "name": "Front door key",
+  "category": "KEY_ITEMS",
+  "model": "proc:key",
+  "description": "A heavy iron key on a manila tag. The tag says FRONT in a lawyer's careful capitals.",
+  "storyTags": [
+    "arrival"
+  ]
+}

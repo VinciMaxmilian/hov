@@ -13,6 +13,9 @@ import { PuzzleOverlay } from './puzzle/PuzzleOverlay'
 // Code splitting: three/R3F/Rapier só carregam ao entrar no jogo.
 const GameCanvas = lazy(() => import('../game/GameCanvas').then((m) => ({ default: m.GameCanvas })))
 
+// Dev: ?shot esconde o aviso de pointer lock (capturas headless).
+const SHOT = import.meta.env.DEV && new URLSearchParams(window.location.search).has('shot')
+
 export function App() {
   const mode = useUi((s) => s.mode)
   const locked = useUi((s) => s.pointerLocked)
@@ -28,7 +31,7 @@ export function App() {
       )}
       <div className="layer vignette" />
       {inGame && <Hud />}
-      {mode === 'playing' && !locked && (
+      {mode === 'playing' && !locked && !SHOT && (
         <div className="layer center resume" onClick={() => void requestPointerLock()}>
           CLICK TO CONTINUE
         </div>

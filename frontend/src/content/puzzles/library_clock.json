@@ -1,0 +1,29 @@
+{
+  "id": "library_clock",
+  "title": "The tall clock",
+  "input": { "type": "clock", "initial": { "hour": 10, "minute": 8 }, "attemptLabel": "Let it strike" },
+  "conditions": {
+    "type": "all",
+    "of": [
+      { "type": "puzzleValue", "puzzle": "library_clock", "key": "hour", "equals": 2 },
+      { "type": "puzzleValue", "puzzle": "library_clock", "key": "minute", "equals": 17 }
+    ]
+  },
+  "successActions": [
+    { "type": "playSound", "sound": "chime", "position": [-10, 1.9, -12.5] },
+    { "type": "delay", "ms": 3800, "actions": [{ "type": "playSound", "sound": "mech_click", "position": [-10, 1.6, -5.3] }] },
+    {
+      "type": "delay",
+      "ms": 4800,
+      "actions": [
+        { "type": "playSound", "sound": "stone_grind", "position": [-10, 1.2, -5.2] },
+        { "type": "setWorld", "key": "library_bookcase", "value": "open" },
+        { "type": "setFlag", "key": "passage_revealed", "value": true }
+      ]
+    }
+  ],
+  "failureActions": [
+    { "type": "playSound", "sound": "chime_dull", "position": [-10, 1.9, -12.5] },
+    { "type": "message", "text": "It strikes once, dully, and settles. Nothing else happens." }
+  ]
+}

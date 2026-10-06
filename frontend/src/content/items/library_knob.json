@@ -1,0 +1,11 @@
+{
+  "id": "library_knob",
+  "name": "Brass doorknob",
+  "category": "KEY_ITEMS",
+  "model": "proc:knob",
+  "description": "A doorknob, unscrewed and wrapped in a handkerchief monogrammed A.V.",
+  "inspectNote": "Scratched into the rose plate: LIBRARY. Under it, scratched out, a second word.",
+  "storyTags": [
+    "arthur"
+  ]
+}

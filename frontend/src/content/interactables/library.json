@@ -1,0 +1,22 @@
+[
+  { "id": "library_newspaper", "label": "Newspaper", "interactionType": "pickup", "document": "doc_newspaper_1936" },
+  {
+    "id": "library_clock",
+    "label": "Grandfather clock",
+    "interactionType": "puzzle",
+    "puzzle": "library_clock",
+    "solvedMessage": "It runs now. Louder than a clock should.",
+    "focus": { "position": [-10, 1.86, -11.72], "lookAt": [-10, 1.84, -12.54] }
+  },
+  {
+    "id": "library_bookcase",
+    "label": "Bookcase",
+    "interactionType": "use",
+    "state": "closed",
+    "enabledWhen": { "type": "world", "key": "library_bookcase", "equals": "closed" },
+    "actions": [
+      { "type": "setFlag", "key": "noticed_bookcase", "value": true },
+      { "type": "message", "text": "It stands a finger's width proud of the wall. The boards in front are worn in a straight line, westward.", "duration": 6000 }
+    ]
+  }
+]

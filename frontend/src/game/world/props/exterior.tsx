@@ -105,12 +105,12 @@ export function Forest({ obj, seed }: PropProps) {
   const count = num(obj.params, 'count', 260)
   const inner = num(obj.params, 'inner', 28)
   const outer = num(obj.params, 'outer', 110)
-  const center = vec(obj.params, 'center', [0, 0, 10])
-  const clear = (obj.params.clear as [number, number, number, number][] | undefined) ?? []
   const trunks = useRef<THREE.InstancedMesh>(null)
   const crowns = useRef<THREE.InstancedMesh>(null)
 
   const trees = useMemo(() => {
+    const center = vec(obj.params, 'center', [0, 0, 10])
+    const clear = (obj.params.clear as [number, number, number, number][] | undefined) ?? []
     const rng = mulberry32(seed)
     const out: { x: number; z: number; h: number; r: number }[] = []
     let guard = 0
@@ -123,7 +123,7 @@ export function Forest({ obj, seed }: PropProps) {
       out.push({ x, z, h: range(rng, 9, 22), r: range(rng, 1.6, 3.4) })
     }
     return out
-  }, [seed, count, inner, outer, center, clear])
+  }, [seed, count, inner, outer, obj.params])
 
   const trunkGeo = useMemo(() => new THREE.CylinderGeometry(0.15, 0.3, 1, 6).translate(0, 0.5, 0), [])
   const crownGeo = useMemo(() => new THREE.ConeGeometry(1, 1, 7).translate(0, 0.5, 0), [])
@@ -233,7 +233,6 @@ export function Gate({ obj }: PropProps) {
  */
 export function Rain({ obj }: PropProps) {
   const count = num(obj.params, 'count', 5000)
-  const exclude = (obj.params.exclude as [number, number, number, number][] | undefined) ?? []
   const geo = useMemo(() => {
     const rng = mulberry32(99)
     const offsets = new Float32Array(count * 2 * 3)
@@ -253,6 +252,7 @@ export function Rain({ obj }: PropProps) {
     return g
   }, [count])
   const mat = useMemo(() => {
+    const exclude = (obj.params.exclude as [number, number, number, number][] | undefined) ?? []
     const boxes = exclude.slice(0, 4)
     while (boxes.length < 4) boxes.push([0, 0, 0, 0])
     return new THREE.ShaderMaterial({
@@ -281,7 +281,7 @@ export function Rain({ obj }: PropProps) {
         }`,
       fragmentShader: `varying float vAlpha; void main(){ if (vAlpha <= 0.001) discard; gl_FragColor = vec4(0.68, 0.75, 0.82, vAlpha); }`,
     })
-  }, [exclude])
+  }, [obj.params])
   useFrame(({ camera, clock }) => {
     mat.uniforms.uTime.value = clock.elapsedTime
     ;(mat.uniforms.uCam.value as THREE.Vector3).copy(camera.position)

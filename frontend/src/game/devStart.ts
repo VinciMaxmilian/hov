@@ -1,0 +1,28 @@
+import { content } from './content'
+import { teleport } from './player/playerRuntime'
+import { beginPlay, startNewGame } from './session'
+import { useGame } from './state/gameStore'
+
+/**
+ * SOMENTE DEV (import.meta.env.DEV): começa um jogo no slot 3 direto numa área.
+ * ?dev&area=<id>&yaw=<rad>&lamp=1&items=a,b&open=door1,door2
+ */
+export function startDevSession(params: URLSearchParams): void {
+  startNewGame(3)
+  const areaId = params.get('area') ?? content.story.start.area
+  const area = content.areas.get(areaId)
+  const game = useGame.getState()
+  for (const item of (params.get('items') ?? '').split(',').filter(Boolean)) game.addItem(item)
+  for (const door of (params.get('open') ?? '').split(',').filter(Boolean)) game.setWorld(door, 'open')
+  if (params.has('lamp')) {
+    game.addItem('oil_lamp')
+    game.addItem('matches')
+    game.setFlag('lamp_lit', true)
+  }
+  if (area?.spawn) {
+    const yaw = params.has('yaw') ? Number(params.get('yaw')) : area.spawn.yaw
+    useGame.setState((s) => ({ player: { ...s.player, area: areaId } }))
+    teleport(area.spawn.position, yaw, Number(params.get('pitch') ?? 0))
+  }
+  beginPlay(true)
+}

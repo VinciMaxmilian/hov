@@ -34,6 +34,13 @@ async function boot() {
         <App />
       </StrictMode>,
     )
+
+    // Atalho de desenvolvimento: ?dev&area=library&yaw=1.57 pula o título e começa na área (slot 3).
+    const params = new URLSearchParams(window.location.search)
+    if (import.meta.env.DEV && params.has('dev')) {
+      const { startDevSession } = await import('./game/devStart')
+      startDevSession(params)
+    }
   } catch (err) {
     console.error(err)
     root.render(

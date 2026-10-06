@@ -1,0 +1,13 @@
+{
+  "id": "oil_lamp",
+  "name": "Oil lamp",
+  "category": "TOOLS",
+  "model": "proc:lamp",
+  "usable": true,
+  "description": "A brass hurricane lamp. Wick trimmed, reservoir full. Someone prepared it recently.",
+  "inspectNote": "Stamped into the base: VALE TIMBER CO. · 1911.",
+  "storyTags": [
+    "arrival",
+    "light"
+  ]
+}

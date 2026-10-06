@@ -1,0 +1,37 @@
+{
+  "id": "doc_arthur_letter",
+  "code": "DOC01",
+  "title": "Arthur's letter",
+  "kind": "letter",
+  "author": "Arthur Vale",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "If you are reading this, then I failed.\n\nDo not trust the history of this house.\n\nDo not trust mine either.\n\nFind the Eighth Record.\n\n— Arthur",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_arthur_letter",
+          "value": true
+        }
+      ]
+    },
+    {
+      "side": "back",
+      "style": "pencil",
+      "text": "What matters, I keep where visitors leave their wet things.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_envelope_back",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "arthur",
+    "eighth_record"
+  ]
+}

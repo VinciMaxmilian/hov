@@ -1,0 +1,34 @@
+{
+  "id": "doc_pre1847_record",
+  "code": "DOC08",
+  "title": "Survey leaf, 1791",
+  "kind": "record",
+  "date": "1791",
+  "pages": [
+    {
+      "side": "front",
+      "style": "engraved",
+      "heading": "RELEVÉ — 1791",
+      "image": "/assets/documents/releve_1791.webp",
+      "placeholder": "ink survey sketch: a circle crossed by a vertical line, eight dots around it; bearings and distances in faded French",
+      "text": "Au point marqué : le cercle, la ligne, huit points.\nHuit témoins, comme l'exige le registre.\n\nLe registre y était déjà.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_releve",
+          "value": true
+        }
+      ]
+    },
+    {
+      "side": "back",
+      "style": "pencil",
+      "text": "Left it where I found it.\n— A."
+    }
+  ],
+  "storyTags": [
+    "below",
+    "eighth",
+    "pre_vale"
+  ]
+}

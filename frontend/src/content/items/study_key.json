@@ -1,0 +1,12 @@
+{
+  "id": "study_key",
+  "name": "Small brass key",
+  "category": "KEY_ITEMS",
+  "model": "proc:key_brass",
+  "description": "A small brass key, found at the bottom of the umbrella stand.",
+  "inspectNote": "Stamped into the bow: a circle, a vertical line through it, and seven dots around the edge.",
+  "storyTags": [
+    "meridian",
+    "symbol_seven"
+  ]
+}

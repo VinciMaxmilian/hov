@@ -1,0 +1,51 @@
+{
+  "id": "doc_arthur_tape_01",
+  "code": "DOC07",
+  "title": "Cassette — \"STUDY / 11\"",
+  "kind": "recording",
+  "author": "Arthur Vale",
+  "date": "undated",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "heading": "TDK D60",
+      "text": "Label, in Arthur's hand:\n\nSTUDY / 11\n\nDon't."
+    }
+  ],
+  "audio": {
+    "src": "/assets/audio/arthur_tape_11.mp3",
+    "duration": 23,
+    "lines": [
+      {
+        "t": 1.2,
+        "speaker": "Arthur",
+        "text": "Tape eleven. The study. It's raining, which in this town means it's a day."
+      },
+      {
+        "t": 6.0,
+        "speaker": "Arthur",
+        "text": "I measured the north wall again. Same number. Wrong number."
+      },
+      {
+        "t": 10.5,
+        "speaker": "Arthur",
+        "text": "If you hear knocking from inside the walls, don't answer."
+      },
+      {
+        "t": 15.0,
+        "speaker": "Arthur",
+        "text": "I made that mistake once."
+      },
+      {
+        "t": 18.5,
+        "speaker": "Arthur",
+        "text": "...I checked. There is nothing in there that could knock."
+      }
+    ]
+  },
+  "storyTags": [
+    "arthur",
+    "walls"
+  ]
+}

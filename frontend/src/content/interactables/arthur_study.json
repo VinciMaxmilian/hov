@@ -1,0 +1,44 @@
+[
+  { "id": "study_report", "label": "Typed report", "interactionType": "pickup", "document": "doc_police_report_1936" },
+  { "id": "study_note_217", "label": "Note", "interactionType": "pickup", "document": "doc_arthur_note_217" },
+  { "id": "study_photo", "label": "Framed photograph", "interactionType": "pickup", "document": "doc_meridian_photo" },
+  {
+    "id": "study_desk_drawer",
+    "label": "Desk drawer",
+    "interactionType": "container",
+    "state": "closed",
+    "emptyMessage": "Pencils. A wooden rule with a pencil mark at 1.2 metres.",
+    "actions": [
+      { "type": "giveItem", "item": "library_knob", "silent": true },
+      { "type": "message", "text": "Wrapped in a handkerchief: a brass doorknob, its screws taped to the back.", "duration": 5000 }
+    ]
+  },
+  { "id": "study_desk_lamp", "label": "Desk lamp", "interactionType": "toggle", "state": "off" },
+  {
+    "id": "study_tape_recorder",
+    "label": "Tape recorder",
+    "interactionType": "use",
+    "branches": [{ "label": "Play", "actions": [{ "type": "playRecording", "document": "doc_arthur_tape_01" }] }]
+  },
+  {
+    "id": "study_boxes",
+    "label": "Archive boxes",
+    "interactionType": "use",
+    "actions": [
+      { "type": "setFlag", "key": "seen_study_boxes", "value": true },
+      { "type": "message", "text": "Labels in Arthur's hand: HAWTHORNE 1902–1911. MERCER (COPIES). BELL — BAPTISMS. All of them empty.", "duration": 6000 }
+    ]
+  },
+  {
+    "id": "study_corkboard",
+    "label": "Corkboard",
+    "interactionType": "use",
+    "actions": [{ "type": "message", "text": "Pins, string, and the small holes where everything used to be.", "duration": 5000 }]
+  },
+  {
+    "id": "study_fireplace",
+    "label": "Fireplace",
+    "interactionType": "use",
+    "actions": [{ "type": "message", "text": "Cold for years. Someone swept it anyway." }]
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "id": "matches",
+  "name": "Matches",
+  "category": "TOOLS",
+  "model": "proc:matches",
+  "combinable": [
+    "oil_lamp"
+  ],
+  "description": "Kitchen matches. BELL'S HARDWARE · BELLWEATHER, ORE.",
+  "storyTags": [
+    "arrival",
+    "bell"
+  ]
+}

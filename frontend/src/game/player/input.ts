@@ -23,6 +23,7 @@ export const input = {
 }
 
 export function isPointerLocked(): boolean {
+  if (typeof document === 'undefined') return false
   return document.pointerLockElement != null && document.pointerLockElement === lockTarget
 }
 
@@ -43,7 +44,7 @@ export async function requestPointerLock(): Promise<boolean> {
 }
 
 export function exitPointerLock(): void {
-  if (document.pointerLockElement) document.exitPointerLock()
+  if (typeof document !== 'undefined' && document.pointerLockElement) document.exitPointerLock()
 }
 
 export function onPointerLockChange(fn: (locked: boolean) => void): () => void {
