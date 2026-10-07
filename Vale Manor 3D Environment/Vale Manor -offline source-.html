@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vale Manor — Estate</title>
+<meta name="ext-resource-dependency" content="./vendor/three/three.module.js" data-resource-id="threeModule" />
+<meta name="ext-resource-dependency" content="./vendor/three/three.core.js" data-resource-id="threeCore" />
+<meta name="ext-resource-dependency" content="./vendor/three/OrbitControls.js" data-resource-id="orbit" />
+<meta name="ext-resource-dependency" content="./vendor/three/OBJExporter.js" data-resource-id="objExp" />
+<meta name="ext-resource-dependency" content="./vendor/three/GLTFExporter.js" data-resource-id="gltfExp" />
+<script>
+(function(){var r=window.__resources||{};var f=function(id,p){return r[id]||p;};
+var map={imports:{"three":f('threeModule','./vendor/three/three.module.js'),"three/core":f('threeCore','./vendor/three/three.core.js'),"three/addons/controls/OrbitControls.js":f('orbit','./vendor/three/OrbitControls.js'),"three/addons/exporters/OBJExporter.js":f('objExp','./vendor/three/OBJExporter.js'),"three/addons/exporters/GLTFExporter.js":f('gltfExp','./vendor/three/GLTFExporter.js')}};
+var s=document.createElement('script');s.type='importmap';s.textContent=JSON.stringify(map);document.currentScript.after(s);})();
+</script>
+<template id="__bundler_thumbnail" data-bg-color="#55636d">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#55636d"/><polygon points="420,520 600,330 780,520" fill="#2a3037"/><rect x="450" y="520" width="300" height="140" fill="#7a776f"/><circle cx="820" cy="500" r="50" fill="#5a9a88"/><rect x="590" y="560" width="20" height="40" fill="#ffa24a"/></svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;height:100%;background:#0e141a;overflow:hidden}
+  a{color:#9fc4c8}a:hover{color:#d9c08a}
+  three-d-stage:not(:defined){visibility:hidden}
+  three-d-stage{height:100vh}
+  #ui,#ui *{box-sizing:border-box}
+  #ui{overflow-x:hidden;position:fixed;top:14px;left:14px;width:236px;padding:14px 14px 12px;background:rgba(12,18,24,.82);border:1px solid rgba(160,185,195,.16);border-radius:6px;color:#c3ccd0;font:400 11.5px/1.45 "IBM Plex Mono",ui-monospace,monospace;display:flex;flex-direction:column;gap:12px;backdrop-filter:blur(6px);max-height:calc(100vh - 90px);overflow:auto}
+  #ui .t{font-weight:500;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#e4e7e4}
+  #ui .s{color:#7f8d94}
+  #ui .lab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7f8d94;margin-bottom:6px}
+  #ui .grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  #ui button{appearance:none;font:inherit;color:#c3ccd0;background:rgba(255,255,255,.04);border:1px solid rgba(160,185,195,.18);border-radius:4px;padding:5px 6px;text-align:left;cursor:pointer}
+  #ui button:hover{background:rgba(255,255,255,.09);color:#fff}
+  #ui button.on{background:rgba(217,170,100,.16);border-color:rgba(217,170,100,.55);color:#f0d9b0}
+  #ui .seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px}
+  #ui .row{display:flex;align-items:center;gap:8px;margin-top:4px}
+  #ui input[type=range]{flex:1;accent-color:#7fa3a8}
+  #ui input[type=checkbox]{accent-color:#d9aa64;margin:0}
+  #ui .wide{width:100%;text-align:center}
+  #ui .hint{color:#6f7d84;margin-top:5px;font-size:10.5px}
+  #ui .era{color:#7f8d94;font-size:10.5px;border-top:1px solid rgba(160,185,195,.12);padding-top:9px;display:flex;flex-direction:column;gap:2px}
+  #ui .era b{font-weight:500;color:#aeb9bd}
+</style>
+</head>
+<body>
+<three-d-stage name="vale_manor" background="#66747d"></three-d-stage>
+<div id="ui">
+  <div><div class="t">Vale Manor</div><div class="s">Estate block-out · October rain</div></div>
+  <div>
+    <div class="lab">Go to</div>
+    <div class="grid" id="goto"></div>
+  </div>
+  <div>
+    <div class="lab">Atmosphere</div>
+    <div class="seg"><button data-mode="day" class="on">Overcast</button><button data-mode="night">Night</button></div>
+    <label class="row"><input type="checkbox" id="rain" checked> Rain</label>
+    <label class="row">Fog <input type="range" id="fog" min="0" max="2.2" step="0.05" value="1"></label>
+  </div>
+  <div>
+    <div class="lab">Layers</div>
+    <label class="row"><input type="checkbox" id="voids"> Hidden volumes + Meridian axis</label>
+  </div>
+  <div>
+    <button id="walk" class="wide">Walk at eye level · 1.7 m</button>
+    <div class="hint">WASD / arrows · drag to look · Shift to run · Esc to exit</div>
+  </div>
+  <div class="era">
+    <div><b>1874</b> West wing — basalt, NW tower</div>
+    <div><b>1911</b> Central hall, observatory</div>
+    <div><b>1926</b> East wing, turret, carriage conversion</div>
+  </div>
+</div>
+<script src="three-d-stage.js"></script>
+<script type="module" src="vale-manor.js"></script>
+</body>
+</html>
