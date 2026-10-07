@@ -3,12 +3,15 @@ import { Canvas } from '@react-three/fiber'
 import { useState } from 'react'
 import type { Item } from '../../game/content/schemas'
 import { models } from '../../game/world/props/smallItems'
+import { useTr } from '../../game/i18n'
+import { CATEGORY_LABEL } from '../journal/JournalScreen'
 
 /** Inspeção 3D de itens: modelo procedural girável (ou imagem gerada, quando houver). */
 export function ItemView({ item }: { item: Item }) {
   const modelKey = item.model?.startsWith('proc:') ? item.model.slice(5) : null
   const Model = modelKey ? models[modelKey] : undefined
   const [imgFailed, setImgFailed] = useState(false)
+  const t = useTr()
 
   return (
     <>
@@ -26,18 +29,18 @@ export function ItemView({ item }: { item: Item }) {
         ) : item.image && !imgFailed ? (
           <img src={item.image} alt="" style={{ maxWidth: '80%', maxHeight: '80%' }} onError={() => setImgFailed(true)} draggable={false} />
         ) : (
-          <div className="muted">[ {item.name} ]</div>
+          <div className="muted">[ {t(item.name)} ]</div>
         )}
       </div>
       <aside className="inspect-side">
-        <div className="small-caps faint">{item.category.replace('_', ' ').toLowerCase()}</div>
-        <h2>{item.name}</h2>
-        <p className="muted">{item.description}</p>
-        {item.inspectNote && <p className="found-note">{item.inspectNote}</p>}
+        <div className="small-caps faint">{t(CATEGORY_LABEL[item.category]).toLowerCase()}</div>
+        <h2>{t(item.name)}</h2>
+        <p className="muted">{t(item.description)}</p>
+        {item.inspectNote && <p className="found-note">{t(item.inspectNote)}</p>}
         <div className="controls">
-          drag — rotate · wheel — zoom
+          {t('drag — rotate · wheel — zoom')}
           <br />
-          <span className="key">E</span> / <span className="key">Esc</span> put away
+          <span className="key">E</span> / <span className="key">Esc</span> {t('put away')}
         </div>
       </aside>
     </>

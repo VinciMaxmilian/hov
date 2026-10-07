@@ -3,6 +3,7 @@ import { useAuth } from '../../game/auth/authStore'
 import { keepLocal, listSlots, readSlot, type SlotInfo } from '../../game/save/saveManager'
 import type { SaveData } from '../../game/state/saveSchema'
 import { formatPlaytime } from '../format'
+import { useTr } from '../../game/i18n'
 
 interface Props {
   mode: 'load' | 'new'
@@ -16,6 +17,7 @@ export function SlotList({ mode, onPick, onBack }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [confirm, setConfirm] = useState<number | null>(null)
   const session = useAuth((s) => s.session)
+  const t = useTr()
 
   const refresh = useCallback(() => {
     setSlots(null)
@@ -36,10 +38,10 @@ export function SlotList({ mode, onPick, onBack }: Props) {
 
   return (
     <div className="panel stack" style={{ minWidth: 560 }}>
-      <h2>{mode === 'new' ? 'Choose a slot' : 'Load'}</h2>
-      {!session && <p className="faint">Playing offline — saves stay on this device. Sign in to keep them in the cloud.</p>}
+      <h2>{mode === 'new' ? t('Choose a slot') : t('Load')}</h2>
+      {!session && <p className="faint">{t('Playing offline — saves stay on this device. Sign in to keep them in the cloud.')}</p>}
       {error && <p className="error">{error}</p>}
-      {!slots && <p className="muted">Reading the ledgers…</p>}
+      {!slots && <p className="muted">{t('Reading the ledgers…')}</p>}
       {slots?.map((info) => {
         const meta = info.preferred === 'cloud' && info.cloud ? info.cloud : info.local?.data.meta
         const empty = !info.local && !info.cloud
@@ -60,10 +62,10 @@ export function SlotList({ mode, onPick, onBack }: Props) {
               <span className="slot-n">{info.slot}</span>
               <span>
                 {empty ? (
-                  <span className="faint">— empty —</span>
+                  <span className="faint">— {t('empty')} —</span>
                 ) : (
                   <>
-                    <div>{meta?.areaLabel}</div>
+                    <div>{t(meta?.areaLabel)}</div>
                     <div className="meta">
                       {formatPlaytime(meta?.playtimeSec ?? 0)} · {meta?.progressPct ?? 0}%
                     </div>
@@ -71,23 +73,23 @@ export function SlotList({ mode, onPick, onBack }: Props) {
                 )}
               </span>
               <span className="row">
-                {info.local && <span className="badge">device</span>}
-                {info.cloud && <span className="badge">cloud</span>}
-                {info.conflict && <span className="badge warn">conflict</span>}
+                {info.local && <span className="badge">{t('device')}</span>}
+                {info.cloud && <span className="badge">{t('cloud')}</span>}
+                {info.conflict && <span className="badge warn">{t('conflict')}</span>}
               </span>
             </button>
-            {mode === 'new' && confirm === info.slot && <p className="error" style={{ margin: '0 0 0.6rem' }}>Click again to overwrite this save.</p>}
+            {mode === 'new' && confirm === info.slot && <p className="error" style={{ margin: '0 0 0.6rem' }}>{t('Click again to overwrite this save.')}</p>}
             {mode === 'load' && info.conflict && info.local && info.cloud && (
               <div className="row" style={{ margin: '-0.2rem 0 0.8rem 5rem' }}>
-                <span className="faint">The cloud copy changed on another device.</span>
+                <span className="faint">{t('The cloud copy changed on another device.')}</span>
                 <button className="btn small" onClick={() => void load(info, 'local')}>
-                  This device ({formatPlaytime(info.local.data.meta.playtimeSec)})
+                  {t('This device')} ({formatPlaytime(info.local.data.meta.playtimeSec)})
                 </button>
                 <button className="btn small" onClick={() => void load(info, 'cloud')}>
-                  Cloud ({formatPlaytime(info.cloud.playtimeSec)})
+                  {t('Cloud')} ({formatPlaytime(info.cloud.playtimeSec)})
                 </button>
                 <button className="btn small" onClick={() => void keepLocal(info.slot).then(refresh)}>
-                  Keep device copy & upload
+                  {t('Keep device copy & upload')}
                 </button>
               </div>
             )}
@@ -96,7 +98,7 @@ export function SlotList({ mode, onPick, onBack }: Props) {
       })}
       <div className="row">
         <button className="btn small" onClick={onBack}>
-          ← back
+          ← {t('back')}
         </button>
       </div>
     </div>

@@ -49,7 +49,9 @@ export function Door({ obj }: PropProps) {
   })
 
   const showKnob = !(knobless && state === 'locked')
+  // Centro da folha em relação à dobradiça; a maçaneta fica na borda OPOSTA à dobradiça.
   const off = -hinge * (w / 2)
+  const knobX = off * 0.8
   return (
     <RigidBody ref={body} type="kinematicPosition" colliders={false} position={hingeWorld} rotation={[0, yaw + angle.current, 0]}>
       <group position={[off, 0, 0]}>
@@ -63,13 +65,13 @@ export function Door({ obj }: PropProps) {
         ))}
         {showKnob &&
           [-1, 1].map((sz) => (
-            <mesh key={sz} position={[-off * 0.8, 1.0, sz * 0.06]} material={brass}>
+            <mesh key={sz} position={[knobX, 1.0, sz * 0.06]} material={brass}>
               <sphereGeometry args={[0.035, 12, 10]} />
             </mesh>
           ))}
         {/* espelho da fechadura */}
         {[-1, 1].map((sz) => (
-          <mesh key={`p${sz}`} position={[-off * 0.8, 0.92, sz * 0.032]} material={brass}>
+          <mesh key={`p${sz}`} position={[knobX, 0.92, sz * 0.032]} material={brass}>
             <boxGeometry args={[0.05, 0.14, 0.006]} />
           </mesh>
         ))}

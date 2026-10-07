@@ -4,12 +4,14 @@ import { beginPlay, startNewGame } from './session'
 import { useGame } from './state/gameStore'
 import { useUi } from './state/uiStore'
 import { openPuzzle } from './puzzles/puzzleSystem'
+import { useDevice } from './player/device'
 
 /**
  * SOMENTE DEV (import.meta.env.DEV): começa um jogo no slot 3 direto numa área.
- * ?dev&area=<id>&yaw=<rad>&lamp=1&items=a,b&open=door1,door2&inspect=<doc|item>&puzzle=<id>&pos=x,y,z
+ * ?dev&area=<id>&yaw=<rad>&lamp=1&items=a,b&open=door1,door2&inspect=<doc|item>&puzzle=<id>&pos=x,y,z&touch=1|0
  */
 export function startDevSession(params: URLSearchParams): void {
+  if (params.has('touch')) useDevice.getState().setPreference(params.get('touch') === '0' ? 'off' : 'on')
   startNewGame(3)
   const areaId = params.get('area') ?? content.story.start.area
   const area = content.areas.get(areaId)
@@ -30,6 +32,7 @@ export function startDevSession(params: URLSearchParams): void {
   }
   beginPlay(true)
   const inspect = params.get('inspect')
+  if (params.has('journal')) useUi.setState({ mode: 'journal', journalTab: (params.get('journal') || 'belongings') as 'belongings' })
   if (inspect) {
     const kind = content.documents.has(inspect) ? 'document' : 'item'
     if (kind === 'document') game.discoverDocument(inspect)

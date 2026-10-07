@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { useAuth } from '../../game/auth/authStore'
+import { useTr } from '../../game/i18n'
 
 /** Conta (Supabase Auth): email/senha e Google OAuth (se configurado no projeto). */
 export function AccountPanel({ onBack }: { onBack(): void }) {
@@ -7,6 +8,7 @@ export function AccountPanel({ onBack }: { onBack(): void }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [mode, setMode] = useState<'in' | 'up'>('in')
+  const t = useTr()
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
@@ -15,27 +17,27 @@ export function AccountPanel({ onBack }: { onBack(): void }) {
 
   return (
     <div className="panel stack" style={{ minWidth: 420 }}>
-      <h2>Account</h2>
-      {!available && <p className="muted">Online accounts are not configured for this build. Your saves stay on this device.</p>}
+      <h2>{t('Account')}</h2>
+      {!available && <p className="muted">{t('Online accounts are not configured for this build. Your saves stay on this device.')}</p>}
       {available && user && (
         <>
           <p>
-            Signed in as <span className="muted">{user.email}</span>
+            {t('Signed in as')} <span className="muted">{user.email}</span>
           </p>
-          <p className="faint">Saves sync to the cloud automatically.</p>
+          <p className="faint">{t('Saves sync to the cloud automatically.')}</p>
           <div className="row">
             <button className="btn small" disabled={busy} onClick={() => void signOut()}>
-              Sign out
+              {t('Sign out')}
             </button>
           </div>
         </>
       )}
       {available && !user && (
         <form className="stack" onSubmit={submit}>
-          <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" required />
+          <input type="email" placeholder={t('email')} value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" required />
           <input
             type="password"
-            placeholder="password"
+            placeholder={t('password')}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete={mode === 'in' ? 'current-password' : 'new-password'}
@@ -44,7 +46,7 @@ export function AccountPanel({ onBack }: { onBack(): void }) {
           />
           <div className="row">
             <button className="btn small primary" type="submit" disabled={busy}>
-              {mode === 'in' ? 'Sign in' : 'Create account'}
+              {mode === 'in' ? t('Sign in') : t('Create account')}
             </button>
             <button
               className="btn small"
@@ -54,19 +56,19 @@ export function AccountPanel({ onBack }: { onBack(): void }) {
                 setMode(mode === 'in' ? 'up' : 'in')
               }}
             >
-              {mode === 'in' ? 'I need an account' : 'I already have one'}
+              {mode === 'in' ? t('I need an account') : t('I already have one')}
             </button>
           </div>
           <button className="btn small" type="button" disabled={busy} onClick={() => void signInWithGoogle()}>
-            Continue with Google
+            {t('Continue with Google')}
           </button>
         </form>
       )}
-      {error && <p className="error">{error}</p>}
-      {notice && <p className="muted">{notice}</p>}
+      {error && <p className="error">{t(error)}</p>}
+      {notice && <p className="muted">{t(notice)}</p>}
       <div className="row">
         <button className="btn small" onClick={onBack}>
-          ← back
+          ← {t('back')}
         </button>
       </div>
     </div>

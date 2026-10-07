@@ -22,7 +22,7 @@ export const input = {
   /** Movimento combinado (teclado + joystick): x = direita, z = trás (W = -1), já limitado a |v| <= 1. */
   move(): { x: number; z: number; run: boolean } {
     let x = virtual.x
-    let z = -virtual.y
+    let z = 0 - virtual.y // evita -0
     if (keys.has('KeyW') || keys.has('ArrowUp')) z -= 1
     if (keys.has('KeyS') || keys.has('ArrowDown')) z += 1
     if (keys.has('KeyA') || keys.has('ArrowLeft')) x -= 1

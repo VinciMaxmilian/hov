@@ -255,9 +255,9 @@
       "id": "study_desk_lamp",
       "type": "DeskLamp",
       "position": [
-        -9.7,
+        -9.75,
         0.78,
-        0.25
+        0.55
       ],
       "rotation": [
         0,
@@ -430,18 +430,6 @@
       }
     },
     {
-      "type": "Crate",
-      "position": [
-        -7.3,
-        0.48,
-        -2.75
-      ],
-      "seed": 5,
-      "params": {
-        "size": 0.4
-      }
-    },
-    {
       "type": "Chair",
       "position": [
         -7.2,
@@ -455,6 +443,23 @@
       ],
       "params": {
         "seat": "cloth_dark"
+      }
+    },
+    {
+      "type": "Crate",
+      "position": [
+        -7.15,
+        0,
+        -2.05
+      ],
+      "rotation": [
+        0,
+        12,
+        0
+      ],
+      "seed": 6,
+      "params": {
+        "size": 0.42
       }
     }
   ],

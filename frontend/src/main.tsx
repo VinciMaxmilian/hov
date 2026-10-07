@@ -20,9 +20,11 @@ async function boot() {
     const { initAuth } = await import('./game/auth/authStore')
     const { App } = await import('./ui/App')
     const { installDeviceClass } = await import('./game/player/device')
+    const { installLangAttribute } = await import('./game/i18n')
 
     audio.registerSounds(content.sounds.values())
     installDeviceClass()
+    installLangAttribute()
     installInput()
     installControls()
     installStoryDirector()
@@ -39,6 +41,10 @@ async function boot() {
 
     // Atalho de desenvolvimento: ?dev&area=library&yaw=1.57 pula o título e começa na área (slot 3).
     const params = new URLSearchParams(window.location.search)
+    if (import.meta.env.DEV && (params.get('lang') === 'pt' || params.get('lang') === 'en')) {
+      const { useLang } = await import('./game/i18n')
+      useLang.getState().setLang(params.get('lang') as 'pt' | 'en')
+    }
     if (import.meta.env.DEV && params.has('dev')) {
       const { startDevSession } = await import('./game/devStart')
       startDevSession(params)

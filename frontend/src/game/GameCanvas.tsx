@@ -46,7 +46,8 @@ export function GameCanvas() {
       // Celulares: resolução menor (GPU e bateria).
       dpr={isTouch() ? [1, 1.25] : [1, 1.5]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
-      camera={{ fov: 70, near: 0.05, far: 1000 }}
+      // near 0.1 (e não 0.05) dobra a precisão do depth buffer: menos z-fighting à distância.
+      camera={{ fov: 70, near: 0.1, far: 1000 }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping
         gl.toneMappingExposure = 1.15

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { journalView } from '../../game/journal/journalSystem'
 import { useGame } from '../../game/state/gameStore'
+import { useTr } from '../../game/i18n'
 
 /**
  * Quadro de investigação: nós e conexões descobertos. Inferências aparecem tracejadas com "?",
@@ -8,9 +9,10 @@ import { useGame } from '../../game/state/gameStore'
  */
 export function Board() {
   const state = useGame()
+  const t = useTr()
   const { nodes, edges } = useMemo(() => journalView(state), [state])
   const byId = new Map(nodes.map((n) => [n.id, n]))
-  if (nodes.length === 0) return <p className="muted">Nothing pinned to the board yet.</p>
+  if (nodes.length === 0) return <p className="muted">{t('Nothing pinned to the board yet.')}</p>
   return (
     <svg className="board" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet">
       <defs>
@@ -38,14 +40,14 @@ export function Board() {
             />
             {(e.label || !e.confirmed) && (
               <text x={mx} y={my - 6} textAnchor="middle" style={{ fontSize: 12, fill: '#a69c88', fontStyle: 'italic' }}>
-                {e.confirmed ? e.label : `? ${e.label ?? ''}`}
+                {e.confirmed ? t(e.label) : `? ${t(e.label)}`}
               </text>
             )}
           </g>
         )
       })}
       {nodes.map((n) => {
-        const label = n.revealed ? n.label : '?'
+        const label = n.revealed ? t(n.label) : '?'
         const w = Math.max(60, label.length * 8.6 + 28)
         return (
           <g key={n.id} className={n.revealed ? '' : 'unknown'} transform={`translate(${n.x}, ${n.y})`}>

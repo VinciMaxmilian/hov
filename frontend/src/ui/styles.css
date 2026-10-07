@@ -989,13 +989,28 @@ html.touch .messages {
   bottom: 30vh;
 }
 
+/* status de save/journal sai do canto dos botões */
+html.touch .status-corner {
+  right: auto;
+  left: max(1rem, env(safe-area-inset-left));
+  top: max(0.8rem, env(safe-area-inset-top));
+  bottom: auto;
+}
+
+@media (max-width: 900px), (max-height: 500px) {
+  .inspect-side {
+    padding-top: 2.2rem !important;
+  }
+}
+
 .rotate-hint {
   display: none;
   flex-direction: column;
   gap: 0.6rem;
+  padding: 0 2rem;
   background: #05070a;
   color: var(--ink-dim);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   font-size: 1rem;
   text-align: center;
   z-index: 50;
@@ -1135,4 +1150,15 @@ html.touch .messages {
     border-bottom: none;
     border-right: 1px solid var(--line);
   }
+}
+
+/* ---------------------------------------------------------------- idioma */
+
+.lang-switch {
+  position: absolute;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1.2rem, env(safe-area-inset-right));
+  display: flex;
+  gap: 0.2rem;
+  z-index: 2;
 }

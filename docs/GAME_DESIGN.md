@@ -12,6 +12,14 @@ EXPLORE → DISCOVER → UNDERSTAND → SOLVE → UNLOCK → DISCOVER MORE.
 
 WASD mover · Mouse câmera · E interagir · F lamparina · Shift correr · Tab pertences/journal/quadro · Esc menu.
 Na inspeção: arrastar inclina, roda dá zoom, F vira, T transcrição, E/Esc larga. No relógio: A/D horas, W/S minutos (Shift ×5), E "Let it strike", Esc recua.
+**Toque (celular/tablet)** — detecção automática (`pointer: coarse`), configurável em Settings → Touch controls (Auto/On/Off):
+- Polegar esquerdo: joystick que nasce onde o dedo toca; empurrar até a borda = apressar.
+- Polegar direito: arrastar para olhar (usa a mesma sensibilidade e "inverter vertical").
+- Botões: **interagir** (mostra verbo + objeto, só acende quando há alvo), **lamparina** (quando o jogador a tem), **journal** e **menu** no canto superior.
+- Sem pointer lock; ao começar/carregar pede tela cheia e paisagem (onde o navegador permitir); em retrato, aviso para girar o aparelho.
+- Inspeção: arrastar inclina, pinça dá zoom, botões "turn over / read text / − / +". Relógio: botões do painel.
+- Dicas narrativas têm texto próprio para toque (campo `touch` da ação `hint`).
+
 Ensino progressivo por gatilhos (`story.json`): WASD aos 2,5 s; Shift aos 16 s; "F — light the lamp" ao ter lamparina + fósforos; "Tab" no primeiro documento; avisos de escuridão na biblioteca/passagem se a lamparina estiver apagada.
 
 ## Estrutura (7 atos)

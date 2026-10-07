@@ -6,6 +6,7 @@ import { loadGame, startNewGame } from '../../game/session'
 import { AccountPanel } from './AccountPanel'
 import { SettingsPanel } from './SettingsPanel'
 import { SlotList } from './SlotList'
+import { LANGUAGES, useLang, useTr } from '../../game/i18n'
 
 type View = 'main' | 'new' | 'load' | 'account' | 'settings'
 
@@ -14,6 +15,8 @@ export function TitleScreen() {
   const [latest, setLatest] = useState<{ slot: number; source: 'local' | 'cloud' } | null>(null)
   const [error, setError] = useState<string | null>(null)
   const user = useAuth((s) => s.user)
+  const t = useTr()
+  const { lang, setLang } = useLang()
 
   useEffect(() => {
     let alive = true
@@ -51,6 +54,13 @@ export function TitleScreen() {
   return (
     <div className="layer title-screen">
       <div className="layer title-rain" />
+      <div className="lang-switch">
+        {LANGUAGES.map((l) => (
+          <button key={l.id} className={`btn small ${lang === l.id ? 'primary' : ''}`} onClick={() => setLang(l.id)} aria-pressed={lang === l.id}>
+            {l.label}
+          </button>
+        ))}
+      </div>
       {view === 'main' && (
         <div className="title-block">
           <h1>THE HOUSE OF VALE</h1>
@@ -58,25 +68,25 @@ export function TitleScreen() {
           <div className="stack" style={{ alignItems: 'flex-start' }}>
             {latest && (
               <button className="btn primary" onClick={() => void continueGame()}>
-                Continue
+                {t('Continue')}
               </button>
             )}
             <button className="btn" onClick={() => go('new')}>
-              New game
+              {t('New game')}
             </button>
             <button className="btn" onClick={() => go('load')}>
-              Load
+              {t('Load')}
             </button>
             <button className="btn" onClick={() => go('settings')}>
-              Settings
+              {t('Settings')}
             </button>
             <button className="btn" onClick={() => go('account')}>
-              {user ? `Account · ${user.email}` : 'Account'}
+              {user ? `${t('Account')} · ${user.email}` : t('Account')}
             </button>
           </div>
           {error && <p className="error">{error}</p>}
           <p className="faint" style={{ marginTop: '2.4rem', fontSize: '0.85rem' }}>
-            Headphones recommended. Desktop · mouse & keyboard.
+            {t('Headphones recommended.')}
           </p>
         </div>
       )}

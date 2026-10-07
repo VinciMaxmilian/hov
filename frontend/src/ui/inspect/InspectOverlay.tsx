@@ -1,6 +1,7 @@
 import { content } from '../../game/content'
 import { requestPointerLock } from '../../game/player/input'
 import { useUi } from '../../game/state/uiStore'
+import { useTr } from '../../game/i18n'
 import { DocumentView } from './DocumentView'
 import { lazy, Suspense } from 'react'
 
@@ -9,6 +10,7 @@ const ItemView = lazy(() => import('./ItemView').then((m) => ({ default: m.ItemV
 
 export function InspectOverlay() {
   const target = useUi((s) => s.inspect)
+  const t = useTr()
   if (!target) return null
   const close = () => {
     useUi.getState().closeInspect()
@@ -25,7 +27,7 @@ export function InspectOverlay() {
         </Suspense>
       )}
       <button className="btn small" style={{ position: 'absolute', right: '2rem', top: '1.4rem' }} onClick={close}>
-        put down ✕
+        {t('put down')} ✕
       </button>
     </div>
   )

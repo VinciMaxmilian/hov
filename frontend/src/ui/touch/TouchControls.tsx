@@ -5,6 +5,7 @@ import { input } from '../../game/player/input'
 import { toggleLamp, LAMP_FLAG } from '../../game/player/lampControl'
 import { useGame } from '../../game/state/gameStore'
 import { useUi } from '../../game/state/uiStore'
+import { useTr } from '../../game/i18n'
 
 /** Raio do joystick em px; além de RUN_AT do raio, corre. */
 const RADIUS = 56
@@ -19,6 +20,7 @@ const LOOK_GAIN = 1.6
  */
 export function TouchControls() {
   const focus = useUi((s) => s.focus)
+  const t = useTr()
   const hasLamp = useGame((s) => s.inventory.includes('oil_lamp'))
   const lit = useGame((s) => Boolean(s.flags[LAMP_FLAG]))
 
@@ -98,17 +100,17 @@ export function TouchControls() {
       </div>
 
       <div className="touch-top">
-        <button className="touch-btn small" onPointerDown={press(openJournal)} aria-label="Journal">
+        <button className="touch-btn small" onPointerDown={press(openJournal)} aria-label={t('Journal')}>
           ✒
         </button>
-        <button className="touch-btn small" onPointerDown={press(pauseGame)} aria-label="Menu">
+        <button className="touch-btn small" onPointerDown={press(pauseGame)} aria-label={t('Menu')}>
           ☰
         </button>
       </div>
 
       <div className="touch-actions">
         {hasLamp && (
-          <button className={`touch-btn ${lit ? 'on' : ''}`} onPointerDown={press(toggleLamp)} aria-label="Lamp">
+          <button className={`touch-btn ${lit ? 'on' : ''}`} onPointerDown={press(toggleLamp)} aria-label={t('Lamp')}>
             <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden>
               <path d="M12 2c2 3.2 4.5 5.3 4.5 9a4.5 4.5 0 0 1-9 0c0-2 1-3.3 2-4.5.3 1.6 1 2.5 2 2.8C11 7 11.5 4.6 12 2z" fill="currentColor" />
               <rect x="7" y="18" width="10" height="3" rx="1" fill="currentColor" opacity="0.6" />
@@ -119,12 +121,12 @@ export function TouchControls() {
           className={`touch-btn interact ${focus ? 'ready' : ''}`}
           disabled={!focus}
           onPointerDown={press(() => focus && interact(focus.id))}
-          aria-label={focus ? `${focus.verb} ${focus.label}` : 'Interact'}
+          aria-label={focus ? `${t(focus.verb)} ${t(focus.label)}` : t('Interact')}
         >
           {focus ? (
             <>
-              <span className="verb">{focus.verb}</span>
-              <span className="what">{focus.label}</span>
+              <span className="verb">{t(focus.verb)}</span>
+              <span className="what">{t(focus.label)}</span>
             </>
           ) : (
             '·'

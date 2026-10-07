@@ -21,7 +21,7 @@ npm run dev               # http://localhost:5173
 | `npm run build` | typecheck + build de produção em `dist/` |
 
 **Atalho de desenvolvimento** (só em `npm run dev`): `http://localhost:5173/?dev&area=library&lamp=1`
-Parâmetros: `area=<id>` · `yaw=<radianos>` · `lamp=1` (lamparina acesa) · `items=a,b` · `open=porta1,porta2` · `inspect=<documento|item>` · `puzzle=<id>` · `pos=x,y,z` · `shot` (oculta o aviso de pointer lock, para capturas).
+Parâmetros: `area=<id>` · `yaw=<radianos>` · `lamp=1` (lamparina acesa) · `items=a,b` · `open=porta1,porta2` · `inspect=<documento|item>` · `puzzle=<id>` · `pos=x,y,z` · `touch=1|0` (força controles de toque) · `journal=<aba>` · `shot` (oculta o aviso de pointer lock, para capturas).
 Captura headless: `chrome --headless=new --use-angle=swiftshader --enable-unsafe-swiftshader --window-size=1280,720 --virtual-time-budget=20000 --screenshot=out.png "http://localhost:5173/?dev&shot&area=arthur_study&lamp=1"`.
 
 ### Backend (opcional)
@@ -41,9 +41,14 @@ Para o jogo salvar via backend, defina `VITE_API_URL=http://localhost:8000` no `
 Migrations em `supabase/migrations/`. A inicial já está aplicada no projeto `houseofvale`. Para outro projeto: `supabase db push` (CLI) ou cole o SQL no editor do painel.
 Google OAuth: habilite o provider em Authentication → Providers e adicione a URL do site em Redirect URLs.
 
+## Idioma
+English ou Português: seletor no canto da tela de título e em Configurações (padrão: idioma do navegador). Textos em `frontend/src/content/i18n/pt.json` (narrativa) e `frontend/src/game/i18n/pt.ui.ts` (interface). Dev: `?lang=pt`.
+
 ## Controles
 WASD andar · mouse olhar · Shift apressar · **E** interagir · **F** lamparina · **Tab** pertences / journal / quadro · **Esc** menu.
 Inspeção: arrastar inclina, roda dá zoom, F vira, T transcrição. Relógio: A/D horas, W/S minutos, E "Let it strike".
+
+**Celular/tablet** (automático, ou Settings → Touch controls): joystick no polegar esquerdo (borda = apressar), arrastar à direita para olhar, botões de interagir / lamparina / journal / menu. Jogue com o aparelho deitado. Teste no desktop com `?dev&touch=1`.
 
 ## Estrutura
 ```

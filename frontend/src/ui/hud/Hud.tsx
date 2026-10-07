@@ -1,15 +1,16 @@
 import { useSaveStatus } from '../../game/save/saveManager'
 import { useUi } from '../../game/state/uiStore'
 import { useDevice } from '../../game/player/device'
+import { msgid, useTr } from '../../game/i18n'
 
 const STATUS_LABEL: Record<string, string> = {
-  saving: 'saving…',
-  saved: 'saved',
-  syncing: 'syncing…',
-  synced: 'saved · cloud',
-  offline: 'saved · offline',
-  conflict: 'cloud conflict — see Load',
-  error: 'save failed',
+  saving: msgid('saving…'),
+  saved: msgid('saved'),
+  syncing: msgid('syncing…'),
+  synced: msgid('saved · cloud'),
+  offline: msgid('saved · offline'),
+  conflict: msgid('cloud conflict — see Load'),
+  error: msgid('save failed'),
 }
 
 /** HUD mínimo: sem marcadores de objetivo, sem destacar pistas. */
@@ -24,6 +25,7 @@ export function Hud() {
   const status = useSaveStatus((s) => s.status)
   const playing = mode === 'playing'
   const touch = useDevice((s) => s.touch)
+  const t = useTr()
 
   return (
     <div className="layer hud">
@@ -31,39 +33,39 @@ export function Hud() {
       {playing && focus && !touch && (
         <div className="prompt">
           <span className="key">E</span>
-          {focus.verb} <span className="muted">— {focus.label}</span>
+          {t(focus.verb)} <span className="muted">— {t(focus.label)}</span>
         </div>
       )}
       <div className="messages">
         {messages.map((m) => (
           <div key={m.id} className="message">
-            {m.text}
+            {t(m.text)}
           </div>
         ))}
       </div>
       {hint && (playing || mode === 'puzzle') && (
         <div key={hint.id} className="hint">
-          {hint.text}
+          {t(hint.text)}
         </div>
       )}
       {subtitle && (
         <div className="subtitle-line">
-          {subtitle.speaker && <span className="speaker">{subtitle.speaker}</span>}
-          {subtitle.text}
+          {subtitle.speaker && <span className="speaker">{t(subtitle.speaker)}</span>}
+          {t(subtitle.text)}
         </div>
       )}
       {areaCard && playing && (
         <div key={areaCard.id} className="area-card">
-          {areaCard.text.toUpperCase()}
+          {t(areaCard.text).toUpperCase()}
         </div>
       )}
       <div className="status-corner">
         {journalPing > 0 && performance.now() - journalPing < 4000 && (
           <span key={journalPing} className="journal-ping">
-            ✒ journal
+            ✒ {t('journal')}
           </span>
         )}
-        {STATUS_LABEL[status] && <span>{STATUS_LABEL[status]}</span>}
+        {STATUS_LABEL[status] && <span>{t(STATUS_LABEL[status])}</span>}
       </div>
     </div>
   )

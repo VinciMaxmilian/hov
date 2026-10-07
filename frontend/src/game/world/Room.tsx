@@ -127,7 +127,11 @@ export function Room({ room }: { room: RoomDef }) {
       for (const r of rects) {
         pieces.push(toPiece(wall, r, room.floorY))
         if (room.wainscot && r[2] < room.wainscot.height) {
-          wainscot.push(toPiece(wall, [r[0], r[1], r[2], Math.min(r[3], room.wainscot.height)], room.floorY, 0, 0.035))
+          // Paredes leste/oeste recuam o lambri nos cantos para não sobrepor o das paredes norte/sul.
+          const inset = wall.axis === 'z' ? 0.036 : 0
+          const u0 = Math.max(r[0], wall.uMin + inset)
+          const u1 = Math.min(r[1], wall.uMax - inset)
+          if (u1 > u0) wainscot.push(toPiece(wall, [u0, u1, r[2], Math.min(r[3], room.wainscot.height)], room.floorY, 0, 0.035))
         }
       }
       // Janelas bloqueiam passagem.
@@ -200,12 +204,16 @@ function OpeningTrim({ wall, opening: o, floorY }: { wall: WallInfo; opening: Op
   const u1 = o.center + o.width / 2
   const v0 = o.sill
   const v1 = o.sill + o.height
+  // Molduras recuadas EPS para dentro da parede: nenhuma face coincide com a face do vão (evita z-fighting
+  // nas ombreiras/verga) e as peças só se tocam, sem se sobrepor nos cantos.
+  const EPS = 0.004
+  const base = o.kind === 'window' ? v0 - EPS : v0
   const rects: [number, number, number, number][] = [
-    [u0 - t, u0, v0, v1 + t],
-    [u1, u1 + t, v0, v1 + t],
-    [u0, u1, v1, v1 + t],
+    [u0 - t, u0 - EPS, base, v1 + EPS],
+    [u1 + EPS, u1 + t, base, v1 + EPS],
+    [u0 - t, u1 + t, v1 + EPS, v1 + t],
   ]
-  if (o.kind === 'window') rects.push([u0 - t, u1 + t, v0 - t, v0])
+  if (o.kind === 'window') rects.push([u0 - t, u1 + t, v0 - t, v0 - EPS])
   if (o.kind === 'passage') return null
   const pieces = rects.map((r) => toPiece(wall, r, floorY, -0.02, depth))
   // centraliza a moldura na espessura da parede

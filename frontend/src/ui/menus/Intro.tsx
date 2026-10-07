@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { audio } from '../../game/audio/audioManager'
 import { beginPlay } from '../../game/session'
+import { useTr } from '../../game/i18n'
 
 /**
  * Abertura: tela preta, chuva, texto discreto, fade para a Vale Manor ao longe.
@@ -8,6 +9,7 @@ import { beginPlay } from '../../game/session'
  */
 export function Intro() {
   const [phase, setPhase] = useState(0)
+  const t = useTr()
 
   useEffect(() => {
     audio.setAmbienceLevel(0, 0.01)
@@ -37,7 +39,7 @@ export function Intro() {
       <div className="intro-text" style={{ opacity: phase === 1 ? 1 : 0 }}>
         BELLWEATHER, OREGON
         <br />
-        OCTOBER 1998
+        {t('OCTOBER 1998')}
       </div>
     </div>
   )

@@ -6,11 +6,23 @@ import { playRecording } from '../../game/documents/recordings'
 import { audio } from '../../game/audio/audioManager'
 import { run } from '../../game/rules/effects'
 import { useGame } from '../../game/state/gameStore'
+import { msgid, useTr } from '../../game/i18n'
 
 type Page = GameDocument['pages'][number]
 
 /** Divisor da largura para o corpo do texto (documentos longos usam letra menor). */
 const DENSITY: Partial<Record<GameDocument['kind'], number>> = { report: 29, newspaper: 30, record: 28 }
+
+const KIND_LABEL: Record<GameDocument['kind'], string> = {
+  letter: msgid('letter'),
+  note: msgid('note'),
+  card: msgid('card'),
+  newspaper: msgid('newspaper'),
+  report: msgid('report'),
+  photograph: msgid('photograph'),
+  record: msgid('record'),
+  recording: msgid('recording'),
+}
 
 const SIZES: Record<GameDocument['kind'], [number, number]> = {
   letter: [500, 680],
@@ -32,6 +44,7 @@ function ArtOrPlaceholder({ src, placeholder }: { src?: string; placeholder?: st
 }
 
 function PageFace({ doc, page, side, onDetail }: { doc: GameDocument; page: Page; side: 'front' | 'back'; onDetail: (id: string) => void }) {
+  const t = useTr()
   const index = doc.pages.indexOf(page)
   const details = doc.details.filter((d) => d.page === index)
   const spots = details.map((d) => (
@@ -50,7 +63,7 @@ function PageFace({ doc, page, side, onDetail }: { doc: GameDocument; page: Page
     return (
       <div className={`face ${side} photo`}>
         <div className="print">
-          <ArtOrPlaceholder src={page.image} placeholder={page.placeholder} />
+          <ArtOrPlaceholder src={page.image} placeholder={t(page.placeholder)} />
           {page.cutout && (
             <div
               className="cutout"
@@ -58,7 +71,7 @@ function PageFace({ doc, page, side, onDetail }: { doc: GameDocument; page: Page
             />
           )}
         </div>
-        {page.heading && <div className="caption">{page.heading}</div>}
+        {page.heading && <div className="caption">{t(page.heading)}</div>}
         {spots}
       </div>
     )
@@ -68,12 +81,12 @@ function PageFace({ doc, page, side, onDetail }: { doc: GameDocument; page: Page
     <div className={`face ${side} paper style-${page.style} ${doc.kind === 'photograph' ? 'photo-back' : ''}`}>
       {page.image && (
         <div style={{ position: 'relative', height: '32%', marginBottom: '1em' }}>
-          <ArtOrPlaceholder src={page.image} placeholder={page.placeholder} />
+          <ArtOrPlaceholder src={page.image} placeholder={t(page.placeholder)} />
         </div>
       )}
-      {page.heading && <div className="doc-heading">{page.heading}</div>}
-      <div className="doc-text">{page.text}</div>
-      {page.margin && <div className="margin-note">{page.margin}</div>}
+      {page.heading && <div className="doc-heading">{t(page.heading)}</div>}
+      <div className="doc-text">{t(page.text)}</div>
+      {page.margin && <div className="margin-note">{t(page.margin)}</div>}
       {spots}
     </div>
   )
@@ -89,6 +102,7 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
   const [transcript, setTranscript] = useState(false)
   const drag = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null)
   const flags = useGame((s) => s.flags)
+  const t = useTr()
   const viewed = useRef(new Set<number>())
 
   const current = flipped && back ? back : front
@@ -167,13 +181,19 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
   }
 
   const [w, h] = SIZES[doc.kind]
-  // Cabe na janela. Telas estreitas (celular) empilham o painel embaixo: usa a largura toda e ~58% da altura.
-  const narrow = window.innerWidth < 900
-  const fit = narrow
-    ? Math.min(1, (window.innerHeight * 0.58) / h, (window.innerWidth * 0.92) / w)
-    : Math.min(1, (window.innerHeight * 0.88) / h, ((window.innerWidth - 420) * 0.9) / w)
+  // Cabe na janela, espelhando o layout do CSS:
+  // celular deitado (altura ≤ 500): painel à direita (38vw); tela estreita: painel embaixo; desktop: painel de 420px.
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+  const fit =
+    vh <= 500
+      ? Math.min(1, (vh * 0.9) / h, (vw * 0.56) / w)
+      : vw < 900
+        ? Math.min(1, (vh * 0.58) / h, (vw * 0.92) / w)
+        : Math.min(1, (vh * 0.88) / h, ((vw - 420) * 0.9) / w)
   const found = doc.details.filter((d) => flags[`detail:${d.id}`])
-  const textOf = (p: Page) => [p.heading, p.text, p.margin && `(in the margin) ${p.margin}`].filter(Boolean).join('\n\n')
+  const textOf = (p: Page) =>
+    [t(p.heading), t(p.text), p.margin && `(${t('in the margin')}) ${t(p.margin)}`].filter(Boolean).join('\n\n')
 
   return (
     <>
@@ -203,41 +223,42 @@ export function DocumentView({ doc }: { doc: GameDocument }) {
         </div>
       </div>
       <aside className="inspect-side">
-        <div className="small-caps faint">{doc.kind}</div>
-        <h2>{doc.title}</h2>
-        {(doc.date || doc.author) && <div className="muted">{[doc.author, doc.date].filter(Boolean).join(' · ')}</div>}
+        <div className="small-caps faint">{t(KIND_LABEL[doc.kind])}</div>
+        <h2>{t(doc.title)}</h2>
+        {(doc.date || doc.author) && <div className="muted">{[doc.author, doc.date].filter(Boolean).map((x) => t(x)).join(' · ')}</div>}
         {doc.audio && (
           <button className="btn small primary" onClick={() => playRecording(doc.id)}>
-            ▶ Play recording
+            ▶ {t('Play recording')}
           </button>
         )}
         {found.map((d) => (
           <div key={d.id} className="found-note">
-            {d.note}
+            {t(d.note)}
           </div>
         ))}
         {transcript && <div className="transcript">{textOf(current)}</div>}
         <div className="inspect-buttons row">
           {back && (
             <button className="btn small" onClick={turnOver}>
-              <span className="key">F</span>turn over
+              <span className="key">F</span>
+              {t('turn over')}
             </button>
           )}
           <button className="btn small" onClick={() => setTranscript((t) => !t)}>
             <span className="key">T</span>
-            {transcript ? 'hide text' : 'read text'}
+            {transcript ? t('hide text') : t('read text')}
           </button>
-          <button className="btn small" onClick={() => setZoom((z) => clamp(z - 0.25, 0.7, 2.6))} aria-label="zoom out">
+          <button className="btn small" onClick={() => setZoom((z) => clamp(z - 0.25, 0.7, 2.6))} aria-label={t('zoom out')}>
             −
           </button>
-          <button className="btn small" onClick={() => setZoom((z) => clamp(z + 0.25, 0.7, 2.6))} aria-label="zoom in">
+          <button className="btn small" onClick={() => setZoom((z) => clamp(z + 0.25, 0.7, 2.6))} aria-label={t('zoom in')}>
             +
           </button>
         </div>
         <div className="controls">
-          <span className="only-desktop">drag — tilt · wheel — zoom · </span>
-          <span className="only-touch">drag — tilt · pinch — zoom · </span>
-          <span className="key">E</span> / <span className="key">Esc</span> put down
+          <span className="only-desktop">{t('drag — tilt · wheel — zoom')} · </span>
+          <span className="only-touch">{t('drag — tilt · pinch — zoom')} · </span>
+          <span className="key">E</span> / <span className="key">Esc</span> {t('put down')}
         </div>
       </aside>
     </>

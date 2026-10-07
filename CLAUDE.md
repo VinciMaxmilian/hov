@@ -21,4 +21,5 @@ Vertical slice implementado e jogável (v0.2). Próximos passos em `docs/ROADMAP
 - **Segredos:** `plan.md` contém chaves do Supabase. NÃO copie para código, docs ou commits. Frontend e backend usam só URL + chave publicável (`.env`, ignorado). Não commitar `plan.md`.
 - Decisões de canon D-1/D-2/D-3 tomadas pelo usuário (`docs/GAME_DESIGN.md §11`, `LORE_BIBLE §2.8`). O nome **Worren** nunca aparece para o jogador antes do final (documentos, UI, legendas).
 - Mudanças de canon → `docs/CHANGELOG.md` e `LORE_BIBLE`.
+- **Idiomas (en/pt):** o inglês é o texto-fonte. Todo texto novo visível ao jogador precisa de tradução em `frontend/src/content/i18n/pt.json` (conteúdo) ou `frontend/src/game/i18n/pt.ui.ts` (interface; use `t()`/`msgid()` no código). `i18n.test.ts` falha se faltar. Em português, nada concorda com o gênero do protagonista.
 - Assets visuais/sonoros são gerados via Higgsfield em outra conversa (Claude Desktop): caminhos em `frontend/public/media/` listados no `ASSET_MANIFEST.md`; o jogo usa placeholder procedural enquanto o arquivo não existir.

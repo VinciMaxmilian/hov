@@ -1,3 +1,4 @@
+import { msgid } from '../i18n'
 import type { Session, User } from '@supabase/supabase-js'
 import { create } from 'zustand'
 import { supabase } from './supabase'
@@ -18,13 +19,13 @@ interface AuthStore {
 
 export const useAuth = create<AuthStore>()((set) => {
   const guard = async (fn: () => Promise<{ error: { message: string } | null }>, notice?: string) => {
-    if (!supabase) return set({ error: 'Online accounts are not configured.' })
+    if (!supabase) return set({ error: msgid('Online accounts are not configured.') })
     set({ busy: true, error: null, notice: null })
     try {
       const { error } = await fn()
       set(error ? { error: error.message } : { notice: notice ?? null })
     } catch (err) {
-      set({ error: err instanceof Error ? err.message : 'Network error.' })
+      set({ error: err instanceof Error ? err.message : msgid('Network error.') })
     } finally {
       set({ busy: false })
     }
@@ -39,7 +40,7 @@ export const useAuth = create<AuthStore>()((set) => {
     notice: null,
     signIn: (email, password) => guard(() => supabase!.auth.signInWithPassword({ email, password })),
     signUp: (email, password) =>
-      guard(() => supabase!.auth.signUp({ email, password }), 'Check your inbox to confirm the account, then sign in.'),
+      guard(() => supabase!.auth.signUp({ email, password }), msgid('Check your inbox to confirm the account, then sign in.')),
     signInWithGoogle: () =>
       guard(() => supabase!.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } })),
     signOut: () => guard(() => supabase!.auth.signOut()),

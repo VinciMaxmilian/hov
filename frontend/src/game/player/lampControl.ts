@@ -1,3 +1,4 @@
+import { msgid } from '../i18n'
 import { audio } from '../audio/audioManager'
 import { bus } from '../core/eventBus'
 import { useGame } from '../state/gameStore'
@@ -11,7 +12,7 @@ export function toggleLamp(): void {
   const ui = useUi.getState()
   if (!game.inventory.includes('oil_lamp')) return
   if (!game.inventory.includes('matches')) {
-    ui.message("You'll need something to light it.")
+    ui.message(msgid("You'll need something to light it."))
     return
   }
   const lit = Boolean(game.flags[LAMP_FLAG])

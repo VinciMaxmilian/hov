@@ -1,3 +1,4 @@
+import { msgid } from '../i18n'
 import { audio } from '../audio/audioManager'
 import { content } from '../content'
 import type { Interactable } from '../content/schemas'
@@ -46,19 +47,19 @@ export function describe(id: string): { verb: string; label: string } | null {
   const verb = (() => {
     switch (it.interactionType) {
       case 'door':
-        return state === 'open' ? 'Close' : state === 'locked' ? 'Try' : 'Open'
+        return state === 'open' ? msgid('Close') : state === 'locked' ? msgid('Try') : msgid('Open')
       case 'pickup':
-        return 'Take'
+        return msgid('Take')
       case 'read':
-        return 'Read'
+        return msgid('Read')
       case 'container':
-        return 'Search'
+        return msgid('Search')
       case 'toggle':
-        return state === 'on' ? 'Switch off' : 'Switch on'
+        return state === 'on' ? msgid('Switch off') : msgid('Switch on')
       case 'puzzle':
-        return 'Examine'
+        return msgid('Examine')
       case 'use':
-        return 'Use'
+        return msgid('Use')
     }
   })()
   return { verb, label: it.label }
@@ -93,7 +94,7 @@ export function interact(id: string): void {
           if (it.unlockMessage) ui.message(it.unlockMessage)
         } else {
           audio.play('door_locked', { position: at })
-          ui.message(it.lockedMessage ?? 'Locked.')
+          ui.message(it.lockedMessage ?? msgid('Locked.'))
         }
       } else if (state === 'open') {
         game.setWorld(it.id, 'closed')
@@ -125,12 +126,12 @@ export function interact(id: string): void {
     }
     case 'container': {
       if (state === 'searched') {
-        ui.message(it.emptyMessage ?? 'Nothing else.')
+        ui.message(it.emptyMessage ?? msgid('Nothing else.'))
         return
       }
       if (it.requiredItem && !game.inventory.includes(it.requiredItem)) {
         audio.play('door_locked', { position: at })
-        ui.message(it.lockedMessage ?? 'Locked.')
+        ui.message(it.lockedMessage ?? msgid('Locked.'))
         return
       }
       game.setWorld(it.id, 'searched')
@@ -144,7 +145,7 @@ export function interact(id: string): void {
     }
     case 'puzzle': {
       if (it.puzzle && game.puzzles[it.puzzle]?.status === 'solved') {
-        ui.message(it.solvedMessage ?? 'Nothing more to do here.')
+        ui.message(it.solvedMessage ?? msgid('Nothing more to do here.'))
         return
       }
       if (it.puzzle) openPuzzle(it.puzzle)

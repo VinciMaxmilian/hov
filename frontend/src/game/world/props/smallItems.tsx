@@ -4,6 +4,7 @@ import { scaledBox } from '../geometry'
 import { material } from '../materials'
 import { drawnTexture, loadImageTexture } from '../textures'
 import { num, str, type PropProps } from './params'
+import { msgid, useTr } from '../../i18n'
 
 /**
  * Objetos pequenos. Os modelos (KeyModel, LampModel…) são reutilizados no modo de inspeção 3D:
@@ -134,9 +135,12 @@ export const models: Record<string, () => JSX.Element> = {
 // ------------------------------------------------------------------ props no mundo
 
 export function KeyProp({ obj }: PropProps) {
+  // O KeyModel fica "em pé" (bom para a inspeção); sobre uma superfície ele deita: desfaz a rotação e apoia no tampo.
   return (
-    <group rotation={[0, 0, 0]}>
-      <KeyModel variant={str(obj.params, 'variant', 'iron') === 'brass' ? 'brass' : 'iron'} />
+    <group>
+      <group rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.006, 0]}>
+        <KeyModel variant={str(obj.params, 'variant', 'iron') === 'brass' ? 'brass' : 'iron'} />
+      </group>
       {/* etiqueta de papel */}
       <mesh position={[0.05, 0.002, 0.02]} rotation={[-Math.PI / 2, 0, 0.4]} material={material('paper')}>
         <planeGeometry args={[0.04, 0.025]} />
@@ -154,8 +158,8 @@ export function MatchboxProp() {
 }
 
 /** Texturas genéricas de "papel escrito" para documentos sobre mesas. */
-function paperTexture(variant: string) {
-  return drawnTexture(`paper:${variant}`, 256, 320, (ctx, w, h) => {
+function paperTexture(variant: string, addressee: string) {
+  return drawnTexture(`paper:${variant}:${addressee}`, 256, 320, (ctx, w, h) => {
     ctx.fillStyle = variant === 'newspaper' ? '#cfc6ad' : variant === 'envelope' ? '#d8c69a' : '#e2d6b8'
     ctx.fillRect(0, 0, w, h)
     if (variant === 'envelope') {
@@ -171,7 +175,8 @@ function paperTexture(variant: string) {
       ctx.fill()
       ctx.fillStyle = 'rgba(30,25,20,0.8)'
       ctx.font = 'italic 18px serif'
-      ctx.fillText('The Heir', w * 0.32, h * 0.75)
+      ctx.textAlign = 'center'
+      ctx.fillText(addressee, w / 2, h * 0.75)
       return
     }
     if (variant === 'newspaper') {
@@ -204,7 +209,9 @@ export function Paper({ obj }: PropProps) {
   const w = num(obj.params, 'width', variant === 'newspaper' ? 0.42 : variant === 'note' ? 0.1 : variant === 'envelope' ? 0.22 : 0.21)
   const d = num(obj.params, 'depth', variant === 'newspaper' ? 0.3 : variant === 'note' ? 0.075 : variant === 'envelope' ? 0.12 : 0.28)
   const layers = variant === 'report' ? 4 : 1
-  const mat = useMemo(() => new THREE.MeshStandardMaterial({ map: paperTexture(variant), roughness: 0.95 }), [variant])
+  const t = useTr()
+  const addressee = t(msgid('The Heir'))
+  const mat = useMemo(() => new THREE.MeshStandardMaterial({ map: paperTexture(variant, addressee), roughness: 0.95 }), [variant, addressee])
   const edge = material('paper')
   return (
     <group>

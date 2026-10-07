@@ -5,32 +5,34 @@ import { loadGame, returnToTitle } from '../../game/session'
 import { AccountPanel } from './AccountPanel'
 import { SettingsPanel } from './SettingsPanel'
 import { SlotList } from './SlotList'
+import { useTr } from '../../game/i18n'
 
 export function PauseMenu() {
   const [view, setView] = useState<'main' | 'load' | 'settings' | 'account'>('main')
   const status = useSaveStatus((s) => s.status)
+  const t = useTr()
   return (
     <div className="layer center" style={{ background: 'rgba(0,0,0,0.6)' }}>
       {view === 'main' && (
         <div className="panel stack" style={{ minWidth: 320, alignItems: 'flex-start' }}>
-          <h2>Paused</h2>
+          <h2>{t('Paused')}</h2>
           <button className="btn primary" onClick={resumePlay}>
-            Resume
+            {t('Resume')}
           </button>
           <button className="btn" onClick={() => void saveNow()}>
-            Save now <span className="faint" style={{ fontSize: '0.8rem' }}>{status === 'saving' || status === 'syncing' ? '…' : ''}</span>
+            {t('Save now')} <span className="faint" style={{ fontSize: '0.8rem' }}>{status === 'saving' || status === 'syncing' ? '…' : ''}</span>
           </button>
           <button className="btn" onClick={() => setView('load')}>
-            Load
+            {t('Load')}
           </button>
           <button className="btn" onClick={() => setView('settings')}>
-            Settings
+            {t('Settings')}
           </button>
           <button className="btn" onClick={() => setView('account')}>
-            Account
+            {t('Account')}
           </button>
           <button className="btn" onClick={returnToTitle}>
-            Quit to title
+            {t('Quit to title')}
           </button>
         </div>
       )}

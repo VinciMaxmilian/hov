@@ -11,6 +11,7 @@ import { TitleScreen } from './menus/TitleScreen'
 import { PuzzleOverlay } from './puzzle/PuzzleOverlay'
 import { TouchControls } from './touch/TouchControls'
 import { useDevice } from '../game/player/device'
+import { useTr } from '../game/i18n'
 
 // Code splitting: three/R3F/Rapier só carregam ao entrar no jogo.
 const GameCanvas = lazy(() => import('../game/GameCanvas').then((m) => ({ default: m.GameCanvas })))
@@ -22,6 +23,7 @@ export function App() {
   const mode = useUi((s) => s.mode)
   const locked = useUi((s) => s.pointerLocked)
   const touch = useDevice((s) => s.touch)
+  const t = useTr()
   const inGame = mode !== 'title'
   return (
     <>
@@ -37,7 +39,7 @@ export function App() {
       {mode === 'playing' && touch && <TouchControls />}
       {mode === 'playing' && !locked && !touch && !SHOT && (
         <div className="layer center resume" onClick={() => void requestPointerLock()}>
-          CLICK TO CONTINUE
+          {t('CLICK TO CONTINUE')}
         </div>
       )}
       {mode === 'puzzle' && <PuzzleOverlay />}
@@ -50,7 +52,7 @@ export function App() {
       {inGame && touch && (
         <div className="layer center rotate-hint">
           <div>↻</div>
-          <div>Turn your device sideways</div>
+          <div>{t('Turn your device sideways')}</div>
         </div>
       )}
       <div className="layer grain" />
