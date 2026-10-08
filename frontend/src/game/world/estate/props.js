@@ -23,7 +23,7 @@ export function bookcase(p, x, z, y, ry, w, h, d = 0.36, m = M.wood_mahogany, fi
   for (let i = 0; i < sh; i++) { const yy = 0.1 + i * (h - 0.2) / sh; L.push(bx(w, 0.025, d, 0, yy, 0)); books(g, -w / 2 + 0.03, w / 2 - 0.03, yy + 0.015, 0.0, d * 0.8, fill); }
   col(mm(g, 'bookcase_carcass', L, m)); return g;
 }
-export function fireplace(p, x, z, y, ry, w = 1.6, stone = M.limestone_trim, lit = true) {
+export function fireplace(p, x, z, y, ry, w = 1.6, stone = M.limestone_trim, lit = false) { // casa abandonada: lareiras frias
   const g = G(p, 'fireplace', x, y, z, ry);
   col(mm(g, 'fireplace_surround', [bx(0.25, 1.15, 0.35, -w / 2 + 0.12, 0.575, 0.12), bx(0.25, 1.15, 0.35, w / 2 - 0.12, 0.575, 0.12), bx(w, 0.3, 0.38, 0, 1.3, 0.12), bx(w + 0.25, 0.08, 0.5, 0, 1.49, 0.16), bx(w + 0.5, 0.1, 0.7, 0, 0.05, 0.3)], stone));
   mm(g, 'firebox', [bx(w - 0.5, 1.15, 0.05, 0, 0.575, -0.05), bx(0.05, 1.15, 0.3, -w / 2 + 0.25, 0.575, 0.1), bx(0.05, 1.15, 0.3, w / 2 - 0.25, 0.575, 0.1)], M.soot);
