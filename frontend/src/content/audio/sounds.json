@@ -60,7 +60,8 @@
     "synth": "door_close",
     "volume": 1,
     "spatial": true,
-    "refDistance": 3
+    "refDistance": 3,
+    "src": "/media/audio/door_close.mp3"
   },
   {
     "id": "door_locked",
@@ -118,7 +119,8 @@
   {
     "id": "thunder",
     "synth": "thunder",
-    "volume": 0.9
+    "volume": 0.9,
+    "src": ["/media/audio/thunder_1.mp3", "/media/audio/thunder_2.mp3"]
   },
   {
     "id": "creak",
@@ -135,7 +137,8 @@
   {
     "id": "footstep_wood",
     "synth": "footstep_wood",
-    "volume": 0.5
+    "volume": 0.5,
+    "src": "/media/audio/footstep_wood.mp3"
   },
   {
     "id": "footstep_stone",
@@ -153,6 +156,12 @@
     "volume": 0.45
   },
   {
+    "id": "footstep_grass",
+    "synth": "footstep_gravel",
+    "volume": 0.5,
+    "src": ["/media/audio/footstep_grass_1.mp3", "/media/audio/footstep_grass_2.mp3"]
+  },
+  {
     "id": "ui",
     "synth": "ui",
     "volume": 0.6
@@ -163,7 +172,8 @@
     "volume": 0.8,
     "spatial": true,
     "loop": true,
-    "refDistance": 1.5
+    "refDistance": 1.5,
+    "src": "/media/audio/clock_tick_loop.mp3"
   },
   {
     "id": "lamp_hum",

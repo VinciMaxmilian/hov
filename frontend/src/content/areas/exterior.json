@@ -24,7 +24,7 @@
     "east_wing",
     "west_wing"
   ],
-  "footsteps": "gravel",
+  "footsteps": "grass",
   "rainMuffle": 0,
   "ambient": 1.0,
   "spawn": {

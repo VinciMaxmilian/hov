@@ -91,6 +91,15 @@ O jogo tem patches procedurais para tudo; estes arquivos os substituem automatic
 ### 16. ⬜ `media/audio/knock_in_wall.mp3` — batidas na parede (~2 s)
 `three slow muffled knocks coming from inside a thick hollow wall, deep and dull, evenly spaced, no reverb tail, unsettling but ambiguous — could be wood, could be a hand`
 
+### 17–23. ✅ Gravações reais (não geradas via Higgsfield) — fornecidas pelo usuário em `sounds/`, 2026-10-08
+Sem prompt (não geradas por IA); **licença/atribuição ainda não verificada** — confirmar antes de publicar o jogo.
+- `media/audio/footstep_wood.mp3` — um único passo em madeira (recortado de `dragon-studio-footsteps-on-wood-397989.mp3`)
+- `media/audio/footstep_grass_1.mp3`, `footstep_grass_2.mp3` — passos na grama (de `joentnt-walk-on-grass-{1,3}-29198{4,6}.mp3`), som `footstep_grass` (variação aleatória); usado pela área `exterior` (antes `gravel` sintético)
+- `media/audio/door_close.mp3` — porta fechando (de `soundreality-opening-door-411632.mp3`), som `door_close`
+- `media/audio/thunder_1.mp3`, `thunder_2.mp3` — trovão (de `universfield-{loud-thunder-192165,thunder-strike-124463}.mp3`), som `thunder` (variação aleatória)
+- `media/audio/clock_tick_loop.mp3` — tique-taque contínuo (de `virtual_vibes-real-clock-ticking-379469.mp3`), som `clock_tick_loop`
+- `media/audio/rain_ambience.mp3` — chuva (recorte de 45 s, 90–135 s, 96 kbps, de `dragon-studio-relaxing-rain-444802.mp3`, original de 24 MB/12m45s); esmaece o ruído filtrado procedural quando carrega (`audioManager.loadRain`)
+
 ---
 
 ## Checklist de integração (para quem gerar)

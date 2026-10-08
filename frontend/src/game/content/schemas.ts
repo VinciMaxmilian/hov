@@ -346,7 +346,7 @@ export const areaSchema = z.object({
   kind: z.enum(['interior', 'exterior']),
   bounds: z.object({ min: vec3, max: vec3 }),
   neighbors: z.array(id).default([]),
-  footsteps: z.enum(['wood', 'stone', 'gravel', 'carpet']).default('wood'),
+  footsteps: z.enum(['wood', 'stone', 'gravel', 'carpet', 'grass']).default('wood'),
   /** 0 = chuva plena, 1 = totalmente abafada. */
   rainMuffle: z.number().min(0).max(1).default(0.7),
   fog: z.object({ color: z.string(), density: z.number() }).optional(),
@@ -463,8 +463,8 @@ export const soundSchema = z.object({
   id,
   /** Patch procedural usado enquanto não há sample. */
   synth: z.string(),
-  /** Sample real (Higgsfield/gravação). Se falhar ao carregar, cai para o synth. */
-  src: z.string().optional(),
+  /** Sample(s) real(is) (Higgsfield/gravação). Mais de um = variação aleatória a cada tocada. Se falhar ao carregar, cai para o synth. */
+  src: z.union([z.string(), z.array(z.string()).min(1)]).optional(),
   volume: z.number().default(1),
   spatial: z.boolean().default(false),
   loop: z.boolean().default(false),

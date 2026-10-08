@@ -24,8 +24,11 @@ class AudioManager {
   private ambience!: GainNode
   private muffleFilter!: BiquadFilterNode
   private rainGain!: GainNode
+  /** Sub-bus da chuva procedural (ruído filtrado); esmaecida se o sample real carregar. */
+  private rainProcGain!: GainNode
   private windGain!: GainNode
-  private buffers = new Map<string, AudioBuffer>()
+  /** Mais de um buffer por id = variação aleatória a cada tocada. */
+  private buffers = new Map<string, AudioBuffer[]>()
   private failed = new Set<string>()
   private noise!: AudioBuffer
   private brown!: AudioBuffer
@@ -75,6 +78,7 @@ class AudioManager {
     ;({ noise: this.noise, brown: this.brown } = makeNoiseBuffers(ctx))
     this.startWeather()
     void this.loadSamples()
+    void this.loadRain()
   }
 
   setVolume(v: number) {
@@ -125,7 +129,7 @@ class AudioManager {
     }
     const volume = def.volume * (opts.volume ?? 1)
     const dest = this.output(def, opts.position)
-    const buffer = this.buffers.get(id)
+    const buffer = this.pickBuffer(id)
     if (buffer) {
       const src = this.ctx.createBufferSource()
       src.buffer = buffer
@@ -151,7 +155,7 @@ class AudioManager {
     out.connect(panner ?? this.sfx)
     if (panner) panner.connect(this.sfx)
     let stopInner: () => void
-    const buffer = this.buffers.get(id)
+    const buffer = this.pickBuffer(id)
     if (buffer) {
       const src = this.ctx.createBufferSource()
       src.buffer = buffer
@@ -181,6 +185,12 @@ class AudioManager {
 
   // ---------------------------------------------------------------- internos
 
+  /** Escolhe um buffer (aleatório se houver variações) para o id, se o sample já carregou. */
+  private pickBuffer(id: string): AudioBuffer | undefined {
+    const arr = this.buffers.get(id)
+    return arr && arr.length ? arr[(Math.random() * arr.length) | 0] : undefined
+  }
+
   private synthCtx(dest: AudioNode, volume: number): SynthCtx {
     return { ctx: this.ctx!, dest, t: this.ctx!.currentTime + 0.005, volume, noise: this.noise, brown: this.brown }
   }
@@ -207,9 +217,12 @@ class AudioManager {
 
   private startWeather() {
     const ctx = this.ctx!
-    // Chuva: ruído branco em duas bandas.
+    // Chuva: ruído branco em duas bandas (esmaecida se o sample real carregar, ver loadRain()).
     this.rainGain = ctx.createGain()
     this.rainGain.gain.value = 0.55
+    this.rainProcGain = ctx.createGain()
+    this.rainProcGain.gain.value = 1
+    this.rainProcGain.connect(this.rainGain)
     for (const [freq, q, gain] of [
       [1200, 0.4, 0.5],
       [5200, 0.8, 0.35],
@@ -223,7 +236,7 @@ class AudioManager {
       f.Q.value = q
       const g = ctx.createGain()
       g.gain.value = gain
-      src.connect(f).connect(g).connect(this.rainGain)
+      src.connect(f).connect(g).connect(this.rainProcGain)
       src.start(0, Math.random() * 2)
     }
     this.rainGain.connect(this.ambience)
@@ -255,9 +268,19 @@ class AudioManager {
       const delay = 300 + Math.random() * 1700
       this.thunderListeners.forEach((fn) => fn(delay))
       window.setTimeout(() => {
-        if (this.ctx && this.defs.has('thunder')) {
-          const def = this.defs.get('thunder')!
-          synths[def.synth]?.(this.synthCtx(this.ambience, def.volume * (0.5 + Math.random() * 0.5)))
+        if (!this.ctx || !this.defs.has('thunder')) return
+        const def = this.defs.get('thunder')!
+        const volume = def.volume * (0.5 + Math.random() * 0.5)
+        const buffer = this.pickBuffer('thunder')
+        if (buffer) {
+          const src = this.ctx.createBufferSource()
+          src.buffer = buffer
+          const g = this.ctx.createGain()
+          g.gain.value = volume
+          src.connect(g).connect(this.ambience)
+          src.start()
+        } else {
+          synths[def.synth]?.(this.synthCtx(this.ambience, volume))
         }
       }, delay)
       this.scheduleThunder()
@@ -267,18 +290,47 @@ class AudioManager {
   private async loadSamples() {
     for (const def of this.defs.values()) {
       if (!def.src || this.failed.has(def.id)) continue
-      try {
-        const res = await fetch(def.src)
-        if (!res.ok) throw new Error(String(res.status))
-        const buf = await this.ctx!.decodeAudioData(await res.arrayBuffer())
-        this.buffers.set(def.id, buf)
-      } catch {
-        // Sample ainda não gerado: mantém o patch procedural.
-        this.failed.add(def.id)
+      const srcs = Array.isArray(def.src) ? def.src : [def.src]
+      const loaded: AudioBuffer[] = []
+      for (const url of srcs) {
+        try {
+          const res = await fetch(url)
+          if (!res.ok) throw new Error(String(res.status))
+          loaded.push(await this.ctx!.decodeAudioData(await res.arrayBuffer()))
+        } catch {
+          // Sample ainda não gerado: ignora essa variação.
+        }
       }
+      if (loaded.length) this.buffers.set(def.id, loaded)
+      else this.failed.add(def.id)
+    }
+  }
+
+  /** Chuva gravada (se existir) substitui gradualmente o ruído filtrado procedural. */
+  private async loadRain() {
+    if (!this.ctx) return
+    try {
+      const res = await fetch(RAIN_SRC)
+      if (!res.ok) throw new Error(String(res.status))
+      const buf = await this.ctx.decodeAudioData(await res.arrayBuffer())
+      if (!this.ctx) return
+      const src = this.ctx.createBufferSource()
+      src.buffer = buf
+      src.loop = true
+      const g = this.ctx.createGain()
+      g.gain.value = 0
+      src.connect(g).connect(this.rainGain)
+      src.start()
+      const t = this.ctx.currentTime
+      g.gain.setTargetAtTime(1, t, 1.2)
+      this.rainProcGain.gain.setTargetAtTime(0, t, 1.2)
+    } catch {
+      // Sem sample: mantém a chuva procedural.
     }
   }
 }
+
+const RAIN_SRC = '/media/audio/rain_ambience.mp3'
 
 function setPannerPosition(p: PannerNode, [x, y, z]: Vec3) {
   if (p.positionX) {
