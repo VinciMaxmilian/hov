@@ -1,0 +1,310 @@
+{
+  "id": "meridian_chamber",
+  "name": "The Meridian Chamber",
+  "sector": "UNDERGROUND",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -27.6,
+      -11.5,
+      -25.7
+    ],
+    "max": [
+      -8.8,
+      -1.5,
+      -14.55
+    ]
+  },
+  "neighbors": [
+    "below"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 1,
+  "ambient": 0,
+  "spawn": {
+    "position": [
+      -22,
+      -10.4,
+      -15.6
+    ],
+    "yaw": 0
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Book",
+      "position": [
+        -19.242,
+        -9.31,
+        -22.758
+      ],
+      "rotation": [
+        0,
+        -45.0,
+        0
+      ],
+      "interactable": "seven_ledgers",
+      "params": {
+        "color": "#8a5a32",
+        "open": true,
+        "width": 0.22,
+        "depth": 0.3,
+        "hit": [
+          0.5,
+          0.15,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -18.1,
+        -9.31,
+        -20.0
+      ],
+      "rotation": [
+        0,
+        -90.0,
+        0
+      ],
+      "interactable": "seven_ledgers",
+      "params": {
+        "color": "#8a5a32",
+        "open": true,
+        "width": 0.22,
+        "depth": 0.3,
+        "hit": [
+          0.5,
+          0.15,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -19.242,
+        -9.31,
+        -17.242
+      ],
+      "rotation": [
+        0,
+        -135.0,
+        0
+      ],
+      "interactable": "seven_ledgers",
+      "params": {
+        "color": "#8a5a32",
+        "open": true,
+        "width": 0.22,
+        "depth": 0.3,
+        "hit": [
+          0.5,
+          0.15,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -22.0,
+        -9.31,
+        -16.1
+      ],
+      "rotation": [
+        0,
+        -180.0,
+        0
+      ],
+      "interactable": "seven_ledgers",
+      "params": {
+        "color": "#8a5a32",
+        "open": true,
+        "width": 0.22,
+        "depth": 0.3,
+        "hit": [
+          0.5,
+          0.15,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -24.758,
+        -9.31,
+        -17.242
+      ],
+      "rotation": [
+        0,
+        -225.0,
+        0
+      ],
+      "interactable": "seven_ledgers",
+      "params": {
+        "color": "#8a5a32",
+        "open": true,
+        "width": 0.22,
+        "depth": 0.3,
+        "hit": [
+          0.5,
+          0.15,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -25.9,
+        -9.31,
+        -20.0
+      ],
+      "rotation": [
+        0,
+        -270.0,
+        0
+      ],
+      "interactable": "seven_ledgers",
+      "params": {
+        "color": "#8a5a32",
+        "open": true,
+        "width": 0.22,
+        "depth": 0.3,
+        "hit": [
+          0.5,
+          0.15,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -24.758,
+        -9.31,
+        -22.758
+      ],
+      "rotation": [
+        0,
+        -315.0,
+        0
+      ],
+      "interactable": "seven_ledgers",
+      "params": {
+        "color": "#8a5a32",
+        "open": true,
+        "width": 0.22,
+        "depth": 0.3,
+        "hit": [
+          0.5,
+          0.15,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -22,
+        -10.34,
+        -20
+      ],
+      "interactable": "chamber_floor",
+      "params": {
+        "size": [
+          5.6,
+          0.12,
+          5.6
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -22,
+        -9.6,
+        -20
+      ],
+      "interactable": "gnomon",
+      "params": {
+        "size": [
+          0.7,
+          1.4,
+          1.5
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -22,
+        -9.38,
+        -24.83
+      ],
+      "id": "witness_ledger_book",
+      "interactable": "witness_ledger",
+      "params": {
+        "color": "#7a4a2a",
+        "open": true,
+        "width": 0.26,
+        "depth": 0.34,
+        "hit": [
+          0.6,
+          0.2,
+          0.45
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -16.3,
+        -9.9,
+        -20
+      ],
+      "interactable": "stair_1936_effects",
+      "params": {
+        "size": [
+          1.3,
+          1.0,
+          1.3
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -9.95,
+        -5.2,
+        -20
+      ],
+      "interactable": "door_1936",
+      "params": {
+        "size": [
+          0.5,
+          2.4,
+          1.3
+        ]
+      }
+    }
+  ],
+  "ambience": [
+    {
+      "sound": "drone_loop",
+      "volume": 0.7,
+      "position": [
+        -22,
+        -9.0,
+        -20.0
+      ]
+    }
+  ],
+  "fog": {
+    "color": "#020304",
+    "density": 0.05
+  }
+}

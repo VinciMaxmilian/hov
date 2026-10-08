@@ -2,9 +2,9 @@
   "start": {
     "area": "exterior",
     "position": [
+      1.5,
       0,
-      -0.5,
-      52
+      56
     ],
     "yaw": 0,
     "clock": {
@@ -19,9 +19,6 @@
     {
       "id": "t_teach_move",
       "on": "GAME_STARTED",
-      "match": {
-        "isNew": true
-      },
       "actions": [
         {
           "type": "delay",
@@ -30,8 +27,8 @@
             {
               "type": "hint",
               "text": "W A S D — walk   ·   mouse — look",
-              "duration": 7000,
-              "touch": "Left thumb — walk   ·   right thumb — look"
+              "touch": "Left thumb — walk   ·   right thumb — look",
+              "duration": 7000
             }
           ]
         },
@@ -42,29 +39,32 @@
             {
               "type": "hint",
               "text": "Shift — hurry",
-              "duration": 4000,
-              "touch": "Push the stick to its edge — hurry"
+              "touch": "Push the stick to its edge — hurry",
+              "duration": 4000
+            }
+          ]
+        },
+        {
+          "type": "delay",
+          "ms": 9000,
+          "actions": [
+            {
+              "type": "chapter",
+              "title": "Act I — Arrival",
+              "subtitle": "Thursday",
+              "fade": false
             }
           ]
         }
-      ]
+      ],
+      "once": true,
+      "match": {
+        "isNew": true
+      }
     },
     {
       "id": "t_teach_lamp",
       "on": "ITEM_PICKED",
-      "conditions": {
-        "type": "all",
-        "of": [
-          {
-            "type": "hasItem",
-            "item": "oil_lamp"
-          },
-          {
-            "type": "hasItem",
-            "item": "matches"
-          }
-        ]
-      },
       "actions": [
         {
           "type": "delay",
@@ -77,7 +77,21 @@
             }
           ]
         }
-      ]
+      ],
+      "once": true,
+      "conditions": {
+        "type": "all",
+        "of": [
+          {
+            "type": "hasItem",
+            "item": "oil_lamp"
+          },
+          {
+            "type": "hasItem",
+            "item": "matches"
+          }
+        ]
+      }
     },
     {
       "id": "t_teach_journal",
@@ -94,28 +108,27 @@
             }
           ]
         }
-      ]
+      ],
+      "once": true
     },
     {
       "id": "t_front_door_oiled",
       "on": "DOOR_UNLOCKED",
-      "match": {
-        "door": "main_door"
-      },
       "actions": [
         {
           "type": "setFlag",
           "key": "front_door_oiled",
           "value": true
         }
-      ]
+      ],
+      "once": true,
+      "match": {
+        "door": "main_door"
+      }
     },
     {
       "id": "t_hall_door_closes",
       "on": "AREA_ENTERED",
-      "match": {
-        "area": "entrance_hall"
-      },
       "actions": [
         {
           "type": "delay",
@@ -138,9 +151,9 @@
                   "type": "playSound",
                   "sound": "door_close",
                   "position": [
-                    0,
-                    1.4,
-                    7.1
+                    1.5,
+                    2.4,
+                    10.25
                   ]
                 }
               ]
@@ -156,17 +169,29 @@
               "sound": "creak",
               "position": [
                 3,
-                6.5,
+                7.5,
                 -6
               ]
             }
           ]
         }
-      ]
+      ],
+      "once": true,
+      "match": {
+        "area": "entrance_hall"
+      }
     },
     {
       "id": "t_dark_library",
       "on": "AREA_ENTERED",
+      "actions": [
+        {
+          "type": "hint",
+          "text": "It's dark in here.   F — lamp",
+          "touch": "It's dark in here. Light the lamp."
+        }
+      ],
+      "once": true,
       "match": {
         "area": "library"
       },
@@ -183,23 +208,17 @@
               "type": "flag",
               "key": "lamp_lit"
             }
+          },
+          {
+            "type": "clock",
+            "maxDay": 1
           }
         ]
-      },
-      "actions": [
-        {
-          "type": "hint",
-          "text": "It's dark in here.   F — lamp",
-          "touch": "It's dark in here. Light the lamp."
-        }
-      ]
+      }
     },
     {
       "id": "t_knock_after_tape",
       "on": "DOCUMENT_DISCOVERED",
-      "match": {
-        "document": "doc_arthur_tape_01"
-      },
       "actions": [
         {
           "type": "delay",
@@ -228,9 +247,9 @@
                   "type": "playSound",
                   "sound": "knock",
                   "position": [
-                    -10.6,
-                    1.4,
-                    -3.7
+                    -10.45,
+                    2.0,
+                    4.2
                   ]
                 },
                 {
@@ -242,30 +261,15 @@
             }
           ]
         }
-      ]
+      ],
+      "once": true,
+      "match": {
+        "document": "doc_arthur_tape_01"
+      }
     },
     {
       "id": "t_knock_on_return",
       "on": "AREA_ENTERED",
-      "match": {
-        "area": "arthur_study"
-      },
-      "conditions": {
-        "type": "all",
-        "of": [
-          {
-            "type": "document",
-            "document": "doc_arthur_tape_01"
-          },
-          {
-            "type": "not",
-            "condition": {
-              "type": "flag",
-              "key": "heard_knocking"
-            }
-          }
-        ]
-      },
       "actions": [
         {
           "type": "delay",
@@ -294,9 +298,9 @@
                   "type": "playSound",
                   "sound": "knock",
                   "position": [
-                    -10.6,
-                    1.4,
-                    -3.7
+                    -10.45,
+                    2.0,
+                    4.2
                   ]
                 },
                 {
@@ -308,15 +312,31 @@
             }
           ]
         }
-      ]
+      ],
+      "once": true,
+      "match": {
+        "area": "arthur_study"
+      },
+      "conditions": {
+        "type": "all",
+        "of": [
+          {
+            "type": "document",
+            "document": "doc_arthur_tape_01"
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "flag",
+              "key": "heard_knocking"
+            }
+          }
+        ]
+      }
     },
     {
       "id": "t_cold_air",
       "on": "WORLD_STATE_CHANGED",
-      "match": {
-        "key": "library_bookcase",
-        "value": "open"
-      },
       "actions": [
         {
           "type": "delay",
@@ -332,13 +352,26 @@
         {
           "type": "save"
         }
-      ]
+      ],
+      "once": true,
+      "match": {
+        "key": "library_bookcase",
+        "value": "open"
+      }
     },
     {
       "id": "t_passage_dark",
       "on": "AREA_ENTERED",
+      "actions": [
+        {
+          "type": "hint",
+          "text": "You can't see your own hands.   F — lamp",
+          "touch": "You can't see your own hands. Light the lamp."
+        }
+      ],
+      "once": true,
       "match": {
-        "area": "secret_passage"
+        "area": "the_seam"
       },
       "conditions": {
         "type": "not",
@@ -346,20 +379,330 @@
           "type": "flag",
           "key": "lamp_lit"
         }
-      },
+      }
+    },
+    {
+      "id": "t_act2_hint",
+      "on": "CHAPTER",
       "actions": [
         {
-          "type": "hint",
-          "text": "You can't see your own hands.   F — lamp",
-          "touch": "You can't see your own hands. Light the lamp."
+          "type": "delay",
+          "ms": 9000,
+          "actions": [
+            {
+              "type": "hint",
+              "text": "The boards on the west door want pulling. There was a tool store at the gardener's cottage, west past the glasshouse.",
+              "duration": 9000
+            }
+          ]
         }
-      ]
+      ],
+      "once": true,
+      "conditions": {
+        "type": "all",
+        "of": [
+          {
+            "type": "flag",
+            "key": "act1_done"
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "hasItem",
+              "item": "claw_hammer"
+            }
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "flag",
+              "key": "act2_done"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "t_act3",
+      "on": "STORY_FLAG_CHANGED",
+      "actions": [
+        {
+          "type": "setFlag",
+          "key": "act2_done",
+          "value": true
+        },
+        {
+          "type": "delay",
+          "ms": 4500,
+          "actions": [
+            {
+              "type": "setClock",
+              "day": 3,
+              "minutes": 990
+            },
+            {
+              "type": "chapter",
+              "title": "Act III — The Meridian",
+              "subtitle": "Saturday"
+            },
+            {
+              "type": "save"
+            }
+          ]
+        }
+      ],
+      "once": true,
+      "match": {
+        "key": "read_letter_1888"
+      },
+      "conditions": {
+        "type": "hasItem",
+        "item": "meridian_key"
+      }
+    },
+    {
+      "id": "t_act4",
+      "on": "STORY_FLAG_CHANGED",
+      "actions": [
+        {
+          "type": "setFlag",
+          "key": "act3_done",
+          "value": true
+        },
+        {
+          "type": "delay",
+          "ms": 4500,
+          "actions": [
+            {
+              "type": "setClock",
+              "day": 4,
+              "minutes": 1170
+            },
+            {
+              "type": "chapter",
+              "title": "Act IV — 1936",
+              "subtitle": "Sunday"
+            },
+            {
+              "type": "save"
+            }
+          ]
+        }
+      ],
+      "once": true,
+      "match": {
+        "key": "read_hannah_note"
+      }
+    },
+    {
+      "id": "t_act5",
+      "on": "STORY_FLAG_CHANGED",
+      "actions": [
+        {
+          "type": "setFlag",
+          "key": "act4_done",
+          "value": true
+        },
+        {
+          "type": "delay",
+          "ms": 4500,
+          "actions": [
+            {
+              "type": "setClock",
+              "day": 5,
+              "minutes": 600
+            },
+            {
+              "type": "chapter",
+              "title": "Act V — Arthur",
+              "subtitle": "Monday"
+            },
+            {
+              "type": "save"
+            },
+            {
+              "type": "delay",
+              "ms": 9000,
+              "actions": [
+                {
+                  "type": "message",
+                  "text": "Fresh tyre tracks on the drive. The caretaker's Monday. Something has been left on the porch table.",
+                  "duration": 7000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "once": true,
+      "match": {
+        "key": "read_order_of_night"
+      }
+    },
+    {
+      "id": "t_act6",
+      "on": "DOOR_UNLOCKED",
+      "actions": [
+        {
+          "type": "setFlag",
+          "key": "act5_done",
+          "value": true
+        },
+        {
+          "type": "delay",
+          "ms": 4500,
+          "actions": [
+            {
+              "type": "setClock",
+              "day": 6,
+              "minutes": 960
+            },
+            {
+              "type": "chapter",
+              "title": "Act VI — Below",
+              "subtitle": "Tuesday"
+            },
+            {
+              "type": "save"
+            }
+          ]
+        }
+      ],
+      "once": true,
+      "match": {
+        "door": "old_passage_grille"
+      }
+    },
+    {
+      "id": "t_act7",
+      "on": "AREA_ENTERED",
+      "actions": [
+        {
+          "type": "setFlag",
+          "key": "act6_done",
+          "value": true
+        },
+        {
+          "type": "delay",
+          "ms": 4500,
+          "actions": [
+            {
+              "type": "setClock",
+              "day": 7,
+              "minutes": 1230
+            },
+            {
+              "type": "chapter",
+              "title": "Act VII — The Eighth Record",
+              "subtitle": "Wednesday — the last night"
+            },
+            {
+              "type": "save"
+            },
+            {
+              "type": "delay",
+              "ms": 9000,
+              "actions": [
+                {
+                  "type": "message",
+                  "text": "Half past eight. Three and a half hours until midnight.",
+                  "duration": 6000
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "once": true,
+      "match": {
+        "area": "meridian_chamber"
+      }
+    },
+    {
+      "id": "t_eleven",
+      "on": "TIME_CHANGED",
+      "actions": [
+        {
+          "type": "message",
+          "text": "Somewhere far above you, a clock you can't see strikes eleven.",
+          "duration": 6000
+        }
+      ],
+      "once": true,
+      "conditions": {
+        "type": "clock",
+        "minDay": 7,
+        "minMinutes": 1380
+      }
+    },
+    {
+      "id": "t_midnight",
+      "on": "TIME_CHANGED",
+      "actions": [
+        {
+          "type": "message",
+          "text": "Midnight. The seventh day is over.",
+          "duration": 5000
+        },
+        {
+          "type": "delay",
+          "ms": 3000,
+          "actions": [
+            {
+              "type": "beginEnding"
+            }
+          ]
+        }
+      ],
+      "once": true,
+      "conditions": {
+        "type": "clock",
+        "minDay": 8
+      }
+    },
+    {
+      "id": "t_witness_hint",
+      "on": "AREA_ENTERED",
+      "actions": [
+        {
+          "type": "delay",
+          "ms": 6000,
+          "actions": [
+            {
+              "type": "hint",
+              "text": "Ruth's letter — the rhyme is on the back.   Tab — journal",
+              "touch": "Ruth's letter — the rhyme is on the back.",
+              "duration": 8000
+            }
+          ]
+        }
+      ],
+      "once": true,
+      "match": {
+        "area": "meridian_chamber"
+      },
+      "conditions": {
+        "type": "all",
+        "of": [
+          {
+            "type": "document",
+            "document": "doc_ruth_letter"
+          },
+          {
+            "type": "not",
+            "condition": {
+              "type": "flag",
+              "key": "read_ruth_rhyme"
+            }
+          }
+        ]
+      }
     }
   ],
   "progress": [
     {
       "id": "p_letter",
-      "weight": 6,
+      "weight": 3,
       "when": {
         "type": "flag",
         "key": "read_arthur_letter"
@@ -367,7 +710,7 @@
     },
     {
       "id": "p_lamp",
-      "weight": 4,
+      "weight": 2,
       "when": {
         "type": "flag",
         "key": "lamp_lit_once"
@@ -375,38 +718,15 @@
     },
     {
       "id": "p_hall",
-      "weight": 6,
+      "weight": 3,
       "when": {
         "type": "flag",
         "key": "visited:entrance_hall"
       }
     },
     {
-      "id": "p_study_key",
-      "weight": 6,
-      "when": {
-        "type": "any",
-        "of": [
-          {
-            "type": "hasItem",
-            "item": "study_key"
-          },
-          {
-            "type": "world",
-            "key": "study_door",
-            "equals": "open"
-          },
-          {
-            "type": "world",
-            "key": "study_door",
-            "equals": "closed"
-          }
-        ]
-      }
-    },
-    {
       "id": "p_study",
-      "weight": 8,
+      "weight": 4,
       "when": {
         "type": "flag",
         "key": "visited:arthur_study"
@@ -414,31 +734,15 @@
     },
     {
       "id": "p_photo",
-      "weight": 8,
+      "weight": 3,
       "when": {
         "type": "document",
         "document": "doc_meridian_photo"
       }
     },
     {
-      "id": "p_report",
-      "weight": 6,
-      "when": {
-        "type": "document",
-        "document": "doc_police_report_1936"
-      }
-    },
-    {
-      "id": "p_tape",
-      "weight": 6,
-      "when": {
-        "type": "document",
-        "document": "doc_arthur_tape_01"
-      }
-    },
-    {
       "id": "p_knob",
-      "weight": 8,
+      "weight": 3,
       "when": {
         "type": "not",
         "condition": {
@@ -449,52 +753,438 @@
       }
     },
     {
-      "id": "p_library",
-      "weight": 8,
-      "when": {
-        "type": "flag",
-        "key": "visited:library"
-      }
-    },
-    {
-      "id": "p_newspaper",
-      "weight": 6,
-      "when": {
-        "type": "document",
-        "document": "doc_newspaper_1936"
-      }
-    },
-    {
       "id": "p_clock",
-      "weight": 14,
+      "weight": 6,
       "when": {
         "type": "puzzleSolved",
         "puzzle": "library_clock"
       }
     },
     {
-      "id": "p_passage",
-      "weight": 6,
-      "when": {
-        "type": "flag",
-        "key": "visited:secret_passage"
-      }
-    },
-    {
-      "id": "p_symbol",
-      "weight": 4,
-      "when": {
-        "type": "flag",
-        "key": "seen_eight_point_symbol"
-      }
-    },
-    {
       "id": "p_record",
-      "weight": 4,
+      "weight": 5,
       "when": {
         "type": "document",
         "document": "doc_pre1847_record"
       }
+    },
+    {
+      "id": "p_hammer",
+      "weight": 3,
+      "when": {
+        "type": "hasItem",
+        "item": "claw_hammer"
+      }
+    },
+    {
+      "id": "p_west",
+      "weight": 4,
+      "when": {
+        "type": "flag",
+        "key": "visited:west_wing"
+      }
+    },
+    {
+      "id": "p_diary",
+      "weight": 4,
+      "when": {
+        "type": "flag",
+        "key": "read_margaret_diary"
+      }
+    },
+    {
+      "id": "p_portrait",
+      "weight": 6,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "margaret_lock"
+      }
+    },
+    {
+      "id": "p_gallery",
+      "weight": 3,
+      "when": {
+        "type": "not",
+        "condition": {
+          "type": "world",
+          "key": "gallery_door",
+          "equals": "locked"
+        }
+      }
+    },
+    {
+      "id": "p_transit",
+      "weight": 6,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "meridian_transit"
+      }
+    },
+    {
+      "id": "p_vault",
+      "weight": 4,
+      "when": {
+        "type": "not",
+        "condition": {
+          "type": "world",
+          "key": "vault_door",
+          "equals": "locked"
+        }
+      }
+    },
+    {
+      "id": "p_minutes",
+      "weight": 4,
+      "when": {
+        "type": "flag",
+        "key": "read_minutes_1871"
+      }
+    },
+    {
+      "id": "p_east",
+      "weight": 3,
+      "when": {
+        "type": "not",
+        "condition": {
+          "type": "world",
+          "key": "east_wing_door",
+          "equals": "locked"
+        }
+      }
+    },
+    {
+      "id": "p_cards",
+      "weight": 3,
+      "when": {
+        "type": "flag",
+        "key": "read_place_cards"
+      }
+    },
+    {
+      "id": "p_bells",
+      "weight": 6,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "bell_board"
+      }
+    },
+    {
+      "id": "p_parcel",
+      "weight": 4,
+      "when": {
+        "type": "flag",
+        "key": "read_ruth_letter"
+      }
+    },
+    {
+      "id": "p_cabinet",
+      "weight": 5,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "mercer_cabinet"
+      }
+    },
+    {
+      "id": "p_turret",
+      "weight": 3,
+      "when": {
+        "type": "flag",
+        "key": "read_heir_card"
+      }
+    },
+    {
+      "id": "p_grille",
+      "weight": 3,
+      "when": {
+        "type": "not",
+        "condition": {
+          "type": "world",
+          "key": "old_passage_grille",
+          "equals": "locked"
+        }
+      }
+    },
+    {
+      "id": "p_lamps",
+      "weight": 6,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "eight_lamps"
+      }
+    },
+    {
+      "id": "p_ledger",
+      "weight": 4,
+      "when": {
+        "type": "flag",
+        "key": "ledger_read"
+      }
+    }
+  ],
+  "revelations": [
+    {
+      "id": "elias_found_it",
+      "title": "Elias did not found the Society",
+      "clues": [
+        {
+          "type": "flag",
+          "key": "read_letter_1888"
+        },
+        {
+          "type": "flag",
+          "key": "seen_eight_point_symbol"
+        },
+        {
+          "type": "flag",
+          "key": "read_releve"
+        }
+      ],
+      "need": 2
+    },
+    {
+      "id": "eight_points",
+      "title": "The original seal has eight points",
+      "clues": [
+        {
+          "type": "flag",
+          "key": "read_margaret_diary"
+        },
+        {
+          "type": "flag",
+          "key": "seen_chamber_floor"
+        },
+        {
+          "type": "hasItem",
+          "item": "ruth_key"
+        }
+      ],
+      "need": 2
+    },
+    {
+      "id": "photo_altered",
+      "title": "The photograph was altered",
+      "clues": [
+        {
+          "type": "flag",
+          "key": "read_photo_back"
+        },
+        {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "noticed_photo_cut"
+            },
+            {
+              "type": "flag",
+              "key": "read_lucille_letter"
+            }
+          ]
+        },
+        {
+          "type": "flag",
+          "key": "read_seating"
+        }
+      ],
+      "need": 2
+    },
+    {
+      "id": "witness_erased",
+      "title": "There was an erased Witness: the Orrins",
+      "clues": [
+        {
+          "type": "flag",
+          "key": "read_minutes_1871"
+        },
+        {
+          "type": "flag",
+          "key": "seen_nameless_stone"
+        },
+        {
+          "type": "flag",
+          "key": "read_whitmore_register"
+        }
+      ],
+      "need": 2
+    },
+    {
+      "id": "heir_is_orrin",
+      "title": "The heir is an Orrin",
+      "clues": [
+        {
+          "type": "flag",
+          "key": "read_adoption_certificate"
+        },
+        {
+          "type": "hasItem",
+          "item": "ruth_key"
+        },
+        {
+          "type": "flag",
+          "key": "read_heir_card"
+        }
+      ],
+      "need": 2
+    },
+    {
+      "id": "who_paid",
+      "title": "Who paid all these years",
+      "clues": [
+        {
+          "type": "flag",
+          "key": "read_receipts"
+        },
+        {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "noticed_eo_signature"
+            },
+            {
+              "type": "flag",
+              "key": "seen_turret_lamp"
+            },
+            {
+              "type": "flag",
+              "key": "read_caretaker_book"
+            }
+          ]
+        },
+        {
+          "type": "flag",
+          "key": "read_eleanor_letter"
+        }
+      ],
+      "need": 2
+    },
+    {
+      "id": "julian_not_eighth",
+      "title": "Julian Whitmore was not the eighth",
+      "clues": [
+        {
+          "type": "flag",
+          "key": "read_place_cards"
+        },
+        {
+          "type": "flag",
+          "key": "read_order_of_night"
+        },
+        {
+          "type": "flag",
+          "key": "read_whitmore_register"
+        }
+      ],
+      "need": 2
+    }
+  ],
+  "endings": [
+    {
+      "id": "the_eighth",
+      "title": "The Eighth",
+      "when": {
+        "type": "all",
+        "of": [
+          {
+            "type": "flag",
+            "key": "ledger_read"
+          },
+          {
+            "type": "revelation",
+            "id": "heir_is_orrin"
+          },
+          {
+            "type": "revelation",
+            "id": "who_paid"
+          },
+          {
+            "type": "revelations",
+            "min": 5
+          }
+        ]
+      },
+      "text": [
+        "The last written line of the Witness Ledger is in old brown ink — the same ink as the 1968 receipt for \"rebinding, vellum, one volume\". Eleanor wrote it, the year you were born, the year she paid to have the book made whole again.",
+        "{heir} — the eighth, witness.",
+        "{heir}. The name Ruth gave you before they took you, with Orrin hidden inside it. Arthur followed it for twenty years through St. Brigid's and a sealed file. He was wrong about Julian and wrong about the lawyers, and right about the only thing that mattered: the heir is the eighth.",
+        "Behind you, at the top of the 1936 stair, eleven people have been waiting sixty-two years for someone to see them. The book is open. The pencil is in your hand. It is almost midnight on the seventh day."
+      ],
+      "choices": [
+        {
+          "id": "validate",
+          "label": "Sign beneath your name — witness it",
+          "epilogue": [
+            "You take Arthur's pencil out of your pocket — you don't remember putting it there — and under the old brown line you write the date, and then the only thing the Orrins ever promised: that you saw.",
+            "Nothing happens. Then, very far above, the chain in the seam moves, and a weight comes to rest, and the stone door at the top of the 1936 stair settles open on its own. Sixty-two years late. The count is done.",
+            "In the morning you walk into Bellweather and tell the sheriff where the eleven are. Edmund, Lucille, Walter and Beatrice Vale go into the family vault, under plates that have waited for them. Mrs. Ada Pell is buried in the town, as she would have wanted.",
+            "You find Eleanor Orrin in a care home in Portland, eighty-five and very deaf. You tell her the count is finished. She asks whether you turned the turret lamp out. You tell her no. She says: good. Then: you have your mother's hands.",
+            "The house goes quiet. Not empty — quiet. As if it had finally been heard."
+          ]
+        },
+        {
+          "id": "break",
+          "label": "Close the book, burn it, and seal the chamber",
+          "epilogue": [
+            "Your family refused once. You can refuse again — properly, this time, with the book in your hands and nobody's permission.",
+            "You carry the Witness Ledger up the well and burn it in the great false fireplace of the old hall, the first fire that chimney has ever held. The vellum takes a long time. Then you go back down and break the eight lamps, and climb out, and fill the well.",
+            "You tell the sheriff about the eleven. They are brought up and buried, and the papers in Portland run the story for a week. The Society is a curiosity now: seven old families and a dinner that went wrong.",
+            "Sometimes, in the new house you buy far from Bellweather, you catch yourself counting — stairs, windows, the dots on a ceiling. You stop at seven. On purpose. It feels like a choice every time."
+          ]
+        },
+        {
+          "id": "stay",
+          "label": "Keep the book. Keep the house. Stay.",
+          "epilogue": [
+            "You close the book on the line with your name and carry it up into the light, and you don't give it to anyone.",
+            "At dawn on the eighth day Thomas Mercer comes up the drive with the deed. He finds you on the porch with a cup of coffee and the lamp from the turret, still lit, beside you. He reads you the name on the deed, and you tell him it's spelled correctly.",
+            "You tell the sheriff about the eleven, and they are brought up and buried. You do not tell anyone about the chamber. You keep the caretaker on, Mondays only. You keep the lamp lit. You take down the boards on the west wing and live in it.",
+            "Every so often you go down with a pencil and the rhyme in your head, and you look, and you write down what you see. Somebody has to. Witness was always a job, not a title.",
+            "The house never knocks again. Some nights, though, you hear the counterweight in the seam settle a link lower, and you say goodnight to it, like a person."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the_witness",
+      "title": "The Witness",
+      "when": {
+        "type": "flag",
+        "key": "ledger_read"
+      },
+      "text": [
+        "The last written line of the Witness Ledger is in old brown ink, in a hand you have never seen.",
+        "{heir} — the eighth, witness.",
+        "Your name. Your real one — the one on no paper you have ever signed. Somebody wrote it here before you could walk, and the house has been keeping the place for you. You don't know who. You don't know why Arthur chose you. You only know that the book has been waiting, and that it is almost midnight."
+      ],
+      "choices": [
+        {
+          "id": "validate",
+          "label": "Sign beneath your name — witness it",
+          "epilogue": [
+            "You sign under the name. Far above, a weight settles, and a stone door at the top of a stair you hadn't noticed swings open.",
+            "In the morning the executors find the house quiet and you on the porch. They give you the deed and do not ask what happened. You never quite find out who the eleven on the stair were, or who wrote your name. But the house stops ticking, and you sleep."
+          ]
+        },
+        {
+          "id": "break",
+          "label": "Close the book, burn it, and seal the chamber",
+          "epilogue": [
+            "You carry the book up and burn it, and seal the well behind you. Whatever was counting stops counting, or goes on somewhere you can't hear it.",
+            "You sell Vale Manor to the county the following spring. The questions you didn't answer follow you for years — who you were, before; who wrote your name; who kept the lamp. You learn to live with them. Mostly."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "the_unread_record",
+      "title": "The Unread Record",
+      "text": [
+        "Midnight on the seventh day comes and goes, and nothing happens. Nothing at all. The rain stops sometime before dawn.",
+        "At eight Thomas Mercer's car comes up the drive. He looks at you for a long moment, as if checking something off, and hands you an envelope. The terms of the bequest have been met, he says: you stayed. Nobody ever said you had to understand.",
+        "Inside is the deed to Vale Manor. Your name is on it — not the one you have used all your life. Another one. {heir}.",
+        "Mercer is already walking back to his car. \"Somewhere under the house,\" he says without turning, \"there is a book with that name in it. Arthur never could read it. Perhaps you will, one day. The lamp in the turret — the caretaker will keep it lit unless you tell him otherwise.\"",
+        "You don't tell him otherwise."
+      ]
     }
   ]
 }

@@ -1,0 +1,25 @@
+[
+  {
+    "id": "portrait_edmund",
+    "label": "Portrait",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_portrait_edmund",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "EDMUND VALE · 1899–1936. Painted two years before the dinner. A watch chain, a signet ring, and the look of a man about to say something.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "lucille_letter",
+    "label": "Unsent letter",
+    "interactionType": "pickup",
+    "document": "doc_lucille_letter"
+  }
+]

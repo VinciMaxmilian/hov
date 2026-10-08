@@ -1,0 +1,25 @@
+{
+  "id": "doc_caretaker_book",
+  "title": "Caretaker's book",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "pencil",
+      "text": "VALE MANOR — UPKEEP. Paid by the Ashcroft Trust, Portland.\n\nMon 21 Sept. Grass. Gutters (east). Turret lamp trimmed.\nMon 5 Oct. Roof slate over the library. Turret lamp.\nMon 19 Oct. Front lock oiled. Lamp & matches on the porch table for the visitor, per Mr. T. Mercer. Turret lamp trimmed & left burning.\n\nStanding instructions (copied each year, as asked):\n— Keep the turret lamp lit. (E.O., 1937)\n— Mondays only. Never in the house after dark.\n— Do not open the west wing.",
+      "heading": "UPKEEP",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_caretaker_book",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "keeper",
+    "ashcroft"
+  ],
+  "date": "1998"
+}

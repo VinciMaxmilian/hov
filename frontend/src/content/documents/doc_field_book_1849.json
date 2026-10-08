@@ -1,0 +1,28 @@
+{
+  "id": "doc_field_book_1849",
+  "title": "Elias's field book",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "pencil",
+      "text": "Bottom field, lot 7. Sunk a trial pit for the cellar of the stone house.\n\nAt 26 ft: dressed rock. Not ledge — dressed. A ring cut in it, 9 ft across, a groove N–S through the centre, eight points round. Bearing of the groove: true north to within a quarter degree. I did not set it. Someone set it before any of us.\n\nRan the line north from the stone with the chain: across the knoll (good ground for a glass), on to the high ground in the trees. Mark the line. Build on it.",
+      "heading": "FIELD BOOK — E. VALE — 1849",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_field_book",
+          "value": true
+        }
+      ],
+      "placeholder": "surveyor's sketch: a ring with a line through it and eight points; a long arrow marked N"
+    }
+  ],
+  "storyTags": [
+    "elias",
+    "meridian",
+    "eight"
+  ],
+  "date": "1849",
+  "author": "Elias Vale"
+}

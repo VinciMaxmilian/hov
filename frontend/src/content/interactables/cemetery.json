@@ -1,0 +1,147 @@
+[
+  {
+    "id": "grave_elias",
+    "label": "Obelisk",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_grave_elias",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "ELIAS VALE · 1812–1880 · SURVEYOR. Under it, smaller: \"I set down what I found.\"",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "grave_margaret",
+    "label": "Headstone",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_grave_margaret",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "MARGARET VALE · 1816–1891 · SHE KEPT THE RECORD.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "grave_josiah",
+    "label": "Headstone",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_grave_josiah",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "JOSIAH VALE · 1838–1902.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "grave_clara",
+    "label": "Stone cross",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_grave_clara",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "CLARA VALE · 1841–1919.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "grave_hannah",
+    "label": "Headstone",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_grave_hannah",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "HANNAH VALE · 1864–1940. One word under the dates: TELL.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "grave_1936",
+    "label": "Memorial stone",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_grave_1936",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "IN MEMORY OF EDMUND · LUCILLE · WALTER · BEATRICE VALE · 17 NOVEMBER 1936 · NOT FOUND.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "grave_arthur",
+    "label": "Headstone",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_grave_arthur",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "ARTHUR VALE · 1929–1998. The cut is fresh. The grass over it hasn't taken yet.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "grave_nameless",
+    "label": "Headstone",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_nameless_stone",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "A slab with no name. Where a name was, the stone is flat and paler, chiselled clean. Left alone: a year, 1871, and a worn circle with eight points round it.",
+        "duration": 8000
+      }
+    ]
+  },
+  {
+    "id": "vault_door",
+    "label": "Vault door",
+    "interactionType": "door",
+    "state": "locked",
+    "requiredItem": "vault_key",
+    "lockedMessage": "Iron, and locked. Over the door: VALE.",
+    "unlockMessage": "The vault key turns stiffly."
+  }
+]

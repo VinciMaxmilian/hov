@@ -1,0 +1,27 @@
+{
+  "id": "doc_letter_1888",
+  "title": "Letter to Hannah, 1888",
+  "kind": "letter",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "My dear Hannah,\n\nThey will tell you your great-grandfather founded the Society. They will put it on a plaque. Do not let them.\n\nThe Society was not founded by Elias. He found it.\n\nIt was there in the ground with its circle and its line and its eight points, and it had been kept by somebody, for somebody, long before a Vale ever dug a cellar. All Elias did was learn its rules and fill seven of its chairs. The eighth he could not fill. The Orrins would not sit.\n\nIf you mean to tell the truth one day, as you say you do — begin there.\n\nYour loving grandmother,\nMargaret Vale",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_letter_1888",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "margaret",
+    "hannah",
+    "society"
+  ],
+  "code": "DOC02",
+  "date": "1888",
+  "author": "Margaret Vale"
+}

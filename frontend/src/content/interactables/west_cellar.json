@@ -1,0 +1,50 @@
+[
+  {
+    "id": "old_well",
+    "label": "Old well",
+    "interactionType": "use",
+    "branches": [
+      {
+        "label": "Climb down",
+        "actions": [
+          {
+            "type": "if",
+            "condition": {
+              "type": "not",
+              "condition": {
+                "type": "flag",
+                "key": "lamp_lit"
+              }
+            },
+            "then": [
+              {
+                "type": "hint",
+                "text": "You can't see your own hands.   F — lamp",
+                "touch": "You can't see your own hands. Light the lamp."
+              }
+            ]
+          },
+          {
+            "type": "playSound",
+            "sound": "creak",
+            "position": [
+              -22,
+              -2.0,
+              2.0
+            ]
+          },
+          {
+            "type": "teleport",
+            "position": [
+              -22,
+              -10.4,
+              2.75
+            ],
+            "yaw": 0,
+            "area": "below"
+          }
+        ]
+      }
+    ]
+  }
+]

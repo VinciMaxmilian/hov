@@ -1,0 +1,26 @@
+{
+  "id": "doc_lucille_letter",
+  "title": "Lucille's unsent letter",
+  "kind": "letter",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "Dearest Ro,\n\nArthur is safe at school, thank God, and I have told him nothing.\n\nEdmund has written to the Orrin girl. He thinks if she stands where her family should have stood, the house will stop — I can't think of another word — counting. He thinks it has been counting us. He showed me the floor in the photograph: eight pins, seven chairs. The Judge had the picture cut afterwards, because Julian would not be in it. Julian says he will come down but he won't say the words.\n\nI am frightened in a way I can't explain to anyone who hasn't lived in this house.\n\nL.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_lucille_letter",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "photo",
+    "julian"
+  ],
+  "date": "November 1936",
+  "author": "Lucille Vale"
+}

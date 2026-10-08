@@ -1,0 +1,79 @@
+{
+  "id": "cottage",
+  "name": "The Gardener's Cottage",
+  "sector": "EXTERIOR",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -106.5,
+      0.1,
+      10.5
+    ],
+    "max": [
+      -96.5,
+      7,
+      21.0
+    ]
+  },
+  "neighbors": [
+    "exterior"
+  ],
+  "footsteps": "wood",
+  "rainMuffle": 0.8,
+  "ambient": 1.0,
+  "spawn": {
+    "position": [
+      -101.009,
+      0.45,
+      17.318
+    ],
+    "yaw": 3.54
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Hammer",
+      "position": [
+        -98.542,
+        0.965,
+        12.367
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ],
+      "id": "cottage_hammer",
+      "interactable": "cottage_hammer",
+      "params": {
+        "hit": [
+          0.36,
+          0.08,
+          0.14
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -102.857,
+        1.27,
+        16.797
+      ],
+      "rotation": [
+        0,
+        23,
+        0
+      ],
+      "interactable": "caretaker_book",
+      "params": {
+        "size": [
+          0.55,
+          0.16,
+          0.45
+        ]
+      }
+    }
+  ],
+  "ambience": []
+}

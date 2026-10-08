@@ -1,0 +1,114 @@
+[
+  {
+    "id": "passage_counterweight",
+    "label": "Hatch",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_counterweight",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Behind a little hatch, a shaft running up and down out of sight. An iron counterweight hangs in it on a chain. If it swung, it would knock against the stone. It isn't swinging.",
+        "duration": 7500
+      }
+    ]
+  },
+  {
+    "id": "passage_symbol",
+    "label": "Carving",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_eight_point_symbol",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "A circle. A line. Eight points — not seven. This is the old wing's outer wall, and the stone was cut before it was laid.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "passage_record",
+    "label": "Oilcloth bundle",
+    "interactionType": "pickup",
+    "document": "doc_pre1847_record",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "act1_done",
+        "value": true
+      },
+      {
+        "type": "delay",
+        "ms": 5000,
+        "actions": [
+          {
+            "type": "setClock",
+            "day": 2,
+            "minutes": 540
+          },
+          {
+            "type": "chapter",
+            "title": "Act II — The Family",
+            "subtitle": "Friday"
+          },
+          {
+            "type": "save"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "seam_west_door",
+    "label": "Boarded door",
+    "interactionType": "door",
+    "state": "locked",
+    "requiredItem": "claw_hammer",
+    "lockedMessage": "Boards nailed across it, on this side, with nails as thick as a finger. You'd need something to pull them.",
+    "unlockMessage": "You lever the boards off one at a time. Behind them, an old oak door, unlocked. Cold comes through it."
+  },
+  {
+    "id": "master_seam_door",
+    "label": "Door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Bolted on the far side.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "the_seam"
+            },
+            {
+              "type": "world",
+              "key": "master_seam_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolt",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "master_seam_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          }
+        ]
+      }
+    ]
+  }
+]

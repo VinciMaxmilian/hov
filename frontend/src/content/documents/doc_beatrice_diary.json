@@ -1,0 +1,25 @@
+{
+  "id": "doc_beatrice_diary",
+  "title": "Beatrice Vale's diary",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "15 Nov. Cousin Edmund says a Miss Orrin is coming on Tuesday. Father says the Orrins refused, in great-great-grandfather's day, and that's why there is no eighth chair. I asked what the eighth chair is for. Nobody would say.\n\n16 Nov. Dr. Whitmore came early and argued with Edmund in the library for an hour. I heard \"I'll go down with you, Edmund, but I won't count.\" I don't know what he meant either.\n\nTomorrow there's a dinner and I'm to wear the green.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_beatrice_diary",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "julian"
+  ],
+  "date": "November 1936",
+  "author": "Beatrice Vale"
+}

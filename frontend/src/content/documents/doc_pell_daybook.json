@@ -1,0 +1,25 @@
+{
+  "id": "doc_pell_daybook",
+  "title": "Mrs. Pell's day-book",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "17 Nov. Mr. E.'s instructions for tonight, which I am to burn and won't:\n\nDinner at nine. Ten places, and one more at the foot with a card that says only W.\n\nWhen they go down he will ring from upstairs — LIBRARY, then DINING, then TURRET. That means clear the table and leave the turret lamp lit till the young lady comes. If she comes, bring her to the library. If anyone else rings, don't answer.\n\nShould anything go wrong, he says the papers are behind the bells, and I know the order.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_pell_daybook",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "pell"
+  ],
+  "date": "17 November 1936",
+  "author": "Ada Pell"
+}

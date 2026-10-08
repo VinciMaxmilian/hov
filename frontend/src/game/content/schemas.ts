@@ -81,7 +81,7 @@ export type Action =
   /** Avança o relógio de jogo (nunca volta no tempo). */
   | { type: 'setClock'; day: number; minutes: number }
   /** Cartão de capítulo (ato) no centro da tela. */
-  | { type: 'chapter'; title: string; subtitle?: string }
+  | { type: 'chapter'; title: string; subtitle?: string; fade?: boolean }
   /** Leva o jogador a outro ponto (escadas de poço, etc.), com escurecimento. */
   | { type: 'teleport'; position: [number, number, number]; yaw: number; area?: string }
   /** Começa o final adequado ao que foi descoberto (story.endings). */
@@ -113,7 +113,7 @@ export const actionSchema: z.ZodType<Action> = z.lazy(() =>
     }),
     z.object({ type: z.literal('save') }),
     z.object({ type: z.literal('setClock'), day: z.number().int().min(1), minutes: z.number().min(0).max(1439) }),
-    z.object({ type: z.literal('chapter'), title: z.string(), subtitle: z.string().optional() }),
+    z.object({ type: z.literal('chapter'), title: z.string(), subtitle: z.string().optional(), fade: z.boolean().optional() }),
     z.object({ type: z.literal('teleport'), position: vec3, yaw: z.number(), area: id.optional() }),
     z.object({ type: z.literal('beginEnding') }),
   ]),

@@ -1,0 +1,27 @@
+{
+  "id": "doc_seating_1936",
+  "title": "Seating plan for the Reckoning",
+  "kind": "note",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "Lucille — seating for the 17th, as Edmund wants it for the photograph and for below:\n\nA ring, not a table. Eight places marked on the floor with brass pins, as the Record requires. Seven chairs. Leave the eighth place bare — no chair. Edmund says if she comes she will stand there, by the door, and that is how it was always meant to be.\n\nI drew the ring twice. It still has eight places.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_seating",
+          "value": true
+        }
+      ],
+      "placeholder": "pencil sketch: a ring of eight marks, seven of them with small chairs, the eighth by a door, bare"
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "photo",
+    "eight"
+  ],
+  "date": "November 1936",
+  "author": "Lucille Vale"
+}

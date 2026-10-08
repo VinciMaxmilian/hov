@@ -25,7 +25,7 @@ export interface RuleEffects {
   unlockJournal(entry: string): void
   save(): void
   setClock(day: number, minutes: number): void
-  chapter(title: string, subtitle?: string): void
+  chapter(title: string, subtitle?: string, fade?: boolean): void
   teleport(position: Vec3, yaw: number, area?: string): void
   beginEnding(): void
   schedule(ms: number, fn: () => void): void
@@ -76,7 +76,7 @@ function runAction(a: Action, fx: RuleEffects): void {
     case 'setClock':
       return fx.setClock(a.day, a.minutes)
     case 'chapter':
-      return fx.chapter(a.title, a.subtitle)
+      return fx.chapter(a.title, a.subtitle, a.fade ?? true)
     case 'teleport':
       return fx.teleport(a.position, a.yaw, a.area)
     case 'beginEnding':

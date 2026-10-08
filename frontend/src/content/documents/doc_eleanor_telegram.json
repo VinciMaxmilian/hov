@@ -1,0 +1,24 @@
+{
+  "id": "doc_eleanor_telegram",
+  "title": "Telegram",
+  "kind": "card",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "WESTERN UNION — BELLWEATHER ORE — NOV 17 1936 — 11 47 PM\n\nTO E VALE VALE HOUSE MERIDIAN RD\n\nTRAIN HELD AT ALBANY STOP WILL WALK FROM STATION STOP DO NOT BEGIN WITHOUT ME STOP\n\nE O",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_telegram",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "eleanor"
+  ],
+  "date": "17 November 1936"
+}

@@ -1,0 +1,50 @@
+{
+  "id": "doc_arthur_tape_02",
+  "title": "Cassette — \"TURRET / 31\"",
+  "kind": "recording",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "Label, in Arthur's hand:\n\nTURRET / 31\n\nFor the Heir.",
+      "heading": "TDK D60"
+    }
+  ],
+  "storyTags": [
+    "arthur",
+    "eleanor"
+  ],
+  "date": "1997",
+  "author": "Arthur Vale",
+  "audio": {
+    "src": "/media/audio/arthur_tape_31.mp3",
+    "duration": 30,
+    "lines": [
+      {
+        "t": 1.0,
+        "speaker": "Arthur",
+        "text": "Tape thirty-one. The turret. The lamp is lit; I don't light it, it's lit."
+      },
+      {
+        "t": 6.5,
+        "speaker": "Arthur",
+        "text": "For twenty years I thought Hawthorne and Mercer were paying for this house. Lawyers. It's always lawyers."
+      },
+      {
+        "t": 12.5,
+        "speaker": "Arthur",
+        "text": "It was a woman who missed a train. She wrote to me once, in seventy-one. Told me not to write again. I didn't."
+      },
+      {
+        "t": 19.5,
+        "speaker": "Arthur",
+        "text": "Her daughter had a child in sixty-eight. I found the child. I found you."
+      },
+      {
+        "t": 25.0,
+        "speaker": "Arthur",
+        "text": "...Sorry. That's an odd thing to hear from a stranger's tape."
+      }
+    ]
+  }
+}

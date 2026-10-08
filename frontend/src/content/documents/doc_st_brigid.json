@@ -1,0 +1,36 @@
+{
+  "id": "doc_st_brigid",
+  "title": "Letter from St. Brigid's",
+  "kind": "letter",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "ST. BRIGID'S HOME · PORTLAND, OREGON\n\n22 October 1998\n\nTo the adoptee, care of Vale Manor, Bellweather.\n\nAt the written request of the late Mr. Arthur Vale, and having confirmed your identity with his executors, we forward the enclosed: one sealed letter and one key, deposited with us in 1994 by your birth mother, to be released to you alone.\n\nA copy of your certificate of adoption (1969) is attached for your records. As is our practice, the child's name at birth has been obscured.\n\nWe are sorry it has taken so long.\n\nSr. M. Agnes, Registrar",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_st_brigid",
+          "value": true
+        }
+      ]
+    },
+    {
+      "side": "back",
+      "style": "typed",
+      "text": "CERTIFICATE OF ADOPTION — COPY — STATE OF OREGON — 1969\n\nChild: ████████ (b. Portland, 1968)\nMother: RUTH ORRIN (b. 1946)\nFather: not stated\nPlaced through: St. Brigid's Home",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_adoption_certificate",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "orrin",
+    "heir"
+  ],
+  "date": "22 October 1998"
+}

@@ -1,7 +1,123 @@
 [
-  { "id": "porch_envelope", "label": "Envelope", "interactionType": "pickup", "document": "doc_arthur_letter" },
-  { "id": "porch_card", "label": "Typed card", "interactionType": "pickup", "document": "doc_executor_card" },
-  { "id": "porch_key", "label": "Iron key", "interactionType": "pickup", "item": "entry_key" },
-  { "id": "porch_lamp", "label": "Oil lamp", "interactionType": "pickup", "item": "oil_lamp" },
-  { "id": "porch_matches", "label": "Matches", "interactionType": "pickup", "item": "matches" }
+  {
+    "id": "porch_envelope",
+    "label": "Envelope",
+    "interactionType": "pickup",
+    "document": "doc_arthur_letter"
+  },
+  {
+    "id": "porch_card",
+    "label": "Typed card",
+    "interactionType": "pickup",
+    "document": "doc_executor_card"
+  },
+  {
+    "id": "porch_key",
+    "label": "Iron key",
+    "interactionType": "pickup",
+    "item": "entry_key"
+  },
+  {
+    "id": "porch_lamp",
+    "label": "Oil lamp",
+    "interactionType": "pickup",
+    "item": "oil_lamp"
+  },
+  {
+    "id": "porch_matches",
+    "label": "Matches",
+    "interactionType": "pickup",
+    "item": "matches"
+  },
+  {
+    "id": "main_door",
+    "label": "Front door",
+    "interactionType": "door",
+    "state": "locked",
+    "requiredItem": "entry_key",
+    "lockedMessage": "Locked.",
+    "unlockMessage": "The lock gives at once. Someone has kept it oiled."
+  },
+  {
+    "id": "estate_gate",
+    "label": "Gate",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "The road back to Bellweather. Seven days, the will said. Not one fewer.",
+        "duration": 5000
+      }
+    ]
+  },
+  {
+    "id": "cellar_hatch",
+    "label": "Cellar hatch",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_cellar_hatch",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "An old coal hatch into the west cellar. It doesn't give at all: bolted from below. The bolts are newer than the boards.",
+        "duration": 6000
+      }
+    ]
+  },
+  {
+    "id": "sundial",
+    "label": "Sundial",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_sundial",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Bronze, green with age. Round the plate: BELLWEATHER · 45° N · E.V. 1849. The gnomon points along the line of flagstones — due north, into the trees.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "porch_parcel",
+    "label": "Parcel",
+    "interactionType": "pickup",
+    "document": "doc_st_brigid",
+    "actions": [
+      {
+        "type": "giveItem",
+        "item": "ruth_key",
+        "silent": true
+      },
+      {
+        "type": "discoverDocument",
+        "document": "doc_ruth_letter",
+        "open": false
+      }
+    ]
+  },
+  {
+    "id": "arthur_car",
+    "label": "Station wagon",
+    "interactionType": "container",
+    "state": "closed",
+    "emptyMessage": "Maps of Oregon, a thermos, a blanket. Nothing else.",
+    "actions": [
+      {
+        "type": "discoverDocument",
+        "document": "doc_arthur_tape_03",
+        "open": false
+      },
+      {
+        "type": "playRecording",
+        "document": "doc_arthur_tape_03"
+      }
+    ]
+  }
 ]

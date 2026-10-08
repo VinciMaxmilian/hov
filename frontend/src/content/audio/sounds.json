@@ -1,34 +1,211 @@
 [
-  { "id": "tick", "synth": "tick", "volume": 0.6, "spatial": true },
-  { "id": "tock", "synth": "tock", "volume": 0.6, "spatial": true },
-  { "id": "clock_hand", "synth": "clock_hand", "volume": 0.7 },
-  { "id": "chime", "synth": "chime", "volume": 1, "spatial": true, "refDistance": 4, "src": "/media/audio/clock_chime_two.mp3" },
-  { "id": "chime_dull", "synth": "chime_dull", "volume": 0.9, "spatial": true, "refDistance": 4 },
-  { "id": "mech_click", "synth": "mech_click", "volume": 1, "spatial": true, "refDistance": 3, "src": "/media/audio/mechanism_click.mp3" },
-  { "id": "stone_grind", "synth": "stone_grind", "volume": 1, "spatial": true, "refDistance": 4, "src": "/media/audio/bookcase_slide.mp3" },
-  { "id": "door_open", "synth": "door_open", "volume": 0.9, "spatial": true, "refDistance": 2.5, "src": "/media/audio/door_creak.mp3" },
-  { "id": "door_close", "synth": "door_close", "volume": 1, "spatial": true, "refDistance": 3 },
-  { "id": "door_locked", "synth": "door_locked", "volume": 0.8 },
-  { "id": "unlock", "synth": "unlock", "volume": 0.9 },
-  { "id": "knock", "synth": "knock", "volume": 1, "spatial": true, "refDistance": 1.2, "src": "/media/audio/knock_in_wall.mp3" },
-  { "id": "match", "synth": "match", "volume": 0.8 },
-  { "id": "lamp_off", "synth": "lamp_off", "volume": 0.7 },
-  { "id": "paper", "synth": "paper", "volume": 0.8 },
-  { "id": "pickup", "synth": "pickup", "volume": 0.8 },
-  { "id": "drawer", "synth": "drawer", "volume": 0.9 },
-  { "id": "switch", "synth": "switch", "volume": 0.8 },
-  { "id": "tape_button", "synth": "tape_button", "volume": 0.9 },
-  { "id": "thunder", "synth": "thunder", "volume": 0.9 },
-  { "id": "creak", "synth": "creak", "volume": 0.8, "spatial": true, "refDistance": 3 },
-  { "id": "breath", "synth": "breath", "volume": 0.6 },
-  { "id": "footstep_wood", "synth": "footstep_wood", "volume": 0.5 },
-  { "id": "footstep_stone", "synth": "footstep_stone", "volume": 0.45 },
-  { "id": "footstep_gravel", "synth": "footstep_gravel", "volume": 0.5 },
-  { "id": "footstep_carpet", "synth": "footstep_carpet", "volume": 0.45 },
-  { "id": "ui", "synth": "ui", "volume": 0.6 },
-  { "id": "clock_tick_loop", "synth": "clock_tick_loop", "volume": 0.8, "spatial": true, "loop": true, "refDistance": 1.5 },
-  { "id": "lamp_hum", "synth": "hum", "volume": 0.6, "spatial": true, "loop": true, "refDistance": 0.8 },
-  { "id": "tape_hiss", "synth": "tape_hiss", "volume": 0.9, "loop": true },
-  { "id": "drip_loop", "synth": "drip_loop", "volume": 0.8, "spatial": true, "loop": true, "refDistance": 1.5 },
-  { "id": "wind_draft", "synth": "wind_draft", "volume": 0.8, "spatial": true, "loop": true, "refDistance": 2 }
+  {
+    "id": "tick",
+    "synth": "tick",
+    "volume": 0.6,
+    "spatial": true
+  },
+  {
+    "id": "tock",
+    "synth": "tock",
+    "volume": 0.6,
+    "spatial": true
+  },
+  {
+    "id": "clock_hand",
+    "synth": "clock_hand",
+    "volume": 0.7
+  },
+  {
+    "id": "chime",
+    "synth": "chime",
+    "volume": 1,
+    "spatial": true,
+    "refDistance": 4,
+    "src": "/media/audio/clock_chime_two.mp3"
+  },
+  {
+    "id": "chime_dull",
+    "synth": "chime_dull",
+    "volume": 0.9,
+    "spatial": true,
+    "refDistance": 4
+  },
+  {
+    "id": "mech_click",
+    "synth": "mech_click",
+    "volume": 1,
+    "spatial": true,
+    "refDistance": 3,
+    "src": "/media/audio/mechanism_click.mp3"
+  },
+  {
+    "id": "stone_grind",
+    "synth": "stone_grind",
+    "volume": 1,
+    "spatial": true,
+    "refDistance": 4,
+    "src": "/media/audio/bookcase_slide.mp3"
+  },
+  {
+    "id": "door_open",
+    "synth": "door_open",
+    "volume": 0.9,
+    "spatial": true,
+    "refDistance": 2.5,
+    "src": "/media/audio/door_creak.mp3"
+  },
+  {
+    "id": "door_close",
+    "synth": "door_close",
+    "volume": 1,
+    "spatial": true,
+    "refDistance": 3
+  },
+  {
+    "id": "door_locked",
+    "synth": "door_locked",
+    "volume": 0.8
+  },
+  {
+    "id": "unlock",
+    "synth": "unlock",
+    "volume": 0.9
+  },
+  {
+    "id": "knock",
+    "synth": "knock",
+    "volume": 1,
+    "spatial": true,
+    "refDistance": 1.2,
+    "src": "/media/audio/knock_in_wall.mp3"
+  },
+  {
+    "id": "match",
+    "synth": "match",
+    "volume": 0.8
+  },
+  {
+    "id": "lamp_off",
+    "synth": "lamp_off",
+    "volume": 0.7
+  },
+  {
+    "id": "paper",
+    "synth": "paper",
+    "volume": 0.8
+  },
+  {
+    "id": "pickup",
+    "synth": "pickup",
+    "volume": 0.8
+  },
+  {
+    "id": "drawer",
+    "synth": "drawer",
+    "volume": 0.9
+  },
+  {
+    "id": "switch",
+    "synth": "switch",
+    "volume": 0.8
+  },
+  {
+    "id": "tape_button",
+    "synth": "tape_button",
+    "volume": 0.9
+  },
+  {
+    "id": "thunder",
+    "synth": "thunder",
+    "volume": 0.9
+  },
+  {
+    "id": "creak",
+    "synth": "creak",
+    "volume": 0.8,
+    "spatial": true,
+    "refDistance": 3
+  },
+  {
+    "id": "breath",
+    "synth": "breath",
+    "volume": 0.6
+  },
+  {
+    "id": "footstep_wood",
+    "synth": "footstep_wood",
+    "volume": 0.5
+  },
+  {
+    "id": "footstep_stone",
+    "synth": "footstep_stone",
+    "volume": 0.45
+  },
+  {
+    "id": "footstep_gravel",
+    "synth": "footstep_gravel",
+    "volume": 0.5
+  },
+  {
+    "id": "footstep_carpet",
+    "synth": "footstep_carpet",
+    "volume": 0.45
+  },
+  {
+    "id": "ui",
+    "synth": "ui",
+    "volume": 0.6
+  },
+  {
+    "id": "clock_tick_loop",
+    "synth": "clock_tick_loop",
+    "volume": 0.8,
+    "spatial": true,
+    "loop": true,
+    "refDistance": 1.5
+  },
+  {
+    "id": "lamp_hum",
+    "synth": "hum",
+    "volume": 0.6,
+    "spatial": true,
+    "loop": true,
+    "refDistance": 0.8
+  },
+  {
+    "id": "tape_hiss",
+    "synth": "tape_hiss",
+    "volume": 0.9,
+    "loop": true
+  },
+  {
+    "id": "drip_loop",
+    "synth": "drip_loop",
+    "volume": 0.8,
+    "spatial": true,
+    "loop": true,
+    "refDistance": 1.5
+  },
+  {
+    "id": "wind_draft",
+    "synth": "wind_draft",
+    "volume": 0.8,
+    "spatial": true,
+    "loop": true,
+    "refDistance": 2
+  },
+  {
+    "id": "bell",
+    "synth": "bell",
+    "volume": 0.8
+  },
+  {
+    "id": "drone_loop",
+    "synth": "drone_loop",
+    "volume": 0.6,
+    "spatial": true,
+    "loop": true,
+    "refDistance": 4
+  }
 ]

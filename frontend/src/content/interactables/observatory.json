@@ -1,0 +1,44 @@
+[
+  {
+    "id": "telescope",
+    "label": "Telescope",
+    "interactionType": "puzzle",
+    "puzzle": "meridian_transit",
+    "solvedMessage": "Still pointing down the line. The little drawer in the clock drive stands open.",
+    "focus": {
+      "position": [
+        10.9,
+        6.25,
+        -23.9
+      ],
+      "lookAt": [
+        11.6,
+        6.15,
+        -25.2
+      ]
+    }
+  },
+  {
+    "id": "observing_card",
+    "label": "Observing card",
+    "interactionType": "pickup",
+    "document": "doc_observing_card"
+  },
+  {
+    "id": "obs_logbook",
+    "label": "Logbook",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_obs_logbook",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Observing log, 1911 to 1936, in three hands. The stars stop in 1936. After that, only weather — in pencil, every Monday, by someone who signs \"Caretaker\".",
+        "duration": 7000
+      }
+    ]
+  }
+]

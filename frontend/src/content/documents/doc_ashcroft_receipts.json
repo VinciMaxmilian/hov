@@ -1,0 +1,45 @@
+{
+  "id": "doc_ashcroft_receipts",
+  "title": "Ashcroft Trust receipts",
+  "kind": "report",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "ASHCROFT TRUST · PORTLAND — DISBURSEMENTS, VALE PROPERTY (bundle, 1937–1998)\n\n1937 — taxes, county of Bellweather. Authorised: E.O.\n1938 — boarding of west wing; carpentry. Authorised: E.O.\n1946 — roof, slate. Authorised: E.O.\n1968 — rebinding, vellum, one volume (account \"W\"). Authorised: E.O.\n1971 — lamp oil, turret; caretaker's wages. Authorised: E.O. / A.V.\n1972–1998 — all items. Authorised: A.V.\nOct 1998 — caretaker; lamp oil; porch provisions. Authorised: T. Mercer, executor.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_receipts",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "ashcroft",
+    "payer",
+    "witness_ledger"
+  ],
+  "date": "1937–1998",
+  "details": [
+    {
+      "id": "receipts_signature",
+      "page": 0,
+      "rect": [
+        0.55,
+        0.2,
+        0.4,
+        0.5
+      ],
+      "note": "Thirty-four years of the same initials, E.O., in the same small upright hand. In 1971 a second hand joins it: A.V.",
+      "onFound": [
+        {
+          "type": "setFlag",
+          "key": "noticed_eo_signature",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

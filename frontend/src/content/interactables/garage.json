@@ -1,0 +1,33 @@
+[
+  {
+    "id": "garage_pegboard",
+    "label": "Pegboard",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_pegboard",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Outlines painted round every tool. Two are empty: a claw hammer and a pry bar. A note pinned between them: \"Cottage — for the west boards. A.V.\"",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "sedan_glovebox",
+    "label": "Glovebox",
+    "interactionType": "container",
+    "state": "closed",
+    "emptyMessage": "Registration papers: EDMUND VALE, 1934. Nothing else.",
+    "actions": [
+      {
+        "type": "discoverDocument",
+        "document": "doc_eleanor_telegram",
+        "open": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "id": "doc_arthur_heir_card",
+  "title": "Arthur's index card",
+  "kind": "note",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "THE HEIR IS THE EIGHTH.\n\nNot Julian. I was wrong about Julian for twenty years.\nOrrin → Eleanor → Ruth → St. Brigid's 1969 → the Heir.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_heir_card",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "arthur",
+    "heir"
+  ],
+  "date": "1997",
+  "author": "Arthur Vale"
+}

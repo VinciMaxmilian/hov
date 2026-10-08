@@ -1,0 +1,26 @@
+{
+  "id": "doc_meridian_chart",
+  "title": "Elias's chart of the line",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "engraved",
+      "text": "THE LINE — VALE LOTS 7 TO 12 — TRUE N.\n\nStone (under the west wing) · Knoll (the glass) · Sundial · High ground (the vault).\n\nAll on one bearing. In the margin, in a woman's hand: \"He built the house on top of it so nobody else could.\"",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_meridian_chart",
+          "value": true
+        }
+      ],
+      "placeholder": "ink survey chart: a single straight line running north through four marked points"
+    }
+  ],
+  "storyTags": [
+    "elias",
+    "meridian"
+  ],
+  "date": "c. 1870",
+  "author": "Elias Vale"
+}

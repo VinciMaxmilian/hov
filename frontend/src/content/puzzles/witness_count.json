@@ -1,0 +1,154 @@
+{
+  "id": "witness_count",
+  "title": "The Witness Ledger",
+  "input": {
+    "type": "dials",
+    "dials": [
+      {
+        "label": "point at the top",
+        "options": [
+          "we",
+          "keep",
+          "the",
+          "count",
+          "for",
+          "those",
+          "who",
+          "stay"
+        ]
+      },
+      {
+        "label": "point low on the right",
+        "options": [
+          "we",
+          "keep",
+          "the",
+          "count",
+          "for",
+          "those",
+          "who",
+          "stay"
+        ]
+      },
+      {
+        "label": "point low on the left",
+        "options": [
+          "we",
+          "keep",
+          "the",
+          "count",
+          "for",
+          "those",
+          "who",
+          "stay"
+        ]
+      },
+      {
+        "label": "point on the left",
+        "options": [
+          "we",
+          "keep",
+          "the",
+          "count",
+          "for",
+          "those",
+          "who",
+          "stay"
+        ]
+      },
+      {
+        "label": "point high on the left",
+        "options": [
+          "we",
+          "keep",
+          "the",
+          "count",
+          "for",
+          "those",
+          "who",
+          "stay"
+        ]
+      }
+    ],
+    "initial": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "attemptLabel": "Read the line",
+    "prompt": "The oldest line in the book, at the top of the first page: five circles, one point marked in each."
+  },
+  "conditions": {
+    "type": "all",
+    "of": [
+      {
+        "type": "puzzleValue",
+        "puzzle": "witness_count",
+        "key": "d0",
+        "equals": 0
+      },
+      {
+        "type": "puzzleValue",
+        "puzzle": "witness_count",
+        "key": "d1",
+        "equals": 3
+      },
+      {
+        "type": "puzzleValue",
+        "puzzle": "witness_count",
+        "key": "d2",
+        "equals": 5
+      },
+      {
+        "type": "puzzleValue",
+        "puzzle": "witness_count",
+        "key": "d3",
+        "equals": 6
+      },
+      {
+        "type": "puzzleValue",
+        "puzzle": "witness_count",
+        "key": "d4",
+        "equals": 7
+      }
+    ]
+  },
+  "successActions": [
+    {
+      "type": "setFlag",
+      "key": "ledger_read",
+      "value": true
+    },
+    {
+      "type": "playSound",
+      "sound": "paper"
+    },
+    {
+      "type": "message",
+      "text": "We count those who stay. Then the rest of the book opens to you, circle by circle. On the last written line, in old brown ink: a name. Yours.",
+      "duration": 9000
+    },
+    {
+      "type": "discoverDocument",
+      "document": "doc_witness_ledger",
+      "open": false
+    },
+    {
+      "type": "delay",
+      "ms": 9500,
+      "actions": [
+        {
+          "type": "beginEnding"
+        }
+      ]
+    }
+  ],
+  "failureActions": [
+    {
+      "type": "message",
+      "text": "The words don't make a line. You try again."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "doc_family_register",
+  "title": "Family register",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "ELIAS VALE, b. 1812, Vermont. — MARGARET VALE (née Hale), b. 1816.\nCame west: Oregon City, autumn 1847.\n\nJosiah, b. 1838. Clara, b. 1841.\nHannah, d. of Josiah, b. 1864.\nEdmund, gs. of Josiah, b. 1899. Arthur, s. of Edmund, b. 1929.\n\nAt the foot of the page, a line has been scraped away with a blade. What is left: \"...orn 1871, Witn—\"",
+      "heading": "THE HOLY BIBLE · FAMILY RECORD",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_family_register",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "vale",
+    "witness"
+  ]
+}

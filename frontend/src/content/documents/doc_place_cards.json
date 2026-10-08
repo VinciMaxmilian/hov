@@ -1,0 +1,25 @@
+{
+  "id": "doc_place_cards",
+  "title": "Place cards, 17 November 1936",
+  "kind": "card",
+  "pages": [
+    {
+      "side": "front",
+      "style": "print",
+      "text": "Small cards in a careful copperplate, one at each place, each under its emblem:\n\nMr. Edmund Vale — Knowledge\nJudge Cornelius Hawthorne — Law\nMr. Silas Blackwood — Industry\nDr. Julian Whitmore — Medicine\nMr. Reginald Ashcroft — Finance\nThe Rev. Thaddeus Bell — Faith\nMr. Anselm Mercer — Record\n\nand, as guests of the house: Mrs. Lucille Vale, Mr. Walter Vale, Miss Beatrice Vale.\n\nAt the foot, laid and unused: W.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_place_cards",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "julian",
+    "witness"
+  ],
+  "date": "17 November 1936"
+}

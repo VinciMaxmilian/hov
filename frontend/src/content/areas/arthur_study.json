@@ -1,144 +1,44 @@
 {
   "id": "arthur_study",
   "name": "Arthur's Study",
-  "sector": "WEST_WING",
+  "sector": "MAIN_HALL",
   "kind": "interior",
   "bounds": {
     "min": [
-      -14,
-      -0.6,
-      -3.4
+      -10.1,
+      0.5,
+      1.0
     ],
     "max": [
-      -6.1,
-      4,
-      5
+      -3,
+      5.5,
+      7.6
     ]
   },
   "neighbors": [
     "entrance_hall",
-    "secret_passage"
+    "library",
+    "the_seam"
   ],
-  "footsteps": "carpet",
-  "rainMuffle": 0.78,
-  "fog": {
-    "color": "#05080b",
-    "density": 0.05
-  },
+  "footsteps": "wood",
+  "rainMuffle": 0.8,
+  "ambient": 1.0,
   "spawn": {
     "position": [
-      -7.2,
-      0,
-      1
+      -4.0,
+      1.0,
+      4.5
     ],
     "yaw": 1.57
   },
-  "rooms": [
-    {
-      "id": "study",
-      "min": [
-        -14,
-        -3.4
-      ],
-      "max": [
-        -6.2,
-        5
-      ],
-      "height": 3.2,
-      "thickness": {
-        "north": 0.2,
-        "south": 0.2,
-        "east": 0.1,
-        "west": 0.2
-      },
-      "wall": "wallpaper_green",
-      "outer": {
-        "west": "facade",
-        "south": "facade",
-        "north": "plaster_dark"
-      },
-      "floor": "wood_floor",
-      "ceiling": "plaster_dark",
-      "wainscot": {
-        "height": 1.0,
-        "material": "wood_panel"
-      },
-      "openings": [
-        {
-          "side": "east",
-          "center": 1,
-          "width": 1.2,
-          "height": 2.4,
-          "kind": "door"
-        },
-        {
-          "side": "west",
-          "center": 1.5,
-          "width": 1.2,
-          "height": 1.8,
-          "sill": 0.9,
-          "kind": "window",
-          "glass": true
-        }
-      ]
-    }
-  ],
-  "lights": [
-    {
-      "type": "ambient",
-      "color": "#1b2a41",
-      "intensity": 0.25
-    },
-    {
-      "type": "hemisphere",
-      "color": "#2e4a62",
-      "groundColor": "#050505",
-      "intensity": 0.2
-    },
-    {
-      "type": "spot",
-      "color": "#7f9cc0",
-      "intensity": 45,
-      "position": [
-        -16.5,
-        3.4,
-        1.5
-      ],
-      "target": [
-        -10.5,
-        0,
-        1.2
-      ],
-      "angle": 0.5,
-      "penumbra": 0.8,
-      "distance": 14,
-      "castShadow": true
-    }
-  ],
+  "lights": [],
   "objects": [
-    {
-      "type": "Rug",
-      "position": [
-        -10.3,
-        0,
-        1.2
-      ],
-      "params": {
-        "width": 2.8,
-        "depth": 3.4
-      }
-    },
     {
       "type": "Desk",
       "position": [
-        -10,
-        0,
-        1.2
-      ],
-      "rotation": [
-        0,
-        -90,
-        0
+        -6.0,
+        1.0,
+        2.2
       ],
       "params": {
         "width": 1.7,
@@ -146,18 +46,13 @@
       }
     },
     {
-      "id": "study_desk_drawer",
       "type": "Drawer",
       "position": [
-        -10.43,
-        0.66,
-        1.2
+        -6.0,
+        1.66,
+        2.63
       ],
-      "rotation": [
-        0,
-        -90,
-        0
-      ],
+      "id": "study_desk_drawer",
       "interactable": "study_desk_drawer",
       "params": {
         "width": 0.55,
@@ -172,29 +67,29 @@
     {
       "type": "Chair",
       "position": [
-        -10.95,
-        0,
-        1.2
+        -6.0,
+        1.0,
+        3.15
       ],
       "rotation": [
         0,
-        90,
+        180,
         0
       ]
     },
     {
-      "id": "study_report",
       "type": "Paper",
       "position": [
-        -9.8,
-        0.782,
-        0.75
+        -5.6,
+        1.782,
+        2.08
       ],
       "rotation": [
         0,
-        -80,
+        10,
         0
       ],
+      "id": "study_report",
       "interactable": "study_report",
       "params": {
         "variant": "report",
@@ -206,18 +101,18 @@
       }
     },
     {
-      "id": "study_note_217",
       "type": "Paper",
       "position": [
-        -10.2,
-        0.782,
-        1.65
+        -6.35,
+        1.782,
+        2.4
       ],
       "rotation": [
         0,
-        -100,
+        -15,
         0
       ],
+      "id": "study_note_217",
       "interactable": "study_note_217",
       "params": {
         "variant": "note",
@@ -229,18 +124,18 @@
       }
     },
     {
-      "id": "study_photo",
       "type": "PhotoFrame",
       "position": [
-        -9.62,
-        0.782,
-        1.7
+        -6.6,
+        1.782,
+        1.98
       ],
       "rotation": [
         0,
-        115,
+        15,
         0
       ],
+      "id": "study_photo",
       "interactable": "study_photo",
       "params": {
         "image": "/media/photos/meridian_society_1936.webp",
@@ -252,18 +147,13 @@
       }
     },
     {
-      "id": "study_desk_lamp",
       "type": "DeskLamp",
       "position": [
-        -9.75,
-        0.78,
-        0.55
+        -5.25,
+        1.78,
+        1.92
       ],
-      "rotation": [
-        0,
-        -90,
-        0
-      ],
+      "id": "study_desk_lamp",
       "interactable": "study_desk_lamp",
       "params": {
         "hit": [
@@ -278,24 +168,24 @@
     {
       "type": "SideTable",
       "position": [
-        -13.3,
-        0,
-        -2.6
+        -3.7,
+        1.0,
+        1.6
       ]
     },
     {
-      "id": "study_tape_recorder",
       "type": "TapeRecorder",
       "position": [
-        -13.3,
-        0.7,
-        -2.6
+        -3.7,
+        1.7,
+        1.6
       ],
       "rotation": [
         0,
         40,
         0
       ],
+      "id": "study_tape_recorder",
       "interactable": "study_tape_recorder",
       "params": {
         "hit": [
@@ -306,112 +196,30 @@
       }
     },
     {
-      "type": "Bookshelf",
-      "position": [
-        -13.78,
-        0,
-        -1.3
-      ],
-      "rotation": [
-        0,
-        90,
-        0
-      ],
-      "seed": 71,
-      "params": {
-        "width": 2.2,
-        "height": 2.6,
-        "shelves": 6,
-        "fill": 0.8
-      }
-    },
-    {
-      "type": "Bookshelf",
-      "position": [
-        -13.78,
-        0,
-        3.6
-      ],
-      "rotation": [
-        0,
-        90,
-        0
-      ],
-      "seed": 72,
-      "params": {
-        "width": 1.8,
-        "height": 2.6,
-        "shelves": 6,
-        "fill": 0.55
-      }
-    },
-    {
-      "id": "study_fireplace",
-      "type": "Fireplace",
-      "position": [
-        -10.2,
-        0,
-        4.78
-      ],
-      "rotation": [
-        0,
-        180,
-        0
-      ],
-      "interactable": "study_fireplace",
-      "params": {
-        "width": 1.8
-      }
-    },
-    {
-      "type": "Frame",
-      "position": [
-        -10.2,
-        2.15,
-        4.96
-      ],
-      "rotation": [
-        0,
-        180,
-        0
-      ],
-      "seed": 1911,
-      "params": {
-        "width": 1.2,
-        "height": 0.8,
-        "kind": "landscape",
-        "image": "/media/paintings/vale_manor_1911.webp",
-        "frame": "wood_trim"
-      }
-    },
-    {
-      "id": "study_corkboard",
       "type": "Frame",
       "position": [
         -8.6,
-        1.65,
-        -3.37
+        2.65,
+        1.13
       ],
-      "seed": 1985,
+      "id": "study_corkboard",
       "interactable": "study_corkboard",
       "params": {
         "width": 1.6,
         "height": 1.0,
         "kind": "landscape",
         "image": "/media/documents/arthur_corkboard.webp",
-        "frame": "wood_trim",
-        "border": 0.04
+        "frame": "wood_trim"
       }
     },
     {
-      "id": "study_boxes",
       "type": "Crate",
       "position": [
-        -7.1,
-        0,
-        -2.7
+        -9.3,
+        1.0,
+        1.7
       ],
-      "seed": 3,
+      "id": "study_boxes",
       "interactable": "study_boxes",
       "params": {
         "size": 0.5
@@ -420,46 +228,78 @@
     {
       "type": "Crate",
       "position": [
-        -7.75,
-        0,
-        -2.85
+        -9.4,
+        1.0,
+        2.35
       ],
-      "seed": 4,
+      "rotation": [
+        0,
+        15,
+        0
+      ],
       "params": {
         "size": 0.45
       }
     },
     {
-      "type": "Chair",
+      "type": "Crate",
       "position": [
-        -7.2,
-        0,
-        3.9
-      ],
-      "rotation": [
-        0,
-        -135,
-        0
+        -8.7,
+        1.0,
+        1.55
       ],
       "params": {
-        "seat": "cloth_dark"
+        "size": 0.42
       }
     },
     {
-      "type": "Crate",
+      "type": "Hotspot",
       "position": [
-        -7.15,
-        0,
-        -2.05
+        -9.55,
+        1.7,
+        3.5
       ],
-      "rotation": [
-        0,
-        12,
-        0
-      ],
-      "seed": 6,
+      "interactable": "study_fireplace",
       "params": {
-        "size": 0.42
+        "size": [
+          0.6,
+          1.4,
+          1.9
+        ]
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        -6.85,
+        1.0,
+        1.0
+      ],
+      "interactable": "library_door",
+      "params": {
+        "state": "library_door",
+        "width": 0.7,
+        "height": 2.8,
+        "hinge": "left",
+        "swing": 1,
+        "knoblessWhenLocked": true
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        -6.15,
+        1.0,
+        1.0
+      ],
+      "interactable": "library_door",
+      "params": {
+        "state": "library_door",
+        "width": 0.7,
+        "height": 2.8,
+        "hinge": "right",
+        "swing": 1,
+        "knoblessWhenLocked": true
       }
     }
   ],

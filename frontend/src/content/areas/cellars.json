@@ -1,0 +1,121 @@
+{
+  "id": "cellars",
+  "name": "The Cellars",
+  "sector": "BASEMENT",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -10.5,
+      -3.0,
+      -9.0
+    ],
+    "max": [
+      10.5,
+      0.6,
+      8.0
+    ]
+  },
+  "neighbors": [
+    "entrance_hall",
+    "west_cellar"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 0.95,
+  "ambient": 0.25,
+  "spawn": {
+    "position": [
+      6.85,
+      -2.6,
+      -8.0
+    ],
+    "yaw": 3.14
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Box",
+      "position": [
+        -9.55,
+        -2.6,
+        4.5
+      ],
+      "params": {
+        "size": [
+          0.6,
+          1.3,
+          0.6
+        ],
+        "material": "iron"
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -9.5,
+        -1.95,
+        4.5
+      ],
+      "interactable": "mercer_cabinet",
+      "params": {
+        "size": [
+          0.7,
+          1.4,
+          0.7
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -4.0,
+        -1.75,
+        4.5
+      ],
+      "interactable": "archive_table",
+      "params": {
+        "size": [
+          1.7,
+          0.2,
+          1.0
+        ]
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        -10.25,
+        -2.6,
+        0.0
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "old_passage_grille",
+      "interactable": "old_passage_grille",
+      "params": {
+        "width": 1.2,
+        "height": 2.3,
+        "hinge": "left",
+        "swing": 1,
+        "variant": "grille"
+      }
+    }
+  ],
+  "ambience": [
+    {
+      "sound": "drip_loop",
+      "volume": 0.7,
+      "position": [
+        -8.5,
+        -2.2,
+        -7.5
+      ]
+    }
+  ],
+  "fog": {
+    "color": "#07090c",
+    "density": 0.05
+  }
+}

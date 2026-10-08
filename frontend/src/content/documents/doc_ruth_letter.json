@@ -1,0 +1,39 @@
+{
+  "id": "doc_ruth_letter",
+  "title": "Ruth's letter",
+  "kind": "letter",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "To my child, whatever they call you now —\n\nI was nineteen and I couldn't keep you. That is the whole of the excuse and it isn't one.\n\nI gave you a name before they took you, with ours hidden in it, so that you would carry it even if you never knew. They will have changed it. The book won't have.\n\nMy mother, Eleanor, taught me a counting rhyme when I was small, the way her mother taught her. She said it was older than the family. She said it was the only key we were ever given, and to keep it in our heads and not in our pockets. I am breaking that rule because I am not going to be there to teach it to you.\n\nThe key in this envelope is the other kind. She carried it from 1936 until she gave it to me.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_ruth_letter",
+          "value": true
+        }
+      ]
+    },
+    {
+      "side": "back",
+      "style": "handwritten",
+      "text": "Count the points from the top and go the way the sun goes. The line with that number gives you the word.\n\nOne, and the river carried us here — we.\nTwo, and the stone is the thing that we keep.\nThree, and a lamp in the window — the.\nFour, and the dark has a number — we count.\nFive, and the door is shut, and we wait — for.\nSix, and the seven who sat in their chairs, and those.\nSeven, and the knife took the name — who?\nEight, and the one at the edge who will stay.\n\n— R.O., 1994",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_ruth_rhyme",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "orrin",
+    "ruth",
+    "cipher",
+    "heir"
+  ],
+  "date": "1994",
+  "author": "Ruth Orrin"
+}

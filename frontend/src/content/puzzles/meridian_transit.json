@@ -1,0 +1,100 @@
+{
+  "id": "meridian_transit",
+  "title": "The refractor",
+  "input": {
+    "type": "dials",
+    "dials": [
+      {
+        "label": "dome slit",
+        "options": [
+          "north",
+          "north-east",
+          "east",
+          "south-east",
+          "south",
+          "south-west",
+          "west",
+          "north-west"
+        ]
+      },
+      {
+        "label": "altitude",
+        "options": [
+          "0°",
+          "15°",
+          "30°",
+          "45°",
+          "60°",
+          "75°",
+          "90°"
+        ]
+      }
+    ],
+    "initial": [
+      4,
+      2
+    ],
+    "attemptLabel": "Look through it",
+    "prompt": "A crank for the dome. A graduated arc for the tube."
+  },
+  "conditions": {
+    "type": "all",
+    "of": [
+      {
+        "type": "puzzleValue",
+        "puzzle": "meridian_transit",
+        "key": "d0",
+        "equals": 0
+      },
+      {
+        "type": "puzzleValue",
+        "puzzle": "meridian_transit",
+        "key": "d1",
+        "equals": 3
+      }
+    ]
+  },
+  "successActions": [
+    {
+      "type": "playSound",
+      "sound": "mech_click",
+      "position": [
+        11.8,
+        5.8,
+        -24.75
+      ]
+    },
+    {
+      "type": "setFlag",
+      "key": "looked_down_the_line",
+      "value": true
+    },
+    {
+      "type": "message",
+      "text": "Through the eyepiece: the sundial, the line of flagstones, and far off over the trees a square stone roof, sitting exactly on the line. The family vault. Something clicks in the clock drive.",
+      "duration": 8000
+    },
+    {
+      "type": "giveItem",
+      "item": "vault_key",
+      "silent": false
+    },
+    {
+      "type": "delay",
+      "ms": 2600,
+      "actions": [
+        {
+          "type": "discoverDocument",
+          "document": "doc_meridian_chart",
+          "open": true
+        }
+      ]
+    }
+  ],
+  "failureActions": [
+    {
+      "type": "message",
+      "text": "Rain on the slit, or the inside of the dome. Nothing on the line."
+    }
+  ]
+}

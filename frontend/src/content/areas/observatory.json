@@ -1,0 +1,92 @@
+{
+  "id": "observatory",
+  "name": "The Observatory",
+  "sector": "EXTERIOR",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      6.0,
+      0.5,
+      -29.0
+    ],
+    "max": [
+      16.0,
+      12.5,
+      -9.0
+    ]
+  },
+  "neighbors": [
+    "entrance_hall",
+    "exterior"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 0.7,
+  "ambient": 1.0,
+  "spawn": {
+    "position": [
+      11.5,
+      1.0,
+      -21.8
+    ],
+    "yaw": 3.14
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Hotspot",
+      "position": [
+        11.5,
+        6.3,
+        -25.0
+      ],
+      "interactable": "telescope",
+      "params": {
+        "size": [
+          1.3,
+          1.6,
+          1.3
+        ]
+      }
+    },
+    {
+      "type": "Paper",
+      "position": [
+        10.0,
+        5.865,
+        -23.75
+      ],
+      "rotation": [
+        0,
+        20,
+        0
+      ],
+      "id": "observing_card",
+      "interactable": "observing_card",
+      "params": {
+        "variant": "letter",
+        "hit": [
+          0.3,
+          0.05,
+          0.36
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        12.8,
+        1.85,
+        -26.4
+      ],
+      "interactable": "obs_logbook",
+      "params": {
+        "size": [
+          0.9,
+          0.2,
+          0.7
+        ]
+      }
+    }
+  ],
+  "ambience": []
+}

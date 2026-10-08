@@ -1,0 +1,11 @@
+{
+  "id": "east_wing_key",
+  "name": "East wing key",
+  "description": "From Hannah Vale's tin box in the family vault.",
+  "category": "KEY_ITEMS",
+  "storyTags": [
+    "1936"
+  ],
+  "model": "proc:key",
+  "inspectNote": "Paper tag: E. WING — LOCKED 19 NOV 1936 — H.V."
+}

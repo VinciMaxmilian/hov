@@ -1,0 +1,75 @@
+{
+  "id": "eight_lamps",
+  "title": "Eight lamps",
+  "input": {
+    "type": "sequence",
+    "options": [
+      "the coin",
+      "the eye",
+      "the book",
+      "the bell",
+      "the gear",
+      "the quill",
+      "the scales",
+      "the serpent"
+    ],
+    "length": 8,
+    "sound": "match",
+    "prompt": "Eight niches, eight little oil lamps, still full. Above each one an emblem is cut into the stone."
+  },
+  "conditions": {
+    "type": "puzzleValue",
+    "puzzle": "eight_lamps",
+    "key": "seq",
+    "equals": "2,6,4,7,0,3,5,1"
+  },
+  "successActions": [
+    {
+      "type": "delay",
+      "ms": 1200,
+      "actions": [
+        {
+          "type": "playSound",
+          "sound": "mech_click",
+          "position": [
+            -22,
+            -9.2,
+            -14.2
+          ]
+        }
+      ]
+    },
+    {
+      "type": "delay",
+      "ms": 2600,
+      "actions": [
+        {
+          "type": "playSound",
+          "sound": "stone_grind",
+          "position": [
+            -22,
+            -9.4,
+            -14.25
+          ]
+        },
+        {
+          "type": "setWorld",
+          "key": "chamber_door",
+          "value": "open"
+        }
+      ]
+    },
+    {
+      "type": "message",
+      "text": "The eighth flame catches. Somewhere in the wall a weight starts to move.",
+      "duration": 5000
+    }
+  ],
+  "failureActions": [
+    {
+      "type": "message",
+      "text": "The flames gutter and go out, all at once, as if somebody blew on them.",
+      "duration": 5000
+    }
+  ]
+}

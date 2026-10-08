@@ -1,0 +1,14 @@
+[
+  {
+    "id": "cottage_hammer",
+    "label": "Claw hammer",
+    "interactionType": "pickup",
+    "item": "claw_hammer"
+  },
+  {
+    "id": "caretaker_book",
+    "label": "Open ledger",
+    "interactionType": "read",
+    "document": "doc_caretaker_book"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "claw_hammer",
+  "name": "Claw hammer",
+  "description": "From the cottage tool store. The handle is dark where hands have held it for fifty years.",
+  "category": "TOOLS",
+  "storyTags": [
+    "act2"
+  ],
+  "model": "proc:hammer"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "doc_eleanor_letter_1971",
+  "title": "Eleanor's letter to Arthur",
+  "kind": "letter",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "Mr. Vale,\n\nYes. It was me. I have paid for the house since 1937, through the Ashcroft Trust, because I was forty minutes late and I have never been able to make those forty minutes up.\n\nI walked from the station. Every window was lit. The table was still laid. The tall clock in the library said 2:17 and was not going. I stood where Edmund said I should stand, by the library, and I waited, and nobody came up. Then I ran. I am not proud of it.\n\nThe lamp in the turret is for them. Please don't put it out.\n\nI will not come to the house. Don't write again.\n\nE. Orrin",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_eleanor_letter",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "eleanor",
+    "payer",
+    "1936"
+  ],
+  "date": "1971",
+  "author": "Eleanor Orrin"
+}

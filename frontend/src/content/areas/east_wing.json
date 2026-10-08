@@ -1,0 +1,351 @@
+{
+  "id": "east_wing",
+  "name": "The East Wing",
+  "sector": "EAST_WING",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      10.3,
+      0.5,
+      -18.0
+    ],
+    "max": [
+      31.6,
+      17,
+      8.6
+    ]
+  },
+  "neighbors": [
+    "entrance_hall",
+    "upper_floors",
+    "exterior"
+  ],
+  "footsteps": "wood",
+  "rainMuffle": 0.8,
+  "ambient": 1.0,
+  "spawn": {
+    "position": [
+      12.0,
+      1.0,
+      1.5
+    ],
+    "yaw": -1.57
+  },
+  "lights": [
+    {
+      "type": "point",
+      "position": [
+        29.0,
+        14.6,
+        6.0
+      ],
+      "intensity": 22,
+      "distance": 7,
+      "color": "#ffbf70",
+      "decay": 2,
+      "room": "turret_top",
+      "flicker": 0.25
+    }
+  ],
+  "objects": [
+    {
+      "type": "Door",
+      "position": [
+        10.25,
+        5.6,
+        1.25
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "east_upper_door",
+      "interactable": "east_upper_door",
+      "params": {
+        "width": 0.9,
+        "height": 2.2,
+        "hinge": "left",
+        "swing": -1
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        23.1,
+        1.0,
+        5.85
+      ],
+      "id": "veranda_door",
+      "interactable": "veranda_door",
+      "params": {
+        "width": 1.0,
+        "height": 2.4,
+        "hinge": "left",
+        "swing": 1,
+        "material": "wood_dark"
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        21.0,
+        1.0,
+        -17.8
+      ],
+      "id": "scullery_door",
+      "interactable": "scullery_door",
+      "params": {
+        "width": 1.0,
+        "height": 2.3,
+        "hinge": "left",
+        "swing": -1,
+        "material": "wood_dark"
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        15.2,
+        1.85,
+        0.0
+      ],
+      "interactable": "dining_place_cards",
+      "params": {
+        "size": [
+          5.2,
+          0.25,
+          1.5
+        ]
+      }
+    },
+    {
+      "type": "Paper",
+      "position": [
+        18.25,
+        1.765,
+        0.0
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "dining_w_card",
+      "interactable": "dining_w_card",
+      "params": {
+        "variant": "note",
+        "width": 0.09,
+        "depth": 0.06,
+        "hit": [
+          0.14,
+          0.05,
+          0.12
+        ]
+      }
+    },
+    {
+      "type": "Paper",
+      "position": [
+        15.6,
+        1.925,
+        -5.28
+      ],
+      "rotation": [
+        0,
+        5,
+        0
+      ],
+      "id": "dining_seating",
+      "interactable": "dining_seating",
+      "params": {
+        "variant": "letter",
+        "hit": [
+          0.3,
+          0.05,
+          0.36
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        12.0,
+        1.5,
+        0.0
+      ],
+      "interactable": "dining_chairs",
+      "params": {
+        "size": [
+          0.6,
+          1.0,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        22.6,
+        1.865,
+        -9.6
+      ],
+      "rotation": [
+        0,
+        15,
+        0
+      ],
+      "id": "pell_daybook",
+      "interactable": "pell_daybook",
+      "params": {
+        "color": "#3b2f25",
+        "open": true,
+        "hit": [
+          0.42,
+          0.08,
+          0.32
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        21.0,
+        3.3,
+        -6.3
+      ],
+      "interactable": "bell_board",
+      "params": {
+        "size": [
+          1.8,
+          0.8,
+          0.3
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        17.4,
+        5.795,
+        -4.35
+      ],
+      "rotation": [
+        0,
+        -80,
+        0
+      ],
+      "id": "beatrice_diary",
+      "interactable": "beatrice_diary",
+      "params": {
+        "color": "#6a3a4a",
+        "hit": [
+          0.26,
+          0.08,
+          0.3
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        13.0,
+        6.0,
+        4.8
+      ],
+      "interactable": "gramophone",
+      "params": {
+        "size": [
+          0.7,
+          0.8,
+          0.7
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        30.3,
+        13.6,
+        7.0
+      ],
+      "interactable": "turret_lamp",
+      "params": {
+        "size": [
+          0.5,
+          0.7,
+          0.5
+        ]
+      }
+    },
+    {
+      "type": "Paper",
+      "position": [
+        29.65,
+        13.385,
+        7.05
+      ],
+      "rotation": [
+        0,
+        40,
+        0
+      ],
+      "id": "arthur_heir_card",
+      "interactable": "arthur_heir_card",
+      "params": {
+        "variant": "note",
+        "hit": [
+          0.16,
+          0.05,
+          0.12
+        ]
+      }
+    },
+    {
+      "type": "Paper",
+      "position": [
+        30.15,
+        13.385,
+        7.55
+      ],
+      "rotation": [
+        0,
+        -30,
+        0
+      ],
+      "id": "eleanor_letter",
+      "interactable": "eleanor_letter",
+      "params": {
+        "variant": "letter",
+        "hit": [
+          0.3,
+          0.05,
+          0.36
+        ]
+      }
+    },
+    {
+      "type": "TapeRecorder",
+      "position": [
+        27.7,
+        13.05,
+        5.4
+      ],
+      "rotation": [
+        0,
+        20,
+        0
+      ],
+      "id": "turret_tape",
+      "interactable": "turret_tape",
+      "params": {
+        "hit": [
+          0.4,
+          0.14,
+          0.3
+        ]
+      }
+    }
+  ],
+  "ambience": []
+}

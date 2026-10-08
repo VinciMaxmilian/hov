@@ -1,0 +1,242 @@
+[
+  {
+    "id": "east_upper_door",
+    "label": "Door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Bolted on the far side.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "east_wing"
+            },
+            {
+              "type": "world",
+              "key": "east_upper_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolt",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "east_upper_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "veranda_door",
+    "label": "Door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Bolted on the far side.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "east_wing"
+            },
+            {
+              "type": "world",
+              "key": "veranda_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolt",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "veranda_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scullery_door",
+    "label": "Door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Bolted on the far side.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "east_wing"
+            },
+            {
+              "type": "world",
+              "key": "scullery_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolt",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "scullery_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dining_place_cards",
+    "label": "Place cards",
+    "interactionType": "read",
+    "document": "doc_place_cards"
+  },
+  {
+    "id": "dining_w_card",
+    "label": "Place card",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_w_card",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "At the foot of the table, an eleventh place, laid and never used. The card says only: W.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "dining_seating",
+    "label": "Seating plan",
+    "interactionType": "pickup",
+    "document": "doc_seating_1936"
+  },
+  {
+    "id": "dining_chairs",
+    "label": "Chair at the head",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "The host's chair is pushed back, as if he stood up in a hurry. The napkin is on the floor. Nobody picked it up in sixty-two years.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "pell_daybook",
+    "label": "Housekeeping book",
+    "interactionType": "pickup",
+    "document": "doc_pell_daybook"
+  },
+  {
+    "id": "bell_board",
+    "label": "Bell board",
+    "interactionType": "puzzle",
+    "puzzle": "bell_board",
+    "solvedMessage": "The panel under the bells hangs open on its hinge.",
+    "focus": {
+      "position": [
+        21.0,
+        2.95,
+        -7.45
+      ],
+      "lookAt": [
+        21.0,
+        3.2,
+        -6.2
+      ]
+    }
+  },
+  {
+    "id": "beatrice_diary",
+    "label": "Diary",
+    "interactionType": "pickup",
+    "document": "doc_beatrice_diary"
+  },
+  {
+    "id": "gramophone",
+    "label": "Gramophone",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "A record still on the turntable, the needle resting in the last groove. The label: \"Pennies from Heaven\", 1936.",
+        "duration": 6000
+      }
+    ]
+  },
+  {
+    "id": "turret_lamp",
+    "label": "Oil lamp",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_turret_lamp",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Trimmed and burning. Under its base, a card in a careful hand: \"KEEP LIT. Standing instruction — E.O., 1937.\" The lamp is the window you saw from the drive.",
+        "duration": 8000
+      }
+    ]
+  },
+  {
+    "id": "arthur_heir_card",
+    "label": "Index card",
+    "interactionType": "pickup",
+    "document": "doc_arthur_heir_card"
+  },
+  {
+    "id": "eleanor_letter",
+    "label": "Letter",
+    "interactionType": "pickup",
+    "document": "doc_eleanor_letter_1971"
+  },
+  {
+    "id": "turret_tape",
+    "label": "Tape recorder",
+    "interactionType": "use",
+    "branches": [
+      {
+        "label": "Play",
+        "actions": [
+          {
+            "type": "playRecording",
+            "document": "doc_arthur_tape_02"
+          }
+        ]
+      }
+    ]
+  }
+]

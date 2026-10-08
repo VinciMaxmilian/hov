@@ -151,4 +151,9 @@ export const uiPt: Record<string, string> = {
   records: 'registros',
   'Keep exploring': 'Continuar explorando',
   'Return to title': 'Voltar ao título',
+  // finais, mostradores
+  'the eighth record': 'o oitavo registro',
+  next: 'próximo',
+  previous: 'anterior',
+  'A / D — choose a dial · W / S — turn it': 'A / D — escolher o mostrador · W / S — girá-lo',
 }

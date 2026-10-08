@@ -217,6 +217,11 @@ export const synths: Record<string, Synth> = {
   },
   footstep_carpet: footstep(500, 0.08, 0.18, 90),
   ui: (s) => tone(s, { freq: 660, decay: 0.08, gain: 0.06 }),
+  // campainha de serviço: sino pequeno numa mola
+  bell: (s) => {
+    tone(s, { freq: 1480, decay: 0.9, gain: 0.12 })
+    tone(s, { freq: 2210, decay: 0.5, gain: 0.05 })
+  },
 }
 
 // ------------------------------------------------------------------ loops
@@ -284,6 +289,30 @@ export const loopers: Record<string, Looper> = {
       g.gain.setTargetAtTime(0, s.ctx.currentTime, 0.2)
       src.stop(s.ctx.currentTime + 1)
       lfo.stop(s.ctx.currentTime + 1)
+    }
+  },
+  // zumbido grave da câmara (pedra, ar parado)
+  drone_loop: (s) => {
+    const o = s.ctx.createOscillator()
+    o.frequency.value = 41
+    const o2 = s.ctx.createOscillator()
+    o2.frequency.value = 61.7
+    const lfo = s.ctx.createOscillator()
+    lfo.frequency.value = 0.07
+    const lg = s.ctx.createGain()
+    lg.gain.value = 0.02 * s.volume
+    const g = s.ctx.createGain()
+    g.gain.value = 0.045 * s.volume
+    lfo.connect(lg).connect(g.gain)
+    o.connect(g)
+    o2.connect(g)
+    g.connect(s.dest)
+    o.start()
+    o2.start()
+    lfo.start()
+    return () => {
+      g.gain.setTargetAtTime(0, s.ctx.currentTime, 0.3)
+      for (const n of [o, o2, lfo]) n.stop(s.ctx.currentTime + 1.5)
     }
   },
 }

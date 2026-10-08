@@ -1,0 +1,47 @@
+[
+  {
+    "id": "mercer_cabinet",
+    "label": "Steel cabinet",
+    "interactionType": "puzzle",
+    "puzzle": "mercer_cabinet",
+    "solvedMessage": "Open. Whatever Arthur kept here, you have it now.",
+    "focus": {
+      "position": [
+        -8.75,
+        -1.3,
+        4.5
+      ],
+      "lookAt": [
+        -9.5,
+        -1.45,
+        4.5
+      ]
+    }
+  },
+  {
+    "id": "archive_table",
+    "label": "Archive table",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_archive",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Mercer copies of Society minutes, bound by year, 1871 to 1936. Every volume has the same clean slit down the gutter where pages were taken out.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "old_passage_grille",
+    "label": "Iron grille",
+    "interactionType": "door",
+    "state": "locked",
+    "requiredItem": "ruth_key",
+    "lockedMessage": "An iron grille across the old passage west. The lock plate is stamped with a seal: a circle, a line, eight points.",
+    "unlockMessage": "Ruth's key turns as if it had never been anywhere else."
+  }
+]

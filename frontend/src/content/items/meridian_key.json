@@ -1,0 +1,11 @@
+{
+  "id": "meridian_key",
+  "name": "Bronze key",
+  "description": "From behind Margaret's portrait, with her letter to Hannah.",
+  "category": "KEY_ITEMS",
+  "storyTags": [
+    "meridian"
+  ],
+  "model": "proc:key_brass",
+  "inspectNote": "The bow is a circle with a line through it. No points at all — as if whoever made it didn't want to count."
+}

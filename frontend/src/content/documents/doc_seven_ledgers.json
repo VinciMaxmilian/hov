@@ -1,0 +1,23 @@
+{
+  "id": "doc_seven_ledgers",
+  "title": "The seven ledgers",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "print",
+      "text": "Seven books bound in copper, open on seven stone lecterns: KNOWLEDGE, LAW, INDUSTRY, MEDICINE, FINANCE, FAITH, RECORD.\n\nEach is written in ordinary ink in ordinary hands — Vale, Hawthorne, Blackwood, Whitmore, Ashcroft, Bell, Mercer — and each says, generation after generation, the same thing in its own words: we came down, we counted, we went up.\n\nEvery one of them stops on the same line: 17 November 1936. 2:17.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_seven_ledgers",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "chamber",
+    "society"
+  ]
+}

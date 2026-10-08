@@ -1,0 +1,47 @@
+{
+  "id": "doc_minutes_1871",
+  "title": "Minutes of the first sitting, 1871",
+  "kind": "report",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "THE MERIDIAN SOCIETY — Minutes of the first sitting, 21 June 1871. Recorded by A. Mercer.\n\nPresent, and seated in the order the Record requires:\nI. Vale — Knowledge (the book)\nII. Hawthorne — Law (the scales)\nIII. Blackwood — Industry (the gear)\nIV. Whitmore — Medicine (the serpent)\nV. Ashcroft — Finance (the coin)\nVI. Bell — Faith (the bell)\nVII. Mercer — Record (the quill)\nVIII. ████████ — Witness (the eye)\n\nThe eighth chair offered to J. ███████, who refused it in these words: \"We will not sit. We will only see.\" Moved by Hawthorne that the name be struck from this and all copies. Carried, six to one (Vale against).\n\nThe Witness's book returned unsigned. To be kept apart.",
+      "heading": "MDCCCLXXI",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_minutes_1871",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "society",
+    "witness",
+    "erasure"
+  ],
+  "date": "21 June 1871",
+  "author": "A. Mercer",
+  "details": [
+    {
+      "id": "minutes_erasure",
+      "page": 0,
+      "rect": [
+        0.05,
+        0.45,
+        0.9,
+        0.2
+      ],
+      "note": "The blacked-out name is not ink. The paper has been scraped thin with a blade, then inked over. Under raking light: O, R, R…",
+      "onFound": [
+        {
+          "type": "setFlag",
+          "key": "noticed_orr_erasure",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

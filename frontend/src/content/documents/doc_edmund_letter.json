@@ -1,0 +1,26 @@
+{
+  "id": "doc_edmund_letter",
+  "title": "Edmund's letter to Eleanor (carbon)",
+  "kind": "letter",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "Miss E. Orrin, c/o St. Brigid's, Portland.\n\nDear Miss Orrin,\n\nYou do not owe this family anything; your great-grandfather was right to refuse us, and the Society was wrong to strike his name. I am asking anyway.\n\nCome on the 17th. Take the last train. You need not sit, or sign, or speak. Your family's word was that you would only see. That is all the Record has ever needed, and we have not had it for sixty-five years.\n\nI enclose the key to the old way down, by the well in the west cellar, in case the seam door sticks as it does. Keep it, whatever you decide.\n\nEdmund Vale",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_edmund_letter",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "eleanor",
+    "key"
+  ],
+  "date": "1 November 1936",
+  "author": "Edmund Vale"
+}

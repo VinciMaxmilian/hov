@@ -1,22 +1,142 @@
 [
-  { "id": "library_newspaper", "label": "Newspaper", "interactionType": "pickup", "document": "doc_newspaper_1936" },
   {
     "id": "library_clock",
     "label": "Grandfather clock",
     "interactionType": "puzzle",
     "puzzle": "library_clock",
     "solvedMessage": "It runs now. Louder than a clock should.",
-    "focus": { "position": [-10, 1.86, -11.72], "lookAt": [-10, 1.84, -12.54] }
+    "focus": {
+      "position": [
+        -4.2,
+        2.86,
+        -7.48
+      ],
+      "lookAt": [
+        -4.2,
+        2.84,
+        -8.3
+      ]
+    }
+  },
+  {
+    "id": "library_newspaper",
+    "label": "Newspaper",
+    "interactionType": "pickup",
+    "document": "doc_newspaper_1936"
   },
   {
     "id": "library_bookcase",
     "label": "Bookcase",
     "interactionType": "use",
     "state": "closed",
-    "enabledWhen": { "type": "world", "key": "library_bookcase", "equals": "closed" },
+    "enabledWhen": {
+      "type": "world",
+      "key": "library_bookcase",
+      "equals": "closed"
+    },
     "actions": [
-      { "type": "setFlag", "key": "noticed_bookcase", "value": true },
-      { "type": "message", "text": "It stands a finger's width proud of the wall. The boards in front are worn in a straight line, westward.", "duration": 6000 }
+      {
+        "type": "setFlag",
+        "key": "noticed_bookcase",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "It stands a finger's width proud of the wall. The boards in front are worn in an arc, as if something heavy swung across them.",
+        "duration": 6500
+      }
+    ]
+  },
+  {
+    "id": "mezz_rear_door",
+    "label": "Door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Bolted on the far side.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "library"
+            },
+            {
+              "type": "world",
+              "key": "mezz_rear_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolt",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "mezz_rear_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          },
+          {
+            "type": "playSound",
+            "sound": "door_open",
+            "position": [
+              -3,
+              6.6,
+              -7.5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mezz_gallery_door",
+    "label": "Door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Bolted on the far side.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "library"
+            },
+            {
+              "type": "world",
+              "key": "mezz_gallery_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolt",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "mezz_gallery_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          },
+          {
+            "type": "playSound",
+            "sound": "door_open",
+            "position": [
+              -3,
+              6.6,
+              -1.0
+            ]
+          }
+        ]
+      }
     ]
   }
 ]

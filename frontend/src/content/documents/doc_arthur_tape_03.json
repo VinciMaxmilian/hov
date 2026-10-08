@@ -1,0 +1,50 @@
+{
+  "id": "doc_arthur_tape_03",
+  "title": "Cassette — \"CAR / 40\"",
+  "kind": "recording",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "Label, shaky:\n\nCAR / 40\n\nlast one",
+      "heading": "TDK D60"
+    }
+  ],
+  "storyTags": [
+    "arthur",
+    "archive"
+  ],
+  "date": "September 1998",
+  "author": "Arthur Vale",
+  "audio": {
+    "src": "/media/audio/arthur_tape_40.mp3",
+    "duration": 32,
+    "lines": [
+      {
+        "t": 1.0,
+        "speaker": "Arthur",
+        "text": "Last one. I'm in the car because I can't do the stairs any more."
+      },
+      {
+        "t": 6.0,
+        "speaker": "Arthur",
+        "text": "Mercer's cabinet in the archive — the Trust papers are in it. I set the lock to the night. Month first, the American way, Thomas."
+      },
+      {
+        "t": 14.0,
+        "speaker": "Arthur",
+        "text": "I never got the book to talk. Forty years. It's not written for a Vale."
+      },
+      {
+        "t": 20.0,
+        "speaker": "Arthur",
+        "text": "If you're who I think you are, you won't need me for that part."
+      },
+      {
+        "t": 26.0,
+        "speaker": "Arthur",
+        "text": "Seven days. Don't let them hurry you. And keep the lamp lit."
+      }
+    ]
+  }
+}

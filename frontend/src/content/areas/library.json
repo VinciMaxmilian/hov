@@ -1,337 +1,65 @@
 {
   "id": "library",
   "name": "West Library",
-  "sector": "WEST_WING",
+  "sector": "MAIN_HALL",
   "kind": "interior",
   "bounds": {
     "min": [
-      -14,
-      -0.6,
-      -13
+      -10.1,
+      0.5,
+      -8.6
     ],
     "max": [
-      -6.1,
-      5,
-      -5
+      -3,
+      9.8,
+      1.0
     ]
   },
   "neighbors": [
     "entrance_hall",
-    "secret_passage",
-    "arthur_study"
+    "arthur_study",
+    "the_seam",
+    "upper_floors"
   ],
   "footsteps": "wood",
-  "rainMuffle": 0.8,
-  "fog": {
-    "color": "#05080b",
-    "density": 0.05
-  },
+  "rainMuffle": 0.82,
+  "ambient": 1.0,
   "spawn": {
     "position": [
-      -7.2,
-      0,
-      -8
+      -6.5,
+      1.0,
+      -2.5
     ],
-    "yaw": 1.57
+    "yaw": 0
   },
-  "rooms": [
-    {
-      "id": "library",
-      "min": [
-        -14,
-        -13
-      ],
-      "max": [
-        -6.2,
-        -5
-      ],
-      "height": 4.5,
-      "thickness": {
-        "north": 0.2,
-        "south": 0.2,
-        "east": 0.1,
-        "west": 0.2
-      },
-      "wall": "wallpaper_blue",
-      "outer": {
-        "west": "facade",
-        "north": "facade",
-        "south": "plaster_dark"
-      },
-      "floor": "wood_floor",
-      "ceiling": "plaster_dark",
-      "wainscot": {
-        "height": 1.0,
-        "material": "wood_panel"
-      },
-      "openings": [
-        {
-          "side": "east",
-          "center": -8,
-          "width": 1.2,
-          "height": 2.4,
-          "kind": "door"
-        },
-        {
-          "side": "south",
-          "center": -10,
-          "width": 2.4,
-          "height": 2.4,
-          "kind": "passage"
-        },
-        {
-          "side": "west",
-          "center": -9,
-          "width": 1.2,
-          "height": 2.4,
-          "sill": 1.1,
-          "kind": "window",
-          "glass": true
-        }
-      ]
-    }
-  ],
-  "lights": [
-    {
-      "type": "ambient",
-      "color": "#1b2a41",
-      "intensity": 0.25
-    },
-    {
-      "type": "hemisphere",
-      "color": "#2e4a62",
-      "groundColor": "#050505",
-      "intensity": 0.2
-    },
-    {
-      "type": "spot",
-      "color": "#7f9cc0",
-      "intensity": 55,
-      "position": [
-        -16.8,
-        4.4,
-        -9
-      ],
-      "target": [
-        -10.5,
-        0,
-        -9.2
-      ],
-      "angle": 0.5,
-      "penumbra": 0.8,
-      "distance": 16,
-      "castShadow": true
-    }
-  ],
+  "lights": [],
   "objects": [
     {
-      "id": "library_clock",
       "type": "GrandfatherClock",
       "position": [
-        -10,
-        0,
-        -12.75
+        -4.2,
+        1.0,
+        -8.5
       ],
+      "id": "library_clock",
       "interactable": "library_clock",
       "params": {
         "puzzle": "library_clock"
       }
     },
     {
-      "type": "Bookshelf",
-      "position": [
-        -12.4,
-        0,
-        -12.78
-      ],
-      "seed": 101,
-      "params": {
-        "width": 2.6,
-        "height": 3.4,
-        "shelves": 8
-      }
-    },
-    {
-      "type": "Bookshelf",
-      "position": [
-        -7.6,
-        0,
-        -12.78
-      ],
-      "seed": 102,
-      "params": {
-        "width": 2.4,
-        "height": 3.4,
-        "shelves": 8
-      }
-    },
-    {
-      "type": "Bookshelf",
-      "position": [
-        -13.78,
-        0,
-        -11.3
-      ],
-      "rotation": [
-        0,
-        90,
-        0
-      ],
-      "seed": 103,
-      "params": {
-        "width": 2.4,
-        "height": 3.4,
-        "shelves": 8
-      }
-    },
-    {
-      "type": "Bookshelf",
-      "position": [
-        -13.78,
-        0,
-        -6.6
-      ],
-      "rotation": [
-        0,
-        90,
-        0
-      ],
-      "seed": 104,
-      "params": {
-        "width": 2.2,
-        "height": 3.4,
-        "shelves": 8,
-        "fill": 0.7
-      }
-    },
-    {
-      "type": "Bookshelf",
-      "position": [
-        -6.42,
-        0,
-        -11.0
-      ],
-      "rotation": [
-        0,
-        -90,
-        0
-      ],
-      "seed": 105,
-      "params": {
-        "width": 2.8,
-        "height": 3.0,
-        "shelves": 7
-      }
-    },
-    {
-      "type": "Bookshelf",
-      "position": [
-        -6.42,
-        0,
-        -5.9
-      ],
-      "rotation": [
-        0,
-        -90,
-        0
-      ],
-      "seed": 106,
-      "params": {
-        "width": 1.2,
-        "height": 3.0,
-        "shelves": 7
-      }
-    },
-    {
-      "id": "library_bookcase",
-      "type": "SecretBookcase",
-      "position": [
-        -10,
-        0,
-        -5.22
-      ],
-      "rotation": [
-        0,
-        180,
-        0
-      ],
-      "seed": 217,
-      "interactable": "library_bookcase",
-      "params": {
-        "width": 2.4,
-        "height": 2.6,
-        "depth": 0.4,
-        "offset": [
-          -2.6,
-          0,
-          0
-        ],
-        "duration": 3.6
-      }
-    },
-    {
-      "type": "Rug",
-      "position": [
-        -10,
-        0,
-        -9
-      ],
-      "params": {
-        "width": 3.2,
-        "depth": 4.2
-      }
-    },
-    {
-      "type": "Table",
-      "position": [
-        -10,
-        0,
-        -9
-      ],
-      "params": {
-        "width": 2.0,
-        "depth": 1.0
-      }
-    },
-    {
-      "type": "Chair",
-      "position": [
-        -10.5,
-        0,
-        -8.15
-      ],
-      "rotation": [
-        0,
-        180,
-        0
-      ]
-    },
-    {
-      "type": "Chair",
-      "position": [
-        -9.4,
-        0,
-        -9.85
-      ],
-      "rotation": [
-        0,
-        10,
-        0
-      ]
-    },
-    {
-      "id": "library_newspaper",
       "type": "Paper",
       "position": [
-        -9.7,
-        0.782,
-        -9.1
+        -6.8,
+        1.785,
+        -4.5
       ],
       "rotation": [
         0,
         14,
         0
       ],
+      "id": "library_newspaper",
       "interactable": "library_newspaper",
       "params": {
         "variant": "newspaper",
@@ -343,31 +71,86 @@
       }
     },
     {
-      "type": "Paper",
+      "type": "SecretBookcase",
       "position": [
-        -10.5,
-        0.782,
-        -8.9
+        -9.78,
+        1.0,
+        -4.0
       ],
       "rotation": [
         0,
-        -30,
+        90,
         0
       ],
+      "id": "library_bookcase",
+      "interactable": "library_bookcase",
       "params": {
-        "variant": "letter"
+        "mode": "swing",
+        "width": 1.4,
+        "height": 2.6,
+        "depth": 0.36,
+        "hinge": "right",
+        "angle": 85,
+        "duration": 3.4
+      },
+      "seed": 217
+    },
+    {
+      "type": "Door",
+      "position": [
+        -3,
+        5.6,
+        -7.5
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "mezz_rear_door",
+      "interactable": "mezz_rear_door",
+      "params": {
+        "width": 0.9,
+        "height": 2.3,
+        "hinge": "left",
+        "swing": 1
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        -3,
+        5.6,
+        -1.0
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "mezz_gallery_door",
+      "interactable": "mezz_gallery_door",
+      "params": {
+        "width": 0.9,
+        "height": 2.3,
+        "hinge": "left",
+        "swing": 1
       }
     }
   ],
   "ambience": [
     {
-      "sound": "drip_loop",
+      "sound": "clock_tick_loop",
+      "volume": 0.8,
       "position": [
-        -13.5,
-        0.3,
-        -12.5
-      ],
-      "volume": 0.7
+        -4.2,
+        2.6,
+        -8.4
+      ]
     }
-  ]
+  ],
+  "fog": {
+    "color": "#05080b",
+    "density": 0.045
+  }
 }

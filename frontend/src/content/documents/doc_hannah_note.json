@@ -1,0 +1,25 @@
+{
+  "id": "doc_hannah_note",
+  "title": "Hannah's note",
+  "kind": "letter",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "November 1936.\n\nI took the minutes out of Grandfather's safe forty years ago so that the Society could not burn them. Now there is no Society left to burn anything. They went down on the 17th, all of them, and Edmund with them, and the house kept them.\n\nI have locked the new wing with the table still laid. Let the police write what they like. Let Coyle say power failure.\n\nThe key is here, with me. Whoever reads this has come down the line to find it, which means you are looking properly. Go and see the table. Count the places.\n\n— Hannah Vale",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_hannah_note",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "hannah",
+    "1936"
+  ],
+  "date": "November 1936",
+  "author": "Hannah Vale"
+}

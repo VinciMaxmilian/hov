@@ -1,0 +1,39 @@
+{
+  "id": "doc_margaret_diary",
+  "title": "Margaret Vale's diary",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "9 March 1849. E. came up from the bottom field after dark with mud to the shoulder and something wrapped in his coat he would not unwrap at the table. He said he had found a stone with a ring cut in it, and a line, and points round the ring. I asked how many. He said eight, and then he said it again, as if he had counted wrong the first time.\n\n1871. They are seven now, round the long table, and E. calls it a Society, and they have a seal made with seven points because seven is what they are. I said the stone has eight. He said: the eighth refused. I wrote it down. Someone in this house must write things down.\n\n1880. Widowed. The eighth book is kept apart, as it always was. I will not say where.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_margaret_diary",
+          "value": true
+        }
+      ]
+    },
+    {
+      "side": "back",
+      "style": "handwritten",
+      "text": "1885. E. put a lock behind my likeness in the old hall, of all places, and set it to the year he found the stone — two winters after we came west. He thought it a fine joke: my face keeping his secret. I have put my own secret behind it now. If Hannah wants the truth she knows where my face is.",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_diary_lock",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "margaret",
+    "eight",
+    "witness_ledger"
+  ],
+  "code": "DOC03",
+  "date": "1849–1885",
+  "author": "Margaret Vale"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "doc_order_of_night",
+  "title": "The Order of the Night",
+  "kind": "report",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "THE RECKONING — 17 NOVEMBER 1936 — PRIVATE\n\n9 p.m. Dinner.\nBefore 2 a.m. Go down by the seam, in the order of sitting. The housekeeper to remain above.\nAt 2:17 the library clock is set and let strike. The counterweight takes the seam door shut behind us; it will open again when the count is done.\nThe Record is read by Knowledge, confirmed by each chair in turn, and — for the first time since 1871 — witnessed.\n\nVOTES ON THE MOTION TO CONTINUE: Vale, aye. Hawthorne, aye. Blackwood, aye. Whitmore (Medicine), NO — \"I will go down. I will not count.\" Ashcroft, aye. Bell, aye. Mercer, aye.\n\nWITNESS: Miss Eleanor Orrin, by invitation of E. Vale. Expected by the last train.",
+      "heading": "ORDER OF THE NIGHT",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_order_of_night",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "1936",
+    "julian",
+    "eleanor",
+    "witness"
+  ],
+  "date": "17 November 1936",
+  "author": "Edmund Vale"
+}

@@ -1,0 +1,172 @@
+{
+  "id": "mercer_cabinet",
+  "title": "Mercer's cabinet",
+  "input": {
+    "type": "dials",
+    "dials": [
+      {
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      {
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      {
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      },
+      {
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ]
+      }
+    ],
+    "initial": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "attemptLabel": "Turn the handle",
+    "prompt": "A steel cabinet with a four-wheel combination lock. Stencilled on the door: MERCER."
+  },
+  "conditions": {
+    "type": "any",
+    "of": [
+      {
+        "type": "all",
+        "of": [
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d0",
+            "equals": 1
+          },
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d1",
+            "equals": 1
+          },
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d2",
+            "equals": 1
+          },
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d3",
+            "equals": 7
+          }
+        ]
+      },
+      {
+        "type": "all",
+        "of": [
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d0",
+            "equals": 1
+          },
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d1",
+            "equals": 7
+          },
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d2",
+            "equals": 1
+          },
+          {
+            "type": "puzzleValue",
+            "puzzle": "mercer_cabinet",
+            "key": "d3",
+            "equals": 1
+          }
+        ]
+      }
+    ]
+  },
+  "successActions": [
+    {
+      "type": "playSound",
+      "sound": "unlock"
+    },
+    {
+      "type": "playSound",
+      "sound": "drawer"
+    },
+    {
+      "type": "discoverDocument",
+      "document": "doc_whitmore_register",
+      "open": false
+    },
+    {
+      "type": "delay",
+      "ms": 2200,
+      "actions": [
+        {
+          "type": "discoverDocument",
+          "document": "doc_ashcroft_receipts",
+          "open": true
+        }
+      ]
+    }
+  ],
+  "failureActions": [
+    {
+      "type": "playSound",
+      "sound": "door_locked"
+    },
+    {
+      "type": "message",
+      "text": "The handle won't turn."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "id": "doc_whitmore_register",
+  "title": "Whitmore family register",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "typed",
+      "text": "WHITMORE — births, from the parish register of the Church of St. Thaddeus, Bellweather (Mercer copy):\n\nJulian Edward Whitmore, b. 4 March 1890, s. of Dr. Edward Whitmore. Physician. Seat: IV, Medicine, from 1921.\nAgnes Whitmore, b. 1894.\n\nFacing page, cut out with a blade: a rectangle the size of one entry. Pencilled beside the hole, in Arthur's hand: \"Not a Whitmore. The family they cut out of everybody's book.\"",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_whitmore_register",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "whitmore",
+    "julian",
+    "erasure"
+  ]
+}

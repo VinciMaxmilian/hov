@@ -1,12 +1,90 @@
 [
   {
-    "id": "main_door",
-    "label": "Front door",
-    "interactionType": "door",
-    "state": "locked",
-    "requiredItem": "entry_key",
-    "lockedMessage": "Locked.",
-    "unlockMessage": "The lock gives at once. Someone has kept it oiled."
+    "id": "hall_clock",
+    "label": "Longcase clock",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "noticed_ticking",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Stopped at twenty to eight. And yet something in this house is ticking — somewhere off to the west.",
+        "duration": 5500
+      }
+    ]
+  },
+  {
+    "id": "hall_umbrella_stand",
+    "label": "Umbrella stand",
+    "interactionType": "container",
+    "state": "closed",
+    "sound": "pickup",
+    "emptyMessage": "Umbrellas. Dust. Nothing else.",
+    "actions": [
+      {
+        "type": "giveItem",
+        "item": "study_key",
+        "silent": true
+      },
+      {
+        "type": "message",
+        "text": "At the bottom, under a dead umbrella: a small brass key."
+      }
+    ]
+  },
+  {
+    "id": "hall_coats",
+    "label": "Coat rack",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_coats",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Two wool coats, sixty years out of fashion. They're dry.",
+        "duration": 5000
+      }
+    ]
+  },
+  {
+    "id": "hall_portrait_elias",
+    "label": "Portrait",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_portrait_elias",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "ELIAS VALE · 1812–1880 · CAME WEST 1847. A surveyor's chain across his lap. The painter left dirt under his nails.",
+        "duration": 6000
+      }
+    ]
+  },
+  {
+    "id": "hall_portrait_margaret",
+    "label": "Portrait",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_portrait_margaret",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "MARGARET VALE · 1816–1891. She holds a pen the way other sitters hold a key.",
+        "duration": 5500
+      }
+    ]
   },
   {
     "id": "study_door",
@@ -18,83 +96,119 @@
     "unlockMessage": "The brass key fits."
   },
   {
-    "id": "library_door",
+    "id": "hall_library_door",
+    "label": "Double door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Locked from the other side. Through the keyhole: the dark shape of a key, still in the lock.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "library"
+            },
+            {
+              "type": "world",
+              "key": "hall_library_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Turn the key",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "hall_library_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          },
+          {
+            "type": "playSound",
+            "sound": "door_open",
+            "position": [
+              -3,
+              2,
+              -0.5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "garden_library_door",
     "label": "Door",
     "interactionType": "door",
     "state": "locked",
-    "requiredItem": "library_knob",
-    "consumeItem": true,
-    "lockedMessage": "No knob — only a bare square spindle. It was taken off, not broken off.",
-    "unlockMessage": "The knob seats on the spindle. It turns."
+    "lockedMessage": "Bolted on the far side.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "library"
+            },
+            {
+              "type": "world",
+              "key": "garden_library_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolt",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "garden_library_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          },
+          {
+            "type": "playSound",
+            "sound": "door_open",
+            "position": [
+              -3,
+              2,
+              -7.5
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "back_door",
+    "label": "Garden door",
+    "interactionType": "door",
+    "state": "closed"
+  },
+  {
+    "id": "gallery_door",
+    "label": "Door to the gallery",
+    "interactionType": "door",
+    "state": "locked",
+    "requiredItem": "meridian_key",
+    "lockedMessage": "Locked. The escutcheon is cast bronze: a circle with a line through it. No points.",
+    "unlockMessage": "The bronze key turns. Beyond, a long glazed corridor runs north toward the dome."
   },
   {
     "id": "east_wing_door",
     "label": "Door",
     "interactionType": "door",
     "state": "locked",
-    "lockedMessage": "It gives a finger's width and stops. A chain, on the other side."
-  },
-  {
-    "id": "hall_umbrella_stand",
-    "label": "Umbrella stand",
-    "interactionType": "container",
-    "state": "closed",
-    "emptyMessage": "Umbrellas. Dust. Nothing else.",
-    "sound": "pickup",
-    "actions": [
-      { "type": "giveItem", "item": "study_key", "silent": true },
-      { "type": "message", "text": "At the bottom, under a dead umbrella: a small brass key." }
-    ]
-  },
-  {
-    "id": "hall_coats",
-    "label": "Coat rack",
-    "interactionType": "use",
-    "actions": [
-      { "type": "setFlag", "key": "seen_coats", "value": true },
-      { "type": "message", "text": "Two wool coats, fifty years out of fashion. They're dry.", "duration": 5000 }
-    ]
-  },
-  {
-    "id": "hall_boards",
-    "label": "Boarded archway",
-    "interactionType": "use",
-    "actions": [{ "type": "message", "text": "Boarded from this side. The nails are newer than the boards." }]
-  },
-  {
-    "id": "hall_mantel_clock",
-    "label": "Mantel clock",
-    "interactionType": "use",
-    "actions": [
-      { "type": "setFlag", "key": "noticed_ticking", "value": true },
-      { "type": "message", "text": "Stopped at twenty to eight. And yet something in this hall is ticking.", "duration": 5500 }
-    ]
-  },
-  {
-    "id": "hall_portrait_margaret",
-    "label": "Portrait",
-    "interactionType": "use",
-    "actions": [
-      { "type": "setFlag", "key": "seen_portrait_margaret", "value": true },
-      { "type": "message", "text": "MARGARET VALE · 1816–1891. She holds a pen the way other sitters hold a key.", "duration": 5500 }
-    ]
-  },
-  {
-    "id": "hall_portrait_elias",
-    "label": "Portrait",
-    "interactionType": "use",
-    "actions": [
-      { "type": "setFlag", "key": "seen_portrait_elias", "value": true },
-      { "type": "message", "text": "ELIAS VALE · 1812–1880. A surveyor's chain across his lap. The painter left dirt under his nails.", "duration": 5500 }
-    ]
-  },
-  {
-    "id": "hall_painting_bellweather",
-    "label": "Painting",
-    "interactionType": "use",
-    "actions": [
-      { "type": "setFlag", "key": "seen_painting_bellweather", "value": true },
-      { "type": "message", "text": "Bellweather, 1880. The mill, the rail spur, the church. Seven chimneys smoking along the ridge.", "duration": 5500 }
-    ]
+    "requiredItem": "east_wing_key",
+    "lockedMessage": "It gives a finger's width and stops. A chain, and a padlock, on the other side.",
+    "unlockMessage": "Hannah's key fits the padlock through the gap. The chain drops."
   }
 ]

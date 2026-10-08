@@ -1,0 +1,182 @@
+{
+  "id": "cemetery",
+  "name": "The Family Plot",
+  "sector": "EXTERIOR",
+  "kind": "exterior",
+  "bounds": {
+    "min": [
+      1.5,
+      -1,
+      -160
+    ],
+    "max": [
+      21.5,
+      12,
+      -144.5
+    ]
+  },
+  "neighbors": [
+    "exterior",
+    "vale_vault"
+  ],
+  "footsteps": "gravel",
+  "rainMuffle": 0,
+  "ambient": 1.0,
+  "spawn": {
+    "position": [
+      11.5,
+      0,
+      -143
+    ],
+    "yaw": 0
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Hotspot",
+      "position": [
+        11.5,
+        1.4,
+        -150.2
+      ],
+      "interactable": "grave_elias",
+      "params": {
+        "size": [
+          0.9,
+          2.8,
+          0.9
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        5.5,
+        0.5,
+        -150.5
+      ],
+      "interactable": "grave_margaret",
+      "params": {
+        "size": [
+          0.9,
+          1.1,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        7.5,
+        0.7,
+        -150.4
+      ],
+      "interactable": "grave_josiah",
+      "params": {
+        "size": [
+          0.8,
+          1.4,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        9.3,
+        0.7,
+        -150.6
+      ],
+      "interactable": "grave_clara",
+      "params": {
+        "size": [
+          0.8,
+          1.4,
+          0.5
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        13.9,
+        0.5,
+        -150.5
+      ],
+      "interactable": "grave_hannah",
+      "params": {
+        "size": [
+          0.9,
+          1.1,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        15.8,
+        0.55,
+        -150.6
+      ],
+      "interactable": "grave_1936",
+      "params": {
+        "size": [
+          1.0,
+          1.1,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        17.7,
+        0.7,
+        -150.4
+      ],
+      "interactable": "grave_arthur",
+      "params": {
+        "size": [
+          0.8,
+          1.4,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        6.3,
+        0.5,
+        -147.8
+      ],
+      "interactable": "grave_nameless",
+      "params": {
+        "size": [
+          1.0,
+          1.1,
+          0.5
+        ]
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        11.5,
+        0.4,
+        -154.55
+      ],
+      "id": "vault_door",
+      "interactable": "vault_door",
+      "params": {
+        "width": 1.1,
+        "height": 2.0,
+        "hinge": "left",
+        "swing": 1,
+        "variant": "iron"
+      }
+    }
+  ],
+  "ambience": []
+}

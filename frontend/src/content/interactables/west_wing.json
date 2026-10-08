@@ -1,0 +1,158 @@
+[
+  {
+    "id": "margaret_portrait",
+    "label": "Portrait",
+    "interactionType": "puzzle",
+    "puzzle": "margaret_lock",
+    "solvedMessage": "The portrait stands open on its hinge. The compartment behind it is empty now.",
+    "focus": {
+      "position": [
+        -13.55,
+        2.6,
+        0.8
+      ],
+      "lookAt": [
+        -12.73,
+        2.55,
+        0.8
+      ]
+    }
+  },
+  {
+    "id": "vale_children",
+    "label": "Portrait",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "JOSIAH & CLARA VALE · 1850. Two children in their best clothes, on a bench in front of a log house. Behind them, a man is digging. You can only see his back.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "great_fireplace",
+    "label": "Fireplace",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_false_flue",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Big enough to stand in. You do. Above an arm's length there is no soot at all: the flue is clean stone. A chimney that was built and never lit.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "west_door",
+    "label": "West door",
+    "interactionType": "door",
+    "state": "locked",
+    "lockedMessage": "Bolted from the inside.",
+    "branches": [
+      {
+        "when": {
+          "type": "all",
+          "of": [
+            {
+              "type": "area",
+              "area": "west_wing"
+            },
+            {
+              "type": "world",
+              "key": "west_door",
+              "equals": "locked"
+            }
+          ]
+        },
+        "label": "Draw the bolts",
+        "actions": [
+          {
+            "type": "setWorld",
+            "key": "west_door",
+            "value": "open"
+          },
+          {
+            "type": "playSound",
+            "sound": "unlock"
+          },
+          {
+            "type": "playSound",
+            "sound": "door_open",
+            "position": [
+              -19.2,
+              1.6,
+              6.65
+            ]
+          },
+          {
+            "type": "setFlag",
+            "key": "opened_west_door",
+            "value": true
+          },
+          {
+            "type": "message",
+            "text": "Three bolts, top, middle, bottom. The police drew the hinge pins in 1936 rather than touch them.",
+            "duration": 6000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "widow_diary",
+    "label": "Diary",
+    "interactionType": "pickup",
+    "document": "doc_margaret_diary"
+  },
+  {
+    "id": "elias_field_book",
+    "label": "Field book",
+    "interactionType": "pickup",
+    "document": "doc_field_book_1849"
+  },
+  {
+    "id": "elias_safe",
+    "label": "Iron safe",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_elias_safe",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "The door hangs open; it has for a long time. Empty. Scratched inside the door with a hatpin: \"H.V. took them. Good. — M.V.\"",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "family_register",
+    "label": "Bible leaf",
+    "interactionType": "pickup",
+    "document": "doc_family_register"
+  },
+  {
+    "id": "tower_chair",
+    "label": "Chair",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_tower",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "A chair turned to the window, facing north. From here: the copper dome of the observatory, a sundial, and a line of flat stones running off into the trees.",
+        "duration": 7000
+      }
+    ]
+  }
+]

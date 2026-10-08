@@ -1,0 +1,76 @@
+{
+  "id": "west_cellar",
+  "name": "The Old Cellar",
+  "sector": "BASEMENT",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -32,
+      -3.0,
+      -7.0
+    ],
+    "max": [
+      -10.4,
+      0.4,
+      7.0
+    ]
+  },
+  "neighbors": [
+    "cellars",
+    "below"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 0.97,
+  "ambient": 0.12,
+  "spawn": {
+    "position": [
+      -11.5,
+      -2.6,
+      0
+    ],
+    "yaw": 1.57
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Hotspot",
+      "position": [
+        -22.0,
+        -1.95,
+        2.0
+      ],
+      "interactable": "old_well",
+      "params": {
+        "size": [
+          2.0,
+          1.0,
+          2.0
+        ]
+      }
+    }
+  ],
+  "ambience": [
+    {
+      "sound": "drip_loop",
+      "volume": 0.9,
+      "position": [
+        -22,
+        -2.0,
+        2.0
+      ]
+    },
+    {
+      "sound": "wind_draft",
+      "volume": 0.6,
+      "position": [
+        -22,
+        -2.2,
+        2.0
+      ]
+    }
+  ],
+  "fog": {
+    "color": "#07090c",
+    "density": 0.05
+  }
+}

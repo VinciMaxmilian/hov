@@ -1,0 +1,115 @@
+{
+  "id": "vale_vault",
+  "name": "The Vale Vault",
+  "sector": "EXTERIOR",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      10.1,
+      0.3,
+      -158.2
+    ],
+    "max": [
+      12.9,
+      3.2,
+      -154.6
+    ]
+  },
+  "neighbors": [
+    "cemetery",
+    "exterior"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 0.85,
+  "ambient": 0.4,
+  "spawn": {
+    "position": [
+      11.5,
+      0.4,
+      -155.2
+    ],
+    "yaw": 0
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Box",
+      "position": [
+        12.35,
+        0.4,
+        -157.1
+      ],
+      "params": {
+        "size": [
+          0.5,
+          0.28,
+          0.36
+        ],
+        "material": "iron"
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        12.35,
+        0.6,
+        -157.1
+      ],
+      "interactable": "hannah_box",
+      "params": {
+        "size": [
+          0.6,
+          0.4,
+          0.5
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        12.75,
+        1.5,
+        -156.2
+      ],
+      "interactable": "vault_plates",
+      "params": {
+        "size": [
+          0.2,
+          1.6,
+          3.2
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        11.5,
+        0.5,
+        -157.5
+      ],
+      "interactable": "crypt_grate",
+      "params": {
+        "size": [
+          1.0,
+          0.2,
+          1.1
+        ]
+      }
+    }
+  ],
+  "ambience": [
+    {
+      "sound": "drip_loop",
+      "volume": 0.5,
+      "position": [
+        11.5,
+        0.8,
+        -157.5
+      ]
+    }
+  ],
+  "fog": {
+    "color": "#07090c",
+    "density": 0.05
+  }
+}

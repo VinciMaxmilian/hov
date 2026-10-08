@@ -1,0 +1,35 @@
+{
+  "id": "greenhouse",
+  "name": "The Glasshouse",
+  "sector": "EXTERIOR",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -87.0,
+      0.0,
+      -10.0
+    ],
+    "max": [
+      -65.0,
+      7,
+      0.4
+    ]
+  },
+  "neighbors": [
+    "exterior"
+  ],
+  "footsteps": "gravel",
+  "rainMuffle": 0.45,
+  "ambient": 1.0,
+  "spawn": {
+    "position": [
+      -76,
+      0.1,
+      -1.0
+    ],
+    "yaw": 0
+  },
+  "lights": [],
+  "objects": [],
+  "ambience": []
+}

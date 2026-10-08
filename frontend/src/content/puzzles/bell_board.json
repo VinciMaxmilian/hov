@@ -1,0 +1,77 @@
+{
+  "id": "bell_board",
+  "title": "The bell board",
+  "input": {
+    "type": "sequence",
+    "options": [
+      "Library",
+      "Dining",
+      "Drawing room",
+      "Hall",
+      "Master",
+      "Nursery",
+      "Guest",
+      "Garden room",
+      "Turret",
+      "Front door"
+    ],
+    "length": 3,
+    "sound": "bell",
+    "prompt": "Ten bells on coiled springs, each under a little painted label. A pull-wire hangs beside the board."
+  },
+  "conditions": {
+    "type": "puzzleValue",
+    "puzzle": "bell_board",
+    "key": "seq",
+    "equals": "0,1,8"
+  },
+  "successActions": [
+    {
+      "type": "playSound",
+      "sound": "mech_click",
+      "position": [
+        21.0,
+        3.0,
+        -6.2
+      ]
+    },
+    {
+      "type": "setFlag",
+      "key": "opened_bell_cupboard",
+      "value": true
+    },
+    {
+      "type": "message",
+      "text": "Under the bells, a panel you took for wainscot drops open on a hinge. Papers, tied with kitchen string.",
+      "duration": 6000
+    },
+    {
+      "type": "discoverDocument",
+      "document": "doc_edmund_letter",
+      "open": false
+    },
+    {
+      "type": "delay",
+      "ms": 2600,
+      "actions": [
+        {
+          "type": "discoverDocument",
+          "document": "doc_order_of_night",
+          "open": true
+        }
+      ]
+    }
+  ],
+  "failureActions": [
+    {
+      "type": "playSound",
+      "sound": "chime_dull",
+      "position": [
+        21.0,
+        3.2,
+        -6.2
+      ],
+      "volume": 0.5
+    }
+  ]
+}

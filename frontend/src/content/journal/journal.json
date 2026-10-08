@@ -1,121 +1,1240 @@
 {
   "entries": [
-    { "id": "j_will", "category": "EVENTS", "title": "The will", "unlockWhen": { "type": "flag", "key": "arrived" },
-      "text": "Stay in Vale Manor and find \"the Eighth Record\" before midnight on the seventh day. That is the whole condition. Nobody will say what the Eighth Record is." },
-    { "id": "j_vale_manor", "category": "PLACES", "title": "Vale Manor", "unlockWhen": { "type": "flag", "key": "arrived" },
-      "text": "Outside Bellweather, Oregon. Every generation added something to it. Nobody seems to have taken anything away." },
-    { "id": "j_family_vale", "category": "FAMILIES", "title": "The Vales", "unlockWhen": { "type": "flag", "key": "arrived" },
-      "text": "Either the Vales built Bellweather, or Bellweather was built around the Vales. The town can't seem to decide." },
-    { "id": "u_eighth_record", "category": "UNRESOLVED", "title": "What is the Eighth Record?", "unlockWhen": { "type": "flag", "key": "arrived" },
-      "text": "A document? A book? A room? The will only names it." },
-    { "id": "u_why_me", "category": "UNRESOLVED", "title": "Why me?", "unlockWhen": { "type": "flag", "key": "arrived" },
-      "text": "I had never heard of Arthur Vale before the letter from his lawyers." },
-
-    { "id": "j_arthur", "category": "PEOPLE", "title": "Arthur Vale", "unlockWhen": { "type": "document", "document": "doc_arthur_letter" },
-      "text": "The last owner of Vale Manor. Died this September. He left me the house, on a condition, and a letter that opens with an apology for failing." },
-    { "id": "j_executors", "category": "FAMILIES", "title": "Hawthorne & Mercer", "unlockWhen": { "type": "document", "document": "doc_executor_card" },
-      "text": "Arthur's executors. Two old Bellweather names sharing one letterhead. \"We are not permitted to assist you further.\" Permitted by whom?" },
-    { "id": "u_who_keeps_house", "category": "UNRESOLVED", "title": "Who keeps this house?", "unlockWhen": { "type": "flag", "key": "front_door_oiled" },
-      "text": "The front lock was freshly oiled. Arthur was dying for months. Someone has been looking after the place." },
-
-    { "id": "j_margaret", "category": "PEOPLE", "title": "Margaret Vale", "unlockWhen": { "type": "flag", "key": "seen_portrait_margaret" },
-      "text": "1816–1891. Her portrait hangs in the entrance hall. She was painted with a pen in her hand, not a fan or a book." },
-    { "id": "j_elias", "category": "PEOPLE", "title": "Elias Vale", "unlockWhen": { "type": "flag", "key": "seen_portrait_elias" },
-      "text": "1812–1880. The first Vale here. The portrait gives him a surveyor's chain and dirty hands." },
-    { "id": "j_bellweather", "category": "PLACES", "title": "Bellweather", "unlockWhen": { "type": "flag", "key": "seen_painting_bellweather" },
-      "text": "In the 1880 painting: a mill, a rail spur, a church, and seven big houses along the ridge." },
-    { "id": "u_ticking", "category": "UNRESOLVED", "title": "The ticking", "unlockWhen": { "type": "flag", "key": "noticed_ticking" },
-      "text": "The only clock in the hall is stopped. Something in the walls keeps time anyway.",
-      "resolvedWhen": { "type": "puzzleSolved", "puzzle": "library_clock" } },
-
-    { "id": "j_study", "category": "PLACES", "title": "Arthur's study", "unlockWhen": { "type": "flag", "key": "visited:arthur_study" },
-      "text": "Boxes labelled with family names, all empty. A corkboard with nothing left on it but pinholes." },
-    { "id": "j_1936", "category": "EVENTS", "title": "The Bellweather Disappearance",
-      "unlockWhen": { "type": "any", "of": [{ "type": "document", "document": "doc_police_report_1936" }, { "type": "document", "document": "doc_newspaper_1936" }] },
-      "text": "17 November 1936. Eleven people at dinner in this house. By morning, none of them. Four were Vales." },
-    { "id": "u_217", "category": "UNRESOLVED", "title": "Why 2:17?",
-      "unlockWhen": { "type": "any", "of": [{ "type": "document", "document": "doc_police_report_1936" }, { "type": "document", "document": "doc_arthur_note_217" }] },
+    {
+      "id": "j_will",
+      "category": "EVENTS",
+      "title": "The will",
+      "text": "Stay in Vale Manor and find \"the Eighth Record\" before midnight on the seventh day. That is the whole condition. Nobody will say what the Eighth Record is.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "arrived"
+      }
+    },
+    {
+      "id": "j_vale_manor",
+      "category": "PLACES",
+      "title": "Vale Manor",
+      "text": "Outside Bellweather, Oregon. A stone wing from 1874, a great hall from 1911, a clapboard wing from 1926, a copper observatory, and the forest all round. Every generation added something. Nobody took anything away.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "arrived"
+      }
+    },
+    {
+      "id": "j_family_vale",
+      "category": "FAMILIES",
+      "title": "The Vales",
+      "text": "Either the Vales built Bellweather, or Bellweather was built around the Vales. The town can't seem to decide.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "arrived"
+      }
+    },
+    {
+      "id": "u_eighth_record",
+      "category": "UNRESOLVED",
+      "title": "What is the Eighth Record?",
+      "text": "A document? A book? A room? The will only names it.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "arrived"
+      },
+      "resolvedWhen": {
+        "type": "flag",
+        "key": "ledger_read"
+      }
+    },
+    {
+      "id": "u_why_me",
+      "category": "UNRESOLVED",
+      "title": "Why me?",
+      "text": "I had never heard of Arthur Vale before the letter from his lawyers.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "arrived"
+      },
+      "resolvedWhen": {
+        "type": "revelation",
+        "id": "heir_is_orrin"
+      }
+    },
+    {
+      "id": "j_arthur",
+      "category": "PEOPLE",
+      "title": "Arthur Vale",
+      "text": "The last owner of Vale Manor. Died this September. He left me the house, on a condition, and a letter that opens with an apology for failing.",
+      "unlockWhen": {
+        "type": "document",
+        "document": "doc_arthur_letter"
+      }
+    },
+    {
+      "id": "j_executors",
+      "category": "FAMILIES",
+      "title": "Hawthorne & Mercer",
+      "text": "Arthur's executors. Two old Bellweather names sharing one letterhead. \"We are not permitted to assist you further.\" Permitted by whom?",
+      "unlockWhen": {
+        "type": "document",
+        "document": "doc_executor_card"
+      }
+    },
+    {
+      "id": "u_who_keeps_house",
+      "category": "UNRESOLVED",
+      "title": "Who keeps this house?",
+      "text": "The front lock was freshly oiled. A lamp burns in the turret. Arthur was dying for months. Someone has been looking after the place — and paying for it.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "front_door_oiled"
+      },
+      "resolvedWhen": {
+        "type": "revelation",
+        "id": "who_paid"
+      }
+    },
+    {
+      "id": "j_margaret",
+      "category": "PEOPLE",
+      "title": "Margaret Vale",
+      "text": "1816–1891. Her portrait hangs in the entrance hall. She was painted with a pen in her hand, not a fan or a book. She wrote everything down.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "seen_portrait_margaret"
+      }
+    },
+    {
+      "id": "j_elias",
+      "category": "PEOPLE",
+      "title": "Elias Vale",
+      "text": "1812–1880. The first Vale here; came west in 1847. A surveyor. The portrait gives him a chain and dirty hands.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "seen_portrait_elias"
+      }
+    },
+    {
+      "id": "u_ticking",
+      "category": "UNRESOLVED",
+      "title": "The ticking",
+      "text": "The hall clock is stopped. Something to the west of the hall keeps time anyway.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "noticed_ticking"
+      },
+      "resolvedWhen": {
+        "type": "puzzleSolved",
+        "puzzle": "library_clock"
+      }
+    },
+    {
+      "id": "j_study",
+      "category": "PLACES",
+      "title": "Arthur's study",
+      "text": "The old drawing room, with the piano under a sheet. Boxes labelled with family names, all empty. A corkboard with nothing left on it but pinholes.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "visited:arthur_study"
+      }
+    },
+    {
+      "id": "j_1936",
+      "category": "EVENTS",
+      "title": "The Bellweather Disappearance",
+      "text": "17 November 1936. Eleven people at dinner in this house. By morning, none of them. Four were Vales.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "document",
+            "document": "doc_police_report_1936"
+          },
+          {
+            "type": "document",
+            "document": "doc_newspaper_1936"
+          }
+        ]
+      }
+    },
+    {
+      "id": "u_217",
+      "category": "UNRESOLVED",
+      "title": "Why 2:17?",
       "text": "The clock stopped at 2:17. Arthur wrote it down as if it were an instruction.",
-      "resolvedWhen": { "type": "puzzleSolved", "puzzle": "library_clock" } },
-    { "id": "u_measurements", "category": "UNRESOLVED", "title": "\"Room measurements don't match\"", "unlockWhen": { "type": "document", "document": "doc_police_report_1936" },
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "document",
+            "document": "doc_police_report_1936"
+          },
+          {
+            "type": "document",
+            "document": "doc_arthur_note_217"
+          }
+        ]
+      },
+      "resolvedWhen": {
+        "type": "puzzleSolved",
+        "puzzle": "library_clock"
+      }
+    },
+    {
+      "id": "u_measurements",
+      "category": "UNRESOLVED",
+      "title": "\"Room measurements don't match\"",
       "text": "A policeman's pencil, in 1936: the rooms don't fit inside the walls. Which rooms?",
-      "resolvedWhen": { "type": "flag", "key": "passage_revealed" } },
-    { "id": "j_two_versions", "category": "DOCUMENTS", "title": "Two versions of one night",
-      "unlockWhen": { "type": "all", "of": [{ "type": "document", "document": "doc_police_report_1936" }, { "type": "document", "document": "doc_newspaper_1936" }] },
-      "text": "The police report: the west wing door was bolted from the inside, the clock stopped in the west library.\nThe newspaper: every door unlocked, the clock in the dining hall, a power failure.\nA power failure doesn't stop a wind-up clock." },
-    { "id": "j_edmund", "category": "PEOPLE", "title": "Edmund Vale", "unlockWhen": { "type": "document", "document": "doc_newspaper_1936" },
-      "text": "Arthur's father. One of the eleven. Arthur was seven, at school in Portland." },
-    { "id": "j_seven_families", "category": "FAMILIES", "title": "The Meridian Society", "unlockWhen": { "type": "document", "document": "doc_meridian_photo" },
-      "text": "October 1936, a month before the disappearance: seven chairs for seven families. One chair has been cut out of the print." },
-    { "id": "u_refused", "category": "UNRESOLVED", "title": "\"One refused\"", "unlockWhen": { "type": "flag", "key": "read_photo_back" },
-      "text": "\"Seven remained. One refused.\" Seven of what? Refused what?" },
-    { "id": "j_julian", "category": "PEOPLE", "title": "Dr. Julian Whitmore", "unlockWhen": { "type": "flag", "key": "read_photo_back" },
-      "text": "Arthur's pencil on the back of the photograph: \"Julian W.? — the eighth?\" Arthur also told me not to trust him." },
-    { "id": "u_eight_marks", "category": "UNRESOLVED", "title": "Too many marks", "unlockWhen": { "type": "flag", "key": "noticed_floor_marks" },
-      "text": "In the photograph, the marks on the floor don't match the number of chairs." },
-    { "id": "u_knocking", "category": "UNRESOLVED", "title": "Knocking", "unlockWhen": { "type": "flag", "key": "heard_knocking" },
-      "text": "Three knocks inside the study's north wall. I didn't answer." },
-    { "id": "j_symbol_seven", "category": "SYMBOLS", "title": "Circle, line, seven points", "unlockWhen": { "type": "hasItem", "item": "study_key" },
-      "text": "Stamped on the brass study key. It looks like a seal. Whose?" },
-
-    { "id": "j_library", "category": "PLACES", "title": "The west library", "unlockWhen": { "type": "flag", "key": "visited:library" },
-      "text": "Where the police found the clock stopped. The bulbs have been taken out of every fitting." },
-    { "id": "j_passage", "category": "PLACES", "title": "Behind the shelves", "unlockWhen": { "type": "flag", "key": "passage_revealed" },
-      "text": "Between the library and the study, a wall 1.2 metres thicker than any plan would show. Inside it, a passage running west, and down." },
-    { "id": "j_symbol_eight", "category": "SYMBOLS", "title": "Circle, line, eight points", "unlockWhen": { "type": "flag", "key": "seen_eight_point_symbol" },
-      "text": "The same seal, with eight points. Cut into stone the house was built around." },
-    { "id": "j_releve", "category": "DOCUMENTS", "title": "Survey leaf, 1791", "unlockWhen": { "type": "flag", "key": "read_releve" },
-      "text": "French, half a century before the Vales came. \"Huit points. Huit témoins.\" Eight points. Eight witnesses. And: the register was already there." }
+      "unlockWhen": {
+        "type": "document",
+        "document": "doc_police_report_1936"
+      },
+      "resolvedWhen": {
+        "type": "flag",
+        "key": "passage_revealed"
+      }
+    },
+    {
+      "id": "j_two_versions",
+      "category": "DOCUMENTS",
+      "title": "Two versions of one night",
+      "text": "The police report: the west wing door was bolted from the inside, the clock stopped in the west library.\nThe newspaper: every door unlocked, the clock in the dining hall, a power failure.\nA power failure doesn't stop a wind-up clock.",
+      "unlockWhen": {
+        "type": "all",
+        "of": [
+          {
+            "type": "document",
+            "document": "doc_police_report_1936"
+          },
+          {
+            "type": "document",
+            "document": "doc_newspaper_1936"
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_edmund",
+      "category": "PEOPLE",
+      "title": "Edmund Vale",
+      "text": "Arthur's father. One of the eleven. Arthur was seven, at school in Portland.",
+      "unlockWhen": {
+        "type": "document",
+        "document": "doc_newspaper_1936"
+      }
+    },
+    {
+      "id": "j_seven_families",
+      "category": "FAMILIES",
+      "title": "The Meridian Society",
+      "text": "October 1936, a month before the disappearance: seven chairs for seven families. One chair has been cut out of the print.",
+      "unlockWhen": {
+        "type": "document",
+        "document": "doc_meridian_photo"
+      }
+    },
+    {
+      "id": "u_refused",
+      "category": "UNRESOLVED",
+      "title": "\"One refused\"",
+      "text": "\"Seven remained. One refused.\" Seven of what? Refused what?",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_photo_back"
+      },
+      "resolvedWhen": {
+        "type": "document",
+        "document": "doc_minutes_1871"
+      }
+    },
+    {
+      "id": "j_julian",
+      "category": "PEOPLE",
+      "title": "Dr. Julian Whitmore",
+      "text": "Arthur's pencil on the back of the photograph: \"Julian W.? — the eighth?\" Arthur also told me not to trust him.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_photo_back"
+      }
+    },
+    {
+      "id": "u_julian",
+      "category": "UNRESOLVED",
+      "title": "Was Julian the eighth?",
+      "text": "Arthur thought so for twenty years. Somebody cut Julian out of the photograph.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_photo_back"
+      },
+      "resolvedWhen": {
+        "type": "revelation",
+        "id": "julian_not_eighth"
+      }
+    },
+    {
+      "id": "u_eight_marks",
+      "category": "UNRESOLVED",
+      "title": "Too many marks",
+      "text": "In the photograph, the marks on the floor don't match the number of chairs.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "noticed_floor_marks"
+      },
+      "resolvedWhen": {
+        "type": "revelation",
+        "id": "photo_altered"
+      }
+    },
+    {
+      "id": "u_knocking",
+      "category": "UNRESOLVED",
+      "title": "Knocking",
+      "text": "Three knocks inside the study's west wall. I didn't answer.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "heard_knocking"
+      },
+      "resolvedWhen": {
+        "type": "flag",
+        "key": "seen_counterweight"
+      }
+    },
+    {
+      "id": "j_symbol_seven",
+      "category": "SYMBOLS",
+      "title": "Circle, line, seven points",
+      "text": "Stamped on the brass study key. It looks like a seal. Whose?",
+      "unlockWhen": {
+        "type": "hasItem",
+        "item": "study_key"
+      }
+    },
+    {
+      "id": "j_library",
+      "category": "PLACES",
+      "title": "The west library",
+      "text": "Where the police found the clock stopped. The bulbs have been taken out of every fitting. A gallery runs round it, and an iron stair.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "visited:library"
+      }
+    },
+    {
+      "id": "j_passage",
+      "category": "PLACES",
+      "title": "The seam",
+      "text": "Between the 1911 hall and the 1874 wing, a gap a metre and a half wide that no plan shows. A door from the library behind a bookcase. A shaft with a counterweight in it. And the old wing's outer wall, still facing in.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "passage_revealed"
+      }
+    },
+    {
+      "id": "j_symbol_eight",
+      "category": "SYMBOLS",
+      "title": "Circle, line, eight points",
+      "text": "The same seal, with eight points. Cut into the old wing's stone before it was laid.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "seen_eight_point_symbol"
+      }
+    },
+    {
+      "id": "j_releve",
+      "category": "DOCUMENTS",
+      "title": "Survey leaf, 1791",
+      "text": "French, half a century before the Vales came. \"Huit points. Huit témoins.\" Eight points. Eight witnesses. And: the register was already there.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_releve"
+      }
+    },
+    {
+      "id": "j_caretaker",
+      "category": "PEOPLE",
+      "title": "The caretaker",
+      "text": "Comes on Mondays, paid by the Ashcroft Trust. Oils the locks, trims the turret lamp, never stays after dark, never opens the west wing. Standing instructions signed E.O., 1937.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_caretaker_book"
+      }
+    },
+    {
+      "id": "j_west_wing",
+      "category": "PLACES",
+      "title": "The west wing",
+      "text": "The stone house of 1874, sealed from the inside since 1936 and boarded up in 1938. The oldest rooms in the house, and the coldest.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "visited:west_wing"
+      }
+    },
+    {
+      "id": "j_stone_1849",
+      "category": "EVENTS",
+      "title": "The stone, 1849",
+      "text": "Two years after they came west, Elias dug a trial pit and hit dressed rock: a ring, a line running true north, eight points. Someone had set it there before any Vale.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "read_field_book"
+          },
+          {
+            "type": "flag",
+            "key": "read_margaret_diary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_hannah",
+      "category": "PEOPLE",
+      "title": "Hannah Vale",
+      "text": "1864–1940. Margaret's granddaughter. The one who meant to tell the truth.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "read_letter_1888"
+          },
+          {
+            "type": "flag",
+            "key": "read_observing_card"
+          },
+          {
+            "type": "flag",
+            "key": "read_hannah_note"
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_found_it",
+      "category": "EVENTS",
+      "title": "\"He found it\"",
+      "text": "Margaret, 1888: the Society was not founded by Elias. He found it — a circle, a line, eight points, already in the ground, already kept by someone. He filled seven chairs. The Orrins would not sit in the eighth.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_letter_1888"
+      }
+    },
+    {
+      "id": "u_orrin",
+      "category": "UNRESOLVED",
+      "title": "The Orrins",
+      "text": "A family that refused the eighth chair in 1871 — and whose name keeps turning up scraped off things.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "read_letter_1888"
+          },
+          {
+            "type": "document",
+            "document": "doc_minutes_1871"
+          }
+        ]
+      },
+      "resolvedWhen": {
+        "type": "revelation",
+        "id": "witness_erased"
+      }
+    },
+    {
+      "id": "j_meridian",
+      "category": "PLACES",
+      "title": "The line",
+      "text": "True north from the stone under the west wing: through the observatory, the sundial, a row of flagstones, and on into the trees to the family vault. Elias built everything on it.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "looked_down_the_line"
+          },
+          {
+            "type": "flag",
+            "key": "read_meridian_chart"
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_observatory",
+      "category": "PLACES",
+      "title": "The observatory",
+      "text": "1911, Hannah's. A copper dome on the line, with a telescope that, according to her, is not for stars.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "visited:observatory"
+      }
+    },
+    {
+      "id": "j_nameless",
+      "category": "SYMBOLS",
+      "title": "The nameless stone",
+      "text": "In the family plot: a stone with the name chiselled off. A year, 1871, and eight points.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "seen_nameless_stone"
+      }
+    },
+    {
+      "id": "j_minutes",
+      "category": "DOCUMENTS",
+      "title": "The first sitting, 1871",
+      "text": "Seven families and seven functions — Knowledge, Law, Industry, Medicine, Finance, Faith, Record — and an eighth: Witness, the eye. Offered to a J. Orr—, refused (\"We will not sit. We will only see.\"), and struck out. The Witness's book, kept apart.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_minutes_1871"
+      }
+    },
+    {
+      "id": "u_witness_book",
+      "category": "UNRESOLVED",
+      "title": "The book kept apart",
+      "text": "Margaret's diary, the 1871 minutes: the Witness's book is \"kept apart\". Where? And is it the Eighth Record?",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "read_margaret_diary"
+          },
+          {
+            "type": "flag",
+            "key": "read_minutes_1871"
+          }
+        ]
+      },
+      "resolvedWhen": {
+        "type": "flag",
+        "key": "seen_witness_ledger"
+      }
+    },
+    {
+      "id": "j_dinner",
+      "category": "EVENTS",
+      "title": "The dinner",
+      "text": "The east wing table is still laid for the night of 17 November 1936: ten places with cards, and an eleventh at the foot, unused, with a card that says only W.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "read_place_cards"
+          },
+          {
+            "type": "flag",
+            "key": "seen_w_card"
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_reckoning",
+      "category": "EVENTS",
+      "title": "The Reckoning",
+      "text": "Once a generation the seven chairs went down by the seam and counted. In 1936 Edmund meant to have it witnessed, for the first time since 1871. At 2:17 the library clock struck and the counterweight shut the door behind them.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_order_of_night"
+      }
+    },
+    {
+      "id": "j_eleanor",
+      "category": "PEOPLE",
+      "title": "Eleanor Orrin",
+      "text": "Invited by Edmund to stand as Witness on 17 November 1936. Her train was held at Albany. She walked from the station.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "read_order_of_night"
+          },
+          {
+            "type": "flag",
+            "key": "read_telegram"
+          },
+          {
+            "type": "flag",
+            "key": "read_edmund_letter"
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_pell",
+      "category": "PEOPLE",
+      "title": "Mrs. Ada Pell",
+      "text": "The Vales' housekeeper; the eleventh of the eleven. She was told to stay above. She didn't burn the instructions.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_pell_daybook"
+      }
+    },
+    {
+      "id": "j_ruth",
+      "category": "PEOPLE",
+      "title": "Ruth Orrin",
+      "text": "Eleanor's daughter. Born 1946, died 1994. Left a sealed letter and a key at St. Brigid's, for a child she couldn't keep.",
+      "unlockWhen": {
+        "type": "any",
+        "of": [
+          {
+            "type": "flag",
+            "key": "read_st_brigid"
+          },
+          {
+            "type": "flag",
+            "key": "read_ruth_letter"
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_rhyme",
+      "category": "SYMBOLS",
+      "title": "The counting rhyme",
+      "text": "Eight lines, one word each. \"Count the points from the top and go the way the sun goes.\" The only key the Orrins were ever given.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_ruth_rhyme"
+      }
+    },
+    {
+      "id": "j_payer",
+      "category": "EVENTS",
+      "title": "Who paid",
+      "text": "From 1937 the Ashcroft Trust paid for the house, the boards, the roof, the lamp: authorised E.O. From 1971, A.V. as well. In 1968, one entry: \"rebinding, vellum, one volume\".",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "read_receipts"
+      }
+    },
+    {
+      "id": "j_arthur_wrong",
+      "category": "PEOPLE",
+      "title": "What Arthur got wrong",
+      "text": "Julian Whitmore was not the eighth — he sat as Medicine, and voted no. The house wasn't paid for by Hawthorne & Mercer, but by a woman who missed a train. And the book didn't hold the answer for him: it wasn't written for a Vale.",
+      "unlockWhen": {
+        "type": "all",
+        "of": [
+          {
+            "type": "revelation",
+            "id": "julian_not_eighth"
+          },
+          {
+            "type": "any",
+            "of": [
+              {
+                "type": "flag",
+                "key": "read_eleanor_letter"
+              },
+              {
+                "type": "flag",
+                "key": "read_receipts"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "j_below",
+      "category": "PLACES",
+      "title": "Below the west wing",
+      "text": "Under the old cellar, down Elias's well: a timbered tunnel of 1849 running north, a room with eight lamp niches, and a stone door older than the tunnel.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "visited:below"
+      }
+    },
+    {
+      "id": "j_chamber",
+      "category": "PLACES",
+      "title": "The Meridian Chamber",
+      "text": "A round stone room on the line. A brass circle in the floor, a gnomon, seven ledgers on seven lecterns, and an eighth book kept apart in a niche to the north.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "visited:meridian_chamber"
+      }
+    },
+    {
+      "id": "j_eleven",
+      "category": "EVENTS",
+      "title": "Where they went",
+      "text": "Down the seam, by a stair that ends at a stone door with no handle on the inside. Their things are still on the lowest steps.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "seen_1936_effects"
+      }
+    },
+    {
+      "id": "j_eighth_record",
+      "category": "DOCUMENTS",
+      "title": "The Eighth Record",
+      "text": "The Witness Ledger. The Orrins' book, written in the count. Kept apart, waiting for somebody who could read it.",
+      "unlockWhen": {
+        "type": "flag",
+        "key": "ledger_read"
+      }
+    }
   ],
   "board": {
     "nodes": [
-      { "id": "heir", "label": "Me", "x": 500, "y": 560, "showWhen": { "type": "flag", "key": "arrived" } },
-      { "id": "record", "label": "The Eighth Record", "x": 190, "y": 520, "showWhen": { "type": "flag", "key": "arrived" } },
-      { "id": "arthur", "label": "Arthur Vale", "x": 500, "y": 430, "showWhen": { "type": "document", "document": "doc_arthur_letter" } },
-      { "id": "vale", "label": "The Vales", "x": 300, "y": 300, "showWhen": { "type": "flag", "key": "arrived" } },
-      { "id": "elias", "label": "Elias Vale", "x": 150, "y": 190, "showWhen": { "type": "flag", "key": "seen_portrait_elias" } },
-      { "id": "margaret", "label": "Margaret Vale", "x": 330, "y": 150, "showWhen": { "type": "flag", "key": "seen_portrait_margaret" } },
-      { "id": "executors", "label": "Hawthorne & Mercer", "x": 750, "y": 560, "showWhen": { "type": "document", "document": "doc_executor_card" } },
-      { "id": "society", "label": "Meridian Society", "x": 620, "y": 230, "showWhen": { "type": "document", "document": "doc_meridian_photo" } },
-      { "id": "seven", "label": "Seven families", "x": 830, "y": 120, "showWhen": { "type": "document", "document": "doc_meridian_photo" } },
+      {
+        "id": "heir",
+        "label": "Me",
+        "x": 500,
+        "y": 560,
+        "showWhen": {
+          "type": "flag",
+          "key": "arrived"
+        }
+      },
+      {
+        "id": "record",
+        "label": "The Eighth Record",
+        "x": 190,
+        "y": 520,
+        "showWhen": {
+          "type": "flag",
+          "key": "arrived"
+        },
+        "revealWhen": {
+          "type": "flag",
+          "key": "seen_witness_ledger"
+        }
+      },
+      {
+        "id": "arthur",
+        "label": "Arthur Vale",
+        "x": 500,
+        "y": 430,
+        "showWhen": {
+          "type": "document",
+          "document": "doc_arthur_letter"
+        }
+      },
+      {
+        "id": "vale",
+        "label": "The Vales",
+        "x": 300,
+        "y": 300,
+        "showWhen": {
+          "type": "flag",
+          "key": "arrived"
+        }
+      },
+      {
+        "id": "elias",
+        "label": "Elias Vale",
+        "x": 150,
+        "y": 190,
+        "showWhen": {
+          "type": "flag",
+          "key": "seen_portrait_elias"
+        }
+      },
+      {
+        "id": "margaret",
+        "label": "Margaret Vale",
+        "x": 330,
+        "y": 150,
+        "showWhen": {
+          "type": "flag",
+          "key": "seen_portrait_margaret"
+        }
+      },
+      {
+        "id": "hannah",
+        "label": "Hannah Vale",
+        "x": 420,
+        "y": 70,
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_letter_1888"
+            },
+            {
+              "type": "flag",
+              "key": "read_hannah_note"
+            }
+          ]
+        }
+      },
+      {
+        "id": "executors",
+        "label": "Hawthorne & Mercer",
+        "x": 750,
+        "y": 560,
+        "showWhen": {
+          "type": "document",
+          "document": "doc_executor_card"
+        }
+      },
+      {
+        "id": "society",
+        "label": "Meridian Society",
+        "x": 620,
+        "y": 230,
+        "showWhen": {
+          "type": "document",
+          "document": "doc_meridian_photo"
+        }
+      },
+      {
+        "id": "seven",
+        "label": "Seven families",
+        "x": 830,
+        "y": 120,
+        "showWhen": {
+          "type": "document",
+          "document": "doc_meridian_photo"
+        }
+      },
       {
         "id": "eighth",
         "label": "An eighth position",
         "x": 860,
         "y": 320,
-        "showWhen": { "type": "any", "of": [{ "type": "flag", "key": "noticed_floor_marks" }, { "type": "flag", "key": "seen_eight_point_symbol" }, { "type": "flag", "key": "read_photo_back" }] },
-        "revealWhen": { "type": "any", "of": [{ "type": "flag", "key": "seen_eight_point_symbol" }, { "type": "flag", "key": "noticed_floor_marks" }] }
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "noticed_floor_marks"
+            },
+            {
+              "type": "flag",
+              "key": "seen_eight_point_symbol"
+            },
+            {
+              "type": "flag",
+              "key": "read_photo_back"
+            }
+          ]
+        },
+        "revealWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "seen_eight_point_symbol"
+            },
+            {
+              "type": "flag",
+              "key": "noticed_floor_marks"
+            }
+          ]
+        }
       },
       {
         "id": "night1936",
         "label": "17 Nov 1936",
         "x": 680,
         "y": 440,
-        "showWhen": { "type": "any", "of": [{ "type": "document", "document": "doc_police_report_1936" }, { "type": "document", "document": "doc_newspaper_1936" }] }
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "document",
+              "document": "doc_police_report_1936"
+            },
+            {
+              "type": "document",
+              "document": "doc_newspaper_1936"
+            }
+          ]
+        }
       },
-      { "id": "julian", "label": "Julian Whitmore", "x": 880, "y": 450, "showWhen": { "type": "flag", "key": "read_photo_back" } },
-      { "id": "clock217", "label": "2:17", "x": 560, "y": 330, "showWhen": { "type": "any", "of": [{ "type": "document", "document": "doc_police_report_1936" }, { "type": "document", "document": "doc_arthur_note_217" }] } },
-      { "id": "below", "label": "Under the west wing", "x": 380, "y": 440, "showWhen": { "type": "flag", "key": "passage_revealed" } }
+      {
+        "id": "julian",
+        "label": "Julian Whitmore",
+        "x": 880,
+        "y": 450,
+        "showWhen": {
+          "type": "flag",
+          "key": "read_photo_back"
+        }
+      },
+      {
+        "id": "clock217",
+        "label": "2:17",
+        "x": 560,
+        "y": 330,
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "document",
+              "document": "doc_police_report_1936"
+            },
+            {
+              "type": "document",
+              "document": "doc_arthur_note_217"
+            }
+          ]
+        }
+      },
+      {
+        "id": "below",
+        "label": "Under the west wing",
+        "x": 380,
+        "y": 440,
+        "showWhen": {
+          "type": "flag",
+          "key": "passage_revealed"
+        }
+      },
+      {
+        "id": "orrin",
+        "label": "The Orrins",
+        "x": 960,
+        "y": 230,
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_letter_1888"
+            },
+            {
+              "type": "flag",
+              "key": "read_minutes_1871"
+            }
+          ]
+        },
+        "revealWhen": {
+          "type": "revelation",
+          "id": "witness_erased"
+        }
+      },
+      {
+        "id": "eleanor",
+        "label": "Eleanor Orrin",
+        "x": 960,
+        "y": 560,
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_order_of_night"
+            },
+            {
+              "type": "flag",
+              "key": "read_telegram"
+            },
+            {
+              "type": "flag",
+              "key": "read_edmund_letter"
+            },
+            {
+              "type": "flag",
+              "key": "read_eleanor_letter"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ruth",
+        "label": "Ruth Orrin",
+        "x": 760,
+        "y": 660,
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_st_brigid"
+            },
+            {
+              "type": "flag",
+              "key": "read_ruth_letter"
+            }
+          ]
+        }
+      },
+      {
+        "id": "trust",
+        "label": "Ashcroft Trust",
+        "x": 980,
+        "y": 400,
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_caretaker_book"
+            },
+            {
+              "type": "flag",
+              "key": "read_receipts"
+            }
+          ]
+        }
+      }
     ],
     "edges": [
-      { "from": "heir", "to": "arthur", "label": "named in his will" },
-      { "from": "heir", "to": "record", "label": "find it" },
-      { "from": "arthur", "to": "record", "label": "failed to find it" },
-      { "from": "arthur", "to": "vale", "label": "last of them" },
-      { "from": "arthur", "to": "executors" },
-      { "from": "vale", "to": "elias" },
-      { "from": "vale", "to": "margaret" },
-      { "from": "elias", "to": "margaret", "label": "married" },
-      { "from": "vale", "to": "society", "label": "founded it", "confirmedWhen": { "type": "flag", "key": "read_letter_1888" } },
-      { "from": "society", "to": "seven" },
-      { "from": "society", "to": "eighth" , "confirmedWhen": { "type": "flag", "key": "seen_eight_point_symbol" } },
-      { "from": "night1936", "to": "vale", "label": "four Vales missing", "showWhen": { "type": "document", "document": "doc_newspaper_1936" } },
-      { "from": "night1936", "to": "society", "label": "the same people", "confirmedWhen": { "type": "document", "document": "doc_newspaper_1936" } },
-      { "from": "night1936", "to": "clock217" },
-      { "from": "julian", "to": "eighth", "label": "Arthur's guess", "confirmedWhen": { "type": "flag", "key": "never" } },
-      { "from": "julian", "to": "night1936", "label": "missing", "showWhen": { "type": "document", "document": "doc_newspaper_1936" } },
-      { "from": "clock217", "to": "below", "label": "opens" },
-      { "from": "below", "to": "eighth", "showWhen": { "type": "flag", "key": "seen_eight_point_symbol" } }
+      {
+        "from": "heir",
+        "to": "arthur",
+        "label": "named in his will"
+      },
+      {
+        "from": "heir",
+        "to": "record",
+        "label": "find it"
+      },
+      {
+        "from": "arthur",
+        "to": "record",
+        "label": "failed to find it"
+      },
+      {
+        "from": "arthur",
+        "to": "vale",
+        "label": "last of them"
+      },
+      {
+        "from": "arthur",
+        "to": "executors"
+      },
+      {
+        "from": "vale",
+        "to": "elias"
+      },
+      {
+        "from": "vale",
+        "to": "margaret"
+      },
+      {
+        "from": "elias",
+        "to": "margaret",
+        "label": "married"
+      },
+      {
+        "from": "margaret",
+        "to": "hannah",
+        "label": "wrote to her",
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "read_letter_1888"
+        }
+      },
+      {
+        "from": "vale",
+        "to": "society",
+        "label": "founded it",
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "never"
+        }
+      },
+      {
+        "from": "elias",
+        "to": "society",
+        "label": "found it",
+        "showWhen": {
+          "type": "flag",
+          "key": "read_letter_1888"
+        },
+        "confirmedWhen": {
+          "type": "revelation",
+          "id": "elias_found_it"
+        }
+      },
+      {
+        "from": "society",
+        "to": "seven"
+      },
+      {
+        "from": "society",
+        "to": "eighth",
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "seen_eight_point_symbol"
+        }
+      },
+      {
+        "from": "orrin",
+        "to": "eighth",
+        "label": "refused it, 1871",
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "read_minutes_1871"
+        }
+      },
+      {
+        "from": "night1936",
+        "to": "vale",
+        "label": "four Vales missing",
+        "showWhen": {
+          "type": "document",
+          "document": "doc_newspaper_1936"
+        }
+      },
+      {
+        "from": "night1936",
+        "to": "society",
+        "label": "the same people",
+        "confirmedWhen": {
+          "type": "document",
+          "document": "doc_newspaper_1936"
+        }
+      },
+      {
+        "from": "night1936",
+        "to": "clock217"
+      },
+      {
+        "from": "julian",
+        "to": "eighth",
+        "label": "Arthur's guess",
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "never"
+        }
+      },
+      {
+        "from": "julian",
+        "to": "seven",
+        "label": "Medicine",
+        "showWhen": {
+          "type": "revelation",
+          "id": "julian_not_eighth"
+        }
+      },
+      {
+        "from": "julian",
+        "to": "night1936",
+        "label": "missing",
+        "showWhen": {
+          "type": "document",
+          "document": "doc_newspaper_1936"
+        }
+      },
+      {
+        "from": "clock217",
+        "to": "below",
+        "label": "opens"
+      },
+      {
+        "from": "below",
+        "to": "eighth",
+        "showWhen": {
+          "type": "flag",
+          "key": "seen_eight_point_symbol"
+        }
+      },
+      {
+        "from": "eleanor",
+        "to": "night1936",
+        "label": "late",
+        "confirmedWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_telegram"
+            },
+            {
+              "type": "flag",
+              "key": "read_eleanor_letter"
+            }
+          ]
+        }
+      },
+      {
+        "from": "eleanor",
+        "to": "orrin",
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_order_of_night"
+            },
+            {
+              "type": "flag",
+              "key": "read_eleanor_letter"
+            }
+          ]
+        }
+      },
+      {
+        "from": "eleanor",
+        "to": "trust",
+        "label": "paid, 1937–",
+        "confirmedWhen": {
+          "type": "revelation",
+          "id": "who_paid"
+        }
+      },
+      {
+        "from": "trust",
+        "to": "executors",
+        "label": "Arthur's guess",
+        "showWhen": {
+          "type": "flag",
+          "key": "read_caretaker_book"
+        },
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "never"
+        }
+      },
+      {
+        "from": "ruth",
+        "to": "eleanor",
+        "label": "daughter",
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "read_ruth_letter"
+        }
+      },
+      {
+        "from": "heir",
+        "to": "ruth",
+        "label": "?",
+        "showWhen": {
+          "type": "any",
+          "of": [
+            {
+              "type": "flag",
+              "key": "read_st_brigid"
+            },
+            {
+              "type": "flag",
+              "key": "read_ruth_letter"
+            }
+          ]
+        },
+        "confirmedWhen": {
+          "type": "revelation",
+          "id": "heir_is_orrin"
+        }
+      },
+      {
+        "from": "record",
+        "to": "orrin",
+        "label": "their book",
+        "showWhen": {
+          "type": "flag",
+          "key": "seen_witness_ledger"
+        },
+        "confirmedWhen": {
+          "type": "flag",
+          "key": "ledger_read"
+        }
+      }
     ]
   }
 }

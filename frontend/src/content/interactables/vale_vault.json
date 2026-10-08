@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hannah_box",
+    "label": "Tin box",
+    "interactionType": "container",
+    "state": "closed",
+    "emptyMessage": "Empty now.",
+    "actions": [
+      {
+        "type": "giveItem",
+        "item": "east_wing_key",
+        "silent": true
+      },
+      {
+        "type": "discoverDocument",
+        "document": "doc_minutes_1871",
+        "open": false
+      },
+      {
+        "type": "discoverDocument",
+        "document": "doc_hannah_note",
+        "open": true
+      }
+    ]
+  },
+  {
+    "id": "vault_plates",
+    "label": "Name plates",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "ELIAS. MARGARET. JOSIAH. CLARA. HANNAH. Twelve plates; seven never cut. One more has been cut and then ground smooth again.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "crypt_grate",
+    "label": "Iron grate",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "A grate over steps going down. Rusted shut. The draught through it is dry, and runs south — toward the house.",
+        "duration": 6500
+      }
+    ]
+  }
+]

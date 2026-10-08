@@ -1,0 +1,218 @@
+{
+  "id": "west_wing",
+  "name": "The West Wing",
+  "sector": "WEST_WING",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -33.4,
+      0.4,
+      -9.4
+    ],
+    "max": [
+      -12.4,
+      15,
+      9.6
+    ]
+  },
+  "neighbors": [
+    "the_seam",
+    "exterior"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 0.8,
+  "ambient": 1.0,
+  "spawn": {
+    "position": [
+      -17.0,
+      0.5,
+      -1.0
+    ],
+    "yaw": -1.57
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Frame",
+      "position": [
+        -12.73,
+        2.6,
+        0.8
+      ],
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "id": "margaret_portrait",
+      "interactable": "margaret_portrait",
+      "params": {
+        "width": 0.8,
+        "height": 1.0,
+        "image": "/media/portraits/margaret_vale_1885.webp",
+        "plaque": "MARGARET VALE · 1885"
+      }
+    },
+    {
+      "type": "Frame",
+      "position": [
+        -12.73,
+        2.6,
+        3.5
+      ],
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "id": "vale_children",
+      "interactable": "vale_children",
+      "params": {
+        "width": 1.1,
+        "height": 1.4,
+        "image": "/media/portraits/vale_children_1850.webp",
+        "plaque": "JOSIAH & CLARA · 1850"
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -14.45,
+        1.4,
+        -2.0
+      ],
+      "interactable": "great_fireplace",
+      "params": {
+        "size": [
+          0.6,
+          1.8,
+          2.8
+        ]
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        -19.2,
+        0.5,
+        6.65
+      ],
+      "id": "west_door",
+      "interactable": "west_door",
+      "params": {
+        "width": 1.3,
+        "height": 2.5,
+        "hinge": "left",
+        "swing": 1,
+        "material": "wood_dark"
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -18.6,
+        5.03,
+        2.2
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ],
+      "id": "widow_diary",
+      "interactable": "widow_diary",
+      "params": {
+        "color": "#2a3a2a",
+        "hit": [
+          0.26,
+          0.08,
+          0.3
+        ]
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -25.2,
+        5.09,
+        -3.45
+      ],
+      "rotation": [
+        0,
+        -10,
+        0
+      ],
+      "id": "elias_field_book",
+      "interactable": "elias_field_book",
+      "params": {
+        "color": "#5a4630",
+        "open": true,
+        "hit": [
+          0.4,
+          0.08,
+          0.3
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -30.3,
+        4.8,
+        -2.5
+      ],
+      "interactable": "elias_safe",
+      "params": {
+        "size": [
+          0.9,
+          1.1,
+          0.8
+        ]
+      }
+    },
+    {
+      "type": "Paper",
+      "position": [
+        -25.6,
+        1.375,
+        7.2
+      ],
+      "rotation": [
+        0,
+        -8,
+        0
+      ],
+      "id": "family_register",
+      "interactable": "family_register",
+      "params": {
+        "variant": "letter",
+        "hit": [
+          0.3,
+          0.05,
+          0.36
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -31.2,
+        11.1,
+        -5.5
+      ],
+      "interactable": "tower_chair",
+      "params": {
+        "size": [
+          0.6,
+          1.0,
+          0.6
+        ]
+      }
+    }
+  ],
+  "ambience": [],
+  "fog": {
+    "color": "#06080b",
+    "density": 0.035
+  }
+}

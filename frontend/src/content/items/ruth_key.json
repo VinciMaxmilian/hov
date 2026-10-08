@@ -1,0 +1,12 @@
+{
+  "id": "ruth_key",
+  "name": "Ruth's key",
+  "description": "Small, brass, worn smooth. It came in the parcel from St. Brigid's.",
+  "category": "KEY_ITEMS",
+  "storyTags": [
+    "orrin",
+    "eight"
+  ],
+  "model": "proc:key_brass",
+  "inspectNote": "On the bow: a circle, a line, and eight points."
+}

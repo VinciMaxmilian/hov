@@ -1,0 +1,108 @@
+[
+  {
+    "id": "seven_ledgers",
+    "label": "Copper-bound ledger",
+    "interactionType": "read",
+    "document": "doc_seven_ledgers"
+  },
+  {
+    "id": "chamber_floor",
+    "label": "Floor",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_chamber_floor",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Cut into the floor and filled with brass: a graduated circle, a line running due north, and eight points around it. Eight. Whoever cut this did not do it for the Vales.",
+        "duration": 8000
+      }
+    ]
+  },
+  {
+    "id": "gnomon",
+    "label": "Gnomon",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "A bronze blade set upright on the line, as on a sundial. There has never been sun down here. Something was measured anyway.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "witness_ledger",
+    "label": "The eighth book",
+    "interactionType": "puzzle",
+    "puzzle": "witness_count",
+    "solvedMessage": "You have read it. It has read you.",
+    "focus": {
+      "position": [
+        -22,
+        -8.75,
+        -23.95
+      ],
+      "lookAt": [
+        -22,
+        -9.35,
+        -24.8
+      ]
+    },
+    "branches": [
+      {
+        "when": {
+          "type": "not",
+          "condition": {
+            "type": "flag",
+            "key": "read_ruth_letter"
+          }
+        },
+        "actions": [
+          {
+            "type": "setFlag",
+            "key": "seen_witness_ledger",
+            "value": true
+          },
+          {
+            "type": "message",
+            "text": "Kept apart, in a niche on the line. Page after page of small circles, each with one point marked, and nothing else. It means nothing to you. And yet it is the only book down here that looks as if it was written for someone.",
+            "duration": 9000
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "stair_1936_effects",
+    "label": "Foot of the stair",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_1936_effects",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "On the lowest steps: a gentleman's pocket watch, stopped at 2:17. A doctor's bag, initials J.W. One kid glove. A housekeeper's ring of keys. Nothing else. No one.",
+        "duration": 9000
+      }
+    ]
+  },
+  {
+    "id": "door_1936",
+    "label": "Stone door",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "message",
+        "text": "A stone door at the top of the stair, with no handle on this side. Through the crack, very far up, the sound of a chain moving. Above this is the seam. This is the way they came down.",
+        "duration": 9000
+      }
+    ]
+  }
+]

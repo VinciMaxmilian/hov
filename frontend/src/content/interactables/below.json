@@ -1,0 +1,84 @@
+[
+  {
+    "id": "well_rungs",
+    "label": "Iron rungs",
+    "interactionType": "use",
+    "branches": [
+      {
+        "label": "Climb up",
+        "actions": [
+          {
+            "type": "teleport",
+            "position": [
+              -22,
+              -2.4,
+              3.35
+            ],
+            "yaw": 3.14,
+            "area": "west_cellar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "elias_tally",
+    "label": "Timber prop",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "seen_elias_tally",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Cut into the timber with a knife: IX · III · MDCCCXLIX · E.V. And under it, eight short notches in a row.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "lintel",
+    "label": "Lintel",
+    "interactionType": "use",
+    "actions": [
+      {
+        "type": "setFlag",
+        "key": "read_lintel",
+        "value": true
+      },
+      {
+        "type": "message",
+        "text": "Letters cut into the lintel, older than the tunnel: LIGHT THEM AS THEY SIT. THE EIGHTH LAST.",
+        "duration": 7000
+      }
+    ]
+  },
+  {
+    "id": "chamber_door",
+    "label": "Stone door",
+    "interactionType": "puzzle",
+    "puzzle": "eight_lamps",
+    "enabledWhen": {
+      "type": "not",
+      "condition": {
+        "type": "world",
+        "key": "chamber_door",
+        "equals": "open"
+      }
+    },
+    "focus": {
+      "position": [
+        -22.0,
+        -8.85,
+        -11.2
+      ],
+      "lookAt": [
+        -22.0,
+        -9.1,
+        -14.0
+      ]
+    }
+  }
+]

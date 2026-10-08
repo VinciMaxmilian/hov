@@ -1,0 +1,68 @@
+{
+  "id": "garage",
+  "name": "The Carriage House",
+  "sector": "EXTERIOR",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      60.1,
+      0.05,
+      -2.8
+    ],
+    "max": [
+      83.9,
+      10,
+      6.8
+    ]
+  },
+  "neighbors": [
+    "exterior"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 0.75,
+  "ambient": 1.0,
+  "spawn": {
+    "position": [
+      69.0,
+      0.15,
+      5.0
+    ],
+    "yaw": 0
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Hotspot",
+      "position": [
+        64.5,
+        1.9,
+        -2.7
+      ],
+      "interactable": "garage_pegboard",
+      "params": {
+        "size": [
+          5.6,
+          1.5,
+          0.3
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        80.75,
+        1.05,
+        3.55
+      ],
+      "interactable": "sedan_glovebox",
+      "params": {
+        "size": [
+          0.8,
+          0.5,
+          0.6
+        ]
+      }
+    }
+  ],
+  "ambience": []
+}

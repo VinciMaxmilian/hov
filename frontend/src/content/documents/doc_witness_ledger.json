@@ -1,0 +1,24 @@
+{
+  "id": "doc_witness_ledger",
+  "title": "The Witness Ledger",
+  "kind": "record",
+  "pages": [
+    {
+      "side": "front",
+      "style": "engraved",
+      "text": "Read with the count, the circles become entries.\n\n— Before any date: a single line, the oldest hand. \"We count those who stay.\"\n— 1849 … 1870: Orrin, witness. Orrin, witness. Orrin, witness. (each name scraped away and still legible in the scraping)\n— 1871: one refused.\n— Then blank leaves, for ninety-seven years.\n— 1936: eleven points in a ring, in a hand nobody here can name.\n— 1968, in old brown ink, the last line before the blank: a name, then \"the eighth, witness.\"",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_witness_ledger",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "eighth_record",
+    "witness"
+  ],
+  "code": "VIII"
+}

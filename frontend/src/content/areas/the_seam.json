@@ -1,0 +1,211 @@
+{
+  "id": "the_seam",
+  "name": "Behind the Shelves",
+  "sector": "WEST_WING",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -12.1,
+      0.3,
+      -4.8
+    ],
+    "max": [
+      -10.4,
+      13,
+      4.8
+    ]
+  },
+  "neighbors": [
+    "library",
+    "west_wing",
+    "arthur_study",
+    "upper_floors"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 0.9,
+  "ambient": 0.3,
+  "spawn": {
+    "position": [
+      -11.25,
+      0.5,
+      -2.5
+    ],
+    "yaw": 0
+  },
+  "lights": [],
+  "objects": [
+    {
+      "type": "Counterweight",
+      "position": [
+        -11.25,
+        2.75,
+        4.25
+      ],
+      "params": {
+        "length": 0.9,
+        "swing": false
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -11.25,
+        1.68,
+        3.68
+      ],
+      "interactable": "passage_counterweight",
+      "params": {
+        "size": [
+          0.7,
+          0.8,
+          0.3
+        ]
+      }
+    },
+    {
+      "type": "Symbol",
+      "position": [
+        -11.985,
+        1.6,
+        -1.0
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "passage_symbol",
+      "interactable": "passage_symbol",
+      "params": {
+        "points": 8,
+        "size": 0.7,
+        "style": "carved"
+      }
+    },
+    {
+      "type": "Box",
+      "position": [
+        -11.6,
+        0.5,
+        0.6
+      ],
+      "params": {
+        "size": [
+          0.55,
+          0.4,
+          0.45
+        ],
+        "material": "wood_worn"
+      }
+    },
+    {
+      "type": "Book",
+      "position": [
+        -11.6,
+        0.9,
+        0.6
+      ],
+      "rotation": [
+        0,
+        20,
+        0
+      ],
+      "id": "passage_record",
+      "interactable": "passage_record",
+      "params": {
+        "color": "#3a3326",
+        "width": 0.24,
+        "depth": 0.3,
+        "thickness": 0.05,
+        "hit": [
+          0.3,
+          0.1,
+          0.34
+        ]
+      }
+    },
+    {
+      "type": "Door",
+      "position": [
+        -12.35,
+        0.5,
+        -4.0
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "seam_west_door",
+      "interactable": "seam_west_door",
+      "params": {
+        "width": 1.0,
+        "height": 2.3,
+        "hinge": "left",
+        "swing": 1,
+        "material": "wood_dark"
+      }
+    },
+    {
+      "type": "Boards",
+      "position": [
+        -12.02,
+        0.5,
+        -4.0
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "interactable": "seam_west_door",
+      "params": {
+        "width": 1.2,
+        "height": 2.3,
+        "count": 6
+      },
+      "visibleWhen": {
+        "type": "world",
+        "key": "seam_west_door",
+        "equals": "locked"
+      },
+      "seed": 1938
+    },
+    {
+      "type": "Door",
+      "position": [
+        -10.25,
+        5.6,
+        2.5
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "id": "master_seam_door",
+      "interactable": "master_seam_door",
+      "params": {
+        "width": 0.9,
+        "height": 2.2,
+        "hinge": "left",
+        "swing": -1
+      }
+    }
+  ],
+  "ambience": [
+    {
+      "sound": "wind_draft",
+      "volume": 0.8,
+      "position": [
+        -11.25,
+        1.6,
+        4.2
+      ]
+    }
+  ],
+  "fog": {
+    "color": "#07090c",
+    "density": 0.05
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "doc_observing_card",
+  "title": "Hannah's observing card",
+  "kind": "note",
+  "pages": [
+    {
+      "side": "front",
+      "style": "handwritten",
+      "text": "FOR WHOEVER COMES AFTER\n\nThe glass is not for stars.\n\nTurn the dome to the line.\nRaise the glass as high as the pole stands here — as high as Bellweather stands north.\nThen look down the line, not up it.\n\n— H.V., 1911",
+      "onView": [
+        {
+          "type": "setFlag",
+          "key": "read_observing_card",
+          "value": true
+        }
+      ]
+    }
+  ],
+  "storyTags": [
+    "hannah",
+    "meridian"
+  ],
+  "date": "1911",
+  "author": "Hannah Vale"
+}

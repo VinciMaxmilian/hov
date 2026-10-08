@@ -106,7 +106,9 @@ export const useUi = create<UiStore>()((set, get) => ({
     const messages = s.messages.filter((m) => m.until > now)
     const hint = s.hint && s.hint.until > now ? s.hint : null
     const areaCard = s.areaCard && s.areaCard.until > now ? s.areaCard : null
-    const chapter = s.chapter && s.chapter.until > now ? s.chapter : null
+    // O cartão de ato não "vence" enquanto o jogador lê um documento: espera a volta ao jogo.
+    const held = s.chapter && s.mode !== 'playing' ? { ...s.chapter, until: Math.max(s.chapter.until, now + 7500) } : s.chapter
+    const chapter = held && held.until > now ? held : null
     if (messages.length !== s.messages.length || hint !== s.hint || areaCard !== s.areaCard || chapter !== s.chapter) set({ messages, hint, areaCard, chapter })
   },
 }))

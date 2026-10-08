@@ -1,0 +1,278 @@
+{
+  "id": "below",
+  "name": "Below the West Wing",
+  "sector": "UNDERGROUND",
+  "kind": "interior",
+  "bounds": {
+    "min": [
+      -24.6,
+      -11.5,
+      -14.55
+    ],
+    "max": [
+      -19.4,
+      -6.0,
+      3.8
+    ]
+  },
+  "neighbors": [
+    "west_cellar",
+    "meridian_chamber"
+  ],
+  "footsteps": "stone",
+  "rainMuffle": 1,
+  "ambient": 0,
+  "spawn": {
+    "position": [
+      -22,
+      -10.4,
+      2.6
+    ],
+    "yaw": 0
+  },
+  "lights": [
+    {
+      "type": "point",
+      "position": [
+        -23.4,
+        -8.9,
+        -12.0
+      ],
+      "intensity": 6,
+      "distance": 6,
+      "color": "#ffb060",
+      "decay": 2,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "eight_lamps"
+      },
+      "flicker": 0.3
+    },
+    {
+      "type": "point",
+      "position": [
+        -20.6,
+        -8.9,
+        -12.0
+      ],
+      "intensity": 6,
+      "distance": 6,
+      "color": "#ffb060",
+      "decay": 2,
+      "when": {
+        "type": "puzzleSolved",
+        "puzzle": "eight_lamps"
+      },
+      "flicker": 0.3
+    }
+  ],
+  "objects": [
+    {
+      "type": "Hotspot",
+      "position": [
+        -22.0,
+        -8.9,
+        1.45
+      ],
+      "interactable": "well_rungs",
+      "params": {
+        "size": [
+          0.9,
+          3.0,
+          0.5
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -21.35,
+        -9.3,
+        -3.6
+      ],
+      "interactable": "elias_tally",
+      "params": {
+        "size": [
+          0.35,
+          1.3,
+          0.35
+        ]
+      }
+    },
+    {
+      "type": "Hotspot",
+      "position": [
+        -22.0,
+        -7.9,
+        -13.85
+      ],
+      "interactable": "lintel",
+      "params": {
+        "size": [
+          1.8,
+          0.5,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -23.85,
+        -9.27,
+        -13.4
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -23.85,
+        -9.27,
+        -12.45
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -23.85,
+        -9.27,
+        -11.5
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -23.85,
+        -9.27,
+        -10.55
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -20.15,
+        -9.27,
+        -13.4
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -20.15,
+        -9.27,
+        -12.45
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -20.15,
+        -9.27,
+        -11.5
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "NicheLamp",
+      "position": [
+        -20.15,
+        -9.27,
+        -10.55
+      ],
+      "params": {
+        "litWhen": {
+          "type": "puzzleSolved",
+          "puzzle": "eight_lamps"
+        }
+      }
+    },
+    {
+      "type": "SecretBookcase",
+      "position": [
+        -22.0,
+        -10.4,
+        -14.25
+      ],
+      "id": "chamber_door",
+      "interactable": "chamber_door",
+      "params": {
+        "model": "slab",
+        "material": "stone_old",
+        "width": 1.5,
+        "height": 2.45,
+        "depth": 0.5,
+        "offset": [
+          0,
+          -2.6,
+          0
+        ],
+        "duration": 4.5
+      }
+    }
+  ],
+  "ambience": [
+    {
+      "sound": "drip_loop",
+      "volume": 0.8,
+      "position": [
+        -22,
+        -9.8,
+        -4.0
+      ]
+    },
+    {
+      "sound": "wind_draft",
+      "volume": 0.7,
+      "position": [
+        -22,
+        -9.6,
+        -13.6
+      ]
+    }
+  ],
+  "fog": {
+    "color": "#020304",
+    "density": 0.07
+  }
+}

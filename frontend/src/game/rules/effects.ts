@@ -45,14 +45,15 @@ export const gameEffects: RuleEffects = {
   },
   save: () => requestSave('event'),
   setClock: (day, minutes) => useGame.getState().setClock(day, minutes),
-  chapter: (title, subtitle) => {
+  chapter: (title, subtitle, fade) => {
+    bus.emit('CHAPTER', { title })
+    if (!fade) return useUi.getState().showChapter(title, subtitle)
     // Corte: a tela escurece, o tempo passa por trás, e o cartão do ato aparece.
     useUi.setState({ fade: 1 })
     scheduler.after(1400, () => {
       useUi.setState({ fade: 0 })
       useUi.getState().showChapter(title, subtitle)
     })
-    bus.emit('CHAPTER', { title })
   },
   teleport: (position, yaw, area) => {
     useUi.setState({ fade: 1 })

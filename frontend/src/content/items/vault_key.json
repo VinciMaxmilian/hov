@@ -1,0 +1,11 @@
+{
+  "id": "vault_key",
+  "name": "Vault key",
+  "description": "From the drawer in the telescope's clock drive.",
+  "category": "KEY_ITEMS",
+  "storyTags": [
+    "meridian"
+  ],
+  "model": "proc:key",
+  "inspectNote": "A tag in a fine old hand: VAULT. Under it, in pencil: \"on the line\"."
+}
