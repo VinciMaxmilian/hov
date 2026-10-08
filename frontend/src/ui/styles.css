@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 19px;
+}
+
 html,
 body,
 #root {

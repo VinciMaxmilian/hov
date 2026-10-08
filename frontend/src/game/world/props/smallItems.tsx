@@ -33,35 +33,92 @@ export function LampModel({ lit = false }: { lit?: boolean }) {
   const glass = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: '#e9d6b0',
+        color: '#f3e3bd',
         transparent: true,
-        opacity: 0.35,
+        opacity: lit ? 0.28 : 0.4,
         emissive: new THREE.Color('#ffb45e'),
-        emissiveIntensity: lit ? 2.2 : 0,
-        roughness: 0.1,
+        emissiveIntensity: lit ? 1.4 : 0,
+        roughness: 0.05,
         depthWrite: false,
       }),
     [lit],
   )
+  const flameMat = useMemo(
+    () => new THREE.MeshBasicMaterial({ color: '#ffd98a', transparent: true, opacity: 0.95, depthWrite: false }),
+    [],
+  )
+  const flameCore = useMemo(
+    () => new THREE.MeshBasicMaterial({ color: '#fff6dc', transparent: true, opacity: 1, depthWrite: false }),
+    [],
+  )
+  const halo = useMemo(() => {
+    const c = document.createElement('canvas')
+    c.width = c.height = 128
+    const ctx = c.getContext('2d')!
+    const g = ctx.createRadialGradient(64, 64, 2, 64, 64, 64)
+    g.addColorStop(0, 'rgba(255,200,110,0.85)')
+    g.addColorStop(0.35, 'rgba(255,160,70,0.35)')
+    g.addColorStop(1, 'rgba(255,140,50,0)')
+    ctx.fillStyle = g
+    ctx.fillRect(0, 0, 128, 128)
+    const tex = new THREE.CanvasTexture(c)
+    return new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })
+  }, [])
   return (
     <group>
-      <mesh position={[0, 0.03, 0]} material={brass}>
-        <cylinderGeometry args={[0.06, 0.07, 0.06, 16]} />
+      {/* base + reservatório */}
+      <mesh position={[0, 0.012, 0]} material={brass}>
+        <cylinderGeometry args={[0.07, 0.078, 0.024, 24]} />
       </mesh>
-      <mesh position={[0, 0.13, 0]} material={glass}>
-        <sphereGeometry args={[0.055, 16, 12]} />
+      <mesh position={[0, 0.06, 0]} material={brass}>
+        <sphereGeometry args={[0.065, 24, 14, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2]} />
       </mesh>
-      {[0, 1, 2, 3].map((i) => (
-        <mesh key={i} position={[Math.cos((i * Math.PI) / 2) * 0.058, 0.13, Math.sin((i * Math.PI) / 2) * 0.058]} material={brass}>
-          <boxGeometry args={[0.006, 0.13, 0.006]} />
-        </mesh>
-      ))}
-      <mesh position={[0, 0.215, 0]} material={brass}>
-        <cylinderGeometry args={[0.03, 0.045, 0.03, 12]} />
+      <mesh position={[0, 0.058, 0]} scale={[1, 0.55, 1]} material={brass}>
+        <sphereGeometry args={[0.062, 24, 14]} />
       </mesh>
-      <mesh position={[0, 0.26, 0]} rotation={[0, 0, 0]} material={brass}>
-        <torusGeometry args={[0.05, 0.004, 6, 16, Math.PI]} />
+      <mesh position={[0, 0.103, 0]} material={brass}>
+        <cylinderGeometry args={[0.032, 0.04, 0.026, 18]} />
       </mesh>
+      {/* pavio */}
+      <mesh position={[0, 0.125, 0]} material={brass}>
+        <cylinderGeometry args={[0.012, 0.012, 0.02, 10]} />
+      </mesh>
+      {/* globo de vidro */}
+      <mesh position={[0, 0.2, 0]} scale={[1, 1.3, 1]} material={glass} renderOrder={2}>
+        <sphereGeometry args={[0.052, 24, 16]} />
+      </mesh>
+      {/* aros */}
+      <mesh position={[0, 0.138, 0]} rotation={[Math.PI / 2, 0, 0]} material={brass}>
+        <torusGeometry args={[0.036, 0.004, 8, 24]} />
+      </mesh>
+      <mesh position={[0, 0.268, 0]} rotation={[Math.PI / 2, 0, 0]} material={brass}>
+        <torusGeometry args={[0.03, 0.004, 8, 24]} />
+      </mesh>
+      {/* tampa */}
+      <mesh position={[0, 0.29, 0]} material={brass}>
+        <coneGeometry args={[0.04, 0.035, 20]} />
+      </mesh>
+      <mesh position={[0, 0.315, 0]} material={brass}>
+        <sphereGeometry args={[0.009, 10, 8]} />
+      </mesh>
+      {/* alça */}
+      <mesh position={[0, 0.32, 0]} material={brass}>
+        <torusGeometry args={[0.055, 0.004, 8, 24, Math.PI]} />
+      </mesh>
+      <mesh position={[-0.058, 0.075, 0]} rotation={[0, 0, Math.PI / 2]} material={brass}>
+        <torusGeometry args={[0.03, 0.005, 8, 16, Math.PI]} />
+      </mesh>
+      {lit && (
+        <group position={[0, 0.2, 0]}>
+          <mesh position={[0, -0.04, 0]} scale={[1, 2.2, 1]} material={flameMat}>
+            <sphereGeometry args={[0.016, 12, 10]} />
+          </mesh>
+          <mesh position={[0, -0.05, 0]} scale={[1, 1.8, 1]} material={flameCore}>
+            <sphereGeometry args={[0.008, 10, 8]} />
+          </mesh>
+          <sprite position={[0, -0.03, 0]} scale={[0.5, 0.5, 1]} material={halo} />
+        </group>
+      )}
     </group>
   )
 }

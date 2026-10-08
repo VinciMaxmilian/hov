@@ -15,7 +15,7 @@ const STATUS_LABEL: Record<string, string> = {
   error: msgid('save failed'),
 }
 
-const SUBTITLE_FONT: Record<string, string> = { small: '1.15rem', medium: '1.45rem', large: '1.8rem' }
+const SUBTITLE_FONT: Record<string, string> = { small: '1.4rem', medium: '1.75rem', large: '2.2rem' }
 
 /** HUD mínimo: sem marcadores de objetivo, sem destacar pistas. */
 export function Hud() {
