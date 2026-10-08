@@ -24,7 +24,10 @@ export interface RuleEffects {
   closePuzzle(): void
   unlockJournal(entry: string): void
   save(): void
-  endSlice(): void
+  setClock(day: number, minutes: number): void
+  chapter(title: string, subtitle?: string): void
+  teleport(position: Vec3, yaw: number, area?: string): void
+  beginEnding(): void
   schedule(ms: number, fn: () => void): void
 }
 
@@ -70,7 +73,13 @@ function runAction(a: Action, fx: RuleEffects): void {
       return runActions(evaluate(a.condition, fx.state()) ? a.then : (a.else ?? []), fx)
     case 'save':
       return fx.save()
-    case 'endSlice':
-      return fx.endSlice()
+    case 'setClock':
+      return fx.setClock(a.day, a.minutes)
+    case 'chapter':
+      return fx.chapter(a.title, a.subtitle)
+    case 'teleport':
+      return fx.teleport(a.position, a.yaw, a.area)
+    case 'beginEnding':
+      return fx.beginEnding()
   }
 }

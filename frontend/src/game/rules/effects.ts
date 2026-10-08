@@ -11,6 +11,8 @@ import { pickHint } from '../player/device'
 import type { RuleEffects } from './execute'
 import { runActions } from './execute'
 import type { Action } from '../content/schemas'
+import { teleport as teleportPlayer } from '../player/playerRuntime'
+import { evaluate } from './evaluate'
 
 /** Implementação real dos efeitos da DSL. */
 export const gameEffects: RuleEffects = {
@@ -42,11 +44,34 @@ export const gameEffects: RuleEffects = {
     useGame.getState().unlockJournal(entry)
   },
   save: () => requestSave('event'),
-  endSlice: () => {
+  setClock: (day, minutes) => useGame.getState().setClock(day, minutes),
+  chapter: (title, subtitle) => {
+    // Corte: a tela escurece, o tempo passa por trás, e o cartão do ato aparece.
+    useUi.setState({ fade: 1 })
+    scheduler.after(1400, () => {
+      useUi.setState({ fade: 0 })
+      useUi.getState().showChapter(title, subtitle)
+    })
+    bus.emit('CHAPTER', { title })
+  },
+  teleport: (position, yaw, area) => {
+    useUi.setState({ fade: 1 })
+    scheduler.after(700, () => {
+      teleportPlayer(position, yaw)
+      if (area) useGame.getState().setArea(area)
+      scheduler.after(250, () => useUi.setState({ fade: 0 }))
+    })
+  },
+  beginEnding: () => {
+    const game = useGame.getState()
+    if (game.flags.ending) return
+    const ending = content.story.endings.find((e) => evaluate(e.when, game))
+    if (!ending) return
+    game.setFlag('ending', ending.id)
     const ui = useUi.getState()
-    useUi.setState({ endingPending: true })
+    useUi.setState({ ending: { id: ending.id, choice: null }, endingPending: true, activePuzzle: null, cameraFocus: null })
     if (ui.mode !== 'inspect') ui.setMode('ending')
-    bus.emit('SLICE_COMPLETE', {})
+    bus.emit('ENDING_STARTED', { ending: ending.id })
     requestSave('event')
   },
   schedule: (ms, fn) => {

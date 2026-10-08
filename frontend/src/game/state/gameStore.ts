@@ -25,6 +25,8 @@ export interface GameStore extends GameState {
   unlockJournal(entry: string): boolean
   setArea(area: string): void
   advance(dtSec: number): void
+  /** Pula o relógio para frente (nunca para trás). */
+  setClock(day: number, minutes: number): void
 }
 
 export const emptyState = (): GameState => ({
@@ -110,6 +112,13 @@ export const useGame = create<GameStore>()((set, get) => ({
     if (previous === area) return
     set((s) => ({ player: { ...s.player, area } }))
     bus.emit('AREA_ENTERED', { area, previous })
+  },
+
+  setClock: (day, minutes) => {
+    const { clock } = get()
+    if (day < clock.day || (day === clock.day && minutes <= clock.minutes)) return
+    set({ clock: { day, minutes } })
+    bus.emit('TIME_CHANGED', { day, minutes: Math.floor(minutes) })
   },
 
   advance: (dtSec) => {

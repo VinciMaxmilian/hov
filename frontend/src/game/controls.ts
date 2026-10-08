@@ -2,7 +2,8 @@ import { audio } from './audio/audioManager'
 import { interact } from './interaction/interact'
 import { exitPointerLock, isPointerLocked, isTypingTarget, onPointerLockChange, requestPointerLock } from './player/input'
 import { toggleLamp } from './player/lampControl'
-import { adjustClock, attemptPuzzle, closePuzzle } from './puzzles/puzzleSystem'
+import { content } from './content'
+import { adjustClock, attemptPuzzle, closePuzzle, pressSequence, turnDial } from './puzzles/puzzleSystem'
 import { useUi } from './state/uiStore'
 
 /**
@@ -77,6 +78,47 @@ export function installControls(): void {
 
 function handlePuzzleKey(e: KeyboardEvent, puzzle: string | null) {
   if (!puzzle) return
+  const input = content.puzzles.get(puzzle)?.input
+  if (!input) return
+  if (e.code === 'Escape') {
+    closePuzzle()
+    if (!isPointerLocked()) void requestPointerLock()
+    return
+  }
+  if (e.code === 'KeyF') return toggleLamp()
+  const attempt = e.code === 'KeyE' || e.code === 'Enter' || e.code === 'Space'
+  if (input.type === 'sequence') {
+    // 1–9 e 0 tocam as opções na ordem em que aparecem.
+    const m = /^(?:Digit|Numpad)(\d)$/.exec(e.code)
+    if (m) {
+      const i = m[1] === '0' ? 9 : Number(m[1]) - 1
+      if (i < input.options.length) pressSequence(puzzle, i)
+    }
+    return
+  }
+  if (input.type === 'dials') {
+    const ui = useUi.getState()
+    const n = input.dials.length
+    switch (e.code) {
+      case 'KeyA':
+      case 'ArrowLeft':
+        return useUi.setState({ dialIndex: (ui.dialIndex + n - 1) % n })
+      case 'KeyD':
+      case 'ArrowRight':
+        return useUi.setState({ dialIndex: (ui.dialIndex + 1) % n })
+      case 'KeyW':
+      case 'ArrowUp':
+        return turnDial(puzzle, ui.dialIndex, 1)
+      case 'KeyS':
+      case 'ArrowDown':
+        return turnDial(puzzle, ui.dialIndex, -1)
+    }
+    if (attempt) {
+      e.preventDefault()
+      attemptPuzzle(puzzle)
+    }
+    return
+  }
   const big = e.shiftKey ? 5 : 1
   switch (e.code) {
     case 'KeyA':
@@ -91,16 +133,9 @@ function handlePuzzleKey(e: KeyboardEvent, puzzle: string | null) {
     case 'KeyS':
     case 'ArrowDown':
       return adjustClock(puzzle, 'minute', -big)
-    case 'KeyE':
-    case 'Enter':
-    case 'Space':
-      e.preventDefault()
-      return attemptPuzzle(puzzle)
-    case 'Escape':
-      closePuzzle()
-      if (!isPointerLocked()) void requestPointerLock()
-      return
-    case 'KeyF':
-      return toggleLamp()
+  }
+  if (attempt) {
+    e.preventDefault()
+    attemptPuzzle(puzzle)
   }
 }

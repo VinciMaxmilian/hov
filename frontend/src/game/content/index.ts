@@ -1,3 +1,4 @@
+import { setRevelationDefs } from '../rules/evaluate'
 import { buildRegistry, type ContentRegistry } from './registry'
 
 /** Todo o conteúdo do jogo, carregado e validado uma vez no boot. */
@@ -11,5 +12,7 @@ export const content: ContentRegistry = buildRegistry({
   journal: import.meta.glob('../../content/journal/*.json', { eager: true }),
   story: import.meta.glob('../../content/story/*.json', { eager: true }),
 })
+
+setRevelationDefs(content.story.revelations)
 
 export type { ContentRegistry }

@@ -140,6 +140,9 @@ function crossCheck(reg: ContentRegistry): string[] {
         return need(reg.areas, c.area, where, 'área')
       case 'journal':
         return need(journalIds, c.entry, where, 'entrada de journal')
+      case 'revelation':
+        if (!reg.story.revelations.some((r) => r.id === c.id)) problems.push(`${where}: revelação "${c.id}" não existe`)
+        return
       case 'all':
       case 'any':
         return c.of.forEach((x) => checkCondition(x, where))
@@ -175,6 +178,9 @@ function crossCheck(reg: ContentRegistry): string[] {
           break
         case 'unlockJournal':
           need(journalIds, a.entry, where, 'entrada de journal')
+          break
+        case 'teleport':
+          need(reg.areas, a.area, where, 'área')
           break
         case 'delay':
           checkActions(a.actions, where)
@@ -254,6 +260,13 @@ function crossCheck(reg: ContentRegistry): string[] {
     checkActions(t.actions, `trigger ${t.id}`)
   }
   reg.story.progress.forEach((p) => checkCondition(p.when, `progress ${p.id}`))
+  for (const r of reg.story.revelations) r.clues.forEach((c) => checkCondition(c, `revelation ${r.id}`))
+  for (const e of reg.story.endings) {
+    checkCondition(e.when, `ending ${e.id}`)
+    e.choices.forEach((c) => checkCondition(c.when, `ending ${e.id}/${c.id}`))
+  }
+  const lastEnding = reg.story.endings[reg.story.endings.length - 1]
+  if (lastEnding?.when) problems.push('story.endings: o último final deve ser incondicional (fallback)')
   need(reg.areas, reg.story.start.area, 'story.start', 'área')
 
   return problems

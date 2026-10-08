@@ -1,6 +1,6 @@
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { Physics } from '@react-three/rapier'
-import { Suspense, useEffect, useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
 import * as THREE from 'three'
 import { content } from './content'
 import { GameLoop } from './core/GameLoop'
@@ -13,19 +13,8 @@ import { useUi } from './state/uiStore'
 import { isTouch } from './player/device'
 import { AreaRenderer } from './world/AreaRenderer'
 import { mountedAreas } from './world/areas'
-
-/** Neblina/fundo da área atual (frio = mundo). */
-function Atmosphere() {
-  const scene = useThree((s) => s.scene)
-  const areaId = useGame((s) => s.player.area)
-  useEffect(() => {
-    const area = content.areas.get(areaId)
-    const fog = area?.fog ?? { color: '#06090d', density: 0.06 }
-    scene.fog = new THREE.FogExp2(fog.color, fog.density)
-    scene.background = new THREE.Color(area?.background ?? fog.color)
-  }, [scene, areaId])
-  return null
-}
+import { Environment } from './world/Environment'
+import { EstateView } from './world/EstateView'
 
 function WorldAreas() {
   const areaId = useGame((s) => s.player.area)
@@ -47,7 +36,7 @@ export function GameCanvas() {
       dpr={isTouch() ? [1, 1.25] : [1, 1.5]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       // near 0.1 (e não 0.05) dobra a precisão do depth buffer: menos z-fighting à distância.
-      camera={{ fov: 70, near: 0.1, far: 1000 }}
+      camera={{ fov: 70, near: 0.1, far: 1400 }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping
         gl.toneMappingExposure = 1.15
@@ -57,9 +46,10 @@ export function GameCanvas() {
         if (useUi.getState().mode === 'playing' && !isTouch()) void requestPointerLock()
       }}
     >
-      <Atmosphere />
+      <Environment />
       <Suspense fallback={null}>
         <Physics gravity={[0, -9.81, 0]}>
+          <EstateView />
           <WorldAreas />
           <Player />
         </Physics>

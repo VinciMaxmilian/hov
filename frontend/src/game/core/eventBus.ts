@@ -18,7 +18,8 @@ export interface GameEvents {
   INTERACTED: { target: string }
   JOURNAL_UPDATED: { entry: string }
   SOUND_REQUEST: { sound: string; position?: Vec3; volume?: number }
-  SLICE_COMPLETE: Record<string, never>
+  ENDING_STARTED: { ending: string }
+  CHAPTER: { title: string }
 }
 
 export type GameEventType = keyof GameEvents

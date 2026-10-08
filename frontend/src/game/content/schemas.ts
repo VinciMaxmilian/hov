@@ -21,6 +21,12 @@ export type Condition =
   | { type: 'puzzleValue'; puzzle: string; key: string; equals: number | string }
   | { type: 'area'; area: string }
   | { type: 'journal'; entry: string }
+  /** Relógio de jogo: dia (1 = qui 22/10/1998) e minutos desde 00:00, limites inclusivos. */
+  | { type: 'clock'; minDay?: number; maxDay?: number; minMinutes?: number; maxMinutes?: number }
+  /** Revelação da matriz de pistas (story.revelations) confirmada por pistas suficientes. */
+  | { type: 'revelation'; id: string }
+  /** Pelo menos `min` revelações confirmadas. */
+  | { type: 'revelations'; min: number }
   | { type: 'all'; of: Condition[] }
   | { type: 'any'; of: Condition[] }
   | { type: 'not'; condition: Condition }
@@ -35,6 +41,15 @@ export const conditionSchema: z.ZodType<Condition> = z.lazy(() =>
     z.object({ type: z.literal('puzzleValue'), puzzle: id, key: z.string(), equals: z.union([z.number(), z.string()]) }),
     z.object({ type: z.literal('area'), area: id }),
     z.object({ type: z.literal('journal'), entry: id }),
+    z.object({
+      type: z.literal('clock'),
+      minDay: z.number().int().optional(),
+      maxDay: z.number().int().optional(),
+      minMinutes: z.number().optional(),
+      maxMinutes: z.number().optional(),
+    }),
+    z.object({ type: z.literal('revelation'), id }),
+    z.object({ type: z.literal('revelations'), min: z.number().int().nonnegative() }),
     z.object({ type: z.literal('all'), of: z.array(conditionSchema) }),
     z.object({ type: z.literal('any'), of: z.array(conditionSchema) }),
     z.object({ type: z.literal('not'), condition: conditionSchema }),
@@ -63,7 +78,14 @@ export type Action =
   | { type: 'delay'; ms: number; actions: Action[] }
   | { type: 'if'; condition: Condition; then: Action[]; else?: Action[] }
   | { type: 'save' }
-  | { type: 'endSlice' }
+  /** Avança o relógio de jogo (nunca volta no tempo). */
+  | { type: 'setClock'; day: number; minutes: number }
+  /** Cartão de capítulo (ato) no centro da tela. */
+  | { type: 'chapter'; title: string; subtitle?: string }
+  /** Leva o jogador a outro ponto (escadas de poço, etc.), com escurecimento. */
+  | { type: 'teleport'; position: [number, number, number]; yaw: number; area?: string }
+  /** Começa o final adequado ao que foi descoberto (story.endings). */
+  | { type: 'beginEnding' }
 
 export const actionSchema: z.ZodType<Action> = z.lazy(() =>
   z.discriminatedUnion('type', [
@@ -90,7 +112,10 @@ export const actionSchema: z.ZodType<Action> = z.lazy(() =>
       else: z.array(actionSchema).optional(),
     }),
     z.object({ type: z.literal('save') }),
-    z.object({ type: z.literal('endSlice') }),
+    z.object({ type: z.literal('setClock'), day: z.number().int().min(1), minutes: z.number().min(0).max(1439) }),
+    z.object({ type: z.literal('chapter'), title: z.string(), subtitle: z.string().optional() }),
+    z.object({ type: z.literal('teleport'), position: vec3, yaw: z.number(), area: id.optional() }),
+    z.object({ type: z.literal('beginEnding') }),
   ]),
 )
 
@@ -214,6 +239,23 @@ export const puzzleSchema = z.object({
       initial: z.object({ hour: z.number().int().min(1).max(12), minute: z.number().int().min(0).max(59) }),
       attemptLabel: z.string().default('Let it strike'),
     }),
+    /** Mostradores (cadeados de combinação, decifração): valores d0..dn = índice da opção. */
+    z.object({
+      type: z.literal('dials'),
+      dials: z.array(z.object({ label: z.string().optional(), options: z.array(z.string()).min(2) })).min(1),
+      initial: z.array(z.number().int().nonnegative()).optional(),
+      attemptLabel: z.string().default('Try it'),
+      /** Texto curto exibido acima dos mostradores (ex.: o que está gravado). */
+      prompt: z.string().optional(),
+    }),
+    /** Sequência (sinos, lamparinas): cada toque registra uma opção; valor "seq" = últimos N índices separados por vírgula. */
+    z.object({
+      type: z.literal('sequence'),
+      options: z.array(z.string()).min(2),
+      length: z.number().int().min(1),
+      sound: id.optional(),
+      prompt: z.string().optional(),
+    }),
   ]),
   conditions: conditionSchema,
   successActions: z.array(actionSchema).default([]),
@@ -274,6 +316,8 @@ const lightSchema = z.object({
   castShadow: z.boolean().default(false),
   flicker: z.number().min(0).max(1).default(0),
   when: conditionSchema.optional(),
+  /** Sala da propriedade cujas janelas brilham quando esta luz está acesa (vista de fora). */
+  room: z.string().optional(),
 })
 export type LightDef = z.infer<typeof lightSchema>
 
@@ -304,6 +348,8 @@ export const areaSchema = z.object({
   rainMuffle: z.number().min(0).max(1).default(0.7),
   fog: z.object({ color: z.string(), density: z.number() }).optional(),
   background: z.string().optional(),
+  /** Multiplica a luz indireta de fora nos interiores (subsolo ≈ 0: só a lamparina). */
+  ambient: z.number().min(0).max(1).default(1),
   rooms: z.array(roomSchema).default([]),
   lights: z.array(lightSchema).default([]),
   objects: z.array(areaObjectSchema).default([]),
@@ -359,7 +405,32 @@ export type JournalContent = z.infer<typeof journalSchema>
 
 // ------------------------------------------------------------------ Story
 
+const revelationSchema = z.object({
+  id,
+  title: z.string(),
+  /** Pistas independentes (regra dos três). */
+  clues: z.array(conditionSchema).min(1),
+  /** Quantas pistas confirmam a revelação. */
+  need: z.number().int().min(1).default(2),
+})
+export type RevelationDef = z.infer<typeof revelationSchema>
+
+const endingSchema = z.object({
+  id,
+  title: z.string(),
+  when: conditionSchema.optional(),
+  /** Parágrafos. "{heir}" é substituído pelo nome do protagonista (revelado só aqui). */
+  text: z.array(z.string()).min(1),
+  choices: z
+    .array(z.object({ id, label: z.string(), when: conditionSchema.optional(), epilogue: z.array(z.string()).min(1) }))
+    .default([]),
+})
+export type EndingDef = z.infer<typeof endingSchema>
+
 export const storySchema = z.object({
+  revelations: z.array(revelationSchema).default([]),
+  /** Primeiro final cujo `when` é verdadeiro (ordem do arquivo); o último deve ser incondicional. */
+  endings: z.array(endingSchema).default([]),
   /** Gatilhos narrativos reagindo a eventos do bus. */
   triggers: z.array(
     z.object({

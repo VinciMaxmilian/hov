@@ -123,7 +123,27 @@ export function CassetteModel() {
   )
 }
 
+/** Martelo de unha (arrancar pregos). Deitado no plano xz, cabo ao longo de x. */
+export function HammerModel() {
+  const wood = material('wood_worn')
+  const iron = material('iron')
+  return (
+    <group rotation={[0, 0, Math.PI / 2]}>
+      <mesh position={[0, -0.02, 0]} material={wood}>
+        <cylinderGeometry args={[0.012, 0.014, 0.3, 10]} />
+      </mesh>
+      <mesh position={[0, 0.135, 0]} rotation={[0, 0, Math.PI / 2]} material={iron}>
+        <cylinderGeometry args={[0.014, 0.014, 0.05, 10]} />
+      </mesh>
+      <mesh position={[-0.045, 0.14, 0]} rotation={[0, 0, -0.5]} material={iron}>
+        <boxGeometry args={[0.06, 0.012, 0.014]} />
+      </mesh>
+    </group>
+  )
+}
+
 export const models: Record<string, () => JSX.Element> = {
+  hammer: () => <HammerModel />,
   key: () => <KeyModel />,
   key_brass: () => <KeyModel variant="brass" />,
   lamp: () => <LampModel />,
@@ -145,6 +165,14 @@ export function KeyProp({ obj }: PropProps) {
       <mesh position={[0.05, 0.002, 0.02]} rotation={[-Math.PI / 2, 0, 0.4]} material={material('paper')}>
         <planeGeometry args={[0.04, 0.025]} />
       </mesh>
+    </group>
+  )
+}
+
+export function HammerProp() {
+  return (
+    <group rotation={[Math.PI / 2, 0, 0]} position={[0, 0.016, 0]}>
+      <HammerModel />
     </group>
   )
 }

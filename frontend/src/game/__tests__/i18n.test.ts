@@ -18,6 +18,10 @@ function contentStrings(): string[] {
         add(a.text)
         add(a.touch)
       }
+      if (a.type === 'chapter') {
+        add(a.title)
+        add(a.subtitle)
+      }
       if (a.type === 'delay') actions(a.actions)
       if (a.type === 'if') {
         actions(a.then)
@@ -49,7 +53,12 @@ function contentStrings(): string[] {
   }
   for (const p of content.puzzles.values()) {
     add(p.title)
-    add(p.input.attemptLabel)
+    const input = p.input
+    if (input.type !== 'sequence') add(input.attemptLabel)
+    if (input.type !== 'clock') {
+      add(input.prompt)
+      ;(input.type === 'dials' ? input.dials.flatMap((d) => [d.label, ...d.options]) : input.options).forEach(add)
+    }
     actions(p.successActions)
     actions(p.failureActions)
   }
@@ -57,6 +66,15 @@ function contentStrings(): string[] {
   content.journal.board.nodes.forEach((n) => add(n.label))
   content.journal.board.edges.forEach((e) => add(e.label))
   content.story.triggers.forEach((t) => actions(t.actions))
+  content.story.revelations.forEach((r) => add(r.title))
+  for (const e of content.story.endings) {
+    add(e.title)
+    e.text.forEach(add)
+    e.choices.forEach((c) => {
+      add(c.label)
+      c.epilogue.forEach(add)
+    })
+  }
   return [...out]
 }
 

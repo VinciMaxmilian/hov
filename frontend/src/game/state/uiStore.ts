@@ -22,6 +22,8 @@ interface UiStore {
   focus: { id: string; label: string; verb: string } | null
   inspect: InspectTarget | null
   activePuzzle: string | null
+  /** Mostrador selecionado num puzzle de mostradores. */
+  dialIndex: number
   /** Pose de câmera do close-up ativo (puzzle). */
   cameraFocus: { position: [number, number, number]; lookAt: [number, number, number] } | null
   messages: Caption[]
@@ -29,6 +31,11 @@ interface UiStore {
   subtitle: Subtitle | null
   areaCard: Caption | null
   endingPending: boolean
+  /** Final em curso: id do final e escolha feita (null = ainda escolhendo). */
+  ending: { id: string; choice: string | null } | null
+  /** Cartão de ato. */
+  chapter: (Caption & { subtitle?: string }) | null
+  showChapter(title: string, subtitle?: string): void
   journalTab: 'belongings' | 'journal' | 'board'
   fade: number
   /** performance.now() da última atualização do journal (ícone discreto no HUD). */
@@ -54,12 +61,15 @@ export const useUi = create<UiStore>()((set, get) => ({
   focus: null,
   inspect: null,
   activePuzzle: null,
+  dialIndex: 0,
   cameraFocus: null,
   messages: [],
   hint: null,
   subtitle: null,
   areaCard: null,
   endingPending: false,
+  ending: null,
+  chapter: null,
   journalTab: 'belongings',
   fade: 0,
   journalPing: 0,
@@ -87,6 +97,8 @@ export const useUi = create<UiStore>()((set, get) => ({
 
   showAreaCard: (text) => set({ areaCard: { id: ++captionId, text, until: performance.now() + 3800 } }),
 
+  showChapter: (text, subtitle) => set({ chapter: { id: ++captionId, text, subtitle, until: performance.now() + 7500 }, areaCard: null }),
+
   setSubtitle: (subtitle) => set({ subtitle }),
 
   prune: (now) => {
@@ -94,6 +106,7 @@ export const useUi = create<UiStore>()((set, get) => ({
     const messages = s.messages.filter((m) => m.until > now)
     const hint = s.hint && s.hint.until > now ? s.hint : null
     const areaCard = s.areaCard && s.areaCard.until > now ? s.areaCard : null
-    if (messages.length !== s.messages.length || hint !== s.hint || areaCard !== s.areaCard) set({ messages, hint, areaCard })
+    const chapter = s.chapter && s.chapter.until > now ? s.chapter : null
+    if (messages.length !== s.messages.length || hint !== s.hint || areaCard !== s.areaCard || chapter !== s.chapter) set({ messages, hint, areaCard, chapter })
   },
 }))

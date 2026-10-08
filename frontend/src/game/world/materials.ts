@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { interiorize } from './interiorLight'
 import { proceduralTexture } from './textures'
 
 /**
@@ -76,6 +77,8 @@ export function material(id: string): THREE.MeshStandardMaterial {
   })
   if (def.transparent) m.depthWrite = false
   m.name = id
+  // Props do jogo vivem dentro de casa: mesma luz indireta atenuada da propriedade.
+  interiorize(m)
   cache.set(id, m)
   return m
 }

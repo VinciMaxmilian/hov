@@ -33,6 +33,13 @@ class AudioManager {
   private volume = 0.8
   private muffle = 0
   private thunderTimer: number | null = null
+  private thunderListeners = new Set<(delayMs: number) => void>()
+
+  /** Relâmpago: chamado antes do trovão (o som chega `delayMs` depois do clarão). */
+  onThunder(fn: (delayMs: number) => void): () => void {
+    this.thunderListeners.add(fn)
+    return () => this.thunderListeners.delete(fn)
+  }
 
   registerSounds(defs: Iterable<SoundDef>) {
     for (const d of defs) this.defs.set(d.id, d)
@@ -245,10 +252,14 @@ class AudioManager {
   private scheduleThunder() {
     if (this.thunderTimer) window.clearTimeout(this.thunderTimer)
     this.thunderTimer = window.setTimeout(() => {
-      if (this.ctx && this.defs.has('thunder')) {
-        const def = this.defs.get('thunder')!
-        synths[def.synth]?.(this.synthCtx(this.ambience, def.volume * (0.5 + Math.random() * 0.5)))
-      }
+      const delay = 300 + Math.random() * 1700
+      this.thunderListeners.forEach((fn) => fn(delay))
+      window.setTimeout(() => {
+        if (this.ctx && this.defs.has('thunder')) {
+          const def = this.defs.get('thunder')!
+          synths[def.synth]?.(this.synthCtx(this.ambience, def.volume * (0.5 + Math.random() * 0.5)))
+        }
+      }, delay)
       this.scheduleThunder()
     }, 45000 + Math.random() * 70000)
   }

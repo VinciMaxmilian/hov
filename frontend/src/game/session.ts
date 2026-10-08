@@ -5,7 +5,7 @@ import { scheduler } from './core/scheduler'
 import { stopRecording } from './documents/recordings'
 import { refreshJournal } from './journal/journalSystem'
 import { teleport } from './player/playerRuntime'
-import { requestSave, saveNow, setAutosaveEnabled } from './save/saveManager'
+import { CONTENT_VERSION, requestSave, saveNow, setAutosaveEnabled } from './save/saveManager'
 import { trackEvent } from './save/cloudSaves'
 import { useGame } from './state/gameStore'
 import { createNewGameState } from './state/newGame'
@@ -28,7 +28,10 @@ function resetRuntime() {
     hint: null,
     subtitle: null,
     areaCard: null,
+    chapter: null,
+    fade: 0,
     endingPending: false,
+    ending: null,
   })
 }
 
@@ -58,6 +61,13 @@ export function loadGame(save: SaveData): void {
   resetRuntime()
   enterImmersive()
   const { schemaVersion: _v, meta, settings, ...state } = save
+  // Save de outra versão do conteúdo (ex.: vertical slice, mapa antigo): mesma forma, coordenadas diferentes.
+  // O jogador recomeça no ponto seguro da área (ou no início), mantendo descobertas e itens.
+  if (meta.contentVersion !== CONTENT_VERSION) {
+    const area = content.areas.get(state.player.area)
+    const spot = area?.spawn ?? { position: content.story.start.position, yaw: content.story.start.yaw }
+    state.player = { area: area ? area.id : content.story.start.area, position: [...spot.position], yaw: spot.yaw, pitch: 0 }
+  }
   useGame.getState().replace(state, meta.slot)
   useSettings.getState().update(settings)
   teleport(state.player.position, state.player.yaw, state.player.pitch)
@@ -66,6 +76,11 @@ export function loadGame(save: SaveData): void {
   audio.setAmbienceLevel(1, 0.5)
   refreshJournal()
   beginPlay(false)
+  const ending = state.flags.ending
+  if (typeof ending === 'string') {
+    const choice = state.flags.ending_choice
+    useUi.setState({ mode: 'ending', ending: { id: ending, choice: typeof choice === 'string' ? choice : null } })
+  }
 }
 
 export function returnToTitle(): void {
@@ -81,7 +96,8 @@ export function installSessionHooks(): void {
     bus.on(type, () => requestSave('event'))
   }
   bus.on('PUZZLE_SOLVED', ({ puzzle }) => trackEvent('puzzle_solved', { puzzle, playtime: Math.floor(useGame.getState().playtimeSec) }))
-  bus.on('SLICE_COMPLETE', () => trackEvent('slice_complete', { playtime: Math.floor(useGame.getState().playtimeSec) }))
+  bus.on('ENDING_STARTED', ({ ending }) => trackEvent('ending_started', { ending, playtime: Math.floor(useGame.getState().playtimeSec) }))
+  bus.on('CHAPTER', ({ title }) => trackEvent('chapter', { title, playtime: Math.floor(useGame.getState().playtimeSec) }))
   bus.on('AREA_ENTERED', ({ area }) => {
     const def = content.areas.get(area)
     if (!def) return

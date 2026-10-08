@@ -23,6 +23,7 @@ export function openPuzzle(puzzleId: string): void {
   useUi.setState({
     mode: 'puzzle',
     activePuzzle: puzzleId,
+    dialIndex: 0,
     cameraFocus: host?.focus ?? null,
     focus: null,
   })
@@ -63,6 +64,41 @@ export function adjustClock(puzzleId: string, unit: 'hour' | 'minute', delta: nu
 }
 
 const wrapHour = (h: number) => ((((h - 1) % 12) + 12) % 12) + 1
+
+/** Gira um mostrador (dials) para a opção seguinte/anterior. */
+export function turnDial(puzzleId: string, dial: number, delta: number): void {
+  const puzzle = content.puzzles.get(puzzleId)
+  const game = useGame.getState()
+  if (!puzzle || puzzle.input.type !== 'dials' || game.puzzles[puzzleId]?.status === 'solved') return
+  const n = puzzle.input.dials[dial]?.options.length
+  if (!n) return
+  const cur = Number(game.puzzles[puzzleId]?.values[`d${dial}`] ?? puzzle.input.initial?.[dial] ?? 0)
+  game.setPuzzleValue(puzzleId, `d${dial}`, (((cur + delta) % n) + n) % n)
+  audio.play('clock_hand', { volume: 0.7 })
+}
+
+/** Toque numa sequência (sinos, lamparinas). Ao completar N toques, confere sozinho. */
+export function pressSequence(puzzleId: string, option: number): void {
+  const puzzle = content.puzzles.get(puzzleId)
+  const game = useGame.getState()
+  if (!puzzle || puzzle.input.type !== 'sequence' || game.puzzles[puzzleId]?.status === 'solved') return
+  const prev = String(game.puzzles[puzzleId]?.values.seq ?? '')
+  const list = [...(prev ? prev.split(',') : []), String(option)].slice(-puzzle.input.length)
+  game.setPuzzleValue(puzzleId, 'seq', list.join(','))
+  if (puzzle.input.sound) audio.play(puzzle.input.sound, { volume: 0.8 })
+  if (list.length < puzzle.input.length) return
+  game.countAttempt(puzzleId)
+  if (evaluate(puzzle.conditions, useGame.getState())) {
+    game.setPuzzleStatus(puzzleId, 'solved')
+    run(puzzle.successActions)
+    scheduler.after(2200, closePuzzle)
+  } else {
+    // sequência errada: recomeça do zero (o jogador ouve o erro)
+    game.setPuzzleValue(puzzleId, 'seq', '')
+    run(puzzle.failureActions)
+    bus.emit('PUZZLE_FAILED', { puzzle: puzzleId })
+  }
+}
 
 export function attemptPuzzle(puzzleId: string): void {
   const puzzle = content.puzzles.get(puzzleId)

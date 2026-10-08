@@ -13,16 +13,22 @@ import { propRegistry } from './props'
 import { vec } from './props/params'
 import { Room } from './Room'
 
-/** Monta uma área a partir do JSON: salas, luzes, objetos e ambiência. */
+/**
+ * Monta uma área a partir do JSON: salas procedurais (opcional), objetos e ambiência.
+ * Luzes pontuais das áreas vão para o pool global (world/Environment); aqui só as direcionais/ambiente
+ * declaradas explicitamente (raras).
+ */
 export function AreaRenderer({ area }: { area: AreaDef }) {
   return (
     <group name={`area:${area.id}`} dispose={null}>
       {area.rooms.map((r) => (
         <Room key={r.id} room={r} />
       ))}
-      {area.lights.map((l, i) => (
-        <AreaLight key={i} light={l} />
-      ))}
+      {area.lights
+        .filter((l) => l.type !== 'point' && l.type !== 'spot')
+        .map((l, i) => (
+          <AreaLight key={i} light={l} />
+        ))}
       {area.objects.map((o, i) => (
         <AreaObjectView key={o.id ?? `${o.type}-${i}`} obj={o} seed={seedFrom(o.seed, hashString(`${area.id}:${o.id ?? i}`))} />
       ))}

@@ -15,7 +15,8 @@ import { readLocal, writeLocal, type LocalRecord } from './localSaves'
  * Conflito (nuvem mudou desde a última sincronização deste dispositivo) → o jogador escolhe no menu Load.
  */
 
-export const CONTENT_VERSION = 'slice-0.1'
+/** Versão do conteúdo/mapa: saves de outra versão recomeçam no ponto seguro da área (session.loadGame). */
+export const CONTENT_VERSION = 'estate-1.0'
 export const SLOTS = [1, 2, 3] as const
 
 export type SyncStatus = 'idle' | 'saving' | 'saved' | 'syncing' | 'synced' | 'offline' | 'conflict' | 'error'

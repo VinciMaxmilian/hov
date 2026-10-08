@@ -8,7 +8,8 @@ import { useGame } from '../state/gameStore'
  * Diretor narrativo: gatilhos declarativos (content/story) reagindo a eventos do bus.
  * Gatilhos "once" ficam registrados em flags (trigger:<id>) — portanto persistem no save.
  */
-const IGNORED = new Set(['TIME_CHANGED', 'SOUND_REQUEST'])
+// TIME_CHANGED chega uma vez por minuto de jogo (6 s reais): barato, e o prazo do 7º dia depende dele.
+const IGNORED = new Set(['SOUND_REQUEST'])
 
 function matches(event: AnyGameEvent, match: Record<string, string | number | boolean>): boolean {
   const payload = event.payload as Record<string, unknown>

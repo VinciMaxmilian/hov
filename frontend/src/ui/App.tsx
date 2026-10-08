@@ -23,6 +23,7 @@ export function App() {
   const mode = useUi((s) => s.mode)
   const locked = useUi((s) => s.pointerLocked)
   const touch = useDevice((s) => s.touch)
+  const fade = useUi((s) => s.fade)
   const t = useTr()
   const inGame = mode !== 'title'
   return (
@@ -35,6 +36,7 @@ export function App() {
         </div>
       )}
       <div className="layer vignette" />
+      {inGame && <div className="layer fade-overlay" style={{ opacity: fade }} />}
       {inGame && <Hud />}
       {mode === 'playing' && touch && <TouchControls />}
       {mode === 'playing' && !locked && !touch && !SHOT && (

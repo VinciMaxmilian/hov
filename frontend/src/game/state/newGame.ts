@@ -1,3 +1,4 @@
+import type { Puzzle } from '../content/schemas'
 import type { ContentRegistry } from '../content/registry'
 import type { GameState } from './saveSchema'
 
@@ -9,7 +10,7 @@ export function createNewGameState(content: ContentRegistry): GameState {
   }
   const puzzles: GameState['puzzles'] = {}
   for (const p of content.puzzles.values()) {
-    puzzles[p.id] = { status: 'unsolved', values: { ...p.input.initial }, attempts: 0 }
+    puzzles[p.id] = { status: 'unsolved', values: initialValues(p), attempts: 0 }
   }
   const { start } = content.story
   return {
@@ -30,4 +31,16 @@ export function computeProgress(content: ContentRegistry, evaluate: (c: ContentR
   if (total === 0) return 0
   const done = content.story.progress.reduce((sum, p) => sum + (evaluate(p.when) ? p.weight : 0), 0)
   return Math.round((done / total) * 1000) / 10
+}
+
+/** Valores iniciais por tipo de input do puzzle. */
+export function initialValues(p: Puzzle): Record<string, number | string> {
+  switch (p.input.type) {
+    case 'clock':
+      return { ...p.input.initial }
+    case 'dials':
+      return Object.fromEntries(p.input.dials.map((_, i, all) => [`d${i}`, Math.min((p.input.type === 'dials' && p.input.initial?.[i]) || 0, all[i].options.length - 1)]))
+    case 'sequence':
+      return { seq: '' }
+  }
 }

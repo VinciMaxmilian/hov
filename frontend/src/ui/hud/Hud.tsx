@@ -1,7 +1,9 @@
 import { useSaveStatus } from '../../game/save/saveManager'
 import { useUi } from '../../game/state/uiStore'
 import { useDevice } from '../../game/player/device'
-import { msgid, useTr } from '../../game/i18n'
+import { msgid, useLang, useTr } from '../../game/i18n'
+import { useGame } from '../../game/state/gameStore'
+import { formatGameClock } from '../format'
 
 const STATUS_LABEL: Record<string, string> = {
   saving: msgid('saving…'),
@@ -21,6 +23,9 @@ export function Hud() {
   const hint = useUi((s) => s.hint)
   const subtitle = useUi((s) => s.subtitle)
   const areaCard = useUi((s) => s.areaCard)
+  const chapter = useUi((s) => s.chapter)
+  const clock = useGame((s) => s.clock)
+  const lang = useLang((s) => s.lang)
   const journalPing = useUi((s) => s.journalPing)
   const status = useSaveStatus((s) => s.status)
   const playing = mode === 'playing'
@@ -54,7 +59,14 @@ export function Hud() {
           {t(subtitle.text)}
         </div>
       )}
-      {areaCard && playing && (
+      {chapter && (playing || mode === 'inspect') && (
+        <div key={chapter.id} className="chapter-card">
+          <div className="chapter-title">{t(chapter.text).toUpperCase()}</div>
+          {chapter.subtitle && <div className="chapter-sub">{t(chapter.subtitle)}</div>}
+          <div className="chapter-clock">{formatGameClock(clock.day, clock.minutes, lang)}</div>
+        </div>
+      )}
+      {areaCard && playing && !chapter && (
         <div key={areaCard.id} className="area-card">
           {t(areaCard.text).toUpperCase()}
         </div>

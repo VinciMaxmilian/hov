@@ -16,7 +16,10 @@ import { bool, num, str, vec, type PropProps } from './params'
 const tmpQ = new THREE.Quaternion()
 const tmpE = new THREE.Euler()
 
-/** Porta com dobradiça. Estado em world[obj.id]: locked | closed | open. */
+/**
+ * Porta com dobradiça. Estado em world[params.state ?? obj.id]: locked | closed | open.
+ * Portas duplas = dois objetos com o mesmo `state` (hinge left/right). variant: wood | iron | grille.
+ */
 export function Door({ obj }: PropProps) {
   const p = obj.params
   const w = num(p, 'width', 1.1)
@@ -24,10 +27,11 @@ export function Door({ obj }: PropProps) {
   const hinge = str(p, 'hinge', 'left') === 'left' ? -1 : 1
   const swing = num(p, 'swing', 1)
   const knobless = bool(p, 'knoblessWhenLocked', false)
-  const mat = material(str(p, 'material', 'wood_panel'))
-  const trim = material('wood_trim')
-  const brass = material('brass')
-  const key = obj.id ?? ''
+  const variant = str(p, 'variant', 'wood')
+  const mat = material(str(p, 'material', variant === 'wood' ? 'wood_panel' : 'iron'))
+  const trim = material(variant === 'wood' ? 'wood_trim' : 'iron')
+  const brass = material(variant === 'wood' ? 'brass' : 'iron')
+  const key = str(p, 'state', obj.id ?? '')
   const state = useGame((s) => s.world[key])
   const open = state === 'open'
   const yaw = deg(obj.rotation[1])
@@ -48,6 +52,8 @@ export function Door({ obj }: PropProps) {
     body.current.setNextKinematicRotation(tmpQ)
   })
 
+  const nBars = Math.max(3, Math.round(w / 0.13))
+  const bars = Array.from({ length: nBars }, (_, i) => -w / 2 + 0.06 + (i * (w - 0.12)) / (nBars - 1))
   const showKnob = !(knobless && state === 'locked')
   // Centro da folha em relação à dobradiça; a maçaneta fica na borda OPOSTA à dobradiça.
   const off = -hinge * (w / 2)
@@ -55,9 +61,20 @@ export function Door({ obj }: PropProps) {
   return (
     <RigidBody ref={body} type="kinematicPosition" colliders={false} position={hingeWorld} rotation={[0, yaw + angle.current, 0]}>
       <group position={[off, 0, 0]}>
-        <mesh geometry={scaledBox(w - 0.02, h - 0.02, 0.06, 1.1)} material={mat} position={[0, h / 2, 0]} castShadow receiveShadow />
+        {variant === 'grille' ? (
+          <>
+            {bars.map((x) => (
+              <mesh key={x} geometry={scaledBox(0.025, h - 0.04, 0.025)} material={mat} position={[x, h / 2, 0]} />
+            ))}
+            {[0.06, h * 0.5, h - 0.06].map((y) => (
+              <mesh key={y} geometry={scaledBox(w - 0.02, 0.05, 0.035)} material={mat} position={[0, y, 0]} />
+            ))}
+          </>
+        ) : (
+          <mesh geometry={scaledBox(w - 0.02, h - 0.02, 0.06, 1.1)} material={mat} position={[0, h / 2, 0]} castShadow receiveShadow />
+        )}
         {/* almofadas */}
-        {[0.28, 0.72].map((f) => (
+        {variant === 'wood' && [0.28, 0.72].map((f) => (
           <group key={f}>
             <mesh geometry={scaledBox(w * 0.62, h * 0.3, 0.012)} material={trim} position={[0, h * f, 0.034]} />
             <mesh geometry={scaledBox(w * 0.62, h * 0.3, 0.012)} material={trim} position={[0, h * f, -0.034]} />
@@ -81,8 +98,58 @@ export function Door({ obj }: PropProps) {
   )
 }
 
-/** Estante-porta: desliza `offset` (mundo) quando world[obj.id] === 'open'. */
-export function SecretBookcase({ obj, seed }: PropProps) {
+/**
+ * Estante-porta / laje de pedra. mode "slide": desliza `offset` (mundo) quando world[obj.id] === 'open';
+ * mode "swing": gira `angle` graus numa dobradiça vertical (hinge left|right). model: bookcase | slab.
+ */
+export function SecretBookcase(props: PropProps) {
+  return str(props.obj.params, 'mode', 'slide') === 'swing' ? <SwingingCase {...props} /> : <SlidingCase {...props} />
+}
+
+function CaseModel({ obj, seed, w, h, d }: PropProps & { w: number; h: number; d: number }) {
+  const shelfObj = useMemo(() => ({ ...obj, params: { width: w, height: h, depth: d, shelves: 6, fill: 0.9 } }), [obj, w, h, d])
+  if (str(obj.params, 'model', 'bookcase') === 'slab')
+    return <mesh geometry={scaledBox(w, h, d, 1.4)} material={material(str(obj.params, 'material', 'stone_old'))} position={[0, h / 2, 0]} castShadow receiveShadow />
+  return <Bookshelf obj={shelfObj} seed={seed} />
+}
+
+function SwingingCase({ obj, seed }: PropProps) {
+  const p = obj.params
+  const w = num(p, 'width', 1.4)
+  const h = num(p, 'height', 2.6)
+  const d = num(p, 'depth', 0.4)
+  const hinge = str(p, 'hinge', 'left') === 'left' ? -1 : 1
+  const target = deg(num(p, 'angle', 85)) * hinge
+  const duration = num(p, 'duration', 3.2)
+  const key = obj.id ?? ''
+  const open = useGame((s) => s.world[key] === 'open')
+  const body = useRef<RapierRigidBody>(null)
+  const t = useRef(open ? 1 : 0)
+  const yaw = deg(obj.rotation[1])
+  const hingeWorld = useMemo(() => {
+    const v = new THREE.Vector3(hinge * (w / 2), 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), yaw)
+    return [obj.position[0] + v.x, obj.position[1], obj.position[2] + v.z] as [number, number, number]
+  }, [obj.position, hinge, w, yaw])
+  useFrame((_, dt) => {
+    const goal = open ? 1 : 0
+    if (t.current === goal || !body.current) return
+    t.current = goal > t.current ? Math.min(1, t.current + dt / duration) : Math.max(0, t.current - dt / duration)
+    const e = t.current * t.current * (3 - 2 * t.current)
+    tmpQ.setFromEuler(tmpE.set(0, yaw + target * e, 0))
+    body.current.setNextKinematicRotation(tmpQ)
+  })
+  const e0 = t.current * t.current * (3 - 2 * t.current)
+  return (
+    <RigidBody ref={body} type="kinematicPosition" colliders={false} position={hingeWorld} rotation={[0, yaw + target * e0, 0]}>
+      <group position={[-hinge * (w / 2), 0, 0]}>
+        <CaseModel obj={obj} seed={seed} w={w} h={h} d={d} />
+        <CuboidCollider args={[w / 2, h / 2, d / 2]} position={[0, h / 2, 0]} />
+      </group>
+    </RigidBody>
+  )
+}
+
+function SlidingCase({ obj, seed }: PropProps) {
   const p = obj.params
   const w = num(p, 'width', 2.4)
   const h = num(p, 'height', 2.6)
@@ -109,11 +176,10 @@ export function SecretBookcase({ obj, seed }: PropProps) {
 
   const e0 = t.current * t.current * (3 - 2 * t.current)
   const start: [number, number, number] = [obj.position[0] + offset[0] * e0, obj.position[1] + offset[1] * e0, obj.position[2] + offset[2] * e0]
-  const shelfObj = useMemo(() => ({ ...obj, params: { width: w, height: h, depth: d, shelves: 6, fill: 0.9 } }), [obj, w, h, d])
 
   return (
     <RigidBody ref={body} type="kinematicPosition" colliders={false} position={start} rotation={[0, yaw, 0]}>
-      <Bookshelf obj={shelfObj} seed={seed} />
+      <CaseModel obj={obj} seed={seed} w={w} h={h} d={d} />
       <CuboidCollider args={[w / 2, h / 2, d / 2]} position={[0, h / 2, 0]} />
     </RigidBody>
   )

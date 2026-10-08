@@ -5,8 +5,9 @@ import { Counterweight, Crate, DeskLamp, Frame, MeridianSymbol } from './decor'
 import { Blocker, Fence, Forest, Gate, GlowWindow, Ground, Mountains, Rain, Sky } from './exterior'
 import { BookshelfStatic, Chair, Chandelier, CoatRack, Desk, Fireplace, Pedestal, SideTable, Staircase, Table, UmbrellaStand } from './furniture'
 import { Door, Drawer, SecretBookcase } from './movers'
+import { Book, Hotspot, NicheLamp } from './extra'
 import type { PropProps } from './params'
-import { KeyProp, MatchboxProp, OilLampProp, Paper, PhotoFrame, TapeRecorder } from './smallItems'
+import { HammerProp, KeyProp, MatchboxProp, OilLampProp, Paper, PhotoFrame, TapeRecorder } from './smallItems'
 
 /**
  * Registro de props procedurais: o campo "type" dos objetos nos JSON de áreas.
@@ -51,6 +52,7 @@ export const propRegistry: Record<string, PropEntry> = {
   Door: { component: Door, collider: 'none', selfTransform: true },
   SecretBookcase: { component: SecretBookcase, collider: 'none', selfTransform: true },
   Key: none(KeyProp),
+  Hammer: none(HammerProp),
   OilLamp: none(OilLampProp),
   Matchbox: none(MatchboxProp),
   Paper: none(Paper),
@@ -65,4 +67,7 @@ export const propRegistry: Record<string, PropEntry> = {
   Gate: none(Gate),
   Rain: none(Rain),
   GlowWindow: none(GlowWindow),
+  Hotspot: none(Hotspot),
+  Book: none(Book),
+  NicheLamp: none(NicheLamp),
 }

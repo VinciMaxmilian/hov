@@ -68,7 +68,10 @@ describe('runActions', () => {
       closePuzzle: vi.fn(),
       unlockJournal: vi.fn(),
       save: vi.fn(),
-      endSlice: vi.fn(),
+      setClock: vi.fn(),
+      chapter: vi.fn(),
+      teleport: vi.fn(),
+      beginEnding: vi.fn(),
       schedule: vi.fn((_ms: number, fn: () => void) => timers.push(fn)),
     } satisfies RuleEffects
     return { fx, flush: () => timers.splice(0).forEach((t) => t()) }
