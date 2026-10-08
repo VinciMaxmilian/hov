@@ -22,7 +22,8 @@ export interface Estate {
   rooms: EstateRoom[]
   /** id da sala → material do vidro das janelas (emissivo quando a sala está acesa). */
   roomGlass: Map<string, THREE.MeshStandardMaterial>
-  interiorGroups: { g: THREE.Object3D; c: [number, number, number]; keep?: boolean }[]
+  /** r: raio de visibilidade em metros (padrão 140 em EstateView); maior para blocos de floresta. */
+  interiorGroups: { g: THREE.Object3D; c: [number, number, number]; keep?: boolean; r?: number }[]
   animators: ((dt: number, t: number) => void)[]
   outdoorMats: THREE.MeshStandardMaterial[]
   gate: { x: number; z: number; tx: number; tz: number }

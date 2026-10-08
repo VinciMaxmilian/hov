@@ -1,9 +1,9 @@
+import type { CSSProperties } from 'react'
 import { useSaveStatus } from '../../game/save/saveManager'
 import { useUi } from '../../game/state/uiStore'
 import { useDevice } from '../../game/player/device'
-import { msgid, useLang, useTr } from '../../game/i18n'
-import { useGame } from '../../game/state/gameStore'
-import { formatGameClock } from '../format'
+import { useSettings } from '../../game/state/settingsStore'
+import { msgid, useTr } from '../../game/i18n'
 
 const STATUS_LABEL: Record<string, string> = {
   saving: msgid('saving…'),
@@ -15,6 +15,8 @@ const STATUS_LABEL: Record<string, string> = {
   error: msgid('save failed'),
 }
 
+const SUBTITLE_FONT: Record<string, string> = { small: '1.15rem', medium: '1.45rem', large: '1.8rem' }
+
 /** HUD mínimo: sem marcadores de objetivo, sem destacar pistas. */
 export function Hud() {
   const mode = useUi((s) => s.mode)
@@ -24,9 +26,8 @@ export function Hud() {
   const subtitle = useUi((s) => s.subtitle)
   const areaCard = useUi((s) => s.areaCard)
   const chapter = useUi((s) => s.chapter)
-  const clock = useGame((s) => s.clock)
-  const lang = useLang((s) => s.lang)
   const journalPing = useUi((s) => s.journalPing)
+  const subtitleSize = useSettings((s) => s.subtitleSize)
   const status = useSaveStatus((s) => s.status)
   const playing = mode === 'playing'
   const touch = useDevice((s) => s.touch)
@@ -54,16 +55,9 @@ export function Hud() {
         </div>
       )}
       {subtitle && (
-        <div className="subtitle-line">
+        <div className="subtitle-line" style={{ '--subtitle-font': SUBTITLE_FONT[subtitleSize] } as CSSProperties}>
           {subtitle.speaker && <span className="speaker">{t(subtitle.speaker)}</span>}
           {t(subtitle.text)}
-        </div>
-      )}
-      {chapter && (playing || mode === 'inspect') && (
-        <div key={chapter.id} className="chapter-card">
-          <div className="chapter-title">{t(chapter.text).toUpperCase()}</div>
-          {chapter.subtitle && <div className="chapter-sub">{t(chapter.subtitle)}</div>}
-          <div className="chapter-clock">{formatGameClock(clock.day, clock.minutes, lang)}</div>
         </div>
       )}
       {areaCard && playing && !chapter && (

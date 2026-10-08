@@ -23,6 +23,12 @@ export const settingsSchema = z.object({
   invertY: z.boolean().default(false),
   masterVolume: z.number().min(0).max(1).default(0.8),
   subtitles: z.boolean().default(true),
+  /** Tamanho do texto de legendas/diálogo (acessibilidade). */
+  subtitleSize: z.enum(['small', 'medium', 'large']).default('medium'),
+  /** Reduz a oscilação da câmera ao andar (conforto/acessibilidade). */
+  reduceHeadBob: z.boolean().default(false),
+  /** "performance" desliga sombras dinâmicas e reduz a resolução de render. */
+  graphicsQuality: z.enum(['high', 'performance']).default('high'),
 })
 export type Settings = z.infer<typeof settingsSchema>
 export const defaultSettings: Settings = settingsSchema.parse({})

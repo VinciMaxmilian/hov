@@ -16,6 +16,13 @@ export interface Subtitle {
   text: string
 }
 
+export interface GameNotification {
+  id: number
+  text: string
+  area?: string
+  until: number
+}
+
 interface UiStore {
   mode: UiMode
   pointerLocked: boolean
@@ -30,6 +37,8 @@ interface UiStore {
   hint: Caption | null
   subtitle: Subtitle | null
   areaCard: Caption | null
+  /** Avisos discretos (sino) de eventos que o jogador pode não ter testemunhado. */
+  notifications: GameNotification[]
   endingPending: boolean
   /** Final em curso: id do final e escolha feita (null = ainda escolhendo). */
   ending: { id: string; choice: string | null } | null
@@ -49,6 +58,7 @@ interface UiStore {
   message(text: string, durationMs?: number): void
   showHint(text: string, durationMs?: number): void
   showAreaCard(text: string): void
+  pushNotification(text: string, area?: string, durationMs?: number): void
   setSubtitle(sub: Subtitle | null): void
   prune(now: number): void
 }
@@ -67,6 +77,7 @@ export const useUi = create<UiStore>()((set, get) => ({
   hint: null,
   subtitle: null,
   areaCard: null,
+  notifications: [],
   endingPending: false,
   ending: null,
   chapter: null,
@@ -99,6 +110,9 @@ export const useUi = create<UiStore>()((set, get) => ({
 
   showChapter: (text, subtitle) => set({ chapter: { id: ++captionId, text, subtitle, until: performance.now() + 7500 }, areaCard: null }),
 
+  pushNotification: (text, area, durationMs = 6000) =>
+    set((s) => ({ notifications: [...s.notifications.slice(-3), { id: ++captionId, text, area, until: performance.now() + durationMs }] })),
+
   setSubtitle: (subtitle) => set({ subtitle }),
 
   prune: (now) => {
@@ -106,9 +120,21 @@ export const useUi = create<UiStore>()((set, get) => ({
     const messages = s.messages.filter((m) => m.until > now)
     const hint = s.hint && s.hint.until > now ? s.hint : null
     const areaCard = s.areaCard && s.areaCard.until > now ? s.areaCard : null
-    // O cartão de ato não "vence" enquanto o jogador lê um documento: espera a volta ao jogo.
-    const held = s.chapter && s.mode !== 'playing' ? { ...s.chapter, until: Math.max(s.chapter.until, now + 7500) } : s.chapter
+    // O cartão de ato e os avisos de sino não "vencem" enquanto o jogador está fora do jogo
+    // (documento, menu, puzzle): esperam a volta para que não passem despercebidos.
+    const away = s.mode !== 'playing'
+    const held = s.chapter && away ? { ...s.chapter, until: Math.max(s.chapter.until, now + 7500) } : s.chapter
     const chapter = held && held.until > now ? held : null
-    if (messages.length !== s.messages.length || hint !== s.hint || areaCard !== s.areaCard || chapter !== s.chapter) set({ messages, hint, areaCard, chapter })
+    const notifications = s.notifications
+      .map((n) => (away ? { ...n, until: Math.max(n.until, now + 6000) } : n))
+      .filter((n) => n.until > now)
+    if (
+      messages.length !== s.messages.length ||
+      hint !== s.hint ||
+      areaCard !== s.areaCard ||
+      chapter !== s.chapter ||
+      notifications.length !== s.notifications.length
+    )
+      set({ messages, hint, areaCard, chapter, notifications })
   },
 }))

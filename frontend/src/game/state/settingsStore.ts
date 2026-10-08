@@ -30,6 +30,6 @@ export const useSettings = create<SettingsStore>()((set) => ({
 }))
 
 export function currentSettings(): Settings {
-  const { mouseSensitivity, invertY, masterVolume, subtitles } = useSettings.getState()
-  return { mouseSensitivity, invertY, masterVolume, subtitles }
+  const { mouseSensitivity, invertY, masterVolume, subtitles, subtitleSize, reduceHeadBob, graphicsQuality } = useSettings.getState()
+  return { mouseSensitivity, invertY, masterVolume, subtitles, subtitleSize, reduceHeadBob, graphicsQuality }
 }

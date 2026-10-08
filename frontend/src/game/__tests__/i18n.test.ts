@@ -14,6 +14,7 @@ function contentStrings(): string[] {
   const actions = (list?: readonly Action[]) => {
     for (const a of list ?? []) {
       if (a.type === 'message') add(a.text)
+      if (a.type === 'notify') add(a.text)
       if (a.type === 'hint') {
         add(a.text)
         add(a.touch)

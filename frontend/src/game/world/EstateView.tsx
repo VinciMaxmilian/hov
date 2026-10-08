@@ -41,10 +41,10 @@ export function EstateView() {
     tick.current -= dt
     if (tick.current > 0) return
     tick.current = 0.25
-    // Interiores distantes não são desenhados (as fachadas continuam).
+    // Interiores distantes e blocos de floresta fora do alcance não são desenhados (as fachadas continuam).
     for (const ig of estate.interiorGroups) {
       const [x, y, z] = ig.c
-      ig.g.visible = camera.position.distanceTo(new THREE.Vector3(x, y, z)) < 140
+      ig.g.visible = camera.position.distanceTo(new THREE.Vector3(x, y, z)) < (ig.r ?? 140)
     }
   })
 

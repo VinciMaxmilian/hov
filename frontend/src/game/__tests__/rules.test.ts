@@ -62,6 +62,7 @@ describe('runActions', () => {
       playSound: vi.fn(),
       playRecording: vi.fn(),
       message: vi.fn(),
+      notify: vi.fn(),
       hint: vi.fn(),
       openPuzzle: vi.fn(),
       solvePuzzle: vi.fn(),

@@ -373,9 +373,13 @@ label {
   transform: translateX(-50%);
   max-width: 70vw;
   text-align: center;
-  font-size: 1.3rem;
-  background: rgba(0, 0, 0, 0.55);
-  padding: 0.3rem 0.9rem;
+  font-size: var(--subtitle-font, 1.45rem);
+  line-height: 1.4;
+  background: rgba(4, 5, 7, 0.68);
+  backdrop-filter: blur(3px);
+  border-radius: 5px;
+  padding: 0.5rem 1.1rem;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 }
 
 .subtitle-line .speaker {
@@ -1262,6 +1266,47 @@ html.touch .status-corner {
   15% { opacity: 1; }
   80% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+.top-notices {
+  pointer-events: none;
+}
+
+.notify-corner {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+  max-width: min(360px, 42vw);
+}
+
+.notify-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.55rem 0.85rem;
+  font-family: var(--type);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--ink);
+  text-shadow: 0 0 6px #000;
+  animation: fadein 0.4s ease both;
+}
+
+.notify-bell {
+  flex: none;
+  font-size: 1rem;
+  filter: drop-shadow(0 0 4px var(--amber));
+}
+
+.notify-area {
+  color: var(--ink-dim);
 }
 
 .fade-overlay {

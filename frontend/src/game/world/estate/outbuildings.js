@@ -106,7 +106,7 @@ export function buildCarriage(model) {
   const I = grp(CH, 'garage_interior'); I.userData.frameRef = CH;
   room(CH, 'garage', 'Garage', [[-11.75, 11.75, -4.75, 4.75]], 0.15, 4.25, { building: 'Carriage house', floor: 'Ground', fm: M.concrete_garage, wm: M.raw_planks, light: [-1, 3.6, 0.5], i: 26, dist: 16, col: 0xffd6a0 });
   room(CH, 'garage_office', 'Garage office', [[5.8, 11.75, -4.75, -1.6]], 0.16, 4.25, { building: 'Carriage house', floor: 'Ground', slab: false, wm: M.paper_ochre_stripe, light: [8.7, 3.2, -3.2], i: 8 });
-  room(CH, 'garage_loft', 'Hay loft', [[-11.75, 11.75, -4.75, 4.75]], 4.5, 10, { building: 'Carriage house', floor: 'Loft', fm: M.raw_planks, wm: M.raw_planks, holes: [[-10.55, -9.65, -4.5, -2.9]], on: false, i: 6, light: [0, 6.5, 0] });
+  room(CH, 'garage_loft', 'Hay loft', [[-11.75, 11.75, -4.75, 4.75]], 4.5, 10, { building: 'Carriage house', floor: 'Loft', fm: M.raw_planks, wm: M.raw_planks, holes: [[-10.625, -9.575, -4.5, -2.9]], on: false, i: 6, light: [0, 6.5, 0] });
   const CW = { t: 0.25, y0: 0, h: 7.5, ext: M.board_batten_oxblood, int: 'auto' }, bays = [-8.4, -2.8, 2.8, 8.4];
   const lw = at => wn(at, 5.4, 0.9, 1.0, 'one', {}), gw = at => wn(at, 1.6, 1.0, 1.2, '', {});
   wall(CH, { ...CW, name: 'garage_s', a: [-12, 4.875], b: [12, 4.875], open: [...bays.map(x => ho(x, 0.15, 4.0, 3.9)), ...bays.map(lw)] });
@@ -154,7 +154,7 @@ export function buildCarriage(model) {
   for (const x of [-7, -1.5, 4]) P.pendant(I, x, 3.6, 0.5, M.enamel_green); P.pendant(I, 8.7, 3.4, -3.2, M.enamel_cream);
   P.desk(I, 9.5, -4.2, 0.17, 0, 1.4, M.wood_pine); P.chair(I, 9.5, -3.5, 0.17, PI, M.wood_pine, M.leather_brown); col(box(I, 'filing_cabinet', M.steel_aged, 0.5, 1.3, 0.6, 11.3, 0.17, -2.4)); P.keys(I, 11.68, 1.8, -3.6, -PI / 2);
   mm(I, 'ledger', [bx(0.3, 0.04, 0.4, 9.3, 0.97, -4.2)], M.book_green); mm(I, 'wall_calendar', [bx(0.4, 0.55, 0.01, 7.5, 2.0, -4.73)], M.paper_sheet); P.documents(I, 9.8, 0.97, -4.1, 5, 0.2);
-  stairRun(I, { name: 'loft_ladder', x: -10.1, z: -2.6, dir: '-z', w: 0.7, y0: 0.15, y1: 4.5, tread: 0.1, riser: 0.24, mat: M.raw_planks, open: true, nosing: false });
+  stairRun(I, { name: 'loft_ladder', x: -10.1, z: -2.6, dir: '-z', w: 0.95, y0: 0.15, y1: 4.5, tread: 0.1, riser: 0.24, mat: M.raw_planks, open: true, nosing: false });
   for (let i = 0; i < 9; i++) col(box(I, 'hay_bale', M.sacking, 1.0, 0.45, 0.5, R(-8, 8), 4.5 + (i % 3) * 0.45, R(-4, -2)));
   P.crates(I, 6, 2, 4.5, 4); P.trunk(I, 3, -3.5, 4.5, 0.4);
   return CH;
@@ -248,15 +248,15 @@ export function buildCottage(model) {
   room(K, 'cottage_living', 'Cottage kitchen & parlour', [[-3.2, 1, -2.45, 2.45]], 0.45, 2.85, { building: "Gardener's cottage", floor: 'Ground', fm: M.floorboards, wm: M.paper_ochre_stripe, flicker: true, light: [-2.6, 1.2, -0.5], i: 10, dist: 8 });
   room(K, 'cottage_bed', 'Cottage bedroom', [[1, 3.2, -2.45, 0.3]], 0.45, 2.85, { building: "Gardener's cottage", floor: 'Ground', fm: M.floorboards, wm: M.paper_rose_floral, on: false, i: 6 });
   room(K, 'cottage_store', 'Cottage store', [[1, 3.2, 0.3, 2.45]], 0.45, 2.85, { building: "Gardener's cottage", floor: 'Ground', fm: M.floorboards, wm: M.plaster, i: 4 });
-  room(K, 'cottage_loft', 'Cottage loft', [[-3.2, 3.2, -2.45, 2.45]], 3.1, 6.3, { building: "Gardener's cottage", floor: 'Loft', fm: M.raw_planks, wm: M.raw_planks, holes: [[-2.95, -2.15, -2.3, -0.9]], on: false, i: 4 });
+  room(K, 'cottage_loft', 'Cottage loft', [[-3.2, 3.2, -2.45, 2.45]], 3.1, 6.3, { building: "Gardener's cottage", floor: 'Loft', fm: M.raw_planks, wm: M.raw_planks, holes: [[-3.075, -2.025, -2.3, -0.9]], on: false, i: 4 });
   room(K, 'cottage_leanto', 'Potting & tool store', [[3.65, 5.7, -2.3, 1.1]], 0.15, 2.4, { building: "Gardener's cottage", floor: 'Ground', fm: M.flags_interior, wm: M.raw_planks, light: [4.7, 2.0, -0.6], i: 6 });
   const KW = { t: 0.3, y0: 0, h: 3.4, ext: M.cedar_shingle, int: 'auto' }, kw = at => wn(at, 1.25, 0.8, 1.05, '', {});
   wall(K, { ...KW, name: 'cottage_s', a: [-3.5, 2.6], b: [3.5, 2.6], open: [kw(-1.8), kw(2.2), dn(0.4, 0.45, 0.9, 2.0, { open: 1.0, leafM: M.door_green })] });
   wall(K, { ...KW, name: 'cottage_n', a: [3.5, -2.6], b: [-3.5, -2.6], open: [kw(-1.5), kw(2.1)] });
   wall(K, { ...KW, name: 'cottage_w', a: [-3.35, -2.75], b: [-3.35, 2.75] });
-  wall(K, { ...KW, name: 'cottage_e', a: [3.35, 2.75], b: [3.35, -2.75], open: [dn(0.6, 0.45, 0.8, 1.95, { open: 1.2, leafM: M.raw_planks }), wn(0, 3.5, 0.6, 0.8, 'one', {})] });
+  wall(K, { ...KW, name: 'cottage_e', a: [3.35, 2.75], b: [3.35, -2.75], open: [dn(0.6, 0.45, 0.9, 1.95, { open: 1.2, leafM: M.raw_planks }), wn(0, 3.5, 0.6, 0.8, 'one', {})] });
   mm(K, 'cottage_stone_base', [bx(7.2, 0.45, 0.3, 0, 0.225, 2.6), bx(7.2, 0.45, 0.3, 0, 0.225, -2.6), bx(0.3, 0.45, 5.5, -3.35, 0.225, 0), bx(0.3, 0.45, 5.5, 3.35, 0.225, 0)], M.basalt_dressed);
-  wall(K, { kind: 'part', t: 0.12, name: 'cottage_p_x1', a: [1, -2.45], b: [1, 2.45], y0: 0.45, h: 2.4, open: [dn(-1.0, 0.45, 0.8, 1.95), dn(1.4, 0.45, 0.8, 1.95)] });
+  wall(K, { kind: 'part', t: 0.12, name: 'cottage_p_x1', a: [1, -2.45], b: [1, 2.45], y0: 0.45, h: 2.4, open: [dn(-1.0, 0.45, 0.9, 1.95), dn(1.4, 0.45, 0.9, 1.95)] });
   wall(K, { kind: 'part', t: 0.12, name: 'cottage_p_z03', a: [1, 0.3], b: [3.2, 0.3], y0: 0.45, h: 2.4 });
   gableRoof(K, { name: 'cottage_roof', span: 5.5, rise: 3.8, len: 7, x: 0, y: 3.4, z: 0, alongX: true, mats: [M.slate_mossy, M.slate_mossy], wall: M.cedar_shingle, over: 0.5 });
   { const C2 = (x, z, w, d, y0, top) => { col(box(K, 'cottage_chimney', M.basalt_dressed, w, top - y0, d, x, y0, z)); }; C2(-3.9, 0, 1.1, 0.9, 0, 8.6); box(K, 'cottage_chimney_cap', M.limestone_trim, 1.3, 0.2, 1.1, -3.9, 8.6, 0); }
@@ -277,7 +277,7 @@ export function buildCottage(model) {
   P.tools(K, 5.5, 0.15, -1.6, -PI / 2, 6); P.sacks(K, 3.9, -2.0, 0.15, 3); mm(K, 'pot_stacks', [0, 1, 2].flatMap(j => [0, 1, 2, 3, 4].map(i => cg(0.13, 0.1, 0.15, 12, 4.1 + j * 0.35, 0.22 + i * 0.1, 0.6))), M.terracotta_int);
   col(mm(K, 'potting_bench', [bx(1.8, 0.06, 0.6, 4.7, 0.9, -2.0), bx(0.06, 0.9, 0.6, 3.85, 0.45, -2.0), bx(0.06, 0.9, 0.6, 5.55, 0.45, -2.0)], M.wood_pine)); mm(K, 'knapsack_sprayer', [cg(0.15, 0.15, 0.5, 12, 5.4, 0.4, 0.4), cg(0.01, 0.01, 0.6, 4, 5.4, 0.9, 0.4, 0.6)], M.copper_pan);
   mm(K, 'fertiliser_tins', [cg(0.1, 0.1, 0.25, 12, 4.4, 1.05, -2.1), cg(0.1, 0.1, 0.2, 12, 4.7, 1.03, -2.1), cg(0.08, 0.08, 0.22, 12, 5.0, 1.04, -2.1)], M.enamel_green);
-  stairRun(K, { name: 'cottage_loft_ladder', x: -2.55, z: -0.6, dir: '-z', w: 0.6, y0: 0.45, y1: 3.1, tread: 0.1, riser: 0.24, mat: M.raw_planks, open: true, nosing: false });
+  stairRun(K, { name: 'cottage_loft_ladder', x: -2.55, z: -0.6, dir: '-z', w: 0.95, y0: 0.45, y1: 3.1, tread: 0.1, riser: 0.24, mat: M.raw_planks, open: true, nosing: false });
   P.bed(K, -1.0, -1.5, 3.1, 0, 0.8, 1.8, M.fabric_cream, false, M.wood_pine); P.crates(K, 1.8, 0.5, 3.1, 3);
   { const L = []; for (let i = 0; i < 30; i++) { const g = new THREE.CylinderGeometry(0.12, 0.12, 0.8, 6); g.rotateX(PI / 2); g.translate(6.4 + (i % 3) * 0.26, 0.12 + Math.floor(i / 3) * 0.12, -1.8 + (i % 5) * 0.03); L.push(g); } mm(K, 'cottage_woodpile', L, M.bark); }
   return K;

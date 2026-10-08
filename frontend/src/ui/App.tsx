@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { requestPointerLock } from '../game/player/input'
 import { useUi } from '../game/state/uiStore'
 import { Hud } from './hud/Hud'
+import { TopNotices } from './hud/TopNotices'
 import { InspectOverlay } from './inspect/InspectOverlay'
 import { JournalScreen } from './journal/JournalScreen'
 import { Ending } from './menus/Ending'
@@ -51,6 +52,7 @@ export function App() {
       {mode === 'ending' && <Ending />}
       {mode === 'intro' && <Intro />}
       {mode === 'title' && <TitleScreen />}
+      {inGame && <TopNotices />}
       {inGame && touch && (
         <div className="layer center rotate-hint">
           <div>↻</div>

@@ -9,6 +9,7 @@ import { requestPointerLock, setPointerLockTarget } from './player/input'
 import { LampRig } from './player/Lamp'
 import { Player } from './player/Player'
 import { useGame } from './state/gameStore'
+import { useSettings } from './state/settingsStore'
 import { useUi } from './state/uiStore'
 import { isTouch } from './player/device'
 import { AreaRenderer } from './world/AreaRenderer'
@@ -29,11 +30,12 @@ function WorldAreas() {
 }
 
 export function GameCanvas() {
+  const performanceMode = useSettings((s) => s.graphicsQuality === 'performance')
   return (
     <Canvas
-      shadows={{ type: THREE.PCFSoftShadowMap }}
-      // Celulares: resolução menor (GPU e bateria).
-      dpr={isTouch() ? [1, 1.25] : [1, 1.5]}
+      shadows={performanceMode ? false : { type: THREE.PCFSoftShadowMap }}
+      // Celulares ou modo "performance": resolução menor (GPU e bateria).
+      dpr={performanceMode ? 1 : isTouch() ? [1, 1.25] : [1, 1.5]}
       gl={{ antialias: true, powerPreference: 'high-performance' }}
       // near 0.1 (e não 0.05) dobra a precisão do depth buffer: menos z-fighting à distância.
       camera={{ fov: 70, near: 0.1, far: 1400 }}

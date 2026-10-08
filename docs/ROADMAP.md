@@ -32,5 +32,5 @@ Fases do plano (§47). Estado em 2026-10-06: **vertical slice jogável de ponta 
 4. Auth: habilitar Google OAuth no painel Supabase (Authentication → Providers) e configurar Site URL/Redirect URLs para o domínio Netlify.
 5. Deploy: Netlify (base `frontend`) e Render (`render.yaml`); definir `VITE_API_URL` se quiser saves via backend.
 6. Ato II: Gallery, Grand Staircase superior, quartos da ala leste; puzzle do retrato de Margaret (já no catálogo).
-7. Engine: materiais com textura em arquivo (KTX2/WebP), `React.lazy` por área, LOD da floresta, configurações gráficas (qualidade de sombra, dpr).
-8. Acessibilidade: remapeamento de teclas, tamanho de legenda, opção de reduzir head-bob.
+7. Engine: materiais com textura em arquivo (KTX2/WebP), `React.lazy` por área. ~~LOD da floresta~~ ✅ (blocos espaciais de 48 m, frustum culling + visibilidade por distância em `EstateView`); ~~configurações gráficas (qualidade de sombra, dpr)~~ ✅ (`graphicsQuality` em Settings).
+8. Acessibilidade: remapeamento de teclas. ~~Tamanho de legenda~~ ✅, ~~opção de reduzir head-bob~~ ✅ (Settings).

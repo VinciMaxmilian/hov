@@ -182,6 +182,9 @@ function crossCheck(reg: ContentRegistry): string[] {
         case 'teleport':
           need(reg.areas, a.area, where, 'área')
           break
+        case 'notify':
+          need(reg.areas, a.area, where, 'área')
+          break
         case 'delay':
           checkActions(a.actions, where)
           break

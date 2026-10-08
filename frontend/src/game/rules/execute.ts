@@ -18,6 +18,7 @@ export interface RuleEffects {
   playSound(sound: string, position?: Vec3, volume?: number): void
   playRecording(document: string): void
   message(text: string, durationMs?: number): void
+  notify(text: string, area?: string, durationMs?: number): void
   hint(text: string, durationMs?: number, touchText?: string): void
   openPuzzle(puzzle: string): void
   solvePuzzle(puzzle: string): void
@@ -57,6 +58,8 @@ function runAction(a: Action, fx: RuleEffects): void {
       return fx.playRecording(a.document)
     case 'message':
       return fx.message(a.text, a.duration)
+    case 'notify':
+      return fx.notify(a.text, a.area, a.duration)
     case 'hint':
       return fx.hint(a.text, a.duration, a.touch)
     case 'openPuzzle':

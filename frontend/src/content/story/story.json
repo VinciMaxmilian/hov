@@ -253,6 +253,11 @@
                   ]
                 },
                 {
+                  "type": "notify",
+                  "text": "Someone knocked at the front door.",
+                  "area": "entrance_hall"
+                },
+                {
                   "type": "setFlag",
                   "key": "heard_knocking",
                   "value": true
@@ -302,6 +307,11 @@
                     2.0,
                     4.2
                   ]
+                },
+                {
+                  "type": "notify",
+                  "text": "Someone knocked at the front door.",
+                  "area": "entrance_hall"
                 },
                 {
                   "type": "setFlag",

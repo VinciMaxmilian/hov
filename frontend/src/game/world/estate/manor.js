@@ -88,7 +88,7 @@ export function buildManor(model, YAW, decalM) {
   rm('study_w', "Founder's study", [[-31.3, -21, -6.3, 0], [-32.55, -28.45, -8.55, -6.3], [-32.55, -31.3, -6.3, -4.45]], 4.3, 7.9, { ...MW, floor: 'First', fm: M.floorboards, wm: M.paper_green_damask, i: 10 });
   rm('aunt', 'West bedroom', [[-31.3, -21, 0, 6.3], [-28.3, -23.7, 6.3, 8.8]], 4.3, 7.9, { ...MW, floor: 'First', fm: M.floorboards, wm: M.paper_blue_stripe, on: false, i: 8 });
   rm('attic_w', 'West attic', [[-31.3, -12.7, -6.3, 6.3], [-28.3, -23.7, 6.3, 8.8]], 8.2, 14.8, { ...MW, floor: 'Attic', fm: M.attic_boards, wm: M.raw_planks, holes: [[-16.6, -13.2, -1.4, -0.4]], light: [-22, 10.8, 0], i: 7, dist: 14, col: 0xffc890 });
-  rm('tower_top', 'Tower room', [[-32.55, -28.45, -8.55, -4.45]], 10.6, 13.9, { ...MW, floor: 'Tower', fm: M.floorboards, wm: M.plaster, holes: [[-32.1, -29.6, -8.25, -7.55]], on: false, i: 6 });
+  rm('tower_top', 'Tower room', [[-32.55, -28.45, -8.55, -4.45]], 10.6, 13.9, { ...MW, floor: 'Tower', fm: M.floorboards, wm: M.plaster, holes: [[-32.1, -29.6, -8.425, -7.375]], on: false, i: 6 });
   rm('cellar_w', 'Old cellar', [[-31.3, -12.7, -6.3, 6.3]], -2.4, 0.2, { ...BS, building: 'West wing 1874', i: 7 });
   slab(manor, 'tower_void_floor', -32.55, -28.45, -8.55, -6.3, 7.6, 0.3, M.raw_planks, M.ceiling_plaster, [[-32.1, -28.9, -8.25, -7.55]]);
   // seam
@@ -102,7 +102,7 @@ export function buildManor(model, YAW, decalM) {
   rm('guest_e', 'East guest room', [[18.6, 23.8, -5.7, 5.7]], 5.0, 8.0, { ...ME, floor: 'First', fm: M.floorboards, wm: M.paper_blue_stripe, on: false, i: 8 });
   rm('bath_e', 'East bathroom', [[23.8, 28.7, -5.7, -1.6]], 5.0, 8.0, { ...ME, floor: 'First', fm: M.tile_white, wm: M.tile_white, i: 6 });
   rm('landing_e', 'East landing', [[23.8, 28.7, -1.6, 5.7]], 5.0, 8.0, { ...ME, floor: 'First', fm: M.floorboards, i: 6 });
-  rm('attic_e', 'East attic', [[10.5, 28.7, -5.7, 5.7]], 8.3, 13.6, { ...ME, floor: 'Attic', fm: M.attic_boards, wm: M.raw_planks, holes: [[26.4, 28.4, -1.3, -0.3]], on: false, i: 6, col: 0xffc890 });
+  rm('attic_e', 'East attic', [[10.5, 28.7, -5.7, 5.7]], 8.3, 13.6, { ...ME, floor: 'Attic', fm: M.attic_boards, wm: M.raw_planks, holes: [[26.4, 28.4, -1.325, -0.275]], on: false, i: 6, col: 0xffc890 });
   shapeSlab(manor, 'bay_floor_g', [[14.4, 5.7], [15.04, 7.41], [16.6, 8.05], [18.16, 7.41], [18.8, 5.7]], 1.0, 0.3, M.parquet, null);
   shapeSlab(manor, 'bay_floor_1', [[14.4, 5.7], [15.04, 7.41], [16.6, 8.05], [18.16, 7.41], [18.8, 5.7]], 5.0, 0.3, M.floorboards, M.ceiling_plaster);
   // turret: spiral stair tower
@@ -158,20 +158,20 @@ export function buildManor(model, YAW, decalM) {
   wall(Cg, { ...PT, name: 'p_c_zm2_g', a: [-3, -2], b: [6, -2], y0: 1.0, h: 4.3, open: [ah(-1.5, 1.0, 1.6, 3.0, { trim: M.panel_oak }), ah(4.5, 1.0, 1.6, 3.0, { trim: M.panel_oak })] });
   wall(Cg, { ...PT, name: 'p_c_x6_g', a: [6, -8.5], b: [6, 7.5], y0: 1.0, h: 4.3, open: [dn(-8.0, 1.0, 0.9, 2.3), dn(1.25, 1.0, 1.0, 2.4), dn(3.4, 1.0, 0.9, 2.3)] });
   wall(Cg, { ...PT, name: 'p_c_z2_g', a: [6, 2], b: [10, 2], y0: 1.0, h: 4.3 });
-  wall(Cg, { ...PT, name: 'p_c_z47_g', a: [6, 4.7], b: [10, 4.7], y0: 1.0, h: 4.3, open: [dn(8, 1.0, 0.8, 2.2)] });
+  wall(Cg, { ...PT, name: 'p_c_z47_g', a: [6, 4.7], b: [10, 4.7], y0: 1.0, h: 4.3, open: [dn(8, 1.0, 0.9, 2.2)] });
   wall(Cg, { ...PT, name: 'p_c_xm3_1', a: [-3, -8.5], b: [-3, 7.5], y0: 5.6, h: 4.1, open: [dn(-7.5, 5.6, 0.9, 2.3, { leaf: false }), dn(-1.0, 5.6, 0.9, 2.3, { leaf: false })] });
   wall(Cg, { ...PT, name: 'p_c_z1_1', a: [-10, 1], b: [-3, 1], y0: 5.6, h: 4.1, open: [dn(-5.5, 5.6, 0.9, 2.3)] });
   wall(Cg, { ...PT, name: 'p_c_zm65_1', a: [-3, -6.5], b: [6, -6.5], y0: 5.6, h: 4.1, open: [dn(0, 5.6, 0.9, 2.3), dn(4.5, 5.6, 0.9, 2.3)] });
   wall(Cg, { ...PT, name: 'p_c_zm2_1', a: [-3, -2], b: [6, -2], y0: 5.6, h: 4.1, open: [ah(4.5, 5.6, 1.2, 2.5)] });
   wall(Cg, { ...PT, name: 'p_c_x3_1', a: [3, -6.5], b: [3, -2], y0: 5.6, h: 4.1, open: [dn(-4, 5.6, 0.9, 2.3)] });
   wall(Cg, { ...PT, name: 'p_c_x6_1', a: [6, -8.5], b: [6, 7.5], y0: 5.6, h: 4.1, open: [dn(-7.5, 5.6, 0.9, 2.3)] });
-  wall(Cg, { ...PT, name: 'p_c_z2_1', a: [6, 2], b: [10, 2], y0: 5.6, h: 4.1, open: [dn(8, 5.6, 0.8, 2.2)] });
+  wall(Cg, { ...PT, name: 'p_c_z2_1', a: [6, 2], b: [10, 2], y0: 5.6, h: 4.1, open: [dn(8, 5.6, 0.9, 2.2)] });
   wall(Cg, { ...PT, name: 'p_c_xm3_2', a: [-3, -8.5], b: [-3, 7.5], y0: 10.0, h: 4.2, open: [dn(-7.5, 10.0, 0.9, 2.3)] });
   wall(Cg, { ...PT, name: 'p_c_z1_2', a: [-10, 1], b: [-3, 1], y0: 10.0, h: 4.2, open: [dn(-6.5, 10.0, 0.9, 2.3)] });
   wall(Cg, { ...PT, name: 'p_c_zm65_2', a: [-3, -6.5], b: [6, -6.5], y0: 10.0, h: 4.2, open: [dn(1.5, 10.0, 0.9, 2.3)] });
   wall(Cg, { ...PT, name: 'p_c_z112_2', a: [-3, 1.12], b: [6, 1.12], y0: 10.0, h: 4.2, open: [wn(1.5, 11.0, 2.0, 1.8, 'one', { frame: M.wood_mahogany })] });
   wall(Cg, { ...PT, name: 'p_c_x6_2', a: [6, -8.5], b: [6, 7.5], y0: 10.0, h: 4.2, open: [dn(-7.5, 10.0, 0.9, 2.3)] });
-  wall(Cg, { ...PT, name: 'p_c_z2_2', a: [6, 2], b: [10, 2], y0: 10.0, h: 4.2, open: [dn(8, 10.0, 0.8, 2.2)] });
+  wall(Cg, { ...PT, name: 'p_c_z2_2', a: [6, 2], b: [10, 2], y0: 10.0, h: 4.2, open: [dn(8, 10.0, 0.9, 2.2)] });
   // basement partitions
   const PB = { ...PT, t: 0.4, core: M.cellar_stone, y0: -2.6, h: 3.3 };
   wall(Cg, { ...PB, name: 'p_b_zm65', a: [-10, -6.5], b: [10, -6.5], open: [dn(-5, -2.6, 1.0, 2.1, { leafM: M.raw_planks }), dn(3, -2.6, 1.0, 2.1, { leafM: M.raw_planks }), ah(6.85, -2.6, 1.5, 3.3)] });
@@ -240,7 +240,7 @@ export function buildManor(model, YAW, decalM) {
   wall(Wg, { ...PT, name: 'p_w_z0_1e', a: [-21, 0], b: [-12.7, 0], y0: 4.3, h: 3.6, open: [dn(-19.5, 4.3, 0.9, 2.2)] });
   stairRun(Iw, { name: 'old_oak_stair', x: -13.4, z: -5.6, dir: '-x', w: 1.4, y0: 0.5, y1: 4.3, tread: 0.27, mat: M.panel_oak, rails: [-1], railMat: M.panel_oak });
   stairRun(Iw, { name: 'attic_stair_w', x: -13.3, z: -0.9, dir: '-x', w: 0.9, y0: 4.3, y1: 8.2, tread: 0.2, riser: 0.24, mat: M.raw_planks, rails: [1], railMat: M.raw_planks, open: true });
-  stairRun(Iw, { name: 'tower_ladder', x: -29.0, z: -7.9, dir: '-x', w: 0.6, y0: 4.3, y1: 10.6, tread: 0.12, riser: 0.25, mat: M.raw_planks, open: true, nosing: false });
+  stairRun(Iw, { name: 'tower_ladder', x: -29.0, z: -7.9, dir: '-x', w: 0.95, y0: 4.3, y1: 10.6, tread: 0.12, riser: 0.25, mat: M.raw_planks, open: true, nosing: false });
   balus(Iw, 'old_stair_guard', -18.85, -4.9, -13.3, -4.9, 4.3, M.panel_oak);
   // ================= EAST WALLS =================
   const ew = (at, y, w = 1.2, h = 2.2) => wn(at, y, w, h, 'hood', { trim: M.trim_paint_white, stone: M.limestone_trim });
@@ -285,9 +285,9 @@ export function buildManor(model, YAW, decalM) {
   wall(Eg, { ...PT, name: 'p_e_x20_g', a: [20, -5.7], b: [20, 5.7], y0: 1.0, h: 3.7, open: [dn(-1, 1.0, 1.4, 2.6, { double: true })] });
   wall(Eg, { ...PT, name: 'p_e_x186_1', a: [18.6, -5.7], b: [18.6, 5.7], y0: 5.0, h: 3.0, open: [dn(0, 5.0, 0.9, 2.2)] });
   wall(Eg, { ...PT, name: 'p_e_x238_1', a: [23.8, -5.7], b: [23.8, 5.7], y0: 5.0, h: 3.0, open: [dn(2, 5.0, 0.9, 2.2)] });
-  wall(Eg, { ...PT, name: 'p_e_zm16_1', a: [23.8, -1.6], b: [28.7, -1.6], y0: 5.0, h: 3.0, open: [dn(26, 5.0, 0.8, 2.2)] });
+  wall(Eg, { ...PT, name: 'p_e_zm16_1', a: [23.8, -1.6], b: [28.7, -1.6], y0: 5.0, h: 3.0, open: [dn(26, 5.0, 0.9, 2.2)] });
   stairRun(Ie, { name: 'daughter_steps', x: 11.4, z: 1.25, dir: '-x', w: 1.0, y0: 5.0, y1: 5.6, tread: 0.3, mat: M.floorboards });
-  stairRun(Ie, { name: 'east_attic_ladder', x: 26.4, z: -0.8, dir: '+x', w: 0.8, y0: 5.0, y1: 8.3, tread: 0.13, riser: 0.24, mat: M.raw_planks, open: true, nosing: false });
+  stairRun(Ie, { name: 'east_attic_ladder', x: 26.4, z: -0.8, dir: '+x', w: 0.95, y0: 5.0, y1: 8.3, tread: 0.13, riser: 0.24, mat: M.raw_planks, open: true, nosing: false });
   chimney(Eg, 'east_gable_chimney', M.brick_service, 29.45, -1.0, 1.0, 1.4, 0, 15.5);
   for (const [x, z] of [[10.6, 6.0], [28.95, -6.0]]) downpipe(Eg, x, z, 8.2);
   // service walls

@@ -36,6 +36,7 @@ export const gameEffects: RuleEffects = {
   playSound: (sound, position, volume) => audio.play(sound, { position, volume }),
   playRecording: (document) => playRecording(document),
   message: (text, durationMs) => useUi.getState().message(text, durationMs),
+  notify: (text, area, durationMs) => useUi.getState().pushNotification(text, area, durationMs),
   hint: (text, durationMs, touchText) => useUi.getState().showHint(pickHint(text, touchText), durationMs),
   openPuzzle: (puzzle) => openPuzzle(puzzle),
   solvePuzzle: (puzzle) => solvePuzzle(puzzle),

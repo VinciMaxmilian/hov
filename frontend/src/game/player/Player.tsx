@@ -77,7 +77,7 @@ export function Player() {
     }
 
     const active = ui.mode === 'playing'
-    const { mouseSensitivity, invertY } = useSettings.getState()
+    const { mouseSensitivity, invertY, reduceHeadBob } = useSettings.getState()
 
     // ---- olhar
     const m = input.takeMouse()
@@ -131,7 +131,7 @@ export function Player() {
         audio.footstep(area?.footsteps ?? 'wood', running ? 1 : 0.7)
       }
     }
-    const bobY = Math.sin(bob.current * 2) * 0.025 * Math.min(1, horiz / (speed + 1e-6))
+    const bobY = Math.sin(bob.current * 2) * (reduceHeadBob ? 0.008 : 0.025) * Math.min(1, horiz / (speed + 1e-6))
 
     // ---- área atual (streaming + eventos)
     if (ui.mode === 'playing' || ui.mode === 'puzzle' || ui.mode === 'inspect') {

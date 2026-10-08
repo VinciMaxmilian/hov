@@ -1,4 +1,4 @@
-import { THREE, PI, M, R, rnd, mesh, box, cyl, grp, bx, cg, sg, merge, mm, col, walk, proxy, flatRect, flatDisc, ribbon, pyr, voids, trunks, animators, gableRoof } from './core.js';
+import { THREE, PI, M, R, rnd, mesh, box, cyl, grp, bx, cg, sg, merge, mm, col, walk, proxy, flatRect, flatDisc, ribbon, pyr, voids, trunks, animators, interiorGroups, gableRoof } from './core.js';
 import { flowTex } from './tex.js';
 import { buildMausoleum } from './underground.js';
 
@@ -159,23 +159,52 @@ export function buildGrounds(model, manor, toW, YAW, MX, obsW) {
     return false;
   };
   const edge = (x, z, d) => blocked(x + d, z) || blocked(x - d, z) || blocked(x, z + d) || blocked(x, z - d);
-  const cell = {}, T = [], F = [], Cd = [], Mp = [], Mr = [], U = [], HT = [], HC = [], HB = [], maples = [];
+  // Árvores agrupadas em blocos espaciais (uma mesh mesclada por material e bloco, não uma só pra
+  // floresta inteira): assim o frustum culling do three.js descarta blocos fora de vista, e
+  // EstateView esconde blocos além do alcance (ver `r` em interiorGroups) — a "LOD" da floresta.
+  const FOREST_CHUNK = 48;
+  const forestChunks = new Map();
+  const chunkFor = (x, z) => {
+    const key = Math.floor(x / FOREST_CHUNK) + ',' + Math.floor(z / FOREST_CHUNK);
+    let c = forestChunks.get(key);
+    if (!c) forestChunks.set(key, (c = { T: [], F: [], Cd: [], Mp: [], Mr: [], U: [], HT: [], HC: [], HB: [] }));
+    return c;
+  };
+  const cell = {}, maples = [];
   let heroes = 0;
   for (let i = 0; i < 12000; i++) {
     const x = R(-270, 270), z = R(-270, 270); if (x * x + z * z > 265 * 265 || blocked(x, z)) continue;
     const kx = Math.floor(x / 6), kz = Math.floor(z / 6); let near = false;
     for (let a = -1; a <= 1 && !near; a++) for (let b = -1; b <= 1 && !near; b++) for (const q of cell[(kx + a) + ',' + (kz + b)] || []) if ((q[0] - x) ** 2 + (q[1] - z) ** 2 < 30) { near = true; break; }
     if (near) continue; (cell[kx + ',' + kz] ||= []).push([x, z]);
+    const c = chunkFor(x, z);
     const r = rnd(), h = R(22, 44);
-    if (r < 0.1) { const hh = R(12, 19); maple(T, rnd() < 0.6 ? Mp : Mr, x, z, hh); maples.push([x, z]); trunks.push([x, z, 0.45]); }
-    else if (r < 0.24) conifer(T, U, x, z, R(5, 11));
-    else if (heroes < 90 && edge(x, z, 9)) { heroConifer(HT, HC, HB, x, z, h); heroes++; trunks.push([x, z, 0.6]); }
-    else { conifer(T, rnd() < 0.62 ? F : Cd, x, z, h); trunks.push([x, z, 0.5]); }
+    if (r < 0.1) { const hh = R(12, 19); maple(c.T, rnd() < 0.6 ? c.Mp : c.Mr, x, z, hh); maples.push([x, z]); trunks.push([x, z, 0.45]); }
+    else if (r < 0.24) conifer(c.T, c.U, x, z, R(5, 11));
+    else if (heroes < 90 && edge(x, z, 9)) { heroConifer(c.HT, c.HC, c.HB, x, z, h); heroes++; trunks.push([x, z, 0.6]); }
+    else { conifer(c.T, rnd() < 0.62 ? c.F : c.Cd, x, z, h); trunks.push([x, z, 0.5]); }
   }
-  { const a = toW(-30, -48), b = toW(-24, 47), c = toW(22, -60); heroConifer(HT, HC, HB, a.x, a.z, 40); heroConifer(HT, HC, HB, c.x, c.z, 31); maple(T, Mp, b.x, b.z, 17); maples.push([b.x, b.z]); trunks.push([a.x, a.z, 0.9], [c.x, c.z, 0.7], [b.x, b.z, 0.5]); }
-  mm(ES, 'forest_trunks', T, M.bark); mm(ES, 'forest_douglas_fir', F, M.douglas_fir); mm(ES, 'forest_red_cedar', Cd, M.red_cedar); mm(ES, 'forest_understory_fir', U, M.douglas_fir);
-  mm(ES, 'forest_bigleaf_maple', Mp, M.maple_autumn); mm(ES, 'forest_maple_rust', Mr, M.maple_rust);
-  mm(ES, 'hero_tree_trunks', HT, M.bark); mm(ES, 'hero_tree_branches', HB, M.bark); mm(ES, 'hero_tree_foliage', HC, M.red_cedar);
+  {
+    const a = toW(-30, -48), b = toW(-24, 47), hc = toW(22, -60);
+    const ca = chunkFor(a.x, a.z), cb = chunkFor(b.x, b.z), cc = chunkFor(hc.x, hc.z);
+    heroConifer(ca.HT, ca.HC, ca.HB, a.x, a.z, 40); heroConifer(cc.HT, cc.HC, cc.HB, hc.x, hc.z, 31);
+    maple(cb.T, cb.Mp, b.x, b.z, 17); maples.push([b.x, b.z]);
+    trunks.push([a.x, a.z, 0.9], [hc.x, hc.z, 0.7], [b.x, b.z, 0.5]);
+  }
+  for (const [key, c] of forestChunks) {
+    const [kx, kz] = key.split(',').map(Number);
+    const FG = grp(ES, 'forest_chunk');
+    if (c.T.length) mm(FG, 'forest_trunks', c.T, M.bark);
+    if (c.F.length) mm(FG, 'forest_douglas_fir', c.F, M.douglas_fir);
+    if (c.Cd.length) mm(FG, 'forest_red_cedar', c.Cd, M.red_cedar);
+    if (c.U.length) mm(FG, 'forest_understory_fir', c.U, M.douglas_fir);
+    if (c.Mp.length) mm(FG, 'forest_bigleaf_maple', c.Mp, M.maple_autumn);
+    if (c.Mr.length) mm(FG, 'forest_maple_rust', c.Mr, M.maple_rust);
+    if (c.HT.length) mm(FG, 'hero_tree_trunks', c.HT, M.bark);
+    if (c.HB.length) mm(FG, 'hero_tree_branches', c.HB, M.bark);
+    if (c.HC.length) mm(FG, 'hero_tree_foliage', c.HC, M.red_cedar);
+    interiorGroups.push({ g: FG, c: [(kx + 0.5) * FOREST_CHUNK, 8, (kz + 0.5) * FOREST_CHUNK], r: 260 });
+  }
   // undergrowth: ferns concentrated at the wild edge, salal, logs, mushrooms, leaves
   const Fe = [], Sa = [], Lg = [], Mu = [], Lv = [];
   for (let i = 0; i < 9000 && Fe.length < 26000; i++) { const x = R(-240, 240), z = R(-240, 240); if (x * x + z * z > 240 * 240 || blocked(x, z)) continue; const e = edge(x, z, 6); if (!e && rnd() < 0.7) continue; fern(Fe, x, z, R(0.7, 1.4)); if (rnd() < 0.5) fern(Fe, x + R(-1, 1), z + R(-1, 1), R(0.6, 1)); if (rnd() < 0.25) shrub(Sa, x + R(-2, 2), z + R(-2, 2), R(0.6, 1.2), 0, 4); }

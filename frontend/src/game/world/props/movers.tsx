@@ -36,7 +36,7 @@ export function Door({ obj }: PropProps) {
   const open = state === 'open'
   const yaw = deg(obj.rotation[1])
   const body = useRef<RapierRigidBody>(null)
-  const angle = useRef(open ? swing * deg(100) * -hinge : 0)
+  const angle = useRef(open ? swing * deg(92) * -hinge : 0)
 
   const hingeWorld = useMemo(() => {
     const v = new THREE.Vector3(hinge * (w / 2), 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), yaw)
@@ -44,7 +44,7 @@ export function Door({ obj }: PropProps) {
   }, [obj.position, hinge, w, yaw])
 
   useFrame((_, dt) => {
-    const target = open ? swing * deg(100) * -hinge : 0
+    const target = open ? swing * deg(92) * -hinge : 0
     const a = angle.current
     if (Math.abs(target - a) < 0.0005 || !body.current) return
     angle.current = a + (target - a) * Math.min(1, dt * 3.2)

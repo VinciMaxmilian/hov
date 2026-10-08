@@ -37,6 +37,24 @@ export function SettingsPanel({ onBack }: { onBack(): void }) {
         <input type="checkbox" checked={s.subtitles} onChange={(e) => s.update({ subtitles: e.target.checked })} /> {t('Subtitles')}
       </label>
       <label className="row">
+        <span style={{ width: 160 }}>{t('Subtitle size')}</span>
+        <select value={s.subtitleSize} onChange={(e) => s.update({ subtitleSize: e.target.value as typeof s.subtitleSize })}>
+          <option value="small">{t('Small')}</option>
+          <option value="medium">{t('Medium')}</option>
+          <option value="large">{t('Large')}</option>
+        </select>
+      </label>
+      <label className="row">
+        <input type="checkbox" checked={s.reduceHeadBob} onChange={(e) => s.update({ reduceHeadBob: e.target.checked })} /> {t('Reduce head bob')}
+      </label>
+      <label className="row">
+        <span style={{ width: 160 }}>{t('Graphics')}</span>
+        <select value={s.graphicsQuality} onChange={(e) => s.update({ graphicsQuality: e.target.value as typeof s.graphicsQuality })}>
+          <option value="high">{t('High (shadows, sharper image)')}</option>
+          <option value="performance">{t('Performance (no shadows, lower resolution)')}</option>
+        </select>
+      </label>
+      <label className="row">
         <span style={{ width: 160 }}>{t('Touch controls')}</span>
         <select value={device.preference} onChange={(e) => device.setPreference(e.target.value as TouchPreference)}>
           <option value="auto">
